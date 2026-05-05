@@ -9,36 +9,341 @@
  */
 {
   "sections": {
-    "featured_collection": {
-      "type": "featured-collection",
+    "curlear_slideshow_LyxYXx": {
+      "type": "curlear-slideshow",
+      "blocks": {
+        "slide_jXcqrL": {
+          "type": "slide",
+          "settings": {
+            "heading": "Style That Holds",
+            "text": "No tug. No repeat passes. No drop by noon.\nTools that get it right first time.",
+            "button_label": "Order Now",
+            "button_link": "",
+            "heading_color": "#ffffff",
+            "text_color": "#ffffff",
+            "button_background": "#333333",
+            "button_text_color": "#ffffff",
+            "use_gradient_button": true,
+            "button_gradient_start": "#f8d0bd",
+            "button_gradient_end": "#d99077",
+            "image": "shopify://shop_images/921ff8043e261c2f4a69062bba83e1e90871cd6e.png",
+            "video_url": "",
+            "video_autoplay": true
+          }
+        }
+      },
+      "block_order": [
+        "slide_jXcqrL"
+      ],
+      "name": "Curlear slideshow",
       "settings": {
-        "collection": "all",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "show_arrows": true,
+        "accessibility_label": "Slideshow",
+        "desktop_content_position": "left",
+        "mobile_content_position": "center",
+        "slide_height": "large",
+        "background_color": "#f5f5f5"
+      }
+    },
+    "curlear_expertise_DE6Bme": {
+      "type": "curlear-expertise",
+      "blocks": {
+        "heading_9LmbYn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Professional Expertise,\nEveryday Empowerment"
+          }
+        },
+        "text_xrLztX": {
+          "type": "text",
+          "settings": {
+            "content": "<p><strong>At Curlear:</strong></p><ul><li>We combine expert craftsmanship and innovative tools.</li><li>We prioritize hair health using our Ion Generating Mineral Complex.</li><li>We build confidence by equipping customers with tools for their best style.</li></ul>"
+          }
+        },
+        "image_QHtqwb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/14d8ffb38332f25284444c9633cb5a5474ee84fd.png"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9LmbYn",
+        "text_xrLztX",
+        "image_QHtqwb"
+      ],
+      "name": "Curlear expertise",
+      "settings": {
+        "background_color": "#fff5f0",
+        "background_opacity": 50
+      }
+    },
+    "curlear_featured_collection_HXc7mt": {
+      "type": "curlear-featured-collection",
+      "name": "Curlear feature collection",
+      "settings": {
+        "heading": "Our Best Sellers",
+        "collection": "frontpage",
+        "show_collection_button": true,
+        "button_label": "Shop all best sellers",
+        "collection_button_color": "#e7bda9",
+        "collection_button_text_color": "#ffffff",
+        "layout_mode": "slider",
+        "image_ratio": "square",
+        "quickview_use_gradient": true,
+        "quickview_gradient_start": "#f8d0bd",
+        "quickview_gradient_end": "#d99077",
+        "section_bg_color": "#fffaf7",
+        "section_bg_opacity": 100,
         "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "auto_slide": true,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_collection_list_EyNWTJ": {
+      "type": "curlear-collection-list",
+      "blocks": {
+        "collection_MAgEQy": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "custom_heading": "All-in-One Stylers",
+            "image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933.png"
+          }
+        },
+        "collection_KcBNrr": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "custom_heading": "HAIR DRYERS",
+            "image": "shopify://shop_images/db6ca14df871f0b8c04affde01042abc560c40ff.png"
+          }
+        },
+        "collection_iNpLiw": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "custom_heading": "Hair Curlers",
+            "image": "shopify://shop_images/247fa8039be5ff09ac43125f8d2b281d4ae568f6.png"
+          }
+        },
+        "collection_JWcK6f": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "custom_heading": "Hair Straighteners",
+            "image": "shopify://shop_images/dca05a4fb3b7e6ad9d2a086e529eb2ec3f6f8320.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_MAgEQy",
+        "collection_KcBNrr",
+        "collection_iNpLiw",
+        "collection_JWcK6f"
+      ],
+      "name": "Curelear collection list",
+      "settings": {
+        "heading": "Shop by Category",
+        "section_bg_color": "#fffaf7",
+        "use_section_bg_gradient": true,
+        "section_bg_gradient_start": "#e8d6cc",
+        "section_bg_gradient_end": "#d9b8a9",
+        "show_button": true,
+        "button_label": "Shop all",
+        "button_link": "#",
+        "button_color": "#e7bda9",
+        "button_text_color": "#ffffff",
+        "use_gradient_button": true,
+        "button_gradient_start": "#f8d0bd",
+        "button_gradient_end": "#d99077",
+        "layout_mode": "slider",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
+        "columns_mobile": "1",
+        "show_arrow_mobile": true,
+        "auto_slide": true,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_video_slider_JWcC8g": {
+      "type": "curlear-video-slider",
+      "blocks": {
+        "video_wE3LC8": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@ashleylamarca_1777992698378.mp4",
+            "youtube_url": "",
+            "product": "airstraight-styler"
+          }
+        },
+        "video_XyGFtU": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@danielleathena_1777992723811.mp4",
+            "youtube_url": "",
+            "product": "5-in-1-styler"
+          }
+        },
+        "video_FV8kfx": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@jesslui_1777992738737.mp4",
+            "youtube_url": "",
+            "product": "pro-hair-dryer"
+          }
+        },
+        "video_pX3WdH": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@tusyastrizh_1777992164043.mp4",
+            "youtube_url": "",
+            "product": "airstraight-styler"
+          }
+        },
+        "video_DEcJmQ": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@dearmags_1777992064455.mp4",
+            "youtube_url": "",
+            "product": "pro-dryer"
+          }
+        },
+        "video_KLUrwR": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@alysssablair_1777992182717.mp4",
+            "youtube_url": "",
+            "product": "5-in-1-styler"
+          }
+        },
+        "video_gN9HQU": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@ashbydemoriz_1777992108824.mp4",
+            "youtube_url": "",
+            "product": "airstraight-styler"
+          }
+        },
+        "video_VFzTVi": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@itskathleenngo_1777992085195.mp4",
+            "youtube_url": "",
+            "product": "5-in-1-styler"
+          }
+        },
+        "video_Gg8HRC": {
+          "type": "video",
+          "settings": {
+            "shopify_video": "shopify://files/videos/ssstik.io_@johannalobo__1777992196705.mp4",
+            "youtube_url": "",
+            "product": "pro-dryer"
+          }
+        }
+      },
+      "block_order": [
+        "video_wE3LC8",
+        "video_XyGFtU",
+        "video_FV8kfx",
+        "video_pX3WdH",
+        "video_DEcJmQ",
+        "video_KLUrwR",
+        "video_gN9HQU",
+        "video_VFzTVi",
+        "video_Gg8HRC"
+      ],
+      "name": "Curelear video slider",
+      "settings": {
+        "heading": "Our Tools in Action",
+        "full_width": true,
+        "heading_alignment": "center",
+        "product_card_border_color": "#8cb8e5",
+        "columns_desktop": 6,
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "auto_slide": false,
+        "auto_slide_speed": 4,
+        "enable_marquee": true,
+        "marquee_speed": 85
+      }
+    },
+    "curlear_image_showcase_B8M76n": {
+      "type": "curlear-image-showcase",
+      "blocks": {
+        "image_card_z4h8kp": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/d3ba7400f8926c2dbd312a40698265886fe402d0.png",
+            "overlay_heading": "STRAIGHT",
+            "overlay_text": "One pass. Smooth.",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        },
+        "image_card_Bq7Uty": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/ba13272e0e8d579eea63e588548689e788cdb645.png",
+            "overlay_heading": "WAVES",
+            "overlay_text": "Loose. Lived-in.",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        },
+        "image_card_gKzr9q": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/a461d099cdb79575163dc7ec9c4b7fa5328c642a.png",
+            "overlay_heading": "VOLUME",
+            "overlay_text": "Lift that stays.",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_card_z4h8kp",
+        "image_card_Bq7Uty",
+        "image_card_gKzr9q"
+      ],
+      "name": "Curelear image show",
+      "settings": {
+        "heading": "Everything You Need For Prettier Hair",
+        "full_width": true,
+        "layout_mode": "slider",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "auto_slide": false,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_press_quote_gPcUrn": {
+      "type": "curlear-press-quote",
+      "name": "Curelear press quote",
+      "settings": {
+        "background_color": "#fffaf7",
+        "text_color": "#1A1A1A",
+        "caption": "What the press is saying",
+        "heading": "<p>“In testing against the brand’s undisclosed leading competitor, the blow-dryer dried hair 75% faster, and as busy mom, every minute is precious.”</p>",
+        "footer_label": "Featured product:",
+        "footer_tag_text": "SMART-X™ High Efficiency Dryer + Diffuser",
+        "tag_background_color": "#C4A574",
+        "tag_text_color": "#FFFFFF",
+        "right_text": "NEW BEAUTY",
+        "right_text_size": 34
       }
     }
   },
   "order": [
-    "featured_collection"
+    "curlear_slideshow_LyxYXx",
+    "curlear_expertise_DE6Bme",
+    "curlear_featured_collection_HXc7mt",
+    "curlear_collection_list_EyNWTJ",
+    "curlear_video_slider_JWcC8g",
+    "curlear_image_showcase_B8M76n",
+    "curlear_press_quote_gPcUrn"
   ]
 }

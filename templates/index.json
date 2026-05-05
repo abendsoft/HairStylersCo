@@ -325,13 +325,29 @@
       "name": "Curelear press quote",
       "settings": {
         "background_color": "#fffaf7",
-        "text_color": "#1A1A1A",
+        "text_color": "#1a1a1a",
         "caption": "What the press is saying",
         "heading": "<p>“In testing against the brand’s undisclosed leading competitor, the blow-dryer dried hair 75% faster, and as busy mom, every minute is precious.”</p>",
         "footer_label": "Featured product:",
         "footer_tag_text": "SMART-X™ High Efficiency Dryer + Diffuser",
-        "tag_background_color": "#C4A574",
-        "tag_text_color": "#FFFFFF",
+        "tag_background_color": "#c4a574",
+        "tag_text_color": "#ffffff",
+        "right_text": "NEW BEAUTY",
+        "right_text_size": 34
+      }
+    },
+    "curlear_press_quote_FMEyfC": {
+      "type": "curlear-press-quote",
+      "name": "Curelear press quote",
+      "settings": {
+        "background_color": "#fffaf7",
+        "text_color": "#1a1a1a",
+        "caption": "What the press is saying",
+        "heading": "<p>“In testing against the brand’s undisclosed leading competitor, the blow-dryer dried hair 75% faster, and as busy mom, every minute is precious.”</p>",
+        "footer_label": "Featured product:",
+        "footer_tag_text": "SMART-X™ High Efficiency Dryer + Diffuser",
+        "tag_background_color": "#c4a574",
+        "tag_text_color": "#ffffff",
         "right_text": "NEW BEAUTY",
         "right_text_size": 34
       }
@@ -344,6 +360,7 @@
     "curlear_collection_list_EyNWTJ",
     "curlear_video_slider_JWcC8g",
     "curlear_image_showcase_B8M76n",
-    "curlear_press_quote_gPcUrn"
+    "curlear_press_quote_gPcUrn",
+    "curlear_press_quote_FMEyfC"
   ]
 }

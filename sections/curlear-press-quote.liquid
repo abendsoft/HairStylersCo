@@ -1,0 +1,117 @@
+{{ 'curlear-press-quote.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="curlear-press-quote section-{{ section.id }}-padding"
+  style="--curlear-press-bg: {{ section.settings.background_color }}; --curlear-press-text: {{ section.settings.text_color }}; --curlear-press-tag-bg: {{ section.settings.tag_background_color }}; --curlear-press-tag-color: {{ section.settings.tag_text_color }}; --curlear-press-right-size: {{ section.settings.right_text_size }}px;"
+>
+  <div class="page-width">
+    <div class="curlear-press-quote__grid">
+      <div class="curlear-press-quote__main">
+        {% if section.settings.caption != blank %}
+          <p class="curlear-press-quote__caption">{{ section.settings.caption | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <div class="curlear-press-quote__heading rte">{{ section.settings.heading }}</div>
+        {% endif %}
+
+        {% if section.settings.footer_label != blank or section.settings.footer_tag_text != blank %}
+          <p class="curlear-press-quote__footer">
+            {% if section.settings.footer_label != blank %}
+              <span class="curlear-press-quote__footer-label">{{ section.settings.footer_label | escape }}</span>
+            {% endif %}
+            {% if section.settings.footer_tag_text != blank %}
+              <span class="curlear-press-quote__footer-tag">{{ section.settings.footer_tag_text | escape }}</span>
+            {% endif %}
+          </p>
+        {% endif %}
+      </div>
+
+      {% if section.settings.right_text != blank %}
+        <div class="curlear-press-quote__aside">
+          <p class="curlear-press-quote__brand">{{ section.settings.right_text | escape }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curelear press quote",
+  "tag": "section",
+  "class": "section-curlear-press-quote",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F7F4F0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "What the press is saying"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading / quote",
+      "default": "<p>“In testing against the brand’s undisclosed leading competitor, the blow-dryer dried hair 75% faster, and as busy mom, every minute is precious.”</p>"
+    },
+    {
+      "type": "text",
+      "id": "footer_label",
+      "label": "Footer line — first part",
+      "info": "Plain text before the tag (e.g. FEATURED PRODUCT:)",
+      "default": "Featured product:"
+    },
+    {
+      "type": "text",
+      "id": "footer_tag_text",
+      "label": "Footer line — tag text",
+      "default": "SMART-X™ High Efficiency Dryer + Diffuser"
+    },
+    {
+      "type": "color",
+      "id": "tag_background_color",
+      "label": "Tag background color",
+      "default": "#C4A574"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Tag text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right column text",
+      "default": "NEW BEAUTY"
+    },
+    {
+      "type": "range",
+      "id": "right_text_size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Right column text size",
+      "default": 34
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curelear press quote"
+    }
+  ]
+}
+{% endschema %}

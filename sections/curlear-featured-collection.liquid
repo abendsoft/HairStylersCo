@@ -1,0 +1,240 @@
+{{ 'curlear-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'curlear-featured-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-featured-collection.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign featured_collection = collections[section.settings.collection]
+  assign products_limit = section.settings.products_to_show
+  assign section_bg_alpha = section.settings.section_bg_opacity | times: 0.01
+  assign section_bg_color = section.settings.section_bg_color | color_modify: 'alpha', section_bg_alpha
+  if products_limit > 16
+    assign products_limit = 16
+  endif
+-%}
+
+<section
+  class="curlear-featured-collection section-{{ section.id }}-padding"
+  data-section-id="{{ section.id }}"
+  style="background-color: {{ section_bg_color }};"
+>
+  <div class="page-width">
+    <div class="curlear-featured-collection__top">
+      <h2 class="curlear-featured-collection__heading">{{ section.settings.heading }}</h2>
+      {% if section.settings.show_collection_button and featured_collection != blank %}
+        <a
+          class="curlear-featured-collection__button{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
+          href="{{ featured_collection.url }}"
+          style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }}; --curlear-collection-btn-grad-start: {{ section.settings.quickview_gradient_start }}; --curlear-collection-btn-grad-end: {{ section.settings.quickview_gradient_end }};"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if featured_collection != blank %}
+      {% if section.settings.layout_mode == 'slider' %}
+        <div
+          class="curlear-featured-collection__slider-wrap"
+          data-curlear-slider
+          data-autoplay="{{ section.settings.auto_slide }}"
+          data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+        >
+          <div
+            class="curlear-featured-collection__slider"
+            style="--curlear-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-cols-mobile: {{ section.settings.columns_mobile }};"
+            data-curlear-slider-track
+          >
+            {% for product in featured_collection.products limit: products_limit %}
+              <div class="curlear-featured-collection__slide">
+                {% render 'curlear-product-card',
+                  product: product,
+                  image_ratio: section.settings.image_ratio,
+                  collection_button_color: section.settings.collection_button_color,
+                  collection_button_text_color: section.settings.collection_button_text_color
+                %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="curlear-featured-collection__progress">
+            <div class="curlear-featured-collection__progress-bar" data-curlear-slider-progress></div>
+          </div>
+        </div>
+      {% else %}
+        <div
+          class="curlear-featured-collection__grid"
+          style="--curlear-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-cols-mobile: {{ section.settings.columns_mobile }};"
+        >
+          {% for product in featured_collection.products limit: products_limit %}
+            <div class="curlear-featured-collection__grid-item">
+              {% render 'curlear-product-card',
+                product: product,
+                image_ratio: section.settings.image_ratio,
+                collection_button_color: section.settings.collection_button_color,
+                collection_button_text_color: section.settings.collection_button_text_color
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% else %}
+      <p>No collection selected.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curelear feature coll",
+  "tag": "section",
+  "class": "section-curlear-featured-collection",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Uses Curlear Product Card global settings from Theme settings."
+    },
+    {
+      "type": "paragraph",
+      "content": "Metafields for card: custom.product_label and custom.product_stars_rating (single line text like 4.5)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Best Sellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_button",
+      "label": "Show collection button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Collection button label",
+      "default": "Shop all best sellers"
+    },
+    {
+      "type": "color",
+      "id": "collection_button_color",
+      "label": "Collection button color",
+      "default": "#E7BDA9"
+    },
+    {
+      "type": "color",
+      "id": "collection_button_text_color",
+      "label": "Collection button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout mode",
+      "default": "slider",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "adapt",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "quickview_use_gradient",
+      "label": "Use gradient for collection button",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "quickview_gradient_start",
+      "label": "Collection button gradient start",
+      "default": "#F8D0BD"
+    },
+    {
+      "type": "color",
+      "id": "quickview_gradient_end",
+      "label": "Collection button gradient end",
+      "default": "#D99077"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "section_bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Section background opacity",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 16,
+      "step": 1,
+      "label": "Products to show",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "label": "Products per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Products per row (mobile)",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide (slider mode)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curelear feature coll"
+    }
+  ]
+}
+{% endschema %}

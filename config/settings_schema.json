@@ -143,6 +143,12 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_paragraph_font",
+        "label": "Use Avenir LT Pro for all paragraph text",
+        "default": false
       }
     ]
   },
@@ -1449,6 +1455,89 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "Curlear Product Card",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Metafields required: custom.product_label (single line text) for right label and custom.product_stars_rating (single line text, e.g. 4.5) for rating text/value."
+      },
+      {
+        "type": "checkbox",
+        "id": "curlear_card_show_stars",
+        "label": "Show stars rating",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_stars_color",
+        "label": "Stars color",
+        "default": "#ECB7A3"
+      },
+      {
+        "type": "checkbox",
+        "id": "curlear_card_show_description",
+        "label": "Show description",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "curlear_card_title_font_size",
+        "min": 14,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "label": "Product title font size",
+        "default": 22
+      },
+      {
+        "type": "range",
+        "id": "curlear_card_price_font_size",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Product price font size",
+        "default": 16
+      },
+      {
+        "type": "checkbox",
+        "id": "curlear_card_show_label",
+        "label": "Show product label",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_label_bg_color",
+        "label": "Label background color",
+        "default": "#D8C7B5"
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_label_text_color",
+        "label": "Label text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_quickview_bg_color",
+        "label": "Quick view button color",
+        "default": "#E7BDA9"
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_quickview_text_color",
+        "label": "Quick view button text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "curlear_card_bullet_color",
+        "label": "Description bullet color",
+        "default": "#ECB7A3"
       }
     ]
   }

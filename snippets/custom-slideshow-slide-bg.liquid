@@ -1,0 +1,70 @@
+{%- assign has_shopify_video = false -%}
+{%- assign has_embed_video = false -%}
+{%- if block.settings.video != blank -%}
+  {%- assign has_shopify_video = true -%}
+{%- elsif block.settings.video_url != blank and block.settings.video_url.id != blank -%}
+  {%- assign has_embed_video = true -%}
+{%- endif -%}
+
+{%- if has_shopify_video -%}
+  <div class="curlear-slideshow__slide-bg curlear-slideshow__slide-bg--video">
+    {{
+      block.settings.video
+      | video_tag:
+        autoplay: block.settings.video_autoplay,
+        loop: true,
+        muted: true,
+        controls: false,
+        image_size: '1920x',
+        class: 'curlear-slideshow__slide-bg-video',
+        preload: 'metadata'
+    }}
+  </div>
+{%- elsif has_embed_video -%}
+  {%- if block.settings.video_url.type == 'youtube' -%}
+    {%- assign embed_src = 'https://www.youtube.com/embed/' | append: block.settings.video_url.id | append: '?autoplay=1&mute=1&loop=1&playlist=' | append: block.settings.video_url.id | append: '&controls=0&modestbranding=1&rel=0&playsinline=1' -%}
+  {%- else -%}
+    {%- assign embed_src = 'https://player.vimeo.com/video/' | append: block.settings.video_url.id | append: '?autoplay=1&muted=1&loop=1&background=1' -%}
+  {%- endif -%}
+  <div class="curlear-slideshow__slide-bg curlear-slideshow__slide-bg--video">
+    <iframe
+      src="{{ embed_src }}"
+      class="curlear-slideshow__slide-bg-iframe"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      loading="{{ loading | default: 'lazy' }}"
+      title="{{ block.settings.heading | default: 'Slideshow video' | escape }}"
+    ></iframe>
+  </div>
+{%- else -%}
+  <div class="curlear-slideshow__slide-bg curlear-slideshow__slide-bg--desktop{% if block.settings.mobile_image != blank %} curlear-slideshow__slide-bg--has-mobile{% endif %}">
+    {%- if block.settings.image != blank -%}
+      {{
+        block.settings.image
+        | image_url: width: 3200
+        | image_tag:
+          class: 'curlear-slideshow__slide-bg-img',
+          loading: loading | default: 'lazy',
+          fetchpriority: fetchpriority | default: false,
+          widths: '550, 750, 1100, 1500, 2000, 3000, 3200',
+          sizes: '100vw',
+          alt: block.settings.heading | escape
+      }}
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'curlear-slideshow__slide-bg-img placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  {%- if block.settings.mobile_image != blank -%}
+    <div class="curlear-slideshow__slide-bg curlear-slideshow__slide-bg--mobile">
+      {{
+        block.settings.mobile_image
+        | image_url: width: 1600
+        | image_tag:
+          class: 'curlear-slideshow__slide-bg-img',
+          loading: loading | default: 'lazy',
+          widths: '375, 550, 750, 1100, 1500, 1600',
+          sizes: '100vw',
+          alt: block.settings.heading | escape
+      }}
+    </div>
+  {%- endif -%}
+{%- endif -%}

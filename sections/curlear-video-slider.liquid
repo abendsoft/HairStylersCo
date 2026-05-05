@@ -1,0 +1,238 @@
+{{ 'curlear-video-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-video-slider.js' | asset_url }}" defer="defer"></script>
+
+<section class="curlear-video-slider section-{{ section.id }}-padding">
+  <div class="{% if section.settings.full_width %}curlear-video-slider__container--full{% else %}page-width{% endif %}">
+    {% if section.settings.heading != blank %}
+      <h2 class="curlear-video-slider__heading" style="text-align: {{ section.settings.heading_alignment }};">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div
+        class="curlear-video-slider__wrap{% if section.settings.enable_marquee %} curlear-video-slider__wrap--marquee{% endif %}"
+        data-curlear-video-slider
+        data-autoplay="{{ section.settings.auto_slide }}"
+        data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+        data-marquee-speed="{{ section.settings.marquee_speed }}"
+      >
+        <div
+          class="curlear-video-slider__track"
+          style="--curlear-video-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-video-cols-mobile: {{ section.settings.columns_mobile }};"
+          data-curlear-video-track
+        >
+          {% for block in section.blocks %}
+            {% assign card_product = all_products[block.settings.product] %}
+            <article
+              class="curlear-video-slider__card"
+              data-product-url="{% if card_product != blank %}{{ card_product.url }}{% endif %}"
+              role="link"
+              tabindex="0"
+              {{ block.shopify_attributes }}
+            >
+              <div class="curlear-video-slider__media">
+                {% if block.settings.shopify_video != blank %}
+                  {{
+                    block.settings.shopify_video
+                    | video_tag:
+                      image_size: '1100x',
+                      class: 'curlear-video-slider__video',
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true
+                  }}
+                {% elsif block.settings.youtube_url != blank %}
+                  {% assign yt_id = block.settings.youtube_url.id %}
+                  {% if yt_id != blank %}
+                    <iframe
+                      class="curlear-video-slider__video curlear-video-slider__video--youtube"
+                      src="https://www.youtube.com/embed/{{ yt_id }}?autoplay=1&mute=1&loop=1&playlist={{ yt_id }}&playsinline=1&rel=0&enablejsapi=1"
+                      title="{{ block.settings.youtube_url.alt | default: 'Video' | escape }}"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      loading="lazy"
+                      data-curlear-youtube
+                    ></iframe>
+                  {% endif %}
+                {% else %}
+                  <div class="curlear-video-slider__placeholder">Add a video</div>
+                {% endif %}
+
+                <button
+                  type="button"
+                  class="curlear-video-slider__mute"
+                  aria-label="Unmute video"
+                  data-curlear-mute
+                  data-muted="true"
+                >
+                  <span class="curlear-video-slider__mute-icon" data-curlear-mute-label>🔇</span>
+                </button>
+              </div>
+
+              {% if card_product != blank %}
+                <div
+                  class="curlear-video-slider__product"
+                  style="--curlear-video-product-border: {{ section.settings.product_card_border_color }};"
+                >
+                  <a class="curlear-video-slider__product-link" href="{{ card_product.url }}">
+                    <div class="curlear-video-slider__product-image-wrap">
+                      {% if card_product.featured_image != blank %}
+                        {{
+                          card_product.featured_image
+                          | image_url: width: 240
+                          | image_tag:
+                            class: 'curlear-video-slider__product-image',
+                            loading: 'lazy',
+                            widths: '100, 160, 240',
+                            sizes: '80px',
+                            alt: card_product.title
+                        }}
+                      {% else %}
+                        {{ 'product-apparel-2' | placeholder_svg_tag: 'curlear-video-slider__product-image placeholder-svg' }}
+                      {% endif %}
+                    </div>
+                    <div class="curlear-video-slider__product-meta">
+                      <p class="curlear-video-slider__product-title">{{ card_product.title | escape }}</p>
+                      <p class="curlear-video-slider__product-price">{{ card_product.price | money }}</p>
+                    </div>
+                  </a>
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curelear video slider",
+  "tag": "section",
+  "class": "section-curlear-video-slider",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop The Looks"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width section",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "product_card_border_color",
+      "label": "Product info border color",
+      "default": "#8CB8E5"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 7,
+      "step": 1,
+      "label": "Videos per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Videos per row (mobile)",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_marquee",
+      "label": "Enable marquee",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Marquee speed",
+      "default": 55
+    },
+    {
+      "type": "paragraph",
+      "content": "Marquee speed is same for desktop and mobile."
+    },
+    {
+      "type": "paragraph",
+      "content": "If marquee is disabled, regular slider behavior is used."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video block",
+      "settings": [
+        {
+          "type": "video",
+          "id": "shopify_video",
+          "label": "Shopify hosted video"
+        },
+        {
+          "type": "video_url",
+          "id": "youtube_url",
+          "label": "YouTube URL",
+          "accept": ["youtube"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curelear video slider"
+    }
+  ]
+}
+{% endschema %}

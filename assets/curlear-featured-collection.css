@@ -1,0 +1,107 @@
+.curlear-featured-collection {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.curlear-featured-collection__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.curlear-featured-collection__heading {
+  margin: 0;
+  font-size: 4.2rem;
+  font-weight: 400;
+}
+
+.curlear-featured-collection__button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+  background: var(--curlear-collection-btn-bg, #e7bda9);
+  color: var(--curlear-collection-btn-color, #fff);
+  padding: 1rem 1.8rem;
+  border-radius: 1rem;
+}
+
+.curlear-featured-collection__button--gradient {
+  background: linear-gradient(
+    90deg,
+    var(--curlear-collection-btn-grad-start, #F8D0BD),
+    var(--curlear-collection-btn-grad-end, #D99077)
+  );
+}
+
+.curlear-featured-collection__slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--curlear-cols-desktop) - 1) * 1.8rem) / var(--curlear-cols-desktop));
+  gap: 1.8rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 0.6rem;
+}
+
+.curlear-featured-collection__slider::-webkit-scrollbar {
+  display: none;
+}
+
+.curlear-featured-collection__slide {
+  scroll-snap-align: start;
+}
+
+.curlear-featured-collection__progress {
+  margin-top: 1rem;
+  height: 0.3rem;
+  background: #e4ddd9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.curlear-featured-collection__progress-bar {
+  height: 100%;
+  width: 0;
+  background: #2b2b2b;
+  transition: width 0.2s ease;
+}
+
+.curlear-featured-collection__progress-bar:empty {
+  display: block !important;
+}
+
+.curlear-featured-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--curlear-cols-desktop), minmax(0, 1fr));
+  gap: 1.8rem;
+}
+
+@media screen and (max-width: 989px) {
+  .curlear-featured-collection__top {
+    align-items: flex-start;
+  }
+
+  .curlear-featured-collection__heading {
+    font-size: 3rem;
+  }
+
+  .curlear-featured-collection__slider {
+    grid-auto-columns: calc((100% - (var(--curlear-cols-mobile) - 1) * 1.2rem) / var(--curlear-cols-mobile));
+    gap: 1.2rem;
+  }
+
+  .curlear-featured-collection__grid {
+    grid-template-columns: repeat(var(--curlear-cols-mobile), minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .curlear-featured-collection__top {
+    flex-direction: column;
+  }
+}

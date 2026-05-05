@@ -1,0 +1,408 @@
+{{ 'curlear-slideshow.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+{%- assign first_block = section.blocks.first -%}
+{%- assign first_has_video = false -%}
+{%- if first_block.settings.video != blank -%}
+  {%- assign first_has_video = true -%}
+{%- elsif first_block.settings.video_url != blank and first_block.settings.video_url.id != blank -%}
+  {%- assign first_has_video = true -%}
+{%- endif -%}
+{%- assign adapt_ratio = '' -%}
+{%- if section.settings.slide_height == 'adapt_image' and first_block.settings.image != blank -%}
+  {%- assign adapt_ratio = 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 -%}
+{%- elsif section.settings.slide_height == 'adapt_image' and first_has_video -%}
+  {%- assign adapt_ratio = 56.25 -%}
+{%- endif -%}
+{%- assign default_heading = 'Curlear Hair Care Collection' -%}
+{%- assign default_text = 'Nourish your hair with clean ingredients designed for shine, strength, and everyday confidence.' -%}
+{%- assign default_button_label = 'Shop now' -%}
+{%- if adapt_ratio != '' -%}
+  {%- style -%}
+    #CurlearSlideshow-{{ section.id }} .curlear-slideshow__slider-inner::before {
+      padding-bottom: {{ adapt_ratio }}%;
+      content: '';
+      display: block;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+{%- style -%}
+  #CurlearSlideshow-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<div id="CurlearSlideshow-{{ section.id }}" class="curlear-slideshow-section curlear-slideshow-section--height-{{ section.settings.slide_height }}{% unless section.settings.show_arrows %} curlear-slideshow-section--no-arrows{% endunless %}">
+  {%- if section.blocks.size == 0 -%}
+    <div class="curlear-slideshow">
+      <div class="curlear-slideshow__wrapper">
+        <div class="curlear-slideshow__slide-inner">
+          <div class="curlear-slideshow__content curlear-slideshow__content--left curlear-slideshow__content--mobile-center">
+            <h2 class="curlear-slideshow__heading">{{ default_heading }}</h2>
+            <div class="curlear-slideshow__text">{{ default_text }}</div>
+            <a href="#" class="curlear-slideshow__button curlear-slideshow__button--with-arrow">
+              <span>{{ default_button_label }}</span>
+              <span class="curlear-slideshow__button-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- elsif section.blocks.size == 1 -%}
+    <div class="curlear-slideshow curlear-slideshow--single">
+      <div class="curlear-slideshow__wrapper{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner{% endif %}">
+        {%- assign block = section.blocks.first -%}
+        {%- assign heading_text = block.settings.heading | default: default_heading -%}
+        {%- assign body_text = block.settings.text | default: default_text -%}
+        {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
+        {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
+        {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+        <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+          {% render 'custom-slideshow-slide-bg', block: block, loading: 'eager', fetchpriority: true %}
+          <div
+            class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
+            style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+          >
+            <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
+            <div class="curlear-slideshow__text">{{ body_text }}</div>
+            <a href="{{ block.settings.button_link | default: '#' }}" class="curlear-slideshow__button curlear-slideshow__button--with-arrow{% if block.settings.use_gradient_button %} curlear-slideshow__button--gradient{% endif %}">
+              <span>{{ cta_label | escape }}</span>
+              <span class="curlear-slideshow__button-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="curlear-slideshow">
+      <slideshow-component
+        class="curlear-slideshow__component"
+        role="region"
+        aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
+        aria-label="{{ section.settings.accessibility_label | default: 'Slideshow' | escape }}"
+      >
+        <div class="curlear-slideshow__wrapper">
+          {%- if section.settings.show_arrows -%}
+            <div class="announcement-bar-slider slider-buttons">
+              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}" aria-controls="Slider-{{ section.id }}">
+                <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+              </button>
+              <div class="curlear-slideshow__slider-inner{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
+              <div
+                class="grid grid--1-col slider slider--everywhere"
+                id="Slider-{{ section.id }}"
+                aria-live="polite"
+                aria-atomic="true"
+                data-autoplay="{{ section.settings.auto_rotate }}"
+                data-speed="{{ section.settings.change_slides_speed }}"
+              >
+                {%- for block in section.blocks -%}
+                  <div
+                    class="slideshow__slide slider__slide grid__item grid--1-col"
+                    id="Slide-{{ section.id }}-{{ forloop.index }}"
+                    {{ block.shopify_attributes }}
+                    role="group"
+                    aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ section.blocks.size }}"
+                    tabindex="-1"
+                  >
+                    {%- assign heading_text = block.settings.heading | default: default_heading -%}
+                    {%- assign body_text = block.settings.text | default: default_text -%}
+                    {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
+                    {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
+                    {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+                      {%- assign slide_loading = 'lazy' -%}
+                      {%- if forloop.first -%}{%- assign slide_loading = 'eager' -%}{%- endif -%}
+                      {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading, fetchpriority: forloop.first %}
+                      <div
+                        class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
+                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+                      >
+                        <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
+                        <div class="curlear-slideshow__text">{{ body_text }}</div>
+                        <a href="{{ block.settings.button_link | default: '#' }}" class="curlear-slideshow__button curlear-slideshow__button--with-arrow{% if block.settings.use_gradient_button %} curlear-slideshow__button--gradient{% endif %}">
+                          <span>{{ cta_label | escape }}</span>
+                          <span class="curlear-slideshow__button-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+              </div>
+              <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'sections.slideshow.next_slideshow' | t }}" aria-controls="Slider-{{ section.id }}">
+                <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+              </button>
+            </div>
+          {%- else -%}
+            <div class="announcement-bar-slider slider-buttons">
+              <button type="button" class="slider-button slider-button--prev visually-hidden" name="previous" aria-controls="Slider-{{ section.id }}"><span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span></button>
+              <div class="curlear-slideshow__slider-inner{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
+              <div class="grid grid--1-col slider slider--everywhere" id="Slider-{{ section.id }}" aria-live="polite" aria-atomic="true" data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed }}">
+                {%- for block in section.blocks -%}
+                  <div class="slideshow__slide slider__slide grid__item grid--1-col" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }} role="group" aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ section.blocks.size }}" tabindex="-1">
+                    {%- assign heading_text = block.settings.heading | default: default_heading -%}
+                    {%- assign body_text = block.settings.text | default: default_text -%}
+                    {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
+                    {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
+                    {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+                      {%- assign slide_loading_alt = 'lazy' -%}
+                      {%- if forloop.first -%}{%- assign slide_loading_alt = 'eager' -%}{%- endif -%}
+                      {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading_alt, fetchpriority: forloop.first %}
+                      <div
+                        class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
+                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+                      >
+                        <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
+                        <div class="curlear-slideshow__text">{{ body_text }}</div>
+                        <a href="{{ block.settings.button_link | default: '#' }}" class="curlear-slideshow__button curlear-slideshow__button--with-arrow{% if block.settings.use_gradient_button %} curlear-slideshow__button--gradient{% endif %}">
+                          <span>{{ cta_label | escape }}</span>
+                          <span class="curlear-slideshow__button-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+              </div>
+              <button type="button" class="slider-button slider-button--next visually-hidden" name="next" aria-controls="Slider-{{ section.id }}"><span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span></button>
+            </div>
+          {%- endif -%}
+        </div>
+      </slideshow-component>
+    </div>
+    {%- if request.design_mode -%}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Curlear slideshow",
+  "tag": "section",
+  "class": "section-curlear-slideshow",
+  "max_blocks": 8,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slideshow"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Change every",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrow navigation",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Slideshow"
+    },
+    {
+      "type": "header",
+      "content": "Content position (desktop)"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Content position (mobile)"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_position",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "t:sections.slideshow.settings.slide_height.label",
+      "options": [
+        { "value": "adapt_image", "label": "t:sections.slideshow.settings.slide_height.options__1.label" },
+        { "value": "small", "label": "t:sections.slideshow.settings.slide_height.options__2.label" },
+        { "value": "medium", "label": "t:sections.slideshow.settings.slide_height.options__3.label" },
+        { "value": "large", "label": "t:sections.slideshow.settings.slide_height.options__4.label" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background (when no image)",
+      "default": "#f5f5f5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Your Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Order Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button background",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_gradient_button",
+          "label": "Use gradient button background",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "button_gradient_start",
+          "label": "Button gradient start",
+          "default": "#f8d0bd"
+        },
+        {
+          "type": "color",
+          "id": "button_gradient_end",
+          "label": "Button gradient end",
+          "default": "#d99077"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (desktop)",
+          "info": "Used when no video is set. With video, image is not shown."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Image (mobile)",
+          "info": "Optional. If not set, desktop image is used on mobile too."
+        },
+        {
+          "type": "header",
+          "content": "Video (optional)"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify hosted video",
+          "info": "If set, video is used as slide background instead of image."
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "label": "YouTube or Vimeo URL",
+          "info": "If set, video is used as slide background. Ignored if Shopify video is set."
+        },
+        {
+          "type": "checkbox",
+          "id": "video_autoplay",
+          "label": "Autoplay video",
+          "default": true,
+          "info": "Videos autoplay muted for browser support."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear slideshow",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Your Heading",
+            "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+            "button_label": "Order Now"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

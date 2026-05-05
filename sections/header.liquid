@@ -97,6 +97,21 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
+    .header--middle-left.header--menu-centered {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .header--middle-left.header--menu-centered .header__inline-menu {
+      justify-self: center;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .header--middle-left.header--menu-centered .header__inline-menu > .list-menu--inline {
+      justify-content: center;
+      width: 100%;
+    }
   }
 {%- endstyle -%}
 
@@ -136,7 +151,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if section.settings.logo_position == 'middle-left' and section.settings.menu_type_desktop != 'drawer' and section.settings.menu != blank %} header--menu-centered{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'

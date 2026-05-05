@@ -1,0 +1,438 @@
+/* Curlear slideshow – desktop: content left + image right; mobile: stacked, centered */
+
+.curlear-slideshow {
+  position: relative;
+  background-color: #f5f5f5;
+  width: 100%;
+}
+
+.curlear-slideshow__wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.curlear-slideshow .slider-buttons {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.curlear-slideshow .slider-button--prev,
+.curlear-slideshow .slider-button--next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.curlear-slideshow .slider-button--prev {
+  left: 1.5rem;
+}
+
+.curlear-slideshow .slider-button--next {
+  right: 1.5rem;
+}
+
+.curlear-slideshow__slider-inner {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* adapt_image: height from first slide's aspect ratio (padding-bottom set in Liquid) */
+.curlear-slideshow__slider-inner--adapt .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.curlear-slideshow .slider-buttons .slider {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.curlear-slideshow .slider-buttons .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt) .slider {
+  position: static;
+  flex: 1;
+  min-height: 0;
+}
+
+.curlear-slideshow .slider .slideshow__slide {
+  height: 100%;
+  width: 100%;
+}
+
+/* Arrows – circular, dark grey */
+.curlear-slideshow .slider-button {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  min-height: 4rem;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #5C2945;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.curlear-slideshow .slider-button .icon,
+.curlear-slideshow .slider-button .svg-wrapper,
+.curlear-slideshow .slider-button path {
+  color: #5C2945;
+  fill: currentColor;
+}
+
+/* Caret points down by default; use same rotation as theme hover so default and hover match */
+.curlear-slideshow .slider-button--prev .icon {
+  transform: rotate(90deg);
+}
+.curlear-slideshow .slider-button--next .icon {
+  transform: rotate(-90deg);
+}
+
+.curlear-slideshow .slider-button:hover {
+  opacity: 0.9;
+}
+
+/* Keep correct direction on hover (theme's component-slider.css would override; we reassert) */
+.curlear-slideshow .slider-button--prev:hover .icon {
+  transform: rotate(90deg) scale(1.1);
+}
+.curlear-slideshow .slider-button--next:hover .icon {
+  transform: rotate(-90deg) scale(1.1);
+}
+
+.curlear-slideshow .slider-button:focus-visible {
+  outline: 0.2rem solid currentColor;
+  outline-offset: 0.2rem;
+}
+
+/* Slider track – full width, full height so image scales with section */
+.curlear-slideshow .slider {
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  scroll-snap-type: x mandatory;
+}
+
+.curlear-slideshow .slideshow__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  min-height: 0;
+  align-self: stretch;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+}
+
+/* Height: fixed sizes (small, medium, large) – use height so slider/slides fill and image scales */
+.curlear-slideshow-section--height-small .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+.curlear-slideshow-section--height-small .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+  min-height: 28rem;
+  height: 28rem;
+}
+
+.curlear-slideshow-section--height-medium .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+.curlear-slideshow-section--height-medium .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+  min-height: 34rem;
+  height: 34rem;
+}
+
+.curlear-slideshow-section--height-large .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+.curlear-slideshow-section--height-large .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+  min-height: 39rem;
+  height: 39rem;
+}
+
+@media screen and (min-width: 750px) {
+  .curlear-slideshow-section--height-small .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+  .curlear-slideshow-section--height-small .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+    min-height: 42rem;
+    height: 42rem;
+  }
+
+  .curlear-slideshow-section--height-medium .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+  .curlear-slideshow-section--height-medium .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+    min-height: 56rem;
+    height: 56rem;
+  }
+
+  .curlear-slideshow-section--height-large .curlear-slideshow__slider-inner:not(.curlear-slideshow__slider-inner--adapt),
+  .curlear-slideshow-section--height-large .curlear-slideshow--single .curlear-slideshow__wrapper:not(.curlear-slideshow__slider-inner) {
+    min-height: 72rem;
+    height: 72rem;
+  }
+}
+
+/* Slide: full-width full-height background with content overlaid */
+.curlear-slideshow__slide-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 3rem 5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background layer(s) – img fills container */
+.curlear-slideshow__slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.curlear-slideshow__slide-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.curlear-slideshow__slide-bg--video {
+  z-index: 0;
+}
+
+.curlear-slideshow__slide-bg-video,
+.curlear-slideshow__slide-bg-iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.curlear-slideshow__slide-bg-video {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.curlear-slideshow__slide-bg-iframe {
+  border: none;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vw;
+  height: 56.25vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .curlear-slideshow__slide-bg-iframe {
+    width: 177.78vh;
+    height: 100vh;
+  }
+}
+
+.curlear-slideshow__slide-bg--mobile {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+  .curlear-slideshow__slide-inner {
+    min-height: 36rem;
+    padding: 4rem 3rem;
+  }
+
+  .curlear-slideshow__slide-bg--mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .curlear-slideshow__slide-bg--desktop {
+    display: block;
+  }
+  .curlear-slideshow__slide-bg--mobile {
+    display: block;
+  }
+  .curlear-slideshow__slide-bg--desktop.curlear-slideshow__slide-bg--has-mobile {
+    display: none;
+  }
+}
+
+/* Content block – overlaid on background, heading 40px bold, text 16px 400, button 14px padding 8px 17px */
+.curlear-slideshow__content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 0rem 0rem 6rem;
+  max-width: 52rem;
+}
+
+.curlear-slideshow__heading {
+  font-size: 60px;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--cs-heading-color, #ffffff);
+  text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
+}
+
+.curlear-slideshow__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+  color: var(--cs-text-color, rgba(255, 255, 255, 0.9));
+  text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+  max-width: 40rem;
+}
+
+.curlear-slideshow__text--avenir {
+  font-family: "Avenir LT Pro", "Avenir", "Avenir Next", sans-serif;
+}
+
+.curlear-slideshow__button {
+  display: inline-block;
+  font-size: 1.6rem;
+  padding: 10px 33px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  background: var(--cs-button-bg, #333333);
+  color: var(--cs-button-text, #ffffff);
+}
+
+.curlear-slideshow__button--gradient {
+  background: linear-gradient(90deg, var(--cs-button-gradient-start, #f8d0bd), var(--cs-button-gradient-end, #d99077));
+}
+
+.curlear-slideshow__button--with-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.curlear-slideshow__button-arrow {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.curlear-slideshow__button:hover {
+  opacity: 0.9;
+}
+
+.curlear-slideshow__button:focus-visible {
+  outline: 0.2rem solid currentColor;
+  outline-offset: 0.2rem;
+}
+
+/* Content alignment */
+.curlear-slideshow__content--left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.curlear-slideshow__content--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.curlear-slideshow__content--right {
+  text-align: right;
+  margin-left: auto;
+}
+
+/* Mobile: content bottom center (anchored), hide prev/next icons */
+@media screen and (max-width: 749px) {
+
+
+  .curlear-slideshow .slideshow__slide {
+    min-height: 100%;
+  }
+
+  .curlear-slideshow__slide-inner {
+    padding: 2rem 1.5rem 3.5rem;
+    justify-content: flex-end;
+    align-items: stretch;
+    min-height: 100%;
+  }
+
+  .curlear-slideshow__content {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5rem;
+    transform: translateX(-50%);
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .curlear-slideshow__content--mobile-left { text-align: left; }
+  .curlear-slideshow__content--mobile-center { text-align: center; }
+  .curlear-slideshow__content--mobile-right { text-align: right; }
+
+  .curlear-slideshow__heading {
+    font-size: 2.8rem;
+  }
+}
+
+/* Hide arrows when disabled */
+.curlear-slideshow-section--no-arrows .slider-button--prev,
+.curlear-slideshow-section--no-arrows .slider-button--next {
+  display: none;
+}
+
+/* Single slide (no slider) */
+.curlear-slideshow--single .slider-buttons {
+  display: none;
+}
+
+.curlear-slideshow--single .slider {
+  overflow: visible;
+}
+
+.curlear-slideshow--single .curlear-slideshow__wrapper {
+  display: block;
+  position: relative;
+}
+
+/* Single slide + adapt_image: slide-inner fills wrapper (height from ::before) */
+.curlear-slideshow--single .curlear-slideshow__wrapper.curlear-slideshow__slider-inner .curlear-slideshow__slide-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -1,0 +1,124 @@
+{{ 'curlear-expertise.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading_block = section.blocks | where: 'type', 'heading' | first
+  assign text_block = section.blocks | where: 'type', 'text' | first
+  assign image_block = section.blocks | where: 'type', 'image' | first
+  assign background_alpha = section.settings.background_opacity | times: 0.01
+  assign section_background = section.settings.background_color | color_modify: 'alpha', background_alpha
+-%}
+
+<section
+  class="curlear-expertise section-{{ section.id }}-padding"
+  style="background-color: {{ section_background }};"
+>
+  <div class="curlear-expertise__inner page-width">
+    <div class="curlear-expertise__heading" {{ heading_block.shopify_attributes }}>
+      <h2>{{ heading_block.settings.heading | default: 'Professional Expertise, Everyday Empowerment' }}</h2>
+    </div>
+
+    <div class="curlear-expertise__text rte" {{ text_block.shopify_attributes }}>
+      {{ text_block.settings.content }}
+    </div>
+
+    <div class="curlear-expertise__image" {{ image_block.shopify_attributes }}>
+      {%- if image_block.settings.image != blank -%}
+        {{
+          image_block.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'curlear-expertise__image-media',
+            loading: 'lazy',
+            widths: '375, 550, 750, 900, 1100, 1200',
+            sizes: '(min-width: 990px) 30vw, 100vw',
+            alt: image_block.settings.image.alt
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'curlear-expertise__image-media placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear expertise",
+  "tag": "section",
+  "class": "section-curlear-expertise",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "background_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background color opacity",
+      "default": 100
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading block",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Professional Expertise,\nEveryday Empowerment"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text block",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>At Curlear:</p><ul><li>We combine expert craftsmanship and innovative tools.</li><li>We prioritize hair health using our Ion Generating Mineral Complex.</li><li>We build confidence by equipping customers with tools for their best style.</li></ul>"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image block",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear expertise",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

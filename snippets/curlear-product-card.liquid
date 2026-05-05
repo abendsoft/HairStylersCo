@@ -1,0 +1,91 @@
+{%- liquid
+  assign curlear_product = product
+  assign rating_text = curlear_product.metafields.custom.product_stars_rating.value | default: ''
+  assign rating_value = rating_text | plus: 0
+  if rating_value < 0
+    assign rating_value = 0
+  endif
+  if rating_value > 5
+    assign rating_value = 5
+  endif
+  assign rating_percent = rating_value | times: 20
+  assign product_label = curlear_product.metafields.custom.product_label.value | default: ''
+  assign card_title_size = settings.curlear_card_title_font_size | default: 22
+  assign card_price_size = settings.curlear_card_price_font_size | default: 36
+  assign card_quickview_bg = collection_button_color | default: settings.curlear_card_quickview_bg_color
+  assign card_quickview_text = collection_button_text_color | default: settings.curlear_card_quickview_text_color
+  assign card_image_ratio = 1
+  if image_ratio == 'portrait'
+    assign card_image_ratio = 0.75
+  elsif image_ratio == 'adapt' and curlear_product.featured_image != blank
+    assign card_image_ratio = curlear_product.featured_image.aspect_ratio
+    if card_image_ratio == 0 or card_image_ratio == null
+      assign card_image_ratio = 1
+    endif
+  endif
+-%}
+
+<article
+  class="curlear-product-card"
+  style="--curlear-card-title-size: {{ card_title_size }}px; --curlear-card-price-size: {{ card_price_size }}px; --curlear-card-image-ratio: {{ card_image_ratio }};"
+>
+  <div class="curlear-product-card__top">
+    <p class="curlear-product-card__title">
+      <a href="{{ curlear_product.url }}">{{ curlear_product.title | escape }}</a>
+    </p>
+
+    {% if settings.curlear_card_show_stars and rating_text != blank %}
+      <div class="curlear-product-card__rating">
+        <span class="curlear-product-card__stars" style="--curlear-rating-percent: {{ rating_percent }}%; --curlear-stars-color: {{ settings.curlear_card_stars_color }};">
+          <span class="curlear-product-card__stars-base" aria-hidden="true">★★★★★</span>
+          <span class="curlear-product-card__stars-fill" aria-hidden="true">★★★★★</span>
+        </span>
+        <span class="curlear-product-card__rating-text">{{ rating_text }}</span>
+      </div>
+    {% endif %}
+
+    <p class="curlear-product-card__price">{{ curlear_product.price | money }}</p>
+  </div>
+
+  <div class="curlear-product-card__media-wrap">
+    {% if settings.curlear_card_show_label and product_label != blank %}
+      <div
+        class="curlear-product-card__label"
+        style="--curlear-label-bg: {{ settings.curlear_card_label_bg_color }}; --curlear-label-color: {{ settings.curlear_card_label_text_color }};"
+      >
+        {{ product_label | escape }}
+      </div>
+    {% endif %}
+
+    <a class="curlear-product-card__image-link" href="{{ curlear_product.url }}">
+      {%- if curlear_product.featured_image != blank -%}
+        {{
+          curlear_product.featured_image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'curlear-product-card__image',
+            loading: 'lazy',
+            widths: '360, 533, 720, 940, 1200',
+            sizes: '(min-width: 990px) 28vw, 90vw',
+            alt: curlear_product.featured_image.alt
+        }}
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'curlear-product-card__image placeholder-svg' }}
+      {%- endif -%}
+    </a>
+
+    <a
+      class="curlear-product-card__quickview"
+      href="{{ curlear_product.url }}"
+      style="--curlear-quickview-bg: {{ card_quickview_bg }}; --curlear-quickview-color: {{ card_quickview_text }};"
+    >
+      Quick View
+    </a>
+  </div>
+
+  {% if settings.curlear_card_show_description %}
+    <div class="curlear-product-card__desc rte" style="--curlear-bullet-color: {{ settings.curlear_card_bullet_color }};">
+      {{ curlear_product.description }}
+    </div>
+  {% endif %}
+</article>

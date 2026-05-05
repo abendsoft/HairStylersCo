@@ -1,0 +1,221 @@
+{{ 'curlear-image-showcase.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-image-showcase.js' | asset_url }}" defer="defer"></script>
+
+<section class="curlear-image-showcase section-{{ section.id }}-padding">
+  <div class="{% if section.settings.full_width %}curlear-image-showcase__container--full{% else %}page-width{% endif %}">
+    {% if section.settings.heading != blank %}
+      <h2 class="curlear-image-showcase__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      {% if section.settings.layout_mode == 'slider' %}
+        <div
+          class="curlear-image-showcase__slider-wrap"
+          data-curlear-image-slider
+          data-autoplay="{{ section.settings.auto_slide }}"
+          data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+        >
+          <div
+            class="curlear-image-showcase__slider"
+            style="--curlear-image-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-image-cols-mobile: {{ section.settings.columns_mobile }};"
+            data-curlear-image-slider-track
+          >
+            {% for block in section.blocks %}
+              <article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
+                <div class="curlear-image-showcase__media">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1600
+                      | image_tag:
+                        class: 'curlear-image-showcase__image',
+                        loading: 'lazy',
+                        widths: '550, 760, 990, 1200, 1600',
+                        sizes: '(min-width: 990px) 30vw, 90vw',
+                        alt: block.settings.overlay_heading
+                    }}
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'curlear-image-showcase__image placeholder-svg' }}
+                  {% endif %}
+                </div>
+
+                {% if block.settings.overlay_heading != blank or block.settings.overlay_text != blank or block.settings.button_label != blank %}
+                  <div class="curlear-image-showcase__overlay">
+                    {% if block.settings.overlay_heading != blank %}
+                      <p class="curlear-image-showcase__overlay-heading">{{ block.settings.overlay_heading }}</p>
+                    {% endif %}
+                    {% if block.settings.overlay_text != blank %}
+                      <p class="curlear-image-showcase__overlay-text">{{ block.settings.overlay_text }}</p>
+                    {% endif %}
+                    {% if block.settings.button_label != blank %}
+                      <a
+                        class="curlear-image-showcase__overlay-button"
+                        href="{{ block.settings.button_link | default: '#' }}"
+                      >
+                        {{ block.settings.button_label }} &rarr;
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div
+          class="curlear-image-showcase__grid"
+          style="--curlear-image-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-image-cols-mobile: {{ section.settings.columns_mobile }};"
+        >
+          {% for block in section.blocks %}
+            <article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
+              <div class="curlear-image-showcase__media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      class: 'curlear-image-showcase__image',
+                      loading: 'lazy',
+                      widths: '550, 760, 990, 1200, 1600',
+                      sizes: '(min-width: 990px) 30vw, 90vw',
+                      alt: block.settings.overlay_heading
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'curlear-image-showcase__image placeholder-svg' }}
+                {% endif %}
+              </div>
+
+              {% if block.settings.overlay_heading != blank or block.settings.overlay_text != blank or block.settings.button_label != blank %}
+                <div class="curlear-image-showcase__overlay">
+                  {% if block.settings.overlay_heading != blank %}
+                    <p class="curlear-image-showcase__overlay-heading">{{ block.settings.overlay_heading }}</p>
+                  {% endif %}
+                  {% if block.settings.overlay_text != blank %}
+                    <p class="curlear-image-showcase__overlay-text">{{ block.settings.overlay_text }}</p>
+                  {% endif %}
+                  {% if block.settings.button_label != blank %}
+                    <a
+                      class="curlear-image-showcase__overlay-button"
+                      href="{{ block.settings.button_link | default: '#' }}"
+                    >
+                      {{ block.settings.button_label }} &rarr;
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curelear image show",
+  "tag": "section",
+  "class": "section-curlear-image-showcase",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Everything You Need For Prettier Hair"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width section",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout mode",
+      "default": "slider",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "label": "Images per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Images per row (mobile)",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide (slider mode)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "overlay_heading",
+          "label": "Heading",
+          "default": "STRAIGHT"
+        },
+        {
+          "type": "text",
+          "id": "overlay_text",
+          "label": "Text line",
+          "default": "One pass. Smooth."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curelear image show"
+    }
+  ]
+}
+{% endschema %}

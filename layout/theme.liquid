@@ -248,6 +248,14 @@
         font-weight: var(--font-body-weight);
       }
 
+      {% if settings.enable_custom_paragraph_font %}
+      p,
+      .rte p,
+      .curlear-slideshow__text {
+        font-family: "Avenir LT Pro", "Avenir", "Avenir Next", sans-serif;
+      }
+      {% endif %}
+
       @media screen and (min-width: 750px) {
         body {
           font-size: 1.6rem;

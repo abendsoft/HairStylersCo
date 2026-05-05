@@ -36,6 +36,10 @@ class HeaderMenu extends DetailsDisclosure {
   constructor() {
     super();
     this.header = document.querySelector('.header-wrapper');
+    this.desktopMediaQuery = window.matchMedia('(min-width: 990px)');
+
+    this.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+    this.addEventListener('mouseleave', this.onMouseLeave.bind(this));
   }
 
   onToggle() {
@@ -47,6 +51,19 @@ class HeaderMenu extends DetailsDisclosure {
       '--header-bottom-position-desktop',
       `${Math.floor(this.header.getBoundingClientRect().bottom)}px`
     );
+  }
+
+  onMouseEnter() {
+    if (!this.desktopMediaQuery.matches) return;
+    this.mainDetailsToggle.setAttribute('open', '');
+    this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', true);
+    this.onToggle();
+  }
+
+  onMouseLeave() {
+    if (!this.desktopMediaQuery.matches) return;
+    this.close();
+    this.onToggle();
   }
 }
 

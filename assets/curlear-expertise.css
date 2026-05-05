@@ -1,0 +1,71 @@
+.curlear-expertise {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.curlear-expertise__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-areas: "heading text image";
+  gap: 3rem;
+  align-items: center;
+}
+
+.curlear-expertise__heading {
+  grid-area: heading;
+}
+
+.curlear-expertise__heading h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.curlear-expertise__text {
+  grid-area: text;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.curlear-expertise__text p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+}
+
+.curlear-expertise__text ul,
+.curlear-expertise__text ol {
+  margin: 0;
+  padding-left: 2rem;
+}
+
+.curlear-expertise__text li {
+  margin-bottom: 0.8rem;
+}
+
+.curlear-expertise__text li::marker {
+  color: #E8D6CC;
+}
+
+.curlear-expertise__image {
+  grid-area: image;
+}
+
+.curlear-expertise__image-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 989px) {
+  .curlear-expertise__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "heading"
+      "text";
+    gap: 2rem;
+  }
+
+}

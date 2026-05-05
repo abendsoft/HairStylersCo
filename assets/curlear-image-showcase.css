@@ -1,0 +1,122 @@
+.curlear-image-showcase {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.curlear-image-showcase__heading {
+  margin: 0 0 3rem;
+  font-size: 4.2rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.curlear-image-showcase__slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% / var(--curlear-image-cols-desktop));
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.curlear-image-showcase__slider::-webkit-scrollbar {
+  display: none;
+}
+
+.curlear-image-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--curlear-image-cols-desktop), minmax(0, 1fr));
+  gap: 1.8rem;
+}
+
+.curlear-image-showcase__item {
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.curlear-image-showcase__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 0.75;
+}
+
+.curlear-image-showcase__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0) 62%);
+  pointer-events: none;
+}
+
+.curlear-image-showcase__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.curlear-image-showcase__overlay {
+  position: absolute;
+  left: 1.8rem;
+  bottom: 1.8rem;
+  z-index: 2;
+  color: #fff;
+  max-width: calc(100% - 3.6rem);
+}
+
+.curlear-image-showcase__overlay-heading {
+  margin: 0;
+  font-size: 4rem;
+  line-height: 1.05;
+}
+
+.curlear-image-showcase__overlay-text {
+  margin: 0.6rem 0 0;
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.curlear-image-showcase__overlay-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #f8d0bd, #d99077);
+}
+
+@media screen and (max-width: 989px) {
+  .curlear-image-showcase__heading {
+    font-size: 3rem;
+  }
+
+  .curlear-image-showcase__slider {
+    grid-auto-columns: calc(100% / var(--curlear-image-cols-mobile));
+    gap: 0;
+  }
+
+  .curlear-image-showcase__grid {
+    grid-template-columns: repeat(var(--curlear-image-cols-mobile), minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .curlear-image-showcase__overlay {
+    left: 1.2rem;
+    bottom: 1.2rem;
+    max-width: calc(100% - 2.4rem);
+  }
+
+  .curlear-image-showcase__overlay-heading {
+    font-size: 2.8rem;
+  }
+
+  .curlear-image-showcase__overlay-text {
+    font-size: 1.4rem;
+  }
+}

@@ -259,6 +259,7 @@
       "name": "Curelear video slider",
       "settings": {
         "heading": "Our Tools in Action",
+        "background_color": "#ffffff",
         "full_width": true,
         "heading_alignment": "center",
         "product_card_border_color": "#8cb8e5",
@@ -312,6 +313,7 @@
       "name": "Curelear image show",
       "settings": {
         "heading": "Everything You Need For Prettier Hair",
+        "background_color": "#fffaf7",
         "full_width": true,
         "layout_mode": "slider",
         "columns_desktop": 3,
@@ -335,6 +337,178 @@
         "right_text": "NEW BEAUTY",
         "right_text_size": 34
       }
+    },
+    "curlear_image_text_banner_fJHUkb": {
+      "type": "curlear-image-text-banner",
+      "name": "Curlear text banner",
+      "settings": {
+        "background_image": "shopify://shop_images/65edb07c91e524feb080c97563b69df242f32bd6.png",
+        "image_opacity": 50,
+        "top_heading": "Consistent Heat",
+        "top_heading_color": "#ffffff",
+        "top_text": "Same temperature, edge to edge. No hot spots. No over-styling.",
+        "top_text_color": "#ffffff",
+        "bottom_heading": "MORE SHINE. LESS DAMAGE.",
+        "bottom_heading_color": "#ffffff",
+        "section_height": 720
+      }
+    },
+    "curlear_testimonial_slider_T3WHPc": {
+      "type": "curlear-testimonial-slider",
+      "blocks": {
+        "testimonial_8MT7wp": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "review_text": "No pulling. No dryness. Just works.",
+            "reviewer_name": "Megan L"
+          }
+        },
+        "testimonial_MVpegT": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 4,
+            "review_text": "No dryness. Just works.",
+            "reviewer_name": "Megan L"
+          }
+        },
+        "testimonial_GqbzLb": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "review_text": "No pulling. Just works.",
+            "reviewer_name": "Megan L"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_8MT7wp",
+        "testimonial_MVpegT",
+        "testimonial_GqbzLb"
+      ],
+      "name": "Curlear testimonials",
+      "settings": {
+        "heading": "Hear it From Them",
+        "background_image": "shopify://shop_images/Ellipse_12_1.png",
+        "star_color": "#ecb7a3",
+        "button_gradient_start": "#f2c6b4",
+        "button_gradient_middle": "#ecb7a3",
+        "button_gradient_end": "#c27a63",
+        "auto_slide": true,
+        "auto_slide_speed": 4,
+        "button_label": "SEE ALL REVIEWS",
+        "button_link": ""
+      }
+    },
+    "curlear_community_marquee_Kk3czr": {
+      "type": "curlear-community-marquee",
+      "blocks": {
+        "image_JFmCqL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/09a01c298b6d2065ec695d52f67fb937cbcacf66.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_h3cDzx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5de348fa2ce2ec90043e2c1e2499687eff8c578c.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_tgf6AD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/be436212a7d9d9585af95b57ba032d20768fc3a1.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_gQdQPk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/88e14f1f08b87f090bb0e072eb1b97d8843ae89d.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_84yfDj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/33ca7fbdefc1117e7a22daad43bf4056b20b472f.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_9iDxkd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/d69c1477dd64e48a6c942b4f20c103b826933edb.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_67PYHY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5d81bc630cccb67123743bbc824a65099e3df20c.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_L6qAnH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/90cacabc847891aab8b431220077a0f5101a049a.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_QUUgJz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/eb4bc3416791c701c07d5a8cfad7c4cc76ae4fc4.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        },
+        "image_NmQV4P": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/955a513dbefb17cf45b3548bbffdbb8b46d18bb6.png",
+            "image_alt": "",
+            "image_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_JFmCqL",
+        "image_h3cDzx",
+        "image_tgf6AD",
+        "image_gQdQPk",
+        "image_84yfDj",
+        "image_9iDxkd",
+        "image_67PYHY",
+        "image_L6qAnH",
+        "image_QUUgJz",
+        "image_NmQV4P"
+      ],
+      "name": "Curlear community",
+      "settings": {
+        "top_heading": "Our Community",
+        "background_color": "#fffaf7",
+        "visible_images": 8,
+        "marquee_speed": 59,
+        "bottom_heading": "Done In One Pass",
+        "button_label": "SHOP NOW",
+        "button_link": "",
+        "button_gradient_start": "#f2c6b4",
+        "button_gradient_middle": "#ecb7a3",
+        "button_gradient_end": "#c27a63"
+      }
     }
   },
   "order": [
@@ -344,6 +518,9 @@
     "curlear_collection_list_EyNWTJ",
     "curlear_video_slider_JWcC8g",
     "curlear_image_showcase_B8M76n",
-    "curlear_press_quote_gPcUrn"
+    "curlear_press_quote_gPcUrn",
+    "curlear_image_text_banner_fJHUkb",
+    "curlear_testimonial_slider_T3WHPc",
+    "curlear_community_marquee_Kk3czr"
   ]
 }

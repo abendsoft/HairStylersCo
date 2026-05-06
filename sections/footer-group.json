@@ -11,8 +11,58 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "curlear_custom_footer_nDjezp": {
+      "type": "curlear-custom-footer",
+      "blocks": {
+        "menu_block_W6fg4K": {
+          "type": "menu_block",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "text_block_4rzLtT": {
+          "type": "text_block",
+          "settings": {
+            "heading": "Contact",
+            "text": "<p>(888) 755-6834</p><p>Monday - Friday</p><p>9:00 AM - 5:00 PM EST</p>"
+          }
+        },
+        "menu_block_zNhnHt": {
+          "type": "menu_block",
+          "settings": {
+            "heading": "Information",
+            "menu": "new-header-menu"
+          }
+        }
+      },
+      "block_order": [
+        "menu_block_W6fg4K",
+        "text_block_4rzLtT",
+        "menu_block_zNhnHt"
+      ],
+      "name": "Curlear custom footer",
+      "settings": {
+        "logo": "shopify://shop_images/c645055f-a97d-4a45-86d1-dcde3aed4035_removalai_preview.png",
+        "background_color": "#080A14",
+        "text_color": "#F1F1F1",
+        "heading_color": "#f2c6b4",
+        "newsletter_text": "Sign up for our emails and receive 20% off of your first purchase.",
+        "email_placeholder": "Enter your email address",
+        "phone_placeholder": "Phone Number",
+        "submit_label": "Submit",
+        "input_background_color": "#FFFFFF",
+        "submit_button_color": "#FFFFFF",
+        "policy_richtext": "<p>By submitting this form, you consent to receive informational (e.g, order updates) and/or marketing texts (e.g, cart reminders) from Big curlier including texts sent by auto dialer. Consent is not a condition of purchase. Msg & date rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link ( where available). Privacy Policy & Terms.<br/><br/></p>",
+        "bottom_note": "We no longer send text messages to Texas residents due to new state laws.",
+        "show_social_icons": true,
+        "copyright_text": "@2026, Curlear. All rights reserved.",
+        "policies_menu": "customer-account-main-menu"
+      }
+    },
     "footer": {
       "type": "footer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": false,
@@ -30,6 +80,7 @@
     }
   },
   "order": [
+    "curlear_custom_footer_nDjezp",
     "footer"
   ]
 }

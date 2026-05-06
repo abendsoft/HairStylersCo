@@ -1,0 +1,116 @@
+.curlear-community-marquee {
+  background: var(--curlear-community-bg-color, #f7f6f4);
+  overflow: hidden;
+}
+
+.curlear-community-marquee__top-heading {
+  margin: 0 0 2rem;
+  font-size: clamp(3rem, 3.2vw, 4.8rem);
+  line-height: 1.1;
+  font-weight: 400;
+  padding-top: 20px;
+}
+
+.curlear-community-marquee__marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.curlear-community-marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 0.9rem;
+  animation: curlearCommunityMarquee var(--curlear-community-marquee-duration, 24s) linear infinite;
+  will-change: transform;
+}
+
+.curlear-community-marquee__marquee:hover .curlear-community-marquee__track {
+  animation-play-state: paused;
+}
+
+.curlear-community-marquee__item {
+  flex: 0 0 calc((100vw - 6rem) / var(--curlear-community-visible-images, 8));
+  max-width: 16rem;
+  height: 16rem;
+  overflow: hidden;
+}
+
+.curlear-community-marquee__image-link {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+
+.curlear-community-marquee__image {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.curlear-community-marquee__bottom {
+  text-align: center;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.curlear-community-marquee__bottom-heading {
+  margin: 0;
+  font-size: clamp(3.4rem, 3vw, 4.8rem);
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+.curlear-community-marquee__button {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16rem;
+  min-height: 4.4rem;
+  padding: 1.1rem 2.6rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(
+    180deg,
+    var(--curlear-community-button-gradient-start, #f2c6b4) 0%,
+    var(--curlear-community-button-gradient-middle, #ecb7a3) 52%,
+    var(--curlear-community-button-gradient-end, #c27a63) 100%
+  );
+  box-shadow: 0 6px 16px rgba(170, 110, 88, 0.2);
+}
+
+@keyframes curlearCommunityMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .curlear-community-marquee__item {
+    flex-basis: calc((100vw - 2rem) / min(5, var(--curlear-community-visible-images, 8)));
+    max-width: 12rem;
+    height: 12rem;
+  }
+
+  .curlear-community-marquee__bottom {
+    padding-top: 5rem;
+  }
+
+  .curlear-community-marquee__button {
+    font-size: 1.4rem;
+    min-width: 14.5rem;
+    min-height: 4.1rem;
+    padding: 1rem 2rem;
+  }
+}

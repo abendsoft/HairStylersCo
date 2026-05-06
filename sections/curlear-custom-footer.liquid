@@ -1,0 +1,277 @@
+{{ 'curlear-custom-footer.css' | asset_url | stylesheet_tag }}
+
+<footer
+  class="curlear-custom-footer section-{{ section.id }}-padding"
+  style="
+    --curlear-footer-bg: {{ section.settings.background_color }};
+    --curlear-footer-text: {{ section.settings.text_color }};
+    --curlear-footer-heading: {{ section.settings.heading_color }};
+    --curlear-footer-input-bg: {{ section.settings.input_background_color }};
+    --curlear-footer-button-bg: {{ section.settings.submit_button_color }};
+  "
+>
+  <div class="page-width margin-footer">
+    <div class="curlear-custom-footer__top">
+      <div class="curlear-custom-footer__left">
+        {% if section.settings.logo != blank %}
+          <div class="curlear-custom-footer__logo-wrap">
+            {{
+              section.settings.logo
+              | image_url: width: 320
+              | image_tag:
+                class: 'curlear-custom-footer__logo',
+                loading: 'lazy',
+                widths: '120, 180, 240, 320',
+                sizes: '180px',
+                alt: shop.name
+            }}
+          </div>
+        {% endif %}
+
+        <div class="curlear-custom-footer__blocks">
+          {% for block in section.blocks %}
+            <div class="curlear-custom-footer__block" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <p class="curlear-custom-footer__block-heading">{{ block.settings.heading }}</p>
+              {% endif %}
+
+              {% if block.type == 'menu_block' %}
+                {% if block.settings.menu != blank %}
+                  <div class="curlear-custom-footer__menu">
+                    {% for link in block.settings.menu.links %}
+                      <p class="curlear-custom-footer__menu-item">
+                        <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                      </p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% elsif block.type == 'text_block' %}
+                {% if block.settings.text != blank %}
+                  <div class="curlear-custom-footer__text rte">{{ block.settings.text }}</div>
+                {% endif %}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="curlear-custom-footer__right">
+        {% if section.settings.newsletter_text != blank %}
+          <p class="curlear-custom-footer__newsletter-title">{{ section.settings.newsletter_text }}</p>
+        {% endif %}
+
+        {%- form 'customer', id: 'CurlearCustomFooterNewsletter', class: 'curlear-custom-footer__newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          <input
+            type="email"
+            class="curlear-custom-footer__input"
+            name="contact[email]"
+            value="{{ form.email }}"
+            placeholder="{{ section.settings.email_placeholder }}"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+          >
+
+          <input
+            type="tel"
+            class="curlear-custom-footer__input"
+            name="contact[phone]"
+            value="{% if form.phone %}{{ form.phone }}{% endif %}"
+            placeholder="{{ section.settings.phone_placeholder }}"
+            autocomplete="tel"
+          >
+
+          <button type="submit" class="curlear-custom-footer__submit">
+            {{ section.settings.submit_label }} &rarr;
+          </button>
+        {%- endform -%}
+
+        {% if section.settings.policy_richtext != blank %}
+          <div class="curlear-custom-footer__policy rte">{{ section.settings.policy_richtext }}</div>
+        {% endif %}
+
+        {% if section.settings.bottom_note != blank %}
+          <p class="curlear-custom-footer__note">{{ section.settings.bottom_note }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="curlear-custom-footer__bottom">
+      <div class="curlear-custom-footer__bottom-left">
+        {% if section.settings.show_social_icons %}
+          {% render 'social-icons', class: 'curlear-custom-footer__social' %}
+        {% endif %}
+
+        {% if section.settings.copyright_text != blank %}
+          <p class="curlear-custom-footer__copyright">{{ section.settings.copyright_text }}</p>
+        {% endif %}
+      </div>
+
+      <div class="curlear-custom-footer__bottom-right">
+        {% if section.settings.policies_menu != blank %}
+          <div class="curlear-custom-footer__policies">
+            {% for link in section.settings.policies_menu.links %}
+              <p class="curlear-custom-footer__policy-item">
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Curlear custom footer",
+  "tag": "section",
+  "class": "section-curlear-custom-footer",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#080A14"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#F1F1F1"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading and icon color",
+      "default": "#F1F1F1"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Sign up for our emails and receive 20% off of your first purchase."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone placeholder",
+      "default": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Submit"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_color",
+      "label": "Submit button color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "policy_richtext",
+      "label": "Policy rich text",
+      "default": "<p>By submitting this form, you consent to receive informational and/or marketing texts.</p>"
+    },
+    {
+      "type": "text",
+      "id": "bottom_note",
+      "label": "Bottom note",
+      "default": "We no longer send text messages to Texas residents due to new state laws."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "@2026, Curlear. All rights reserved."
+    },
+    {
+      "type": "link_list",
+      "id": "policies_menu",
+      "label": "Policies menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_block",
+      "name": "Menu block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Information"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "text_block",
+      "name": "Text block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Contact"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>(888) 755-6834</p><p>Monday - Friday</p><p>9:00 AM - 5:00 PM EST</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear custom footer",
+      "blocks": [
+        {
+          "type": "menu_block"
+        },
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "menu_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

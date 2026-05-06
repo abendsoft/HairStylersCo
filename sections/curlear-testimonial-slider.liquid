@@ -1,0 +1,212 @@
+{{ 'curlear-testimonial-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-testimonial-slider.js' | asset_url }}" defer="defer"></script>
+
+<section
+  class="curlear-testimonial-slider section-{{ section.id }}-padding"
+  style="
+    --curlear-testimonial-star-color: {{ section.settings.star_color }};
+    --curlear-testimonial-button-gradient-start: {{ section.settings.button_gradient_start }};
+    --curlear-testimonial-button-gradient-middle: {{ section.settings.button_gradient_middle }};
+    --curlear-testimonial-button-gradient-end: {{ section.settings.button_gradient_end }};
+  "
+>
+  <div class="curlear-testimonial-slider__bg">
+    {% if section.settings.background_image != blank %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2200
+        | image_tag:
+          class: 'curlear-testimonial-slider__bg-image',
+          loading: 'lazy',
+          widths: '768, 1200, 1600, 2200',
+          sizes: '100vw',
+          alt: section.settings.heading
+      }}
+    {% endif %}
+  </div>
+
+  <div class="page-width">
+    <div
+      class="curlear-testimonial-slider__inner"
+      data-curlear-testimonial-slider
+      data-autoplay="{{ section.settings.auto_slide }}"
+      data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+    >
+      {% if section.settings.heading != blank %}
+        <h2 class="curlear-testimonial-slider__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="curlear-testimonial-slider__counter">
+          <button type="button" class="curlear-testimonial-slider__nav" data-curlear-prev aria-label="Previous testimonial">
+            &#8249;
+          </button>
+          <span data-curlear-current>1</span>
+          <span>/</span>
+          <span data-curlear-total>{{ section.blocks.size }}</span>
+          <button type="button" class="curlear-testimonial-slider__nav" data-curlear-next aria-label="Next testimonial">
+            &#8250;
+          </button>
+        </div>
+
+        <div class="curlear-testimonial-slider__track" data-curlear-track>
+          {% for block in section.blocks %}
+            <article
+              class="curlear-testimonial-slider__slide{% if forloop.first %} is-active{% endif %}"
+              data-curlear-slide
+              {% unless forloop.first %}hidden{% endunless %}
+              {{ block.shopify_attributes }}
+            >
+              <div class="curlear-testimonial-slider__stars" aria-label="{{ block.settings.star_rating }} out of 5 stars">
+                {% for i in (1..5) %}
+                  {% if i <= block.settings.star_rating %}
+                    <span class="curlear-testimonial-slider__star" aria-hidden="true">&#9733;</span>
+                  {% else %}
+                    <span class="curlear-testimonial-slider__star curlear-testimonial-slider__star--empty" aria-hidden="true"
+                      >&#9733;</span
+                    >
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              {% if block.settings.review_text != blank %}
+                <p class="curlear-testimonial-slider__text">"{{ block.settings.review_text }}"</p>
+              {% endif %}
+
+              {% if block.settings.reviewer_name != blank %}
+                <p class="curlear-testimonial-slider__name">{{ block.settings.reviewer_name }}</p>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a
+          class="curlear-testimonial-slider__button"
+          href="{{ section.settings.button_link | default: '#' }}"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear testimonials",
+  "tag": "section",
+  "class": "section-curlear-testimonial-slider",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hear it From Them"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#D2A28E"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_start",
+      "label": "Button gradient start",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_middle",
+      "label": "Button gradient middle",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_end",
+      "label": "Button gradient end",
+      "default": "#C27A63"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "SEE ALL REVIEWS"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "star_rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "No pulling. No dryness. Just works."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Name",
+          "default": "Megan L"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

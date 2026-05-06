@@ -1,7 +1,10 @@
 {{ 'curlear-image-showcase.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-image-showcase.js' | asset_url }}" defer="defer"></script>
 
-<section class="curlear-image-showcase section-{{ section.id }}-padding">
+<section
+  class="curlear-image-showcase section-{{ section.id }}-padding"
+  style="background-color: {{ section.settings.background_color }};"
+>
   <div class="{% if section.settings.full_width %}curlear-image-showcase__container--full{% else %}page-width{% endif %}">
     {% if section.settings.heading != blank %}
       <h2 class="curlear-image-showcase__heading">{{ section.settings.heading }}</h2>
@@ -123,6 +126,12 @@
       "id": "heading",
       "label": "Section heading",
       "default": "Everything You Need For Prettier Hair"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
     },
     {
       "type": "checkbox",

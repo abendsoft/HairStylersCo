@@ -12,7 +12,7 @@
         {% endif %}
 
         {% if section.settings.heading != blank %}
-          <div class="curlear-press-quote__heading rte">{{ section.settings.heading }}</div>
+          <h3 class="curlear-press-quote__heading rte">{{ section.settings.heading | strip_html }}</h3>
         {% endif %}
 
         {% if section.settings.footer_label != blank or section.settings.footer_tag_text != blank %}

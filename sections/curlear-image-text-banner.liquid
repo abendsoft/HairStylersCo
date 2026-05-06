@@ -1,0 +1,121 @@
+{{ 'curlear-image-text-banner.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="curlear-image-text-banner section-{{ section.id }}-padding"
+  style="
+    --curlear-image-text-banner-height: {{ section.settings.section_height }}px;
+    --curlear-image-text-banner-opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
+    --curlear-image-text-banner-top-heading-color: {{ section.settings.top_heading_color }};
+    --curlear-image-text-banner-top-text-color: {{ section.settings.top_text_color }};
+    --curlear-image-text-banner-bottom-heading-color: {{ section.settings.bottom_heading_color }};
+  "
+>
+  <div class="curlear-image-text-banner__media">
+    {% if section.settings.background_image != blank %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'curlear-image-text-banner__image',
+          loading: 'lazy',
+          widths: '768, 1024, 1440, 1920, 2400',
+          sizes: '100vw',
+          alt: section.settings.top_heading
+      }}
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'curlear-image-text-banner__image placeholder-svg' }}
+    {% endif %}
+  </div>
+
+  <div class="curlear-image-text-banner__overlay">
+    <div class="curlear-image-text-banner__top">
+      {% if section.settings.top_heading != blank %}
+        <h2 class="curlear-image-text-banner__top-heading">{{ section.settings.top_heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.top_text != blank %}
+        <p class="curlear-image-text-banner__top-text">{{ section.settings.top_text }}</p>
+      {% endif %}
+    </div>
+
+    {% if section.settings.bottom_heading != blank %}
+      <h3 class="curlear-image-text-banner__bottom-heading">{{ section.settings.bottom_heading }}</h3>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear text banner",
+  "tag": "section",
+  "class": "section-curlear-image-text-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image opacity",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "top_heading",
+      "label": "Top heading",
+      "default": "Consistent Heat"
+    },
+    {
+      "type": "color",
+      "id": "top_heading_color",
+      "label": "Top heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Text below heading",
+      "default": "Same temperature, edge to edge. No hot spots. No over-styling."
+    },
+    {
+      "type": "color",
+      "id": "top_text_color",
+      "label": "Top text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "bottom_heading",
+      "label": "Bottom heading",
+      "default": "MORE SHINE. LESS DAMAGE."
+    },
+    {
+      "type": "color",
+      "id": "bottom_heading_color",
+      "label": "Bottom heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 320,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Section height",
+      "default": 520
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear text banner"
+    }
+  ]
+}
+{% endschema %}

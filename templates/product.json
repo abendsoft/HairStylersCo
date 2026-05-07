@@ -83,6 +83,17 @@
             "show_gift_card_recipient": false
           }
         },
+        "curlear_icon_text_xCzzwh": {
+          "type": "curlear_icon_text",
+          "settings": {
+            "icon_1": "shopify://shop_images/g2412_e4419c17-edc5-4848-8a19-ba5af6330750.png",
+            "text_1": "30-Day Satisfaction Guarantee",
+            "icon_2": "shopify://shop_images/g2412_1_f0eb967a-0a24-41df-b957-9e218c01ebd5.png",
+            "text_2": "1-Year Limited Warranty",
+            "icon_3": "shopify://shop_images/g2412_2_1c9ffe6c-0a4b-4e31-857e-26ef4122f7fd.png",
+            "text_3": "Free Shipping on Orders $99+"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -104,6 +115,7 @@
         "quantity_selector",
         "curlear_icons_text_small_zpMDjt",
         "buy_buttons",
+        "curlear_icon_text_xCzzwh",
         "description",
         "share"
       ],

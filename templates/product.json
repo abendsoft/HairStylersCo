@@ -80,7 +80,13 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
+            "show_gift_card_recipient": false,
+            "curlear_button_use_gradient": true,
+            "curlear_button_bg": "#e7bda9",
+            "curlear_button_text_color": "#ffffff",
+            "curlear_button_gradient_start": "#f2c6b4",
+            "curlear_button_gradient_middle": "#ecb7a3",
+            "curlear_button_gradient_end": "#c27a63"
           }
         },
         "curlear_icon_text_xCzzwh": {
@@ -104,6 +110,17 @@
             "heading": "See it in action",
             "visible_desktop": 4,
             "auto_slide_speed": 4,
+            "item_height_desktop": 300,
+            "item_height_mobile": 240,
+            "wider_desktop": true,
+            "show_add_to_cart_button": true,
+            "button_label": "ADD TO CART",
+            "button_use_gradient": true,
+            "button_bg_color": "#e7bda9",
+            "button_text_color": "#ffffff",
+            "button_gradient_start": "#f2c6b4",
+            "button_gradient_middle": "#ecb7a3",
+            "button_gradient_end": "#c27a63",
             "media_1_video": "shopify://files/videos/ssstik.io_@ashleylamarca_1777992698378.mp4",
             "media_2_video": "shopify://files/videos/ssstik.io_@jesslui_1777992738737.mp4",
             "media_3_video": "shopify://files/videos/ssstik.io_@itskathleenngo_1777992085195.mp4",
@@ -118,12 +135,16 @@
           "settings": {
             "open_first_row": true,
             "row_1_title": "Size guide",
+            "row_1_icon": "✦",
             "row_1_content": "<p>.75\" = Create gorgeous spirals and tight curls with lasting bounce, adding spring and volume to straight or wavy hair<br/><br/>1\" = Perfect for uniform curls, this versatile barrel delivers classic or modern styles with a strong C-shape for defined, medium-sized curls<br/><br/>1.25\" = Effortlessly craft voluminous curls, sultry waves, or beachy vibes with this larger barrel for soft, natural-looking waves<br/><br/>1.5\" = This is your blowout in a barrel, with big, soft bends and signature volume for a polished effortless finish<br/><br/></p>",
             "row_2_title": "Details",
+            "row_2_icon": "✦",
             "row_2_content": "",
             "row_3_title": "Specs & features",
+            "row_3_icon": "✦",
             "row_3_content": "",
             "row_4_title": "",
+            "row_4_icon": "✦",
             "row_4_content": ""
           }
         }
@@ -146,21 +167,231 @@
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
+        "full_width": true,
         "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "contain",
+        "non_active_media_fit": "cover",
+        "media_list_bg_color": "#fffaf7",
+        "media_item_bg_color": "#fffaf7",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
-        "image_zoom": "lightbox",
+        "image_zoom": "none",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "curlear_image_accordion_showcase_UdPirh": {
+      "type": "curlear-image-accordion-showcase",
+      "blocks": {
+        "row_pXp43j": {
+          "type": "row",
+          "settings": {
+            "heading": "Sleeker, Modern Design",
+            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ STYLER</p>",
+            "image": "shopify://shop_images/cec7808b4dcb459081873e7fdfe0aa0a7d6f9d05.png"
+          }
+        },
+        "row_WQkP4q": {
+          "type": "row",
+          "settings": {
+            "heading": "Faster Heat-Up",
+            "content": ""
+          }
+        },
+        "row_XLJKGz": {
+          "type": "row",
+          "settings": {
+            "heading": "Optimized Vibrations",
+            "content": "<p>Optimized Vibrations<br/><br/></p>"
+          }
+        },
+        "row_7LyKer": {
+          "type": "row",
+          "settings": {
+            "heading": "Personalized Styling",
+            "content": "",
+            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+          }
+        }
+      },
+      "block_order": [
+        "row_pXp43j",
+        "row_WQkP4q",
+        "row_XLJKGz",
+        "row_7LyKer"
+      ],
+      "name": "Curlear image accordion",
+      "settings": {
+        "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
+        "heading": "OLD 10X STYLER VS. NEW 10X STYLER",
+        "open_first_row": true,
+        "show_slider_buttons": false,
+        "section_bg_color": "#fffaf7",
+        "content_bg_color": "#ffffff",
+        "media_bg_color": "#e8d6cc"
+      }
+    },
+    "curlear_image_text_cards_Abg73e": {
+      "type": "curlear-image-text-cards",
+      "blocks": {
+        "card_R6Vdjg": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/6957331e135b7cdc3f3f5fa663750866a1d2ec1a.png",
+            "heading": "Best for",
+            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+          }
+        },
+        "card_W9Mf4F": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/850b3a8f72fb3ba94a456ed807e8279edc5b493c.png",
+            "heading": "Best for",
+            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+          }
+        },
+        "card_j8hnBh": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/36a3d8260dd6f57f3ede861e10e5de7044964771.png",
+            "heading": "Best for",
+            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_R6Vdjg",
+        "card_W9Mf4F",
+        "card_j8hnBh"
+      ],
+      "name": "Curlear image text cards",
+      "settings": {
+        "heading": "Versatile Curling Made Easy",
+        "top_text": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.",
+        "background_color": "#fffaf7",
+        "layout_mode": "grid",
+        "cards_desktop": "3",
+        "show_slider_buttons": false,
+        "auto_slide": false,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_comparison_gallery_epbRim": {
+      "type": "curlear-comparison-gallery",
+      "blocks": {
+        "comparison_card_rQCmtG": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/a7884f013732b89f5a0db1caac113eb5f5bd09b6.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/4630863ff0af66bc902ac4ac2b12e52631704fa3.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_7xVDpk": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/69ac028dabe88a09903ad7ca5bd0971217eb815a.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/75e2e4e96b849cff75299b460e8e094c4b43a580.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_ANVz6Q": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/cbf7ecfec27bb223cda512440f0294b58e35a034.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/30cbbb2f49ad4e6e8fc19453843137ef36ece8b3.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_NFzRmG": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/7e47c545a578bb63ae091902b37b961818b79dd5.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/4bf3132bc5abf5e997e562faab7fc08682d7905a.png",
+            "second_label": "AFTER"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_card_rQCmtG",
+        "comparison_card_7xVDpk",
+        "comparison_card_ANVz6Q",
+        "comparison_card_NFzRmG"
+      ],
+      "name": "Curlear compare gallery",
+      "settings": {
+        "heading": "Style Gallery",
+        "background_color": "#0b0d15",
+        "layout_mode": "slider",
+        "cards_per_row_desktop": "4",
+        "cards_per_row_mobile": "2",
+        "show_nav_buttons": false,
+        "auto_slide": true,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_hero_features_9Ear7N": {
+      "type": "curlear-hero-features",
+      "name": "Curlear hero features",
+      "settings": {
+        "enable_gradient": true,
+        "background_color": "#e8d6cc",
+        "gradient_color_1": "#e8d6cc",
+        "gradient_color_2": "#d9b8a9",
+        "heading": "Key Features",
+        "option_1": "Long Barrel Advantage",
+        "option_1_link": "",
+        "option_2": "Adjustable Heat Settings",
+        "option_2_link": "",
+        "option_3": "Automatic Shut Off",
+        "option_3_link": "",
+        "option_4": "Professional Grade Cord",
+        "option_4_link": "",
+        "option_5": "Universal Voltage",
+        "option_5_link": "",
+        "line_text": "Long Barrel Advantage",
+        "description": "<p>The 2\" extended barrel allows users to wrap more hair per section, cutting down styling time.</p>",
+        "image": "shopify://shop_images/3f69156f54d86e30d7459f8fbb27f10b015ff9e0.png",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
+    "curlear_featured_collection_UgaMhn": {
+      "type": "curlear-featured-collection",
+      "name": "Curlear feature collection",
+      "settings": {
+        "heading": "Recommended Products",
+        "collection": "frontpage",
+        "show_collection_button": false,
+        "button_label": "Shop all best sellers",
+        "collection_button_color": "#e7bda9",
+        "collection_button_text_color": "#ffffff",
+        "layout_mode": "slider",
+        "image_ratio": "square",
+        "quickview_use_gradient": true,
+        "quickview_gradient_start": "#f8d0bd",
+        "quickview_gradient_end": "#d99077",
+        "section_bg_color": "#fffaf7",
+        "section_bg_opacity": 100,
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "auto_slide": true,
+        "show_slider_nav": false,
+        "auto_slide_speed": 4
       }
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -168,11 +399,9 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
+        "collection_button_color": "#e7bda9",
+        "collection_button_text_color": "#ffffff",
         "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
         "padding_top": 36,
         "padding_bottom": 28
       }
@@ -180,6 +409,11 @@
   },
   "order": [
     "main",
+    "curlear_image_accordion_showcase_UdPirh",
+    "curlear_image_text_cards_Abg73e",
+    "curlear_comparison_gallery_epbRim",
+    "curlear_hero_features_9Ear7N",
+    "curlear_featured_collection_UgaMhn",
     "related-products"
   ]
 }

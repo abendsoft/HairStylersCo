@@ -1,0 +1,755 @@
+{% comment %}
+  Renders blocks for Expert Product Description for one tab.
+  @param section {object}
+  @param epd_tab_target {string} 'primary' | 'secondary'
+{% endcomment %}
+
+{% assign epd_flavour_mode = 'none' %}
+
+{% for block in section.blocks %}
+  {% unless block.settings.tab == epd_tab_target %}{% continue %}{% endunless %}
+
+  {% unless block.type == 'flavour_card' or block.type == 'flavours_section' %}
+    {% if epd_flavour_mode == 'in_section' %}
+      </div>
+    </section>
+      {% assign epd_flavour_mode = 'none' %}
+    {% elsif epd_flavour_mode == 'orphan' %}
+      </div>
+      {% assign epd_flavour_mode = 'none' %}
+    {% endif %}
+  {% endunless %}
+
+  {% case block.type %}
+    {% when 'about' %}
+      <article
+        class="epd-about epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title | escape }}</h2>
+        {% endif %}
+        <div class="rte">{{ block.settings.text }}</div>
+      </article>
+
+    {% when 'spec_table' %}
+      <article
+        class="epd-specs epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title | escape }}</h2>
+        {% endif %}
+        {% liquid
+          assign epd_spec_has_row = false
+          if block.settings.row_1_name != blank or block.settings.row_1_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_2_name != blank or block.settings.row_2_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_3_name != blank or block.settings.row_3_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_4_name != blank or block.settings.row_4_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_5_name != blank or block.settings.row_5_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_6_name != blank or block.settings.row_6_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_7_name != blank or block.settings.row_7_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_8_name != blank or block.settings.row_8_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_9_name != blank or block.settings.row_9_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_10_name != blank or block.settings.row_10_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_11_name != blank or block.settings.row_11_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_12_name != blank or block.settings.row_12_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_13_name != blank or block.settings.row_13_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_14_name != blank or block.settings.row_14_detail != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_15_name != blank or block.settings.row_15_detail != blank
+            assign epd_spec_has_row = true
+          endif
+        %}
+        {% if epd_spec_has_row %}
+          <div class="epd-table-wrap">
+            <table class="epd-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ block.settings.col_feature | escape }}</th>
+                  <th scope="col">{{ block.settings.col_detail | escape }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if block.settings.row_1_name != blank or block.settings.row_1_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_1_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_1_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_2_name != blank or block.settings.row_2_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_2_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_2_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_3_name != blank or block.settings.row_3_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_3_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_3_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_4_name != blank or block.settings.row_4_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_4_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_4_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_5_name != blank or block.settings.row_5_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_5_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_5_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_6_name != blank or block.settings.row_6_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_6_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_6_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_7_name != blank or block.settings.row_7_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_7_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_7_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_8_name != blank or block.settings.row_8_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_8_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_8_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_9_name != blank or block.settings.row_9_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_9_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_9_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_10_name != blank or block.settings.row_10_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_10_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_10_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_11_name != blank or block.settings.row_11_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_11_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_11_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_12_name != blank or block.settings.row_12_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_12_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_12_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_13_name != blank or block.settings.row_13_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_13_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_13_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_14_name != blank or block.settings.row_14_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_14_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_14_detail }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.row_15_name != blank or block.settings.row_15_detail != blank %}
+                  <tr>
+                    <td>{{ block.settings.row_15_name | escape }}</td>
+                    <td class="rte">{{ block.settings.row_15_detail }}</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      </article>
+
+    {% when 'feature_row' %}
+      {% liquid
+        assign epd_has_feature = false
+        if block.settings.image_1 != blank or block.settings.title_1 != blank or block.settings.text_1 != blank
+          assign epd_has_feature = true
+        endif
+        if block.settings.image_2 != blank or block.settings.title_2 != blank or block.settings.text_2 != blank
+          assign epd_has_feature = true
+        endif
+        if block.settings.image_3 != blank or block.settings.title_3 != blank or block.settings.text_3 != blank
+          assign epd_has_feature = true
+        endif
+        if block.settings.image_4 != blank or block.settings.title_4 != blank or block.settings.text_4 != blank
+          assign epd_has_feature = true
+        endif
+        if block.settings.image_5 != blank or block.settings.title_5 != blank or block.settings.text_5 != blank
+          assign epd_has_feature = true
+        endif
+        if block.settings.image_6 != blank or block.settings.title_6 != blank or block.settings.text_6 != blank
+          assign epd_has_feature = true
+        endif
+      %}
+      {% unless epd_has_feature %}{% continue %}{% endunless %}
+      <div
+        class="epd-feature-stack epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.image_1 != blank
+          or block.settings.title_1 != blank
+          or block.settings.text_1 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_1 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_1 != blank %}
+                {{
+                  block.settings.image_1
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_1
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_1 != blank %}
+                <h3>{{ block.settings.title_1 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_1 }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.image_2 != blank
+          or block.settings.title_2 != blank
+          or block.settings.text_2 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_2 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_2 != blank %}
+                {{
+                  block.settings.image_2
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_2
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_2 != blank %}
+                <h3>{{ block.settings.title_2 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_2 }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.image_3 != blank
+          or block.settings.title_3 != blank
+          or block.settings.text_3 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_3 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_3 != blank %}
+                {{
+                  block.settings.image_3
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_3
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_3 != blank %}
+                <h3>{{ block.settings.title_3 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_3 }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.image_4 != blank
+          or block.settings.title_4 != blank
+          or block.settings.text_4 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_4 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_4 != blank %}
+                {{
+                  block.settings.image_4
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_4
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_4 != blank %}
+                <h3>{{ block.settings.title_4 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_4 }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.image_5 != blank
+          or block.settings.title_5 != blank
+          or block.settings.text_5 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_5 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_5 != blank %}
+                {{
+                  block.settings.image_5
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_5
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_5 != blank %}
+                <h3>{{ block.settings.title_5 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_5 }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.image_6 != blank
+          or block.settings.title_6 != blank
+          or block.settings.text_6 != blank
+        %}
+          <div class="epd-feature epd-feature--stacked{% if block.settings.reverse_6 %} epd-feature--reverse{% endif %}">
+            <div class="epd-feature__media">
+              {% if block.settings.image_6 != blank %}
+                {{
+                  block.settings.image_6
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 768px) 45vw, 100vw',
+                    alt: block.settings.title_6
+                }}
+              {% endif %}
+            </div>
+            <div class="epd-feature__text rte">
+              {% if block.settings.title_6 != blank %}
+                <h3>{{ block.settings.title_6 | escape }}</h3>
+              {% endif %}
+              {{ block.settings.text_6 }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+    {% when 'flavours_section' %}
+      {% if epd_flavour_mode == 'in_section' %}
+        </div>
+      </section>
+        {% assign epd_flavour_mode = 'none' %}
+      {% elsif epd_flavour_mode == 'orphan' %}
+        </div>
+        {% assign epd_flavour_mode = 'none' %}
+      {% endif %}
+      {% liquid
+        assign epd_f_extra = false
+        if block.settings.title_2 != blank or block.settings.intro_2 != blank or block.settings.card_list_2 != blank or block.settings.title_3 != blank or block.settings.intro_3 != blank or block.settings.card_list_3 != blank
+          assign epd_f_extra = true
+        endif
+      %}
+      <section
+        class="epd-flavours epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title | escape }}</h2>
+        {% endif %}
+        {% if block.settings.intro != blank %}
+          <div class="epd-flavours-intro rte">{{ block.settings.intro }}</div>
+        {% endif %}
+        {% if block.settings.image != blank %}
+          <div class="epd-flavours-hero">
+            {{
+              block.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 550, 700, 900, 1100, 1400',
+                sizes: '(min-width: 750px) min(640px, 58vw), 94vw',
+                alt: block.settings.title
+            }}
+          </div>
+        {% endif %}
+
+        <div class="epd-flavour-grid">
+          {% render 'expert-product-description-pipe-lines', content: block.settings.card_list, variant: 'flavour' %}
+        {% if epd_f_extra %}
+        </div>
+
+          {% if block.settings.title_2 != blank %}
+            <h3 class="epd-flavours-subtitle">{{ block.settings.title_2 | escape }}</h3>
+          {% endif %}
+          {% if block.settings.intro_2 != blank %}
+            <div class="epd-flavours-intro rte epd-flavours-intro--2">{{ block.settings.intro_2 }}</div>
+          {% endif %}
+          {% if block.settings.card_list_2 != blank %}
+            <div class="epd-flavour-grid">
+              {% render 'expert-product-description-pipe-lines', content: block.settings.card_list_2, variant: 'flavour' %}
+            </div>
+          {% endif %}
+
+          {% if block.settings.title_3 != blank %}
+            <h3 class="epd-flavours-subtitle epd-flavours-subtitle--3">{{ block.settings.title_3 | escape }}</h3>
+          {% endif %}
+          {% if block.settings.intro_3 != blank %}
+            <div class="epd-flavours-intro rte epd-flavours-intro--3">{{ block.settings.intro_3 }}</div>
+          {% endif %}
+          {% if block.settings.card_list_3 != blank %}
+            <div class="epd-flavour-grid">
+              {% render 'expert-product-description-pipe-lines', content: block.settings.card_list_3, variant: 'flavour' %}
+          {% else %}
+            <div class="epd-flavour-grid">
+          {% endif %}
+        {% endif %}
+
+        {% assign epd_flavour_mode = 'in_section' %}
+
+    {% when 'flavour_card' %}
+      {% if epd_flavour_mode == 'none' %}
+        <div class="epd-flavour-grid">
+          {% assign epd_flavour_mode = 'orphan' %}
+      {% endif %}
+      <div
+        class="epd-flavour-card rte epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.content }}
+      </div>
+
+    {% when 'whats_in_box' %}
+      <section
+        class="epd-box epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        <div class="epd-box__inner">
+          <div class="epd-box__copy">
+            {% if block.settings.title != blank %}
+              <h2 class="epd-box__heading">{{ block.settings.title | escape }}</h2>
+            {% endif %}
+            {% if block.settings.list != blank %}
+              <div class="rte epd-box__list">{{ block.settings.list }}</div>
+            {% endif %}
+          </div>
+          {% if block.settings.image != blank %}
+            <div class="epd-box__media">
+              {{
+                block.settings.image
+                | image_url: width: 700
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '200, 280, 360, 450, 560, 700',
+                  sizes: '(min-width: 768px) 260px, 72vw',
+                  alt: block.settings.title
+              }}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+    {% when 'pricing' %}
+      <section
+        class="epd-pricing epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title | escape }}</h2>
+        {% endif %}
+        <div class="rte">{{ block.settings.content }}</div>
+      </section>
+
+    {% when 'steps_group' %}
+      {% liquid
+        assign epd_u_intro1 = block.settings.intro_1
+        if epd_u_intro1 == blank and block.settings.intro != blank
+          assign epd_u_intro1 = block.settings.intro
+        endif
+      %}
+      <section
+        class="epd-usage epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}{% if block.settings.usage_step_text_bg %} epd-usage--step-text-bg{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;{% if block.settings.usage_step_text_bg %} --epd-usage-step-bg: {{ block.settings.usage_step_text_bg_color }};{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.heading_1 != blank %}
+          <h2 class="epd-usage-phase-title">{{ block.settings.heading_1 | escape }}</h2>
+        {% endif %}
+        {% if epd_u_intro1 != blank %}
+          <div class="epd-usage-intro rte">{{ epd_u_intro1 }}</div>
+        {% endif %}
+        {% render 'expert-product-description-pipe-lines', content: block.settings.steps_1, variant: 'steps' %}
+
+        {% if block.settings.steps_1_note != blank %}
+          <div class="epd-usage-callout rte">{{ block.settings.steps_1_note }}</div>
+        {% endif %}
+
+        {% if block.settings.heading_2 != blank %}
+          <h2 class="epd-usage-phase-title epd-usage-phase-title--secondary">{{ block.settings.heading_2 | escape }}</h2>
+        {% endif %}
+        {% if block.settings.intro_2 != blank %}
+          <div class="epd-usage-intro rte">{{ block.settings.intro_2 }}</div>
+        {% endif %}
+        {% render 'expert-product-description-pipe-lines', content: block.settings.steps_2, variant: 'steps' %}
+      </section>
+
+    {% when 'faq_list' %}
+      <div
+        class="epd-faq-wrap epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if section.settings.faq_heading != blank %}
+          <h2>{{ section.settings.faq_heading | escape }}</h2>
+        {% endif %}
+        <div class="epd-faq-list">
+          {% for epd_fqi in (1..10) %}
+            {% render 'expert-product-description-faq-item', block: block, idx: epd_fqi, open_first: block.settings.open_first %}
+          {% endfor %}
+        </div>
+      </div>
+
+    {% when 'policy_accordion' %}
+      {% liquid
+        assign epd_pol_any = false
+        if block.settings.title_1 != blank or block.settings.body_1 != blank
+          assign epd_pol_any = true
+        endif
+        if block.settings.title_2 != blank or block.settings.body_2 != blank
+          assign epd_pol_any = true
+        endif
+        if block.settings.title_3 != blank or block.settings.body_3 != blank
+          assign epd_pol_any = true
+        endif
+        if block.settings.title_4 != blank or block.settings.body_4 != blank
+          assign epd_pol_any = true
+        endif
+        if block.settings.title_5 != blank or block.settings.body_5 != blank
+          assign epd_pol_any = true
+        endif
+        if block.settings.title_6 != blank or block.settings.body_6 != blank
+          assign epd_pol_any = true
+        endif
+      %}
+      {% unless epd_pol_any %}{% continue %}{% endunless %}
+      {% assign epd_pol_is_first = true %}
+      <div
+        class="epd-policy-multi epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        <div class="epd-policy-acc-grid">
+          {% if block.settings.title_1 != blank or block.settings.body_1 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_1 != blank %}
+                    {{ block.settings.title_1 | escape }}
+                  {% else %}
+                    {{ 'Policy 1' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_1 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+          {% if block.settings.title_2 != blank or block.settings.body_2 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_2 != blank %}
+                    {{ block.settings.title_2 | escape }}
+                  {% else %}
+                    {{ 'Policy 2' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_2 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+          {% if block.settings.title_3 != blank or block.settings.body_3 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_3 != blank %}
+                    {{ block.settings.title_3 | escape }}
+                  {% else %}
+                    {{ 'Policy 3' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_3 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+          {% if block.settings.title_4 != blank or block.settings.body_4 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_4 != blank %}
+                    {{ block.settings.title_4 | escape }}
+                  {% else %}
+                    {{ 'Policy 4' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_4 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+          {% if block.settings.title_5 != blank or block.settings.body_5 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_5 != blank %}
+                    {{ block.settings.title_5 | escape }}
+                  {% else %}
+                    {{ 'Policy 5' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_5 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+          {% if block.settings.title_6 != blank or block.settings.body_6 != blank %}
+            <div class="epd-policy-acc-item{% if block.settings.expand_first and epd_pol_is_first %} is-open{% endif %}">
+              <button
+                type="button"
+                class="epd-policy-acc-head"
+                data-epd-policy-acc-toggle
+                aria-expanded="{% if block.settings.expand_first and epd_pol_is_first %}true{% else %}false{% endif %}"
+              >
+                <h3 class="epd-policy-acc-title">
+                  {% if block.settings.title_6 != blank %}
+                    {{ block.settings.title_6 | escape }}
+                  {% else %}
+                    {{ 'Policy 6' | escape }}
+                  {% endif %}
+                </h3>
+                <span class="epd-tabs__chev" aria-hidden="true">
+                  <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="epd-policy-acc-panel rte">{{ block.settings.body_6 }}</div>
+            </div>
+            {% assign epd_pol_is_first = false %}
+          {% endif %}
+        </div>
+      </div>
+
+    {% when 'rich_text' %}
+      <div
+        class="epd-rich epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {% if block.settings.title != blank %}
+          <h2>{{ block.settings.title | escape }}</h2>
+        {% endif %}
+        <div class="rte">{{ block.settings.content }}</div>
+      </div>
+
+    {% when 'custom_liquid' %}
+      <div
+        class="epd-custom epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
+        style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.custom_liquid }}
+      </div>
+
+    {% when 'spacer' %}
+      <div
+        class="epd-spacer"
+        style="--epd-spacer-h: {{ block.settings.height }}px;"
+        {{ block.shopify_attributes }}
+      ></div>
+  {% endcase %}
+{% endfor %}
+
+{% if epd_flavour_mode == 'in_section' %}
+    </div>
+  </section>
+{% elsif epd_flavour_mode == 'orphan' %}
+  </div>
+{% endif %}

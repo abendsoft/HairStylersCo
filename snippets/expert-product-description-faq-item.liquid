@@ -1,0 +1,62 @@
+{% comment %}
+  Single FAQ accordion row for Expert Product Description.
+  @param block {object} FAQ list block
+  @param idx {number} 1..10
+  @param open_first {boolean}
+{% endcomment %}
+{% liquid
+  case idx
+    when 1
+      assign question = block.settings.question_1
+      assign answer = block.settings.answer_1
+    when 2
+      assign question = block.settings.question_2
+      assign answer = block.settings.answer_2
+    when 3
+      assign question = block.settings.question_3
+      assign answer = block.settings.answer_3
+    when 4
+      assign question = block.settings.question_4
+      assign answer = block.settings.answer_4
+    when 5
+      assign question = block.settings.question_5
+      assign answer = block.settings.answer_5
+    when 6
+      assign question = block.settings.question_6
+      assign answer = block.settings.answer_6
+    when 7
+      assign question = block.settings.question_7
+      assign answer = block.settings.answer_7
+    when 8
+      assign question = block.settings.question_8
+      assign answer = block.settings.answer_8
+    when 9
+      assign question = block.settings.question_9
+      assign answer = block.settings.answer_9
+    when 10
+      assign question = block.settings.question_10
+      assign answer = block.settings.answer_10
+      if answer == blank
+        assign answer = block.settings.answer_10_alt
+      endif
+    else
+      assign question = ''
+      assign answer = ''
+  endcase
+%}
+{% if question != blank or answer != blank %}
+  <div class="epd-faq-item{% if open_first and idx == 1 %} is-open{% endif %}">
+    <button
+      type="button"
+      class="epd-faq-head"
+      data-epd-faq-toggle
+      aria-expanded="{% if open_first and idx == 1 %}true{% else %}false{% endif %}"
+    >
+      <h3>{% if question != blank %}{{ question | escape }}{% else %}{{ 'Question' | escape }}{% endif %}</h3>
+      <span class="epd-tabs__chev" aria-hidden="true">
+        <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+    <div class="epd-faq-body rte">{{ answer }}</div>
+  </div>
+{% endif %}

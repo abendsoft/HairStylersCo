@@ -1,0 +1,2050 @@
+﻿{% comment %}
+  Expert Product Description — section + `snippets/expert-product-description-stack.liquid` (block markup).
+  Portable across themes; scoped with .epd and section.id.
+{% endcomment %}
+
+{%- liquid
+  assign sid = section.id
+  assign show_tab2 = section.settings.show_second_tab
+  assign tab1_label = section.settings.tab_primary_label | default: 'Description'
+  assign tab2_label = section.settings.tab_secondary_label | default: 'Shipping & Returns Policy'
+-%}
+
+<section
+  id="shopify-section-{{ sid }}"
+  class="epd expert-product-description"
+  style="
+    --epd-max-width: {{ section.settings.max_width }}px;
+    --epd-pad-top: {{ section.settings.padding_top }}px;
+    --epd-pad-bottom: {{ section.settings.padding_bottom }}px;
+    --epd-radius: {{ section.settings.card_radius }}px;
+    --epd-gap: {{ section.settings.block_gap }}px;
+    --epd-bg: {{ section.settings.color_background }};
+    --epd-surface: {{ section.settings.color_surface }};
+    --epd-text: {{ section.settings.color_text }};
+    --epd-muted: {{ section.settings.color_muted }};
+    --epd-accent: {{ section.settings.color_accent }};
+    --epd-border: {{ section.settings.color_border }};
+    --epd-tab-active-bg: {{ section.settings.tab_active_bg }};
+    --epd-tab-active-text: {{ section.settings.tab_active_text }};
+    --epd-badge-text: {{ section.settings.color_badge_text }};
+    --epd-heading-size: {{ section.settings.heading_size | plus: 4 }}px;
+    --epd-subheading-size: {{ section.settings.subheading_size | plus: 4 }}px;
+    --epd-body-size: {{ section.settings.body_size | plus: 2 }}px;
+    --epd-table-thead-bg: {{ section.settings.table_header_bg }};
+    --epd-table-thead-text: {{ section.settings.table_header_text }};
+    --epd-table-tbody-bg: {{ section.settings.table_body_bg }};
+    --epd-table-row-hover: {{ section.settings.table_row_hover_bg }};
+    --epd-flavour-card-bg: {{ section.settings.flavour_card_bg }};
+    --epd-flavour-card-top: {{ section.settings.flavour_card_top_border }};
+  "
+>
+  <div class="epd__inner">
+    <div class="epd-tabs" data-epd-tabs>
+      {% if show_tab2 %}
+        <ul class="epd-tabs__list epd-tabs__list--desktop" role="tablist">
+          <li class="epd-tabs__tab" role="presentation">
+            <button
+              type="button"
+              class="epd-tabs__trigger epd-tabs__trigger--active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="epd-panel-1-{{ sid }}"
+              id="epd-tab-1-{{ sid }}"
+              data-epd-tab-trigger
+              data-epd-tab="1"
+            >
+              {{ tab1_label | escape }}
+            </button>
+          </li>
+          <li class="epd-tabs__tab" role="presentation">
+            <button
+              type="button"
+              class="epd-tabs__trigger"
+              role="tab"
+              aria-selected="false"
+              aria-controls="epd-panel-2-{{ sid }}"
+              id="epd-tab-2-{{ sid }}"
+              data-epd-tab-trigger
+              data-epd-tab="2"
+            >
+              {{ tab2_label | escape }}
+            </button>
+          </li>
+        </ul>
+      {% endif %}
+
+      <div class="epd-tabs__panels">
+        {% if show_tab2 %}
+          <div
+            class="epd-tabs__mobile-acc epd-tabs__mobile-acc--primary"
+            data-epd-mobile-tab="1"
+          >
+            <button
+              type="button"
+              class="epd-tabs__mobile-head epd-tabs__mobile-head--active"
+              data-epd-mobile-toggle
+              data-epd-tab="1"
+              aria-expanded="true"
+              aria-controls="epd-panel-1-{{ sid }}"
+            >
+              <span>{{ tab1_label | escape }}</span>
+              <span class="epd-tabs__chev" aria-hidden="true">
+                <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+        {% endif %}
+
+        <div
+          class="epd-tabs__panel epd-tabs__panel--active"
+          role="tabpanel"
+          id="epd-panel-1-{{ sid }}"
+          {% if show_tab2 %}
+            aria-labelledby="epd-tab-1-{{ sid }}"
+          {% else %}
+            aria-label="{{ tab1_label | escape }}"
+          {% endif %}
+          data-epd-panel="1"
+          {% unless show_tab2 %}data-epd-single-tab{% endunless %}
+        >
+          <div class="epd-stack">
+            {% render 'expert-product-description-stack', section: section, epd_tab_target: 'primary' %}
+          </div>
+        </div>
+
+        {% if show_tab2 %}
+          <div class="epd-tabs__mobile-acc" data-epd-mobile-tab="2">
+            <button
+              type="button"
+              class="epd-tabs__mobile-head"
+              data-epd-mobile-toggle
+              data-epd-tab="2"
+              aria-expanded="false"
+              aria-controls="epd-panel-2-{{ sid }}"
+            >
+              <span>{{ tab2_label | escape }}</span>
+              <span class="epd-tabs__chev" aria-hidden="true">
+                <svg class="epd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <div
+            class="epd-tabs__panel"
+            role="tabpanel"
+            id="epd-panel-2-{{ sid }}"
+            aria-labelledby="epd-tab-2-{{ sid }}"
+            data-epd-panel="2"
+            hidden
+          >
+            <div class="epd-stack">
+              {% render 'expert-product-description-stack', section: section, epd_tab_target: 'secondary' %}
+            </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ sid }}.epd {
+    background: var(--epd-bg);
+    padding-top: var(--epd-pad-top);
+    padding-bottom: var(--epd-pad-bottom);
+    color: var(--epd-text);
+    font-size: var(--epd-body-size);
+  }
+
+  #shopify-section-{{ sid }} .epd__inner {
+    max-width: var(--epd-max-width);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__list {
+    display: none;
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--epd-border);
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ sid }} .epd-tabs__list--desktop {
+      display: flex;
+    }
+    #shopify-section-{{ sid }} .epd-tabs__mobile-acc {
+      display: none;
+    }
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__trigger {
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    color: var(--epd-muted);
+    padding: 0.85rem 1.1rem;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+    border-radius: var(--epd-radius) var(--epd-radius) 0 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__trigger--active {
+    color: var(--epd-tab-active-text);
+    background: var(--epd-tab-active-bg);
+    border-bottom-color: var(--epd-accent);
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__panel {
+    padding-top: 0.25rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__panel[hidden] {
+    display: none !important;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__mobile-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1rem;
+    margin: 0;
+    border: 1px solid var(--epd-border);
+    border-radius: var(--epd-radius);
+    background: var(--epd-surface);
+    font: inherit;
+    font-weight: 600;
+    color: var(--epd-text);
+    cursor: pointer;
+    text-align: left;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__mobile-head--active {
+    border-color: var(--epd-accent);
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__chev {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+    opacity: 0.7;
+  }
+
+  #shopify-section-{{ sid }} .epd-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--epd-gap);
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .rte ul,
+  #shopify-section-{{ sid }} .epd-block--center .rte ol {
+    display: inline-block;
+    text-align: left;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-feature {
+    justify-items: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-feature__text {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center table.epd-table th,
+  #shopify-section-{{ sid }} .epd-block--center table.epd-table td {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-faq-head {
+    justify-content: center;
+    padding-inline: 2.5rem;
+    position: relative;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-faq-head .epd-tabs__chev {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-faq-item.is-open .epd-faq-head .epd-tabs__chev {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-policy-acc-head {
+    justify-content: center;
+    padding-inline: 2.5rem;
+    position: relative;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-policy-acc-head .epd-tabs__chev {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-policy-acc-item.is-open .epd-policy-acc-head .epd-tabs__chev {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-usage-steps {
+    align-items: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-usage-step {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ sid }} .epd-block--center .epd-usage-step-text {
+    text-align: center;
+  }
+
+  /* Flavours block: center only heading, intro & hero — keep flavour grid cards left-aligned */
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center {
+    text-align: left;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > h2,
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-intro,
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-hero {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-hero {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-subtitle,
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-intro--2,
+  #shopify-section-{{ sid }} .epd-flavours.epd-block--center > .epd-flavours-intro--3 {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours-subtitle {
+    font-size: calc(var(--epd-subheading-size) * 1.02);
+    margin: 5rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--epd-text);
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours-intro--2,
+  #shopify-section-{{ sid }} .epd-flavours-intro--3 {
+    margin-bottom: 0.65rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-about,
+  #shopify-section-{{ sid }} .epd-specs,
+  #shopify-section-{{ sid }} .epd-flavours,
+  #shopify-section-{{ sid }} .epd-box,
+  #shopify-section-{{ sid }} .epd-pricing,
+  #shopify-section-{{ sid }} .epd-usage,
+  #shopify-section-{{ sid }} .epd-faq-wrap,
+  #shopify-section-{{ sid }} .epd-policy-multi,
+  #shopify-section-{{ sid }} .epd-rich {
+    background: var(--epd-surface);
+    border: 1px solid var(--epd-border);
+    border-radius: var(--epd-radius);
+    padding: clamp(1.2rem, 3.5vw, 4rem);
+  }
+
+  /* After base padding above: desktop extra padding (--epd-desk-pad on .epd-block-root from block settings) */
+  @media (min-width: 768px) {
+    #shopify-section-{{ sid }} .epd-about.epd-block-root,
+    #shopify-section-{{ sid }} .epd-specs.epd-block-root,
+    #shopify-section-{{ sid }} .epd-flavours.epd-block-root,
+    #shopify-section-{{ sid }} .epd-box.epd-block-root,
+    #shopify-section-{{ sid }} .epd-pricing.epd-block-root,
+    #shopify-section-{{ sid }} .epd-usage.epd-block-root,
+    #shopify-section-{{ sid }} .epd-faq-wrap.epd-block-root,
+    #shopify-section-{{ sid }} .epd-policy-multi.epd-block-root,
+    #shopify-section-{{ sid }} .epd-rich.epd-block-root {
+      padding: calc(clamp(1.2rem, 3.5vw, 4rem) + var(--epd-desk-pad, 0px));
+    }
+
+    #shopify-section-{{ sid }} .epd-feature-stack.epd-block-root {
+      padding: var(--epd-desk-pad, 0px);
+    }
+
+    #shopify-section-{{ sid }} .epd-flavour-card.epd-block-root {
+      padding: calc(1.35rem + var(--epd-desk-pad, 0px)) calc(1.5rem + var(--epd-desk-pad, 0px))
+        calc(1.55rem + var(--epd-desk-pad, 0px));
+    }
+
+    #shopify-section-{{ sid }} .epd-custom.epd-block-root {
+      padding: calc(clamp(1.2rem, 3.5vw, 4rem) + var(--epd-desk-pad, 0px));
+      background: var(--epd-surface);
+      border: 1px solid var(--epd-border);
+      border-radius: var(--epd-radius);
+    }
+  }
+
+  #shopify-section-{{ sid }} .epd-about h2,
+  #shopify-section-{{ sid }} .epd-specs h2,
+  #shopify-section-{{ sid }} .epd-flavours h2,
+  #shopify-section-{{ sid }} .epd-box h2,
+  #shopify-section-{{ sid }} .epd-pricing h2,
+  #shopify-section-{{ sid }} .epd-usage h2,
+  #shopify-section-{{ sid }} .epd-faq-wrap > h2,
+  #shopify-section-{{ sid }} .epd-rich h2 {
+    font-size: var(--epd-heading-size);
+    margin: 0 0 2rem;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ sid }} .epd-feature__text h3,
+  #shopify-section-{{ sid }} .epd-usage-step h3,
+  #shopify-section-{{ sid }} .epd-faq-item h3 {
+    font-size: var(--epd-subheading-size);
+    margin: 0 0 2rem;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ sid }} .epd-about .rte,
+  #shopify-section-{{ sid }} .epd-flavours-intro,
+  #shopify-section-{{ sid }} .epd-pricing .rte,
+  #shopify-section-{{ sid }} .epd-usage-intro,
+  #shopify-section-{{ sid }} .epd-rich .rte {
+    color: var(--epd-text);
+  }
+
+  #shopify-section-{{ sid }} .epd-about .rte p:last-child,
+  #shopify-section-{{ sid }} .epd-pricing .rte p:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 280px;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table th,
+  #shopify-section-{{ sid }} table.epd-table td {
+    border: 1px solid var(--epd-border);
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table thead th {
+    background: var(--epd-table-thead-bg);
+    color: var(--epd-table-thead-text);
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table tbody td {
+    background: var(--epd-table-tbody-bg);
+  }
+
+  #shopify-section-{{ sid }} table.epd-table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table tbody tr:hover td {
+    background: var(--epd-table-row-hover);
+  }
+
+  #shopify-section-{{ sid }} .epd-feature-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--epd-border);
+    border-radius: var(--epd-radius);
+    overflow: hidden;
+    background: var(--epd-surface);
+  }
+
+  #shopify-section-{{ sid }} .epd-feature-stack .epd-feature--stacked {
+    display: grid;
+    gap: 1.35rem;
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: clamp(1.35rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
+    margin: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-feature-stack .epd-feature--stacked + .epd-feature--stacked {
+    padding-top: clamp(1.65rem, 3.5vw, 2.35rem);
+    border-top: none;
+  }
+
+  #shopify-section-{{ sid }} .epd-feature:not(.epd-feature--stacked) {
+    display: grid;
+    gap: 1.35rem;
+    align-items: center;
+    background: var(--epd-surface);
+    border: 1px solid var(--epd-border);
+    border-radius: var(--epd-radius);
+    padding: clamp(1.15rem, 3.5vw, 2rem);
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ sid }} .epd-feature--stacked,
+    #shopify-section-{{ sid }} .epd-feature:not(.epd-feature--stacked) {
+      grid-template-columns: 1fr 1fr;
+    }
+    #shopify-section-{{ sid }} .epd-feature--reverse {
+      direction: rtl;
+    }
+    #shopify-section-{{ sid }} .epd-feature--reverse > * {
+      direction: ltr;
+    }
+  }
+
+  #shopify-section-{{ sid }} .epd-feature__media img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--epd-radius) - 2px);
+    display: block;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours .epd-flavours-hero {
+    margin: 0.65rem auto 0.35rem;
+    max-width: min(680px, 100%);
+  }
+
+  #shopify-section-{{ sid }} .epd-flavours .epd-flavours-hero img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: calc(var(--epd-radius) - 2px);
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    margin-top: 1.25rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card {
+    text-align: left;
+    background: var(--epd-flavour-card-bg);
+    border: 1px solid var(--epd-border);
+    border-top: 3px solid var(--epd-flavour-card-top);
+    border-radius: max(12px, calc(var(--epd-radius) - 2px));
+    padding: 1.35rem 1.5rem 1.55rem;
+    box-shadow: none;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease,
+      background-color 0.22s ease;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card h3 {
+    font-size: var(--epd-subheading-size);
+    font-weight: 700;
+    color: var(--epd-text);
+    margin: 0 0 0.7rem;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card p {
+    margin: 0;
+    color: var(--epd-muted);
+    line-height: 1.6;
+    font-size: calc(var(--epd-body-size) * 0.98);
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card p + p {
+    margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--epd-text) 10%, transparent);
+    border-color: color-mix(in srgb, var(--epd-flavour-card-top) 35%, var(--epd-border));
+    background: var(--epd-surface);
+  }
+
+  #shopify-section-{{ sid }} .epd-box__inner {
+    display: grid;
+    gap: 1.25rem;
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+
+  #shopify-section-{{ sid }} .epd-box__copy {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-box.epd-block--center .epd-box__copy {
+    text-align: center;
+  }
+
+  #shopify-section-{{ sid }} .epd-box.epd-block--center .epd-box__list ul,
+  #shopify-section-{{ sid }} .epd-box.epd-block--center .epd-box__list ol {
+    display: inline-block;
+    text-align: left;
+  }
+
+  #shopify-section-{{ sid }} .epd-box__list {
+    margin: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-box__media {
+    justify-self: center;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ sid }} .epd-box__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #shopify-section-{{ sid }} .epd-box__media {
+      justify-self: center;
+      align-self: center;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  #shopify-section-{{ sid }} .epd-box__media img {
+    width: 100%;
+    max-width: min(320px, 100%);
+    height: auto;
+    margin-inline: auto;
+    display: block;
+    border-radius: calc(var(--epd-radius) - 2px);
+  }
+
+  #shopify-section-{{ sid }} .epd-usage > .epd-usage-intro {
+    margin-bottom: 2rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage .epd-usage-phase-title + .epd-usage-intro {
+    margin-top: 0.15rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-intro + .epd-usage-steps {
+    margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage .epd-usage-phase-title {
+    font-size: var(--epd-heading-size);
+    line-height: 1.2;
+    margin: 0 0 2rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage .epd-usage-phase-title--secondary {
+    margin-top: 3rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage .epd-usage-phase {
+    margin-top: 0.25rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-phase.rte > :first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-phase.rte > :last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-callout {
+    position: relative;
+    margin-top: 1.35rem;
+    padding: 1.2rem 1.35rem 1.2rem 1.75rem;
+    background: var(--epd-flavour-card-bg);
+    border: 1px solid color-mix(in srgb, var(--epd-border) 85%, transparent);
+    border-radius: max(12px, calc(var(--epd-radius) - 2px));
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--epd-text) 6%, transparent);
+    color: var(--epd-text);
+    line-height: 1.65;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-callout::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 1rem;
+    bottom: 1rem;
+    width: 5px;
+    border-radius: 999px;
+    background: var(--epd-flavour-card-top);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage--step-text-bg .epd-usage-step-text {
+    background: var(--epd-usage-step-bg);
+    padding: 0.55rem 0.75rem;
+    border-radius: calc(var(--epd-radius) - 6px);
+  }
+
+  #shopify-section-{{ sid }} table.epd-table td.rte > :first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ sid }} table.epd-table td.rte > :last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-usage-step__num {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background: var(--epd-accent);
+    color: var(--epd-badge-text);
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-tabs__mobile-head--active .epd-tabs__chev,
+  #shopify-section-{{ sid }} .epd-faq-item.is-open .epd-faq-head .epd-tabs__chev,
+  #shopify-section-{{ sid }} .epd-policy-acc-item.is-open .epd-policy-acc-head .epd-tabs__chev {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-wrap > h2 {
+    margin-bottom: 2rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-item {
+    border: 1px solid var(--epd-border);
+    border-radius: calc(var(--epd-radius) - 2px);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--epd-surface) 94%, var(--epd-bg));
+    min-width: 0;
+    min-height: 0;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-item:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--epd-accent) 22%, var(--epd-border));
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--epd-text) 9%, transparent);
+    background: var(--epd-surface);
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-item.is-open {
+    overflow: visible;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-item.is-open .epd-faq-body {
+    display: block !important;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.5rem 1.15rem;
+    border: none;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    color: var(--epd-text);
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-head h3 {
+    margin: 0;
+    font-size: calc(var(--epd-subheading-size) * 0.92);
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-body {
+    display: none;
+    padding: 0 1.15rem 1.15rem;
+    color: var(--epd-muted);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ sid }} .epd-faq-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    align-items: start;
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ sid }} .epd-policy-acc-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-item {
+    min-width: 0;
+    border: 1px solid var(--epd-border);
+    border-radius: calc(var(--epd-radius) - 2px);
+    overflow: hidden;
+    background: color-mix(in srgb, var(--epd-surface) 94%, var(--epd-bg));
+    min-height: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-item.is-open {
+    overflow: visible;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-item.is-open .epd-policy-acc-panel {
+    display: block !important;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.15rem;
+    border: none;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    color: var(--epd-text);
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-title {
+    margin: 0;
+    font-size: calc(var(--epd-subheading-size) * 0.92);
+    font-weight: 600;
+    flex: 1;
+    text-align: left;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-panel {
+    display: none;
+    padding: 0 1.15rem 1.15rem;
+    color: var(--epd-muted);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-panel p:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-panel h4 {
+    margin: 1rem 0 0.5rem;
+    font-size: calc(var(--epd-subheading-size) * 0.88);
+  }
+
+  #shopify-section-{{ sid }} .epd-policy-acc-panel h4:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ sid }} .epd-spacer {
+    height: var(--epd-spacer-h, 1rem);
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ sid }}');
+    if (!root) return;
+
+    var showTab2 = {{ show_tab2 | json }};
+    var mq = window.matchMedia('(min-width: 750px)');
+
+    function setTab(index) {
+      var triggers = root.querySelectorAll('[data-epd-tab-trigger]');
+      var panels = root.querySelectorAll('[data-epd-panel]');
+      triggers.forEach(function (btn) {
+        var on = btn.getAttribute('data-epd-tab') === String(index);
+        btn.classList.toggle('epd-tabs__trigger--active', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(function (panel) {
+        var on = panel.getAttribute('data-epd-panel') === String(index);
+        panel.classList.toggle('epd-tabs__panel--active', on);
+        if (on) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', 'hidden');
+        }
+      });
+      if (showTab2) {
+        var mobileHeads = root.querySelectorAll('[data-epd-mobile-toggle]');
+        mobileHeads.forEach(function (head) {
+          var on = head.getAttribute('data-epd-tab') === String(index);
+          head.classList.toggle('epd-tabs__mobile-head--active', on);
+          head.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+      }
+    }
+
+    root.querySelectorAll('[data-epd-tab-trigger]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setTab(btn.getAttribute('data-epd-tab'));
+      });
+    });
+
+    function mobileToggle(head) {
+      var tab = head.getAttribute('data-epd-tab');
+      var expanded = head.getAttribute('aria-expanded') === 'true';
+      if (mq.matches) return;
+      if (expanded) return;
+      setTab(tab);
+    }
+
+    root.querySelectorAll('[data-epd-mobile-toggle]').forEach(function (head) {
+      head.addEventListener('click', function () {
+        mobileToggle(head);
+      });
+    });
+
+    mq.addEventListener('change', function () {
+      if (mq.matches) {
+        var active = root.querySelector('.epd-tabs__trigger--active');
+        if (active) setTab(active.getAttribute('data-epd-tab'));
+        else setTab('1');
+      }
+    });
+
+    root.querySelectorAll('[data-epd-faq-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.epd-faq-item');
+        if (!item) return;
+        var list = item.closest('.epd-faq-list');
+        var wasOpen = item.classList.contains('is-open');
+        if (list) {
+          list.querySelectorAll('.epd-faq-item').forEach(function (other) {
+            if (other !== item) {
+              other.classList.remove('is-open');
+              var ob = other.querySelector('[data-epd-faq-toggle]');
+              if (ob) ob.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+        if (wasOpen) {
+          item.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    root.querySelectorAll('[data-epd-policy-acc-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.epd-policy-acc-item');
+        if (!item) return;
+        var grid = item.closest('.epd-policy-acc-grid');
+        var wasOpen = item.classList.contains('is-open');
+        if (grid) {
+          grid.querySelectorAll('.epd-policy-acc-item').forEach(function (other) {
+            if (other !== item) {
+              other.classList.remove('is-open');
+              var ob = other.querySelector('[data-epd-policy-acc-toggle]');
+              if (ob) ob.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+        if (wasOpen) {
+          item.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Expert product desc",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_second_tab",
+      "label": "Show second tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_primary_label",
+      "label": "Primary tab label",
+      "default": "Description"
+    },
+    {
+      "type": "text",
+      "id": "tab_secondary_label",
+      "label": "Secondary tab label",
+      "default": "Shipping & Returns Policy"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ section heading",
+      "default": "Frequently Asked Questions",
+      "info": "Shown above consecutive FAQ item blocks (any tab)."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1100
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "block_gap",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between blocks",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (H2)",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading size (H3)",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_surface",
+      "label": "Card / surface",
+      "default": "#f7f7f8"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "color_muted",
+      "label": "Muted text",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent",
+      "default": "#2563eb"
+    },
+    {
+      "type": "color",
+      "id": "color_border",
+      "label": "Borders",
+      "default": "#e2e2e4"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Active tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text",
+      "label": "Active tab text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "color_badge_text",
+      "label": "Text on accent badges (step numbers)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Specifications table"
+    },
+    {
+      "type": "color",
+      "id": "table_header_bg",
+      "label": "Table header (thead) background",
+      "default": "#e8eef5"
+    },
+    {
+      "type": "color",
+      "id": "table_header_text",
+      "label": "Table header (thead) text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "table_body_bg",
+      "label": "Table body (cells) background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "table_row_hover_bg",
+      "label": "Table row hover background",
+      "default": "#e6f4ef"
+    },
+    {
+      "type": "header",
+      "content": "Flavour cards"
+    },
+    {
+      "type": "color",
+      "id": "flavour_card_bg",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "flavour_card_top_border",
+      "label": "Card top accent line",
+      "default": "#1f6f5e"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "about",
+      "name": "About (intro)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary (e.g. Description)" },
+            { "value": "secondary", "label": "Secondary (e.g. Policy)" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "About this product"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Describe your product in detail for customers and search.</p>"
+        }
+      ]
+    },
+    {
+      "type": "spec_table",
+      "name": "Specifications table",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Specifications"
+        },
+        {
+          "type": "text",
+          "id": "col_feature",
+          "label": "Column 1 header",
+          "default": "Feature"
+        },
+        {
+          "type": "text",
+          "id": "col_detail",
+          "label": "Column 2 header",
+          "default": "Details"
+        },
+        { "type": "header", "content": "Row 1" },
+        { "type": "text", "id": "row_1_name", "label": "Row 1 name" },
+        { "type": "richtext", "id": "row_1_detail", "label": "Row 1 detail" },
+        { "type": "header", "content": "Row 2" },
+        { "type": "text", "id": "row_2_name", "label": "Row 2 name" },
+        { "type": "richtext", "id": "row_2_detail", "label": "Row 2 detail" },
+        { "type": "header", "content": "Row 3" },
+        { "type": "text", "id": "row_3_name", "label": "Row 3 name" },
+        { "type": "richtext", "id": "row_3_detail", "label": "Row 3 detail" },
+        { "type": "header", "content": "Row 4" },
+        { "type": "text", "id": "row_4_name", "label": "Row 4 name" },
+        { "type": "richtext", "id": "row_4_detail", "label": "Row 4 detail" },
+        { "type": "header", "content": "Row 5" },
+        { "type": "text", "id": "row_5_name", "label": "Row 5 name" },
+        { "type": "richtext", "id": "row_5_detail", "label": "Row 5 detail" },
+        { "type": "header", "content": "Row 6" },
+        { "type": "text", "id": "row_6_name", "label": "Row 6 name" },
+        { "type": "richtext", "id": "row_6_detail", "label": "Row 6 detail" },
+        { "type": "header", "content": "Row 7" },
+        { "type": "text", "id": "row_7_name", "label": "Row 7 name" },
+        { "type": "richtext", "id": "row_7_detail", "label": "Row 7 detail" },
+        { "type": "header", "content": "Row 8" },
+        { "type": "text", "id": "row_8_name", "label": "Row 8 name" },
+        { "type": "richtext", "id": "row_8_detail", "label": "Row 8 detail" },
+        { "type": "header", "content": "Row 9" },
+        { "type": "text", "id": "row_9_name", "label": "Row 9 name" },
+        { "type": "richtext", "id": "row_9_detail", "label": "Row 9 detail" },
+        { "type": "header", "content": "Row 10" },
+        { "type": "text", "id": "row_10_name", "label": "Row 10 name" },
+        { "type": "richtext", "id": "row_10_detail", "label": "Row 10 detail" },
+        { "type": "header", "content": "Row 11" },
+        { "type": "text", "id": "row_11_name", "label": "Row 11 name" },
+        { "type": "richtext", "id": "row_11_detail", "label": "Row 11 detail" },
+        { "type": "header", "content": "Row 12" },
+        { "type": "text", "id": "row_12_name", "label": "Row 12 name" },
+        { "type": "richtext", "id": "row_12_detail", "label": "Row 12 detail" },
+        { "type": "header", "content": "Row 13" },
+        { "type": "text", "id": "row_13_name", "label": "Row 13 name" },
+        { "type": "richtext", "id": "row_13_detail", "label": "Row 13 detail" },
+        { "type": "header", "content": "Row 14" },
+        { "type": "text", "id": "row_14_name", "label": "Row 14 name" },
+        { "type": "richtext", "id": "row_14_detail", "label": "Row 14 detail" },
+        { "type": "header", "content": "Row 15" },
+        { "type": "text", "id": "row_15_name", "label": "Row 15 name" },
+        { "type": "richtext", "id": "row_15_detail", "label": "Row 15 detail" }
+      ]
+    },
+    {
+      "type": "feature_row",
+      "name": "Feature rows (x6)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        { "type": "header", "content": "Feature 1" },
+        { "type": "image_picker", "id": "image_1", "label": "Image" },
+        { "type": "text", "id": "title_1", "label": "Heading" },
+        { "type": "richtext", "id": "text_1", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_1",
+          "label": "Reverse layout (image on right)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 2" },
+        { "type": "image_picker", "id": "image_2", "label": "Image" },
+        { "type": "text", "id": "title_2", "label": "Heading" },
+        { "type": "richtext", "id": "text_2", "label": "Text" },
+        { "type": "checkbox", "id": "reverse_2", "label": "Reverse layout", "default": false },
+        { "type": "header", "content": "Feature 3" },
+        { "type": "image_picker", "id": "image_3", "label": "Image" },
+        { "type": "text", "id": "title_3", "label": "Heading" },
+        { "type": "richtext", "id": "text_3", "label": "Text" },
+        { "type": "checkbox", "id": "reverse_3", "label": "Reverse layout", "default": false },
+        { "type": "header", "content": "Feature 4" },
+        { "type": "image_picker", "id": "image_4", "label": "Image" },
+        { "type": "text", "id": "title_4", "label": "Heading" },
+        { "type": "richtext", "id": "text_4", "label": "Text" },
+        { "type": "checkbox", "id": "reverse_4", "label": "Reverse layout", "default": false },
+        { "type": "header", "content": "Feature 5" },
+        { "type": "image_picker", "id": "image_5", "label": "Image" },
+        { "type": "text", "id": "title_5", "label": "Heading" },
+        { "type": "richtext", "id": "text_5", "label": "Text" },
+        { "type": "checkbox", "id": "reverse_5", "label": "Reverse layout", "default": false },
+        { "type": "header", "content": "Feature 6" },
+        { "type": "image_picker", "id": "image_6", "label": "Image" },
+        { "type": "text", "id": "title_6", "label": "Heading" },
+        { "type": "richtext", "id": "text_6", "label": "Text" },
+        { "type": "checkbox", "id": "reverse_6", "label": "Reverse layout", "default": false }
+      ]
+    },
+    {
+      "type": "flavours_section",
+      "name": "Flavours / grid intro",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Available flavours"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Introduction",
+          "default": "<p>Introduce your flavour range.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Hero image (optional)"
+        },
+        {
+          "type": "richtext",
+          "id": "card_list",
+          "label": "Flavour cards (rich text)",
+          "default": "<p>Blue Razz|Tart blue raspberry notes.</p><p>Cherry Ice|Sweet cherry with a cool finish.</p>",
+          "info": "One flavour per line (paragraph or line break). Format: Flavour name|description — first | splits title and body. You can also add separate Flavour card blocks below for extra cards or metafields."
+        },
+        {
+          "type": "header",
+          "content": "Wave 2 (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Heading 2"
+        },
+        {
+          "type": "richtext",
+          "id": "intro_2",
+          "label": "Introduction 2"
+        },
+        {
+          "type": "richtext",
+          "id": "card_list_2",
+          "label": "Flavour cards 2 (rich text)",
+          "info": "Same format as wave 1. Shown after wave 1 grid when any wave 2–3 field is set."
+        },
+        {
+          "type": "header",
+          "content": "Wave 3 (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Heading 3"
+        },
+        {
+          "type": "richtext",
+          "id": "intro_3",
+          "label": "Introduction 3"
+        },
+        {
+          "type": "richtext",
+          "id": "card_list_3",
+          "label": "Flavour cards 3 (rich text)",
+          "info": "Same format as wave 1."
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width. Adds to this block’s padding.",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "flavour_card",
+      "name": "Flavour card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Card content",
+          "default": "<h3>Flavour name</h3><p>Description with rich text.</p>",
+          "info": "Use headings, bold, lists, etc. Add many cards for long flavour lists."
+        }
+      ]
+    },
+    {
+      "type": "whats_in_box",
+      "name": "What's in the box",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "What's in the box?"
+        },
+        {
+          "type": "richtext",
+          "id": "list",
+          "label": "List content",
+          "default": "<ul><li>1 × Product</li><li>1 × Accessory</li></ul>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "pricing",
+      "name": "Pricing / promo text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Pricing"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add price points, bundles, and dispatch notes.</p>"
+        }
+      ]
+    },
+    {
+      "type": "steps_group",
+      "name": "How to use",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "heading_1",
+          "label": "Heading 1",
+          "default": "How to use"
+        },
+        {
+          "type": "richtext",
+          "id": "intro_1",
+          "label": "Introduction 1 (optional)",
+          "info": "Shown directly under Heading 1, before the first step list."
+        },
+        {
+          "type": "richtext",
+          "id": "steps_1",
+          "label": "Steps 1 (rich text)",
+          "default": "<p>Remove all packaging|Open the pack and remove seals and plugs.</p><p>Insert the pod|Align and push until it seats firmly.</p>",
+          "info": "One step per line (paragraph or line break). Format: step title|step text. Lines are numbered 1, 2, 3… automatically. Extra text after the first | is kept in the description."
+        },
+        {
+          "type": "richtext",
+          "id": "steps_1_note",
+          "label": "Note below Steps 1",
+          "info": "Optional callout with accent bar after the first step list."
+        },
+        {
+          "type": "checkbox",
+          "id": "usage_step_text_bg",
+          "label": "Background on step text",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "usage_step_text_bg_color",
+          "label": "Step text background",
+          "default": "#f4faf8"
+        },
+        {
+          "type": "text",
+          "id": "heading_2",
+          "label": "Heading 2",
+          "default": "When to replace",
+          "info": "Optional second section heading."
+        },
+        {
+          "type": "richtext",
+          "id": "intro_2",
+          "label": "Introduction 2 (optional)",
+          "info": "Shown directly under Heading 2, before the second step list."
+        },
+        {
+          "type": "richtext",
+          "id": "steps_2",
+          "label": "Steps 2 (rich text)",
+          "default": "<p>Flavour becomes weak|Replace when taste fades.</p><p>Burnt or dry taste|Replace the pod.</p>",
+          "info": "Same format as Steps 1. Numbering restarts at 1 for this block."
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "faq_list",
+      "name": "FAQ list (10 max)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "open_first",
+          "label": "Open question 1 by default",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        { "type": "header", "content": "Question 1 & answer 1" },
+        { "type": "text", "id": "question_1", "label": "Question 1" },
+        { "type": "richtext", "id": "answer_1", "label": "Answer 1" },
+        { "type": "header", "content": "Question 2 & answer 2" },
+        { "type": "text", "id": "question_2", "label": "Question 2" },
+        { "type": "richtext", "id": "answer_2", "label": "Answer 2" },
+        { "type": "header", "content": "Question 3 & answer 3" },
+        { "type": "text", "id": "question_3", "label": "Question 3" },
+        { "type": "richtext", "id": "answer_3", "label": "Answer 3" },
+        { "type": "header", "content": "Question 4 & answer 4" },
+        { "type": "text", "id": "question_4", "label": "Question 4" },
+        { "type": "richtext", "id": "answer_4", "label": "Answer 4" },
+        { "type": "header", "content": "Question 5 & answer 5" },
+        { "type": "text", "id": "question_5", "label": "Question 5" },
+        { "type": "richtext", "id": "answer_5", "label": "Answer 5" },
+        { "type": "header", "content": "Question 6 & answer 6" },
+        { "type": "text", "id": "question_6", "label": "Question 6" },
+        { "type": "richtext", "id": "answer_6", "label": "Answer 6" },
+        { "type": "header", "content": "Question 7 & answer 7" },
+        { "type": "text", "id": "question_7", "label": "Question 7" },
+        { "type": "richtext", "id": "answer_7", "label": "Answer 7" },
+        { "type": "header", "content": "Question 8 & answer 8" },
+        { "type": "text", "id": "question_8", "label": "Question 8" },
+        { "type": "richtext", "id": "answer_8", "label": "Answer 8" },
+        { "type": "header", "content": "Question 9 & answer 9" },
+        { "type": "text", "id": "question_9", "label": "Question 9" },
+        { "type": "richtext", "id": "answer_9", "label": "Answer 9" },
+        { "type": "header", "content": "Question 10 & answer 10" },
+        { "type": "text", "id": "question_10", "label": "Question 10" },
+        { "type": "richtext", "id": "answer_10", "label": "Answer 10" },
+        {
+          "type": "richtext",
+          "id": "answer_10_alt",
+          "label": "Answer 10 (alternate)",
+          "info": "Use only if Answer 10 does not appear on the storefront (paste the same content here)."
+        }
+      ]
+    },
+    {
+      "type": "policy_accordion",
+      "name": "Policy grid (6)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "secondary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "expand_first",
+          "label": "Open first item by default",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        { "type": "header", "content": "Title 1 & content 1" },
+        { "type": "text", "id": "title_1", "label": "Title 1" },
+        { "type": "richtext", "id": "body_1", "label": "Content 1" },
+        { "type": "header", "content": "Title 2 & content 2" },
+        { "type": "text", "id": "title_2", "label": "Title 2" },
+        { "type": "richtext", "id": "body_2", "label": "Content 2" },
+        { "type": "header", "content": "Title 3 & content 3" },
+        { "type": "text", "id": "title_3", "label": "Title 3" },
+        { "type": "richtext", "id": "body_3", "label": "Content 3" },
+        { "type": "header", "content": "Title 4 & content 4" },
+        { "type": "text", "id": "title_4", "label": "Title 4" },
+        { "type": "richtext", "id": "body_4", "label": "Content 4" },
+        { "type": "header", "content": "Title 5 & content 5" },
+        { "type": "text", "id": "title_5", "label": "Title 5" },
+        { "type": "richtext", "id": "body_5", "label": "Content 5" },
+        { "type": "header", "content": "Title 6 & content 6" },
+        { "type": "text", "id": "title_6", "label": "Title 6" },
+        { "type": "richtext", "id": "body_6", "label": "Content 6" },
+        {
+          "type": "paragraph",
+          "content": "FAQ-style accordions in a grid: 1 column on mobile, 2 columns on desktop (750px+). Each title expands its content."
+        }
+      ]
+    },
+    {
+      "type": "rich_text",
+      "name": "Rich text block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading (optional)"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Free-form content with links and formatting.</p>"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "align_center",
+          "label": "Center align content",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "extra_padding_desktop",
+          "min": 0,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Extra padding (desktop)",
+          "info": "From 768px width.",
+          "default": 0
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Liquid code"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab",
+          "label": "Tab",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "min": 8,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Height",
+          "default": 24
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expert product desc",
+      "blocks": [
+        {
+          "type": "about",
+          "settings": {
+            "title": "What is this product?",
+            "text": "<p>Add a strong intro paragraph with internal links to related products.</p>"
+          }
+        },
+        {
+          "type": "spec_table",
+          "settings": {
+            "title": "Specifications",
+            "row_1_name": "Product name",
+            "row_1_detail": "<p>Example</p>",
+            "row_2_name": "Compatibility",
+            "row_2_detail": "<p>Your device</p>"
+          }
+        },
+        {
+          "type": "feature_row",
+          "settings": {
+            "title_1": "Key benefit",
+            "text_1": "<p>Explain a headline benefit with supporting detail.</p>"
+          }
+        },
+        {
+          "type": "policy_accordion",
+          "settings": {
+            "tab": "secondary",
+            "title_1": "Shipping & returns",
+            "body_1": "<p>Outline delivery methods and return rules.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

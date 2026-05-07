@@ -36,10 +36,248 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "expert_product_description_qLDYNi": {
+      "type": "expert-product-description",
+      "blocks": {
+        "about_EhPki3": {
+          "type": "about",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "extra_padding_desktop": 0,
+            "title": "What is Crystal Pro CP 10k pods?",
+            "text": "<p>Crystal Pro CP10000 Prefilled Pods are sealed pods designed for use with the<a href=\"https://vapeverse.co.uk/products/crystal-pro-cp-10k\">Crystal Pro CP10000 Prefilled Pod Kit</a>. Crystal Pro CP10000 Prefilled Pods include 2ml mesh pods supported by a 10ml internal refill chamber. The rated output reaches up to 10,000 puffs. Nicotine strength in Crystal Pro CP10000 Prefilled Pods measures 20mg/ml, which equals 2% under UK limits. The prefilled pods support a mouth-to-lung vaping style. The integrated 0.8Ω mesh coil heats the liquid evenly across the wick surface. The LED battery indicator and power functions operate from the main device. Flavour options in Crystal Pro CP10000 Prefilled Pods include fruit, ice, candy, and soda-inspired profiles such as Blue Razz Cherry, Cherry Ice, Double Apple, Fresh Mint, Pineapple Ice, Strawberry Kiwi, Watermelon Ice, and Blue Razz Lemonade.<br/><br/></p>"
+          }
+        },
+        "spec_table_b7XQP4": {
+          "type": "spec_table",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "extra_padding_desktop": 0,
+            "title": "Specifications",
+            "col_feature": "Feature",
+            "col_detail": "Details",
+            "row_1_name": "Product Name",
+            "row_1_detail": "<p>Crystal Pro CP10000 Prefilled Pods</p>",
+            "row_2_name": "Device Compatibility",
+            "row_2_detail": "<p>Crystal Pro CP10000 device only</p>",
+            "row_3_name": "Pod Type",
+            "row_3_detail": "<p>Sealed prefilled mesh pod</p>",
+            "row_4_name": "Pod Chamber Capacity",
+            "row_4_detail": "<p>2ml</p>",
+            "row_5_name": "Refill Chamber Capacity",
+            "row_5_detail": "<p>10ml internal refill chamber</p>",
+            "row_6_name": "Puff Capacity",
+            "row_6_detail": "<p>Up to 10,000 puffs (lab conditions)</p>",
+            "row_7_name": "Nicotine Strength",
+            "row_7_detail": "<p>20mg/ml nicotine salt (2%)</p>",
+            "row_8_name": "Nicotine Format",
+            "row_8_detail": "<p>Nicotine salt</p>",
+            "row_9_name": "Coil Type",
+            "row_9_detail": "<p>0.8Ω mesh coil</p>",
+            "row_10_name": "Vaping Style",
+            "row_10_detail": "<p>Mouth-to-lung (MTL)</p>",
+            "row_11_name": "",
+            "row_11_detail": "",
+            "row_12_name": "",
+            "row_12_detail": "",
+            "row_13_name": "",
+            "row_13_detail": "",
+            "row_14_name": "",
+            "row_14_detail": "",
+            "row_15_name": "",
+            "row_15_detail": ""
+          }
+        },
+        "feature_row_6taTTA": {
+          "type": "feature_row",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "extra_padding_desktop": 20,
+            "image_1": "shopify://shop_images/10_000_Puff_Capacity_cm.webp",
+            "title_1": "10,000 Puff Capacity",
+            "text_1": "<p>Crystal Pro CP10000 Prefilled Pods provide up to 10,000 puffs under laboratory testing conditions. These pods combine a 2ml pod chamber with a 10ml refill chamber to reach 12ml total e-liquid capacity. The prefilled pods reduce frequent pod replacement compared with lower-capacity disposable devices.<br/><br/></p>",
+            "reverse_1": false,
+            "image_2": "shopify://shop_images/12_e-liquid_capacity-cm.webp",
+            "title_2": "2ml + 10ml E-Liquid Capacity",
+            "text_2": "<p>Crystal Pro CP10000 Prefilled Pods include a 2ml prefilled pod supported by a 10ml refill container.<br/><br/></p>",
+            "reverse_2": true,
+            "image_3": "shopify://shop_images/20mg_Nicotine_Salt_Strength_a15b246a-39b1-4ea6-a2af-2cd9a38aadf1.webp",
+            "title_3": "20mg Nicotine Salt Strength",
+            "text_3": "<p>Crystal Pro CP10000 Prefilled Pods contain 20mg/ml nicotine salt, which equals 2% strength under UK TPD regulations. These support mouth-to-lung inhalation with a controlled throat hit. They maintain consistent nicotine delivery across the full pod lifespan.<br/><br/></p>",
+            "reverse_3": false,
+            "image_4": "shopify://shop_images/0.8_Mesh_Coil_Heating_cm.webp",
+            "title_4": "0.8Ω Mesh Coil Heating",
+            "text_4": "<p>Crystal Pro CP10000 Prefilled Pods include an integrated 0.8Ω mesh coil. These pods distribute heat evenly across the e-liquid surface. These pods produce stable vapour output and maintain flavour consistency across extended puff cycles.<br/><br/></p>",
+            "reverse_4": true,
+            "image_5": "shopify://shop_images/Mouth-to-Lung_Inhalation_Styl.webp",
+            "title_5": "Mouth-to-Lung Inhalation Style",
+            "text_5": "<p>Crystal Pro CP10000 Prefilled Pods are designed for mouth-to-lung vaping. The airflow resistance mirrors a cigarette-style inhale, delivering controlled and steady vapour output.<br/><br/></p>",
+            "reverse_5": false,
+            "image_6": "shopify://shop_images/Draw-Activated_Operation-cp.webp",
+            "title_6": "Draw-Activated Operation",
+            "text_6": "<p>Crystal Pro CP10000 Prefilled Pods activate automatically during inhalation. The design removes the need for buttons or manual settings.<br/><br/></p>",
+            "reverse_6": true
+          }
+        },
+        "flavours_section_daCeUw": {
+          "type": "flavours_section",
+          "settings": {
+            "tab": "primary",
+            "align_center": true,
+            "title": "Available Crystal Pro CP10000 Prefilled Pods Flavours",
+            "intro": "<p>Crystal Pro CP10000 Prefilled Pods are available across fruit, ice, candy, citrus, and soda-inspired profiles. Each flavour is sealed within the prefilled pod structure and delivers consistent vapour performance across the full puff capacity.<br/><br/></p>",
+            "image": "shopify://shop_images/Available_Flavours_123eda3e-421f-4d1c-ba32-fc6978e1f262.webp",
+            "card_list": "<p>Blue Razz| Tart blue raspberry meets juicy cherry for a bold, berry-forward vape with balanced sweetness. This duo brings tangy and fruity notes together with a smooth finish.<br/></p><p>CP Special / Rainbow Skittz|  A multi-fruit candy blend that bursts with sugary sweetness reminiscent of rainbow sweets. Its vibrant and fun taste makes each puff feel like a flavor party in your mouth.</p><p>Blueberry Raspberry| A classic berry blend where ripe blueberries and raspberries mingle for a rich, juicy sweetness. The flavor stays smooth and balanced, perfect for fruit lovers.<br/></p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p><p>Cherry Ice|Sweet cherry with a cool finish</p>",
+            "title_2": "",
+            "intro_2": "",
+            "card_list_2": "",
+            "title_3": "",
+            "intro_3": "",
+            "card_list_3": "",
+            "extra_padding_desktop": 0
+          }
+        },
+        "whats_in_box_migEQA": {
+          "type": "whats_in_box",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "extra_padding_desktop": 0,
+            "title": "What's in the box?",
+            "list": "<ul><li>1 × Product</li><li>1 × Accessory</li></ul>",
+            "image": "shopify://shop_images/What_s_in_the_Box---------------------------------------------------_jpg.webp"
+          }
+        },
+        "pricing_3kBU3a": {
+          "type": "pricing",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "extra_padding_desktop": 54,
+            "title": "Affordable Pricing | VapeVerse UK",
+            "content": "<p>Crystal Pro CP 10K Prefilled Refill Pods are available at VapeVerse UK for just £4.79, offering excellent value for vapers who want a long-lasting, flavour-rich replacement pod for their Crystal Pro CP 10K device.</p><p>1 pod: <strong>£4.79</strong><br/>Special multi-buy savings available:<br/>Any 3 for <strong>£11.79</strong><br/>Any 5 for <strong>£18.99</strong></p><p>All orders made before <strong>3 PM</strong> will be dispatched the same day, ensuring fast processing and reliable UK delivery when ordering from VapeVerse UK.</p>"
+          }
+        },
+        "steps_group_xMfAMi": {
+          "type": "steps_group",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "heading_1": "How to Use Crystal Pro CP10000 Prefilled Pods",
+            "intro_1": "<p>Using Crystal Pro CP 10K Prefilled Pods is simple and designed for a quick, beginner-friendly setup. The sealed 2ml pod and integrated 10ml refill chamber work together through an internal liquid transfer system, making installation clean and simple.</p>",
+            "steps_1": "<p>Remove All Packaging and Seals| Open the pod packaging and remove the protective stickers, silicone plugs, and mouthpiece seals. Ensuring all seals are removed allows proper airflow and correct device activation.<br/>Insert the Prefilled Pod | Align the Crystal Pro CP10000 pod with the top of the device and push it in firmly until it fits securely. The pod connects to the internal liquid feed system automatically.<br/><br/>Allow the Coil to Saturate | After inserting a new pod, leave the device upright for 5–10 minutes before first use. This allows the 0.8Ω mesh coil to fully absorb e-liquid and helps prevent a burnt taste during initial puffs.</p><p>Check Battery Level | Ensure the Crystal Pro CP10000 device has sufficient charge. If needed, connect a USB-C cable to recharge. Monitor battery status using the LED battery indicator on the device.<br/>Inhale to Activate | The Crystal Pro CP10000 operates using a draw-activated system. Simply inhale through the mouthpiece to begin vaping. No buttons or manual settings are required.</p><p><strong>Replace When Empty | </strong>When flavour becomes weak, vapour output drops, or a burnt taste appears, remove the used pod and insert a new Crystal Pro CP10000 Prefilled Pod to continue vaping.</p>",
+            "steps_1_note": "",
+            "usage_step_text_bg": false,
+            "usage_step_text_bg_color": "#f4faf8",
+            "heading_2": "When to Replace Crystal Pro CP 10k pods?",
+            "intro_2": "<p>Crystal Pro CP 10k pods should be replaced once the following signs appear:</p>",
+            "steps_2": "<p>Flavour Becomes Muted | The flavour may start to weaken and lose its intensity over time. Fruit, sweet, or icy notes may not taste as strong as before, indicating that the pod is nearing the end of its lifespan.</p><p>Burnt or Dry Taste | A dry or slightly burnt taste can develop during use. This usually means the mesh coil has reached the end of its usable life.<br/><br/></p><p>Reduced Vapour Output | Vapour production may become lighter and less dense than usual. Even if the device activates properly, the overall performance can feel reduced.<br/><br/>Empty E-Liquid Supply | Once the full e-liquid system has been used, both flavour and vapour output decline. This confirms the refill pod system needs replacement.<br/><br/><strong>Harsh Throat Sensation | </strong>Inhalation may begin to feel rough or harsher than normal, even at the same nicotine strength. This suggests the pod condition has deteriorated, and replacement is required.<br/><br/></p>",
+            "extra_padding_desktop": 30
+          }
+        },
+        "faq_list_aTynFy": {
+          "type": "faq_list",
+          "settings": {
+            "tab": "primary",
+            "align_center": false,
+            "open_first": false,
+            "extra_padding_desktop": 0,
+            "question_1": "How many puffs do Crystal Pro CP 10K pods provide?",
+            "answer_1": "<p>Crystal Pro CP10000 Prefilled Pods are rated for up to 10,000 puffs under laboratory testing conditions, depending on usage style and draw length.</p>",
+            "question_2": "What is the total e-liquid capacity?",
+            "answer_2": "<p>Crystal Pro CP10000 Prefilled Pods combine a 2ml pod chamber with a 10ml internal refill chamber.<br/><br/></p>",
+            "question_3": "What nicotine strength do these pods contain?",
+            "answer_3": "<p>Crystal Pro CP10000 Prefilled Pods contain 20mg/ml nicotine salt (2%), compliant with UK TPD regulations and suitable for mouth-to-lung vaping.<br/><br/></p>",
+            "question_4": "Are Crystal Pro CP 10K pods refillable?",
+            "answer_4": "<p>No, Crystal Pro CP10000 Pods are sealed and prefilled. They are designed for replacement once the e-liquid is depleted.<br/><br/></p>",
+            "question_5": "Which device are these pods compatible with?",
+            "answer_5": "<p>Crystal Pro CP10000 Prefilled Pods are compatible exclusively with the Crystal Pro CP10000 device and will not function with other Crystal models.<br/><br/></p>",
+            "question_6": "What coil is built into the pods?",
+            "answer_6": "<p>The Crystal Pro CP10000 Prefilled Pods include an integrated 0.8Ω mesh coil designed for even heating and consistent flavour output.<br/><br/></p>",
+            "question_7": "Are Crystal Pro CP 10K pods legal in the UK?",
+            "answer_7": "<p>Yes Crystal Pro CP 10K pods legal in the UK</p>",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": "",
+            "answer_10_alt": ""
+          }
+        },
+        "policy_accordion_fbBDC6": {
+          "type": "policy_accordion",
+          "settings": {
+            "tab": "secondary",
+            "align_center": false,
+            "expand_first": false,
+            "extra_padding_desktop": 0,
+            "title_1": "Delivery and Shipping Information",
+            "body_1": "<p>The company provides three UK delivery methods with fixed pricing and defined delivery timelines. Each delivery option uses a tracked courier service and dispatches orders from the United Kingdom on working days only. Shipping availability, pricing, and delivery speed depend on the selected courier method and the customer’s delivery location.<br/><br/></p>",
+            "title_2": "Available Shipping Methods",
+            "body_2": "<p>The shipping methods offered by the company cover standard tracked delivery and next-working-day delivery. Each courier service differs in delivery speed, cost, and operational handling.</p><h4>Royal Mail Tracked 24</h4><ul><li>Dispatch: Same working day before cut-off</li><li>Delivery speed: 1 working day</li><li>Tracking: Full tracking via Royal Mail</li><li>Price: £4 per order</li><li>Remote postcodes may take one extra working day</li></ul><h4>Royal Mail Tracked 48</h4><ul><li>Dispatch: Same working day before cut-off</li><li>Delivery speed: 2 working days</li><li>Tracking: Full tracking via Royal Mail</li><li>Price: £3 per order</li></ul><h4>DPD Next Day</h4><ul><li>Dispatch: Same working day before cut-off</li><li>Delivery speed: 1 working day</li><li>Tracking: Live tracking with notifications</li><li>Price: £4 per order</li><li>Monday–Friday delivery only</li></ul>",
+            "title_3": "Dispatch Rules",
+            "body_3": "<p>The dispatch team processes orders from Monday to Friday after 15:00. Orders placed on weekends are dispatched on the following Monday, excluding UK bank holidays.</p><h4>Delivery Time Disclaimer</h4><p>Next-day delivery is not guaranteed. Delays may occur due to courier capacity, postcode restrictions, weather, or unforeseen circumstances.</p><h4>Tracking and Delivery Handling</h4><p>All dispatched orders include tracking details sent by email. Delivery instructions entered at checkout are not passed to courier drivers.</p><h4>Missing or Delayed Deliveries</h4><ul><li>Missing deliveries must be reported within 10 working days</li><li>Incorrect or missing items must be reported within 5 working days</li></ul><h4>Packaging and Compliance</h4><p>Orders are shipped in plain, discreet packaging. Age-restricted products dispatch only after successful age verification.</p>",
+            "title_4": "How Do I Return A Product?",
+            "body_4": "<p>Customers must initiate returns via the official contact form and provide full order details. Support responds within forty-eight hours. Original packaging is required.</p><h4>Return Exceptions</h4><ul><li>No returns for opened or used items unless faulty</li><li>No returns for mods that fail to charge</li><li>Original packaging required for all returns</li></ul><h4>Faulty Items</h4><ul><li>Faults investigated within 48 hours</li><li>Refund or store credit if fault confirmed</li><li>Faults must be reported within 72 hours of delivery</li></ul><h4>Battery and Charging Safety</h4><ul><li>Do not charge overnight</li><li>Maximum recommended charging time: 1 hour</li></ul><h4>Warranty Summary</h4><ul><li>Batteries & chargers: 1-month guarantee</li><li>Mechanical mods: 30-day guarantee</li><li>E-liquids & drip tips: no warranty</li><li>Tanks, RDA, RDTA: 30-day DOA warranty</li></ul>",
+            "title_5": "How Do I Return A Product?",
+            "body_5": "<p>Customers must initiate returns via the official contact form and provide full order details. Support responds within forty-eight hours. Original packaging is required.</p><h4>Return Exceptions</h4><ul><li>No returns for opened or used items unless faulty</li><li>No returns for mods that fail to charge</li><li>Original packaging required for all returns</li></ul><h4>Faulty Items</h4><ul><li>Faults investigated within 48 hours</li><li>Refund or store credit if fault confirmed</li><li>Faults must be reported within 72 hours of delivery</li></ul><h4>Battery and Charging Safety</h4><ul><li>Do not charge overnight</li><li>Maximum recommended charging time: 1 hour</li></ul><h4>Warranty Summary</h4><ul><li>Batteries & chargers: 1-month guarantee</li><li>Mechanical mods: 30-day guarantee</li><li>E-liquids & drip tips: no warranty</li><li>Tanks, RDA, RDTA: 30-day DOA warranty</li></ul>",
+            "title_6": "How Do I Return A Product?",
+            "body_6": "<p>Customers must initiate returns via the official contact form and provide full order details. Support responds within forty-eight hours. Original packaging is required.</p><h4>Return Exceptions</h4><ul><li>No returns for opened or used items unless faulty</li><li>No returns for mods that fail to charge</li><li>Original packaging required for all returns</li></ul><h4>Faulty Items</h4><ul><li>Faults investigated within 48 hours</li><li>Refund or store credit if fault confirmed</li><li>Faults must be reported within 72 hours of delivery</li></ul><h4>Battery and Charging Safety</h4><ul><li>Do not charge overnight</li><li>Maximum recommended charging time: 1 hour</li></ul><h4>Warranty Summary</h4><ul><li>Batteries & chargers: 1-month guarantee</li><li>Mechanical mods: 30-day guarantee</li><li>E-liquids & drip tips: no warranty</li><li>Tanks, RDA, RDTA: 30-day DOA warranty</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "about_EhPki3",
+        "spec_table_b7XQP4",
+        "feature_row_6taTTA",
+        "flavours_section_daCeUw",
+        "whats_in_box_migEQA",
+        "pricing_3kBU3a",
+        "steps_group_xMfAMi",
+        "faq_list_aTynFy",
+        "policy_accordion_fbBDC6"
+      ],
+      "disabled": true,
+      "name": "Expert product desc",
+      "settings": {
+        "show_second_tab": true,
+        "tab_primary_label": "Description",
+        "tab_secondary_label": "Shipping & Returns Policy",
+        "faq_heading": "Frequently Asked Questions",
+        "max_width": 1100,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "block_gap": 24,
+        "card_radius": 12,
+        "heading_size": 28,
+        "subheading_size": 18,
+        "body_size": 15,
+        "color_background": "#ffffff",
+        "color_surface": "#e6f6f6",
+        "color_text": "#1a1a1a",
+        "color_muted": "#4a4a4a",
+        "color_accent": "#00a896",
+        "color_border": "#e2e2e4",
+        "tab_active_bg": "#ffffff",
+        "tab_active_text": "#1a1a1a",
+        "color_badge_text": "#ffffff",
+        "table_header_bg": "#1f6f5e",
+        "table_header_text": "#ffffff",
+        "table_body_bg": "#ffffff",
+        "table_row_hover_bg": "#e6f4ef",
+        "flavour_card_bg": "#ffffff",
+        "flavour_card_top_border": "#1f6f5e"
+      }
     }
   },
   "order": [
     "banner",
-    "product-grid"
+    "product-grid",
+    "expert_product_description_qLDYNi"
   ]
 }

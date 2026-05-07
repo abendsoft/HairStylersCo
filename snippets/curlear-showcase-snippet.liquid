@@ -1,0 +1,148 @@
+{% liquid
+  assign visible_desktop = visible_desktop | default: 4
+  assign min_items_desktop = 2
+  assign max_items_desktop = 4
+  if visible_desktop < min_items_desktop
+    assign visible_desktop = min_items_desktop
+  endif
+  if visible_desktop > max_items_desktop
+    assign visible_desktop = max_items_desktop
+  endif
+
+  assign slide_count = 0
+  if media_1_image != blank or media_1_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_2_image != blank or media_2_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_3_image != blank or media_3_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_4_image != blank or media_4_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_5_image != blank or media_5_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_6_image != blank or media_6_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_7_image != blank or media_7_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+  if media_8_image != blank or media_8_video != blank
+    assign slide_count = slide_count | plus: 1
+  endif
+
+  assign slider_active = false
+  if slide_count > visible_desktop
+    assign slider_active = true
+  endif
+%}
+
+{% if slide_count > 0 %}
+  <div
+    class="curlear-showcase-snippet"
+    data-curlear-showcase
+    data-slider-active="{{ slider_active }}"
+    data-speed="{{ auto_slide_speed | default: 4 | times: 1000 }}"
+  >
+    {% if heading != blank %}
+      <h3 class="curlear-showcase-snippet__heading">{{ heading | escape }}</h3>
+    {% endif %}
+
+    <div class="curlear-showcase-snippet__wrap">
+      {% if slider_active %}
+        <button type="button" class="curlear-showcase-snippet__nav curlear-showcase-snippet__nav--prev" data-curlear-showcase-prev aria-label="Previous">
+          &#8249;
+        </button>
+      {% endif %}
+
+      <div
+        class="curlear-showcase-snippet__track"
+        style="--curlear-showcase-cols-desktop: {{ visible_desktop }};"
+        data-curlear-showcase-track
+      >
+        {% if media_1_image != blank or media_1_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_1_video != blank %}
+              {{ media_1_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_1_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_2_image != blank or media_2_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_2_video != blank %}
+              {{ media_2_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_2_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_3_image != blank or media_3_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_3_video != blank %}
+              {{ media_3_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_3_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_4_image != blank or media_4_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_4_video != blank %}
+              {{ media_4_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_4_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_5_image != blank or media_5_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_5_video != blank %}
+              {{ media_5_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_5_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_6_image != blank or media_6_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_6_video != blank %}
+              {{ media_6_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_6_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_7_image != blank or media_7_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_7_video != blank %}
+              {{ media_7_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_7_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+        {% if media_8_image != blank or media_8_video != blank %}
+          <article class="curlear-showcase-snippet__item">
+            {% if media_8_video != blank %}
+              {{ media_8_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+            {% else %}
+              {{ media_8_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+          </article>
+        {% endif %}
+      </div>
+
+      {% if slider_active %}
+        <button type="button" class="curlear-showcase-snippet__nav curlear-showcase-snippet__nav--next" data-curlear-showcase-next aria-label="Next">
+          &#8250;
+        </button>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

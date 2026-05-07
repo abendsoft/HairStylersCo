@@ -20,6 +20,24 @@
   scroll-behavior: smooth;
 }
 
+.curlear-image-showcase__nav {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.curlear-image-showcase__nav-btn {
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 1px solid #d7d0cb;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .curlear-image-showcase__slider::-webkit-scrollbar {
   display: none;
 }

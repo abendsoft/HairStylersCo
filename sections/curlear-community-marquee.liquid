@@ -19,6 +19,9 @@
 
   {% if section.blocks.size > 0 %}
     <div class="curlear-community-marquee__marquee" data-curlear-community-marquee>
+      <button type="button" class="curlear-marquee-resume" data-curlear-marquee-resume aria-hidden="true">
+        Tap to resume marquee
+      </button>
       <div class="curlear-community-marquee__track">
         {% for i in (1..4) %}
           {% for block in section.blocks %}
@@ -66,6 +69,44 @@
     </div>
   </div>
 </section>
+
+<script>
+  (() => {
+    const initMarquee = (wrap) => {
+      const track = wrap.querySelector('.curlear-community-marquee__track');
+      const resumeBtn = wrap.querySelector('[data-curlear-marquee-resume]');
+      if (!track) return;
+
+      let isTouchPaused = false;
+
+      const setTouchPausedState = (paused) => {
+        isTouchPaused = paused;
+        wrap.classList.toggle('is-touch-paused', paused);
+        if (resumeBtn) {
+          resumeBtn.setAttribute('aria-hidden', paused ? 'false' : 'true');
+        }
+      };
+
+      const pauseForTouch = () => {
+        if (isTouchPaused) return;
+        setTouchPausedState(true);
+        track.style.animationPlayState = 'paused';
+      };
+
+      wrap.addEventListener('touchstart', pauseForTouch, { passive: true });
+      if (resumeBtn) {
+        resumeBtn.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setTouchPausedState(false);
+          track.style.animationPlayState = 'running';
+        });
+      }
+    };
+
+    document.querySelectorAll('[data-curlear-community-marquee]').forEach(initMarquee);
+  })();
+</script>
 
 {% schema %}
 {

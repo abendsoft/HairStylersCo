@@ -1,0 +1,59 @@
+{% if show_icons_row %}
+  <div
+    class="curlear-icons-text-small"
+    role="list"
+    aria-label="Product highlights"
+    style="--curlear-icons-color: {{ icon_color | default: '#1A1A1A' }}; --curlear-icons-text-color: {{ text_color | default: '#1A1A1A' }};"
+  >
+    {% if text_1 != blank %}
+      <span class="curlear-icons-text-small__item" role="listitem">
+        {% if image_1 != blank %}
+          {{ image_1 | image_url: width: 40 | image_tag: class: 'curlear-icons-text-small__icon-image', loading: 'lazy', alt: text_1 }}
+        {% else %}
+          <span>{{ icon_1 | default: '✦' }}</span>
+        {% endif %}
+        {{ text_1 | escape }}
+      </span>
+    {% endif %}
+    {% if text_2 != blank %}
+      <span class="curlear-icons-text-small__item" role="listitem">
+        {% if image_2 != blank %}
+          {{ image_2 | image_url: width: 40 | image_tag: class: 'curlear-icons-text-small__icon-image', loading: 'lazy', alt: text_2 }}
+        {% else %}
+          <span>{{ icon_2 | default: '⊘' }}</span>
+        {% endif %}
+        {{ text_2 | escape }}
+      </span>
+    {% endif %}
+    {% if text_3 != blank %}
+      <span class="curlear-icons-text-small__item" role="listitem">
+        {% if image_3 != blank %}
+          {{ image_3 | image_url: width: 40 | image_tag: class: 'curlear-icons-text-small__icon-image', loading: 'lazy', alt: text_3 }}
+        {% else %}
+          <span>{{ icon_3 | default: '◌' }}</span>
+        {% endif %}
+        {{ text_3 | escape }}
+      </span>
+    {% endif %}
+    {% if text_4 != blank %}
+      <span class="curlear-icons-text-small__item" role="listitem">
+        {% if image_4 != blank %}
+          {{ image_4 | image_url: width: 40 | image_tag: class: 'curlear-icons-text-small__icon-image', loading: 'lazy', alt: text_4 }}
+        {% else %}
+          <span>{{ icon_4 | default: '◔' }}</span>
+        {% endif %}
+        {{ text_4 | escape }}
+      </span>
+    {% endif %}
+    {% if text_5 != blank %}
+      <span class="curlear-icons-text-small__item" role="listitem">
+        {% if image_5 != blank %}
+          {{ image_5 | image_url: width: 40 | image_tag: class: 'curlear-icons-text-small__icon-image', loading: 'lazy', alt: text_5 }}
+        {% else %}
+          <span>{{ icon_5 | default: '✓' }}</span>
+        {% endif %}
+        {{ text_5 | escape }}
+      </span>
+    {% endif %}
+  </div>
+{% endif %}

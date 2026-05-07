@@ -6,20 +6,6 @@
     window.location.href = url;
   };
 
-  const stepToNext = (track) => {
-    const firstCard = track.querySelector('.curlear-video-slider__card');
-    if (!firstCard) return;
-    const step = firstCard.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    const next = track.scrollLeft + step;
-
-    if (next >= maxScroll - 1) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      track.scrollTo({ left: next, behavior: 'smooth' });
-    }
-  };
-
   const bindMute = (card) => {
     const muteBtn = card.querySelector('[data-curlear-mute]');
     if (!muteBtn) return;
@@ -83,6 +69,7 @@
 
     let paused = false;
     let lastFrame = 0;
+    const resumeBtn = wrap.querySelector('[data-curlear-marquee-resume]');
     const marqueeSpeed = parseFloat(wrap.dataset.marqueeSpeed || '55');
     const speedPxPerMs = Math.max(10, marqueeSpeed) / 1000;
 
@@ -106,6 +93,20 @@
       window.requestAnimationFrame(tick);
     };
 
+    const setTouchPausedState = (isPaused) => {
+      paused = isPaused;
+      wrap.classList.toggle('is-touch-paused', isPaused);
+      if (resumeBtn) {
+        resumeBtn.setAttribute('aria-hidden', isPaused ? 'false' : 'true');
+      }
+    };
+
+    const pauseMarqueeForTouch = () => {
+      setTouchPausedState(true);
+      track.style.transform = 'translate3d(0, 0, 0)';
+      track.dataset.curlearMarqueeOffset = '0';
+    };
+
     wrap.addEventListener('mouseenter', () => {
       paused = true;
     });
@@ -115,6 +116,15 @@
     document.addEventListener('visibilitychange', () => {
       lastFrame = 0;
     });
+    wrap.addEventListener('touchstart', pauseMarqueeForTouch, { passive: true });
+    if (resumeBtn) {
+      resumeBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        lastFrame = 0;
+        setTouchPausedState(false);
+      });
+    }
 
     window.requestAnimationFrame(tick);
     return true;
@@ -122,9 +132,12 @@
 
   const initSlider = (wrap) => {
     const track = wrap.querySelector('[data-curlear-video-track]');
+    const prevBtn = wrap.querySelector('[data-curlear-video-slider-prev]');
+    const nextBtn = wrap.querySelector('[data-curlear-video-slider-next]');
     if (!track) return;
 
     const marqueeEnabled = setupMarquee(wrap, track);
+    let stopStandardAutoplay = () => {};
 
     wrap.querySelectorAll('.curlear-video-slider__card').forEach((card) => {
       card.addEventListener('click', (event) => goToProduct(event, card));
@@ -135,17 +148,46 @@
       bindMute(card);
     });
 
+    const moveByOneCard = (direction = 1) => {
+      const firstCard = track.querySelector('.curlear-video-slider__card');
+      if (!firstCard) return;
+      const step = firstCard.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 0) return;
+
+      if (direction > 0 && track.scrollLeft >= maxScroll - 1) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (direction < 0 && track.scrollLeft <= 1) {
+        track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        return;
+      }
+
+      const next = track.scrollLeft + step * direction;
+      track.scrollTo({ left: Math.max(0, Math.min(next, maxScroll)), behavior: 'smooth' });
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => moveByOneCard(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => moveByOneCard(1));
+
     if (marqueeEnabled) return;
 
     const autoplay = wrap.dataset.autoplay === 'true';
     const speed = parseInt(wrap.dataset.speed || '4000', 10);
     if (!autoplay) return;
 
-    let timer = setInterval(() => stepToNext(track), Math.max(2000, speed));
+    let timer = setInterval(() => moveByOneCard(1), Math.max(2000, speed));
+    stopStandardAutoplay = () => clearInterval(timer);
     wrap.addEventListener('mouseenter', () => clearInterval(timer));
     wrap.addEventListener('mouseleave', () => {
-      timer = setInterval(() => stepToNext(track), Math.max(2000, speed));
+      timer = setInterval(() => moveByOneCard(1), Math.max(2000, speed));
     });
+
+    wrap.addEventListener('touchstart', () => {
+      stopStandardAutoplay();
+    }, { passive: true });
   };
 
   document.querySelectorAll('[data-curlear-video-slider]').forEach(initSlider);

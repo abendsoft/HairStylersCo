@@ -1,0 +1,21 @@
+{% if show_rating and rating_text != blank %}
+  {%- assign rating_value_number = rating_value | default: 5 | plus: 0.0 -%}
+  {%- if rating_value_number < 0 -%}
+    {%- assign rating_value_number = 0 -%}
+  {%- endif -%}
+  {%- if rating_value_number > 5 -%}
+    {%- assign rating_value_number = 5 -%}
+  {%- endif -%}
+  {%- assign rating_percent = rating_value_number | times: 20 -%}
+  {%- assign star_glyphs = '★★★★★' -%}
+  <div
+    class="curlear-ratings"
+    style="--curlear-rating-star-color: {{ star_color | default: '#E5B09E' }}; --curlear-rating-text-color: {{ text_color | default: '#1A1A1A' }}; --curlear-rating-star-size: {{ star_size | default: 17 }}px;"
+  >
+    <span class="curlear-ratings__stars" aria-hidden="true" style="--curlear-rating-fill: {{ rating_percent }}%;">
+      <span class="curlear-ratings__stars-base">{{ star_glyphs }}</span>
+      <span class="curlear-ratings__stars-fill">{{ star_glyphs }}</span>
+    </span>
+    <span class="curlear-ratings__text">{{ rating_text | escape }}</span>
+  </div>
+{% endif %}

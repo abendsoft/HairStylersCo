@@ -1,0 +1,12 @@
+{% if show_breadcrumbs %}
+  <nav class="curlear-breadcrumbs" aria-label="Breadcrumb" style="--curlear-breadcrumb-color: {{ text_color | default: '#4A4A4A' }};">
+    {% if collection and collection.url != blank %}
+      <a href="{{ collection.url }}">{{ collection.title | escape }}</a>
+      <span>/</span>
+    {% else %}
+      <a href="{{ routes.root_url }}">{{ home_label | default: 'Home' }}</a>
+      <span>/</span>
+    {% endif %}
+    <span>{{ product.title | escape }}</span>
+  </nav>
+{% endif %}

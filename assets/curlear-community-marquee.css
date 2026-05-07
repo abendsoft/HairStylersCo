@@ -14,6 +14,7 @@
 .curlear-community-marquee__marquee {
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .curlear-community-marquee__track {
@@ -87,6 +88,22 @@
   box-shadow: 0 6px 16px rgba(170, 110, 88, 0.2);
 }
 
+.curlear-marquee-resume {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 0.8rem;
+  transform: translateX(-50%);
+  border: 0;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.82);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0.8rem 1.2rem;
+  z-index: 5;
+}
+
 @keyframes curlearCommunityMarquee {
   from {
     transform: translateX(0);
@@ -97,6 +114,33 @@
 }
 
 @media screen and (max-width: 989px) {
+  .curlear-community-marquee__marquee.is-touch-paused {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+  }
+
+  .curlear-community-marquee__marquee.is-touch-paused .curlear-community-marquee__track {
+    animation: none;
+    transform: none;
+    touch-action: pan-x;
+  }
+
+  .curlear-community-marquee__marquee.is-touch-paused .curlear-marquee-resume {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .curlear-community-marquee__marquee.is-touch-paused::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curlear-community-marquee__marquee.is-touch-paused .curlear-community-marquee__image-link {
+    pointer-events: none;
+  }
+
   .curlear-community-marquee__item {
     flex-basis: calc((100vw - 2rem) / min(5, var(--curlear-community-visible-images, 8)));
     max-width: 12rem;

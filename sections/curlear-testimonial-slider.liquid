@@ -38,15 +38,19 @@
 
       {% if section.blocks.size > 0 %}
         <div class="curlear-testimonial-slider__counter">
-          <button type="button" class="curlear-testimonial-slider__nav" data-curlear-prev aria-label="Previous testimonial">
-            &#8249;
-          </button>
+          {% if section.settings.show_slider_nav and section.blocks.size > 1 %}
+            <button type="button" class="curlear-testimonial-slider__nav" data-curlear-prev aria-label="Previous testimonial">
+              &#8249;
+            </button>
+          {% endif %}
           <span data-curlear-current>1</span>
           <span>/</span>
           <span data-curlear-total>{{ section.blocks.size }}</span>
-          <button type="button" class="curlear-testimonial-slider__nav" data-curlear-next aria-label="Next testimonial">
-            &#8250;
-          </button>
+          {% if section.settings.show_slider_nav and section.blocks.size > 1 %}
+            <button type="button" class="curlear-testimonial-slider__nav" data-curlear-next aria-label="Next testimonial">
+              &#8250;
+            </button>
+          {% endif %}
         </div>
 
         <div class="curlear-testimonial-slider__track" data-curlear-track>
@@ -139,6 +143,12 @@
       "type": "checkbox",
       "id": "auto_slide",
       "label": "Auto slide",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_slider_nav",
+      "label": "Show previous/next arrows",
       "default": true
     },
     {

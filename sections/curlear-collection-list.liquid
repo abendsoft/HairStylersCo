@@ -29,6 +29,26 @@
           data-autoplay="{{ section.settings.auto_slide }}"
           data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
         >
+          {% if section.settings.show_slider_nav and section.blocks.size > section.settings.columns_desktop %}
+            <div class="curlear-collection-list__nav">
+              <button
+                type="button"
+                class="curlear-collection-list__nav-btn"
+                data-curlear-collection-slider-prev
+                aria-label="Previous slide"
+              >
+                &#8249;
+              </button>
+              <button
+                type="button"
+                class="curlear-collection-list__nav-btn"
+                data-curlear-collection-slider-next
+                aria-label="Next slide"
+              >
+                &#8250;
+              </button>
+            </div>
+          {% endif %}
           <div
             class="curlear-collection-list__slider"
             style="--curlear-list-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-list-cols-mobile: {{ section.settings.columns_mobile }};"
@@ -278,6 +298,12 @@
       "type": "checkbox",
       "id": "auto_slide",
       "label": "Auto slide (slider mode)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_slider_nav",
+      "label": "Show previous/next arrows (slider mode)",
       "default": false
     },
     {

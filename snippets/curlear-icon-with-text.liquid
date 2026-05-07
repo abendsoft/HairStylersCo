@@ -1,0 +1,26 @@
+<div class="curlear-icon-with-text-custom">
+  {% if text_1 != blank %}
+    <div class="curlear-icon-with-text-custom__col">
+      {% if icon_1 != blank %}
+        {{ icon_1 | image_url: width: 64 | image_tag: class: 'curlear-icon-with-text-custom__icon', loading: 'lazy', alt: text_1 }}
+      {% endif %}
+      <p class="curlear-icon-with-text-custom__text">{{ text_1 | escape }}</p>
+    </div>
+  {% endif %}
+  {% if text_2 != blank %}
+    <div class="curlear-icon-with-text-custom__col">
+      {% if icon_2 != blank %}
+        {{ icon_2 | image_url: width: 64 | image_tag: class: 'curlear-icon-with-text-custom__icon', loading: 'lazy', alt: text_2 }}
+      {% endif %}
+      <p class="curlear-icon-with-text-custom__text">{{ text_2 | escape }}</p>
+    </div>
+  {% endif %}
+  {% if text_3 != blank %}
+    <div class="curlear-icon-with-text-custom__col">
+      {% if icon_3 != blank %}
+        {{ icon_3 | image_url: width: 64 | image_tag: class: 'curlear-icon-with-text-custom__icon', loading: 'lazy', alt: text_3 }}
+      {% endif %}
+      <p class="curlear-icon-with-text-custom__text">{{ text_3 | escape }}</p>
+    </div>
+  {% endif %}
+</div>

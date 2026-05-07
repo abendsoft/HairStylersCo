@@ -47,6 +47,24 @@
   padding-bottom: 0.6rem;
 }
 
+.curlear-featured-collection__nav {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.curlear-featured-collection__nav-btn {
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 1px solid #d7d0cb;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .curlear-featured-collection__slider::-webkit-scrollbar {
   display: none;
 }

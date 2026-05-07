@@ -13,7 +13,7 @@
     const prevBtn = root.querySelector(selectors.prev);
     const nextBtn = root.querySelector(selectors.next);
 
-    if (!slides.length || !currentEl || !prevBtn || !nextBtn) return;
+    if (!slides.length || !currentEl) return;
 
     let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
     let timerId = null;
@@ -54,15 +54,19 @@
       timerId = window.setInterval(next, speed);
     };
 
-    prevBtn.addEventListener("click", () => {
-      prev();
-      startAuto();
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        prev();
+        startAuto();
+      });
+    }
 
-    nextBtn.addEventListener("click", () => {
-      next();
-      startAuto();
-    });
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        next();
+        startAuto();
+      });
+    }
 
     root.addEventListener("mouseenter", stopAuto);
     root.addEventListener("mouseleave", startAuto);

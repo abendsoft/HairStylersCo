@@ -13,13 +13,32 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
+      {% assign marquee_enabled = false %}
+      {% if section.settings.enable_marquee and section.settings.use_slider_instead_of_marquee == false %}
+        {% assign marquee_enabled = true %}
+      {% endif %}
       <div
-        class="curlear-video-slider__wrap{% if section.settings.enable_marquee %} curlear-video-slider__wrap--marquee{% endif %}"
+        class="curlear-video-slider__wrap{% if marquee_enabled %} curlear-video-slider__wrap--marquee{% endif %}"
         data-curlear-video-slider
         data-autoplay="{{ section.settings.auto_slide }}"
         data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
         data-marquee-speed="{{ section.settings.marquee_speed }}"
       >
+        {% if section.settings.show_slider_nav and marquee_enabled == false and section.blocks.size > section.settings.columns_desktop %}
+          <div class="curlear-video-slider__nav">
+            <button type="button" class="curlear-video-slider__nav-btn" data-curlear-video-slider-prev aria-label="Previous slide">
+              &#8249;
+            </button>
+            <button type="button" class="curlear-video-slider__nav-btn" data-curlear-video-slider-next aria-label="Next slide">
+              &#8250;
+            </button>
+          </div>
+        {% endif %}
+        {% if marquee_enabled %}
+          <button type="button" class="curlear-marquee-resume" data-curlear-marquee-resume aria-hidden="true">
+            Tap to resume marquee
+          </button>
+        {% endif %}
         <div
           class="curlear-video-slider__track"
           style="--curlear-video-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-video-cols-mobile: {{ section.settings.columns_mobile }};"
@@ -192,6 +211,18 @@
       "type": "checkbox",
       "id": "enable_marquee",
       "label": "Enable marquee",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "use_slider_instead_of_marquee",
+      "label": "Use slider instead of marquee",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_slider_nav",
+      "label": "Show previous/next arrows (slider mode)",
       "default": false
     },
     {

@@ -1,0 +1,222 @@
+{{ 'curlear-comparison-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-comparison-gallery.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign cards_count = section.blocks.size
+  assign cards_per_row = section.settings.cards_per_row_desktop | plus: 0
+  assign slider_enabled = false
+  if section.settings.layout_mode == 'slider' and cards_count > cards_per_row
+    assign slider_enabled = true
+  endif
+%}
+
+<section
+  class="curlear-comparison-gallery section-{{ section.id }}-padding"
+  style="--curlear-comparison-bg: {{ section.settings.background_color }};"
+>
+  <div class="page-width page-width-padding">
+    {% if section.settings.heading != blank %}
+      <h2 class="curlear-comparison-gallery__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div
+      class="curlear-comparison-gallery__wrap"
+      data-curlear-comparison-gallery
+      data-slider-enabled="{{ slider_enabled }}"
+      data-auto-slide="{{ section.settings.auto_slide }}"
+      data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+    >
+      <div
+        class="curlear-comparison-gallery__list{% if section.settings.layout_mode == 'slider' %} curlear-comparison-gallery__list--slider{% else %} curlear-comparison-gallery__list--grid{% endif %}"
+        style="--curlear-comparison-cols: {{ section.settings.cards_per_row_desktop }}; --curlear-comparison-cols-mobile: {{ section.settings.cards_per_row_mobile }};"
+        data-curlear-comparison-track
+      >
+        {% for block in section.blocks %}
+          <article class="curlear-comparison-gallery__card" {{ block.shopify_attributes }}>
+            <div class="curlear-comparison-card" data-curlear-comparison-card>
+              <div class="curlear-comparison-card__image curlear-comparison-card__image--first">
+                {% if block.settings.first_image != blank %}
+                  {{
+                    block.settings.first_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'curlear-comparison-card__img',
+                      loading: 'lazy',
+                      widths: '360, 533, 720, 940, 1200',
+                      sizes: '(min-width: 990px) 25vw, 80vw',
+                      alt: block.settings.first_label
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'curlear-comparison-card__img placeholder-svg' }}
+                {% endif %}
+              </div>
+
+              <div class="curlear-comparison-card__image curlear-comparison-card__image--second" data-curlear-second>
+                {% if block.settings.second_image != blank %}
+                  {{
+                    block.settings.second_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      class: 'curlear-comparison-card__img',
+                      loading: 'lazy',
+                      widths: '360, 533, 720, 940, 1200',
+                      sizes: '(min-width: 990px) 25vw, 80vw',
+                      alt: block.settings.second_label
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'curlear-comparison-card__img placeholder-svg' }}
+                {% endif %}
+              </div>
+
+              {% if block.settings.first_label != blank %}
+                <span class="curlear-comparison-card__label curlear-comparison-card__label--left">{{ block.settings.first_label | escape }}</span>
+              {% endif %}
+              {% if block.settings.second_label != blank %}
+                <span class="curlear-comparison-card__label curlear-comparison-card__label--right">{{ block.settings.second_label | escape }}</span>
+              {% endif %}
+
+              <button
+                type="button"
+                class="curlear-comparison-card__handle"
+                aria-label="Drag comparison"
+                data-curlear-handle
+              >
+                <span class="curlear-comparison-card__handle-line"></span>
+                <span class="curlear-comparison-card__handle-dot"></span>
+              </button>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if slider_enabled and section.settings.show_nav_buttons %}
+        <div class="curlear-comparison-gallery__nav">
+          <button type="button" class="curlear-comparison-gallery__nav-btn" data-curlear-comparison-prev aria-label="Previous">
+            &#8249;
+          </button>
+          <button type="button" class="curlear-comparison-gallery__nav-btn" data-curlear-comparison-next aria-label="Next">
+            &#8250;
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear compare gallery",
+  "tag": "section",
+  "class": "section-curlear-comparison-gallery",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Style Gallery"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#0B0D15"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout mode",
+      "default": "slider",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cards_per_row_desktop",
+      "label": "Cards per row (desktop)",
+      "default": "4",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cards_per_row_mobile",
+      "label": "Cards per row (mobile)",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_buttons",
+      "label": "Show previous/next buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Enable auto slide",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_card",
+      "name": "Comparison card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "first_image",
+          "label": "First image"
+        },
+        {
+          "type": "text",
+          "id": "first_label",
+          "label": "First image label",
+          "default": "BEFORE"
+        },
+        {
+          "type": "image_picker",
+          "id": "second_image",
+          "label": "Second image"
+        },
+        {
+          "type": "text",
+          "id": "second_label",
+          "label": "Second image label",
+          "default": "AFTER"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear compare gallery",
+      "blocks": [
+        { "type": "comparison_card" },
+        { "type": "comparison_card" },
+        { "type": "comparison_card" },
+        { "type": "comparison_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -2,16 +2,18 @@
   background: transparent;
 }
 
-.curlear-custom-footer > .page-width {
+.curlear-custom-footer > .curlear-custom-footer__container {
   background: var(--curlear-footer-bg, #080a14);
   color: var(--curlear-footer-text, #f1f1f1);
   border-radius: 1.4rem;
   overflow: hidden;
   padding-left: 2.4rem;
   padding-right: 2.4rem;
+  max-width: none;
+  width: auto;
 }
 .margin-footer{
-  margin: 10px;
+  margin: 0;
 }
 .curlear-custom-footer a {
   color: inherit;
@@ -147,7 +149,7 @@
 }
 
 @media screen and (max-width: 989px) {
-  .curlear-custom-footer > .page-width {
+  .curlear-custom-footer > .curlear-custom-footer__container {
     border-radius: 1rem;
     padding-left: 1.6rem;
     padding-right: 1.6rem;

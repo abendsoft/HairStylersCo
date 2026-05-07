@@ -52,16 +52,21 @@
       <h3 class="curlear-showcase-snippet__heading">{{ heading | escape }}</h3>
     {% endif %}
 
-    <div class="curlear-showcase-snippet__wrap">
+    <div class="curlear-showcase-snippet__wrap{% if wider_desktop %} curlear-showcase-snippet__wrap--wider{% endif %}">
       {% if slider_active %}
-        <button type="button" class="curlear-showcase-snippet__nav curlear-showcase-snippet__nav--prev" data-curlear-showcase-prev aria-label="Previous">
+        <button
+          type="button"
+          class="curlear-showcase-snippet__nav curlear-showcase-snippet__nav--prev is-hidden"
+          data-curlear-showcase-prev
+          aria-label="Previous"
+        >
           &#8249;
         </button>
       {% endif %}
 
       <div
         class="curlear-showcase-snippet__track"
-        style="--curlear-showcase-cols-desktop: {{ visible_desktop }};"
+        style="--curlear-showcase-cols-desktop: {{ visible_desktop }}; --curlear-showcase-item-height-desktop: {{ item_height_desktop | default: 300 }}px; --curlear-showcase-item-height-mobile: {{ item_height_mobile | default: 320 }}px;"
         data-curlear-showcase-track
       >
         {% if media_1_image != blank or media_1_video != blank %}
@@ -70,6 +75,25 @@
               {{ media_1_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
             {% else %}
               {{ media_1_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button
+                        type="submit"
+                        name="add"
+                        class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}"
+                        style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};"
+                      >
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
             {% endif %}
           </article>
         {% endif %}
@@ -80,6 +104,20 @@
             {% else %}
               {{ media_2_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
             {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
+            {% endif %}
           </article>
         {% endif %}
         {% if media_3_image != blank or media_3_video != blank %}
@@ -88,6 +126,20 @@
               {{ media_3_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
             {% else %}
               {{ media_3_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
             {% endif %}
           </article>
         {% endif %}
@@ -98,6 +150,20 @@
             {% else %}
               {{ media_4_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
             {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
+            {% endif %}
           </article>
         {% endif %}
         {% if media_5_image != blank or media_5_video != blank %}
@@ -106,6 +172,20 @@
               {{ media_5_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
             {% else %}
               {{ media_5_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
             {% endif %}
           </article>
         {% endif %}
@@ -116,6 +196,20 @@
             {% else %}
               {{ media_6_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
             {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
+            {% endif %}
           </article>
         {% endif %}
         {% if media_7_image != blank or media_7_video != blank %}
@@ -125,6 +219,20 @@
             {% else %}
               {{ media_7_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
             {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
+            {% endif %}
           </article>
         {% endif %}
         {% if media_8_image != blank or media_8_video != blank %}
@@ -133,6 +241,20 @@
               {{ media_8_video | video_tag: image_size: '900x', class: 'curlear-showcase-snippet__media', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
             {% else %}
               {{ media_8_image | image_url: width: 1200 | image_tag: class: 'curlear-showcase-snippet__media', loading: 'lazy', alt: heading }}
+            {% endif %}
+            {% if show_add_to_cart_button %}
+              <div class="curlear-showcase-snippet__cta-wrap">
+                <product-form class="product-form">
+                  {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                    <div class="product-form__buttons product-form__buttons--curlear-showcase">
+                      <button type="submit" name="add" class="product-form__submit button button--full-width button--primary{% if button_use_gradient %} curlear-showcase-snippet__cta--gradient{% endif %}" style="--curlear-showcase-btn-text: {{ button_text_color }}; --curlear-showcase-btn-bg: {{ button_bg_color }}; --curlear-showcase-btn-grad-start: {{ button_gradient_start }}; --curlear-showcase-btn-grad-mid: {{ button_gradient_middle }}; --curlear-showcase-btn-grad-end: {{ button_gradient_end }};">
+                        {{ button_label | default: 'ADD TO CART' | escape }}
+                      </button>
+                    </div>
+                  {%- endform -%}
+                </product-form>
+              </div>
             {% endif %}
           </article>
         {% endif %}

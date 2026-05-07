@@ -1,0 +1,103 @@
+.curlear-hero-features {
+  background: var(--curlear-hero-bg-color, #e8d6cc);
+}
+
+.curlear-hero-features.curlear-hero-features--gradient {
+  background: var(--curlear-hero-bg-gradient);
+}
+
+.section-curlear-hero-features {
+  padding-top: var(--section-padding-top, 0px);
+  padding-bottom: var(--section-padding-bottom, 0px);
+}
+
+.curlear-hero-features__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2.4rem, 4vw, 6rem);
+}
+
+.curlear-hero-features__content {
+  max-width: 52rem;
+}
+
+.curlear-hero-features__heading {
+  margin: 0 0 1.8rem;
+  font-size: clamp(2.8rem, 3.4vw, 5rem);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.curlear-hero-features__pills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.curlear-hero-features__pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.curlear-hero-features__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: currentColor;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.curlear-hero-features__line {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 2.4vw, 3rem);
+  line-height: 1.15;
+}
+
+.curlear-hero-features__description {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 44rem;
+}
+
+.curlear-hero-features__description p {
+  margin: 0;
+}
+
+.curlear-hero-features__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.curlear-hero-features__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 989px) {
+  .curlear-hero-features__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .curlear-hero-features__content {
+    max-width: 100%;
+    order: 2;
+    padding: 15px;
+  }
+
+  .curlear-hero-features__media {
+    order: 1;
+  }
+}

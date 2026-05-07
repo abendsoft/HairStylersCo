@@ -10,7 +10,7 @@
     --curlear-footer-button-bg: {{ section.settings.submit_button_color }};
   "
 >
-  <div class="page-width margin-footer">
+  <div class="curlear-custom-footer__container margin-footer">
     <div class="curlear-custom-footer__top">
       <div class="curlear-custom-footer__left">
         {% if section.settings.logo != blank %}
@@ -62,6 +62,7 @@
 
         {%- form 'customer', id: 'CurlearCustomFooterNewsletter', class: 'curlear-custom-footer__newsletter-form' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="hidden" name="customer[note]" value="" data-curlear-customer-note>
 
           <input
             type="email"
@@ -81,6 +82,7 @@
             value="{% if form.phone %}{{ form.phone }}{% endif %}"
             placeholder="{{ section.settings.phone_placeholder }}"
             autocomplete="tel"
+            data-curlear-phone-input
           >
 
           <button type="submit" class="curlear-custom-footer__submit">
@@ -123,6 +125,22 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (() => {
+    const form = document.getElementById('CurlearCustomFooterNewsletter');
+    if (!form) return;
+
+    const phoneInput = form.querySelector('[data-curlear-phone-input]');
+    const customerNoteInput = form.querySelector('[data-curlear-customer-note]');
+    if (!phoneInput || !customerNoteInput) return;
+
+    form.addEventListener('submit', () => {
+      const phone = (phoneInput.value || '').trim();
+      customerNoteInput.value = phone ? `Phone: ${phone}` : '';
+    });
+  })();
+</script>
 
 {% schema %}
 {

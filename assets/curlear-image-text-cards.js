@@ -1,13 +1,13 @@
 (() => {
-  const initShowcase = (root) => {
-    const track = root.querySelector('[data-curlear-showcase-track]');
-    const prev = root.querySelector('[data-curlear-showcase-prev]');
-    const next = root.querySelector('[data-curlear-showcase-next]');
+  const initCards = (root) => {
+    const track = root.querySelector('[data-curlear-cards-track]');
+    const prevBtn = root.querySelector('[data-curlear-cards-prev]');
+    const nextBtn = root.querySelector('[data-curlear-cards-next]');
     if (!track) return;
-    if (root.dataset.sliderActive !== 'true') return;
+    if (root.dataset.sliderEnabled !== 'true') return;
 
     const step = () => {
-      const first = track.querySelector('.curlear-showcase-snippet__item');
+      const first = track.querySelector('.curlear-image-text-cards__card');
       if (!first) return 0;
       return first.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
     };
@@ -28,21 +28,14 @@
         return;
       }
 
-      const nextPos = track.scrollLeft + amount * dir;
-      track.scrollTo({ left: Math.max(0, Math.min(nextPos, maxScroll)), behavior: 'smooth' });
+      const next = track.scrollLeft + amount * dir;
+      track.scrollTo({ left: Math.max(0, Math.min(next, maxScroll)), behavior: 'smooth' });
     };
 
-    if (prev) prev.addEventListener('click', () => move(-1));
-    if (next) next.addEventListener('click', () => move(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => move(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => move(1));
 
-    const updateNavState = () => {
-      if (!prev) return;
-      prev.classList.toggle('is-hidden', track.scrollLeft <= 1);
-    };
-
-    track.addEventListener('scroll', updateNavState);
-    window.addEventListener('resize', updateNavState);
-    updateNavState();
+    if (root.dataset.autoSlide !== 'true') return;
 
     const speed = parseInt(root.dataset.speed || '4000', 10);
     let timer = setInterval(() => move(1), Math.max(2000, speed));
@@ -52,5 +45,5 @@
     });
   };
 
-  document.querySelectorAll('[data-curlear-showcase]').forEach(initShowcase);
+  document.querySelectorAll('[data-curlear-cards]').forEach(initCards);
 })();

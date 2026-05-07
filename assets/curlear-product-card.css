@@ -168,3 +168,16 @@
 .curlear-product-card__desc li::marker {
   color: var(--curlear-bullet-color, #ECB7A3);
 }
+
+.product__media-item.curlear-media-item--with-label {
+  position: relative;
+}
+
+.product__media-item.curlear-media-item--with-label .curlear-product-card__label {
+  left: 0;
+  right: auto;
+  top: 0;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  padding: 0.8rem 1rem;
+}

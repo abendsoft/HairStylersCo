@@ -1,0 +1,228 @@
+{{ 'curlear-hero-features.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="curlear-hero-features section-{{ section.id }}-padding{% if section.settings.enable_gradient %} curlear-hero-features--gradient{% endif %}"
+  style="
+    --section-padding-top: {{ section.settings.top_padding }}px;
+    --section-padding-bottom: {{ section.settings.bottom_padding }}px;
+    --curlear-hero-bg-color: {{ section.settings.background_color }};
+    --curlear-hero-bg-gradient: linear-gradient(135deg, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }});
+  "
+>
+  <div class="page-width">
+    <div class="curlear-hero-features__inner">
+      <div class="curlear-hero-features__content">
+        {% if section.settings.heading != blank %}
+          <h2 class="curlear-hero-features__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        <div class="curlear-hero-features__pills" aria-label="Feature options">
+          <div class="curlear-hero-features__pills-row curlear-hero-features__pills-row--2">
+            {% if section.settings.option_1 != blank %}
+              {% if section.settings.option_1_link != blank %}
+                <a class="curlear-hero-features__pill" href="{{ section.settings.option_1_link }}">{{ section.settings.option_1 | escape }}</a>
+              {% else %}
+                <span class="curlear-hero-features__pill">{{ section.settings.option_1 | escape }}</span>
+              {% endif %}
+            {% endif %}
+            {% if section.settings.option_2 != blank %}
+              {% if section.settings.option_2_link != blank %}
+                <a class="curlear-hero-features__pill" href="{{ section.settings.option_2_link }}">{{ section.settings.option_2 | escape }}</a>
+              {% else %}
+                <span class="curlear-hero-features__pill">{{ section.settings.option_2 | escape }}</span>
+              {% endif %}
+            {% endif %}
+          </div>
+
+          <div class="curlear-hero-features__pills-row curlear-hero-features__pills-row--3">
+            {% if section.settings.option_3 != blank %}
+              {% if section.settings.option_3_link != blank %}
+                <a class="curlear-hero-features__pill" href="{{ section.settings.option_3_link }}">{{ section.settings.option_3 | escape }}</a>
+              {% else %}
+                <span class="curlear-hero-features__pill">{{ section.settings.option_3 | escape }}</span>
+              {% endif %}
+            {% endif %}
+            {% if section.settings.option_4 != blank %}
+              {% if section.settings.option_4_link != blank %}
+                <a class="curlear-hero-features__pill" href="{{ section.settings.option_4_link }}">{{ section.settings.option_4 | escape }}</a>
+              {% else %}
+                <span class="curlear-hero-features__pill">{{ section.settings.option_4 | escape }}</span>
+              {% endif %}
+            {% endif %}
+            {% if section.settings.option_5 != blank %}
+              {% if section.settings.option_5_link != blank %}
+                <a class="curlear-hero-features__pill" href="{{ section.settings.option_5_link }}">{{ section.settings.option_5 | escape }}</a>
+              {% else %}
+                <span class="curlear-hero-features__pill">{{ section.settings.option_5 | escape }}</span>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+
+        {% if section.settings.line_text != blank %}
+          <p class="curlear-hero-features__line">{{ section.settings.line_text }}</p>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="curlear-hero-features__description rte">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="curlear-hero-features__media">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'curlear-hero-features__image',
+              loading: 'lazy',
+              widths: '550, 750, 900, 1100, 1400, 1600',
+              sizes: '(min-width: 990px) 50vw, 100vw',
+              alt: section.settings.heading
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'curlear-hero-features__image placeholder-svg' }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear hero features",
+  "tag": "section",
+  "class": "section-curlear-hero-features",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_gradient",
+      "label": "Linear gradient",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#E8D6CC"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#E8D6CC"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#D9B8A9"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Key Features"
+    },
+    {
+      "type": "text",
+      "id": "option_1",
+      "label": "Option 1",
+      "default": "Long Barrel Advantage"
+    },
+    {
+      "type": "url",
+      "id": "option_1_link",
+      "label": "Option 1 link"
+    },
+    {
+      "type": "text",
+      "id": "option_2",
+      "label": "Option 2",
+      "default": "Adjustable Heat Settings"
+    },
+    {
+      "type": "url",
+      "id": "option_2_link",
+      "label": "Option 2 link"
+    },
+    {
+      "type": "text",
+      "id": "option_3",
+      "label": "Option 3",
+      "default": "Automatic Shut Off"
+    },
+    {
+      "type": "url",
+      "id": "option_3_link",
+      "label": "Option 3 link"
+    },
+    {
+      "type": "text",
+      "id": "option_4",
+      "label": "Option 4",
+      "default": "Professional Grade Cord"
+    },
+    {
+      "type": "url",
+      "id": "option_4_link",
+      "label": "Option 4 link"
+    },
+    {
+      "type": "text",
+      "id": "option_5",
+      "label": "Option 5",
+      "default": "Universal Voltage"
+    },
+    {
+      "type": "url",
+      "id": "option_5_link",
+      "label": "Option 5 link"
+    },
+    {
+      "type": "text",
+      "id": "line_text",
+      "label": "Text line",
+      "default": "Long Barrel Advantage"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Paragraph",
+      "default": "<p>The 2\" extended barrel allows users to wrap more hair per section, cutting down styling time.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right image"
+    },
+    {
+      "type": "range",
+      "id": "top_padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear hero features"
+    }
+  ]
+}
+{% endschema %}

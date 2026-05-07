@@ -1,26 +1,46 @@
 <div class="curlear-collapsible">
   {% if row_1_title != blank %}
     <details class="curlear-collapsible__row" {% if open_first_row %}open{% endif %}>
-      <summary class="curlear-collapsible__summary">{{ row_1_title | escape }}</summary>
-      <div class="curlear-collapsible__content rte">{{ row_1_content }}</div>
+      <summary class="curlear-collapsible__summary">
+        <span class="curlear-collapsible__summary-left"><span class="curlear-collapsible__icon">{{ row_1_icon | default: '✦' }}</span>{{ row_1_title | escape }}</span>
+        <span class="curlear-collapsible__caret"></span>
+      </summary>
+      <div class="curlear-collapsible__content-wrap">
+        <div class="curlear-collapsible__content rte">{{ row_1_content }}</div>
+      </div>
     </details>
   {% endif %}
   {% if row_2_title != blank %}
     <details class="curlear-collapsible__row">
-      <summary class="curlear-collapsible__summary">{{ row_2_title | escape }}</summary>
-      <div class="curlear-collapsible__content rte">{{ row_2_content }}</div>
+      <summary class="curlear-collapsible__summary">
+        <span class="curlear-collapsible__summary-left"><span class="curlear-collapsible__icon">{{ row_2_icon | default: '✦' }}</span>{{ row_2_title | escape }}</span>
+        <span class="curlear-collapsible__caret"></span>
+      </summary>
+      <div class="curlear-collapsible__content-wrap">
+        <div class="curlear-collapsible__content rte">{{ row_2_content }}</div>
+      </div>
     </details>
   {% endif %}
   {% if row_3_title != blank %}
     <details class="curlear-collapsible__row">
-      <summary class="curlear-collapsible__summary">{{ row_3_title | escape }}</summary>
-      <div class="curlear-collapsible__content rte">{{ row_3_content }}</div>
+      <summary class="curlear-collapsible__summary">
+        <span class="curlear-collapsible__summary-left"><span class="curlear-collapsible__icon">{{ row_3_icon | default: '✦' }}</span>{{ row_3_title | escape }}</span>
+        <span class="curlear-collapsible__caret"></span>
+      </summary>
+      <div class="curlear-collapsible__content-wrap">
+        <div class="curlear-collapsible__content rte">{{ row_3_content }}</div>
+      </div>
     </details>
   {% endif %}
   {% if row_4_title != blank %}
     <details class="curlear-collapsible__row">
-      <summary class="curlear-collapsible__summary">{{ row_4_title | escape }}</summary>
-      <div class="curlear-collapsible__content rte">{{ row_4_content }}</div>
+      <summary class="curlear-collapsible__summary">
+        <span class="curlear-collapsible__summary-left"><span class="curlear-collapsible__icon">{{ row_4_icon | default: '✦' }}</span>{{ row_4_title | escape }}</span>
+        <span class="curlear-collapsible__caret"></span>
+      </summary>
+      <div class="curlear-collapsible__content-wrap">
+        <div class="curlear-collapsible__content rte">{{ row_4_content }}</div>
+      </div>
     </details>
   {% endif %}
 </div>

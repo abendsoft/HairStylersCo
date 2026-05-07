@@ -1,0 +1,186 @@
+{{ 'curlear-image-text-cards.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-image-text-cards.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign cards_count = section.blocks.size
+  assign cards_desktop_number = section.settings.cards_desktop | plus: 0
+  assign slider_enabled = false
+  if section.settings.layout_mode == 'slider' and cards_count > cards_desktop_number
+    assign slider_enabled = true
+  endif
+%}
+
+<section
+  class="curlear-image-text-cards section-{{ section.id }}-padding"
+  style="--curlear-cards-bg: {{ section.settings.background_color }};"
+>
+  <div class="page-width page-width-padding">
+    <div class="curlear-image-text-cards__top">
+      {% if section.settings.heading != blank %}
+        <h2 class="curlear-image-text-cards__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.top_text != blank %}
+        <p class="curlear-image-text-cards__top-text">{{ section.settings.top_text }}</p>
+      {% endif %}
+    </div>
+
+    <div
+      class="curlear-image-text-cards__list-wrap"
+      data-curlear-cards
+      data-slider-enabled="{{ slider_enabled }}"
+      data-auto-slide="{{ section.settings.auto_slide }}"
+      data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+    >
+      <div
+        class="curlear-image-text-cards__list{% if section.settings.layout_mode == 'slider' %} curlear-image-text-cards__list--slider{% else %} curlear-image-text-cards__list--grid{% endif %}"
+        style="--curlear-cards-desktop: {{ section.settings.cards_desktop }};"
+        data-curlear-cards-track
+      >
+        {% for block in section.blocks %}
+          <article class="curlear-image-text-cards__card" {{ block.shopify_attributes }}>
+            <div class="curlear-image-text-cards__image-wrap">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: 'curlear-image-text-cards__image',
+                    loading: 'lazy',
+                    widths: '360, 533, 720, 940, 1200',
+                    sizes: '(min-width: 990px) 33vw, 90vw',
+                    alt: block.settings.heading
+                }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'curlear-image-text-cards__image placeholder-svg' }}
+              {% endif %}
+            </div>
+            {% if block.settings.heading != blank %}
+              <p class="curlear-image-text-cards__card-heading">{{ block.settings.heading }}</p>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="curlear-image-text-cards__card-text rte">{{ block.settings.text }}</div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if slider_enabled and section.settings.show_slider_buttons %}
+        <div class="curlear-image-text-cards__nav">
+          <button type="button" class="curlear-image-text-cards__nav-btn" data-curlear-cards-prev aria-label="Previous cards">
+            &#8249;
+          </button>
+          <button type="button" class="curlear-image-text-cards__nav-btn" data-curlear-cards-next aria-label="Next cards">
+            &#8250;
+          </button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear image text cards",
+  "tag": "section",
+  "class": "section-curlear-image-text-cards",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Left heading",
+      "default": "Versatile Curling Made Easy"
+    },
+    {
+      "type": "text",
+      "id": "top_text",
+      "label": "Right text",
+      "default": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#F7F7F7"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Show as",
+      "default": "slider",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cards_desktop",
+      "label": "Cards per view (desktop)",
+      "default": "2",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_slider_buttons",
+      "label": "Show previous/next buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Enable auto slide",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image text card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Best for"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear image text cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -40,6 +40,9 @@
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
+
+  assign non_active_media_fit = section.settings.non_active_media_fit | default: 'contain'
+  assign product_label = product.metafields.custom.product_label.value | default: ''
 -%}
 
 <media-gallery
@@ -59,15 +62,25 @@
     <ul
       id="Slider-Gallery-{{ section.id }}"
       class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+      style="background-color: {{ section.settings.media_list_bg_color | default: 'transparent' }}; --curlear-product-media-bg: {{ section.settings.media_item_bg_color | default: '#FFFFFF' }};"
       role="list"
     >
       {%- if product.selected_or_first_available_variant.featured_media != null -%}
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
-          class="product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          class="product__media-item grid__item slider__slide is-active{% if settings.curlear_card_show_label and product_label != blank %} curlear-media-item--with-label{% endif %}{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           data-media-id="{{ section.id }}-{{ featured_media.id }}"
+          style="background-color: {{ section.settings.media_item_bg_color | default: '#FFFFFF' }};"
         >
+          {% if settings.curlear_card_show_label and product_label != blank %}
+            <div
+              class="curlear-product-card__label"
+              style="--curlear-label-bg: {{ settings.curlear_card_label_bg_color }}; --curlear-label-color: {{ settings.curlear_card_label_text_color }};"
+            >
+              {{ product_label | escape }}
+            </div>
+          {% endif %}
           {%- assign media_position = 1 -%}
           {% render 'product-thumbnail',
             media: featured_media,
@@ -97,14 +110,27 @@
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
           <li
             id="Slide-{{ section.id }}-{{ media.id }}"
-            class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="product__media-item grid__item slider__slide{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% if settings.curlear_card_show_label and product_label != blank %} curlear-media-item--with-label{% endif %}{% endif %}{% if single_media_visible %} product__media-item--single{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             data-media-id="{{ section.id }}-{{ media.id }}"
+            style="background-color: {{ section.settings.media_item_bg_color | default: '#FFFFFF' }};"
           >
+            {% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 and settings.curlear_card_show_label and product_label != blank %}
+              <div
+                class="curlear-product-card__label"
+                style="--curlear-label-bg: {{ settings.curlear_card_label_bg_color }}; --curlear-label-color: {{ settings.curlear_card_label_text_color }};"
+              >
+                {{ product_label | escape }}
+              </div>
+            {% endif %}
             {%- liquid
               assign media_position = media_position | default: 0 | plus: 1
               assign lazy_load = false
+              assign current_media_fit = non_active_media_fit
               if media_position > 1
                 assign lazy_load = true
+              endif
+              if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1
+                assign current_media_fit = section.settings.media_fit
               endif
             -%}
             {% render 'product-thumbnail',
@@ -117,7 +143,7 @@
               modal_id: section.id,
               xr_button: true,
               media_width: media_width,
-              media_fit: section.settings.media_fit,
+              media_fit: current_media_fit,
               constrain_to_viewport: section.settings.constrain_to_viewport,
               lazy_load: lazy_load
             %}

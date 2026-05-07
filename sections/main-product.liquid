@@ -17,6 +17,7 @@
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   {{ 'curlear-product-info-extras.css' | asset_url | stylesheet_tag }}
   {{ 'curlear-product-custom-blocks.css' | asset_url | stylesheet_tag }}
+  {{ 'curlear-product-card.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -31,7 +32,45 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      --curlear-product-media-bg: {{ section.settings.media_item_bg_color }};
     }
+
+    .section-{{ section.id }}-padding .product__full-width {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    {% if section.settings.full_width %}
+      .section-{{ section.id }}-padding .product__info-container.product__column-sticky {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      @media screen and (max-width: 749px) {
+        .section-{{ section.id }}-padding .product__media-wrapper,
+        .section-{{ section.id }}-padding .product__media-wrapper .slider-mobile-gutter {
+          overflow: hidden;
+        }
+
+        .section-{{ section.id }}-padding .product__media-wrapper .product__media-list {
+          margin-left: 0;
+          margin-right: 0;
+          padding-left: 0;
+          padding-right: 0;
+          scroll-padding-left: 0;
+          scroll-padding-right: 0;
+        }
+
+        .section-{{ section.id }}-padding .product__media-wrapper .product__media-item {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    {% endif %}
 
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
@@ -76,7 +115,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div class="page-width">
+  <div class="{% if section.settings.full_width %}product__full-width{% else %}page-width{% endif %}">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
@@ -254,6 +293,18 @@
                   heading: block.settings.heading,
                   visible_desktop: block.settings.visible_desktop,
                   auto_slide_speed: block.settings.auto_slide_speed,
+                  item_height_desktop: block.settings.item_height_desktop,
+                  item_height_mobile: block.settings.item_height_mobile,
+                  wider_desktop: block.settings.wider_desktop,
+                  show_add_to_cart_button: block.settings.show_add_to_cart_button,
+                  button_label: block.settings.button_label,
+                  button_use_gradient: block.settings.button_use_gradient,
+                  button_bg_color: block.settings.button_bg_color,
+                  button_text_color: block.settings.button_text_color,
+                  button_gradient_start: block.settings.button_gradient_start,
+                  button_gradient_middle: block.settings.button_gradient_middle,
+                  button_gradient_end: block.settings.button_gradient_end,
+                  product: product,
                   media_1_image: block.settings.media_1_image,
                   media_1_video: block.settings.media_1_video,
                   media_2_image: block.settings.media_2_image,
@@ -275,12 +326,16 @@
                 {% render 'curlear-collapsible',
                   open_first_row: block.settings.open_first_row,
                   row_1_title: block.settings.row_1_title,
+                  row_1_icon: block.settings.row_1_icon,
                   row_1_content: block.settings.row_1_content,
                   row_2_title: block.settings.row_2_title,
+                  row_2_icon: block.settings.row_2_icon,
                   row_2_content: block.settings.row_2_content,
                   row_3_title: block.settings.row_3_title,
+                  row_3_icon: block.settings.row_3_icon,
                   row_3_content: block.settings.row_3_content,
                   row_4_title: block.settings.row_4_title,
+                  row_4_icon: block.settings.row_4_icon,
                   row_4_content: block.settings.row_4_content
                 %}
               {%- when 'curlear_icon_text' -%}
@@ -1008,6 +1063,42 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "curlear_button_use_gradient",
+          "label": "Use gradient for add to cart button",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "curlear_button_bg",
+          "label": "Add to cart solid color",
+          "default": "#E7BDA9"
+        },
+        {
+          "type": "color",
+          "id": "curlear_button_text_color",
+          "label": "Add to cart text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "curlear_button_gradient_start",
+          "label": "Gradient start",
+          "default": "#F2C6B4"
+        },
+        {
+          "type": "color",
+          "id": "curlear_button_gradient_middle",
+          "label": "Gradient middle",
+          "default": "#ECB7A3"
+        },
+        {
+          "type": "color",
+          "id": "curlear_button_gradient_end",
+          "label": "Gradient end",
+          "default": "#C27A63"
         }
       ]
     },
@@ -1740,6 +1831,80 @@
           "label": "Auto slide speed",
           "default": 4
         },
+        {
+          "type": "range",
+          "id": "item_height_desktop",
+          "min": 200,
+          "max": 620,
+          "step": 10,
+          "unit": "px",
+          "label": "Desktop media height",
+          "default": 300
+        },
+        {
+          "type": "range",
+          "id": "item_height_mobile",
+          "min": 220,
+          "max": 500,
+          "step": 10,
+          "unit": "px",
+          "label": "Mobile media height",
+          "default": 320
+        },
+        {
+          "type": "checkbox",
+          "id": "wider_desktop",
+          "label": "Slightly increase width on desktop",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_add_to_cart_button",
+          "label": "Show add to cart button on media",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "ADD TO CART"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_use_gradient",
+          "label": "Use gradient for button",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button solid color",
+          "default": "#E7BDA9"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_gradient_start",
+          "label": "Button gradient start",
+          "default": "#F2C6B4"
+        },
+        {
+          "type": "color",
+          "id": "button_gradient_middle",
+          "label": "Button gradient middle",
+          "default": "#ECB7A3"
+        },
+        {
+          "type": "color",
+          "id": "button_gradient_end",
+          "label": "Button gradient end",
+          "default": "#C27A63"
+        },
         { "type": "image_picker", "id": "media_1_image", "label": "Slide 1 image" },
         { "type": "video", "id": "media_1_video", "label": "Slide 1 Shopify video" },
         { "type": "image_picker", "id": "media_2_image", "label": "Slide 2 image" },
@@ -1769,12 +1934,16 @@
           "default": true
         },
         { "type": "text", "id": "row_1_title", "label": "Row 1 heading", "default": "Size guide" },
+        { "type": "text", "id": "row_1_icon", "label": "Row 1 icon", "default": "✦" },
         { "type": "richtext", "id": "row_1_content", "label": "Row 1 content" },
         { "type": "text", "id": "row_2_title", "label": "Row 2 heading", "default": "Details" },
+        { "type": "text", "id": "row_2_icon", "label": "Row 2 icon", "default": "✦" },
         { "type": "richtext", "id": "row_2_content", "label": "Row 2 content" },
         { "type": "text", "id": "row_3_title", "label": "Row 3 heading", "default": "Specs & features" },
+        { "type": "text", "id": "row_3_icon", "label": "Row 3 icon", "default": "✦" },
         { "type": "richtext", "id": "row_3_content", "label": "Row 3 content" },
         { "type": "text", "id": "row_4_title", "label": "Row 4 heading" },
+        { "type": "text", "id": "row_4_icon", "label": "Row 4 icon", "default": "✦" },
         { "type": "richtext", "id": "row_4_content", "label": "Row 4 content" }
       ]
     },
@@ -2428,6 +2597,12 @@
       "default": "scheme-1"
     },
     {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
       "type": "header",
       "content": "t:sections.main-product.settings.header.content"
     },
@@ -2472,6 +2647,34 @@
       ],
       "default": "contain",
       "label": "t:sections.main-product.settings.media_fit.label"
+    },
+    {
+      "type": "select",
+      "id": "non_active_media_fit",
+      "label": "Non-active media fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Original"
+        },
+        {
+          "value": "cover",
+          "label": "Fill"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "color",
+      "id": "media_list_bg_color",
+      "label": "Media list background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "media_item_bg_color",
+      "label": "Active media background color",
+      "default": "#FFFFFF"
     },
     {
       "type": "select",

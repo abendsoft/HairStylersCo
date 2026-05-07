@@ -112,6 +112,20 @@
             "media_6_video": "shopify://files/videos/ssstik.io_@dearmags_1777992064455.mp4",
             "media_7_image": "shopify://shop_images/6e3126b5bb6c2bc8be031f6a6bccba6dfaba1a21.png"
           }
+        },
+        "curlear_collapsible_rq4Ab3": {
+          "type": "curlear_collapsible",
+          "settings": {
+            "open_first_row": true,
+            "row_1_title": "Size guide",
+            "row_1_content": "<p>.75\" = Create gorgeous spirals and tight curls with lasting bounce, adding spring and volume to straight or wavy hair<br/><br/>1\" = Perfect for uniform curls, this versatile barrel delivers classic or modern styles with a strong C-shape for defined, medium-sized curls<br/><br/>1.25\" = Effortlessly craft voluminous curls, sultry waves, or beachy vibes with this larger barrel for soft, natural-looking waves<br/><br/>1.5\" = This is your blowout in a barrel, with big, soft bends and signature volume for a polished effortless finish<br/><br/></p>",
+            "row_2_title": "Details",
+            "row_2_content": "",
+            "row_3_title": "Specs & features",
+            "row_3_content": "",
+            "row_4_title": "",
+            "row_4_content": ""
+          }
         }
       },
       "block_order": [
@@ -126,7 +140,8 @@
         "buy_buttons",
         "curlear_icon_text_xCzzwh",
         "description",
-        "curlear_showcase_snippet_Pa4Xq9"
+        "curlear_showcase_snippet_Pa4Xq9",
+        "curlear_collapsible_rq4Ab3"
       ],
       "settings": {
         "enable_sticky_info": true,

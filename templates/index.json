@@ -101,6 +101,7 @@
         "columns_desktop": 3,
         "columns_mobile": "1",
         "auto_slide": true,
+        "show_slider_nav": false,
         "auto_slide_speed": 4
       }
     },
@@ -166,6 +167,7 @@
         "columns_mobile": "1",
         "show_arrow_mobile": true,
         "auto_slide": true,
+        "show_slider_nav": false,
         "auto_slide_speed": 4
       }
     },
@@ -268,6 +270,8 @@
         "auto_slide": false,
         "auto_slide_speed": 4,
         "enable_marquee": true,
+        "use_slider_instead_of_marquee": false,
+        "show_slider_nav": false,
         "marquee_speed": 85
       }
     },
@@ -318,7 +322,8 @@
         "layout_mode": "slider",
         "columns_desktop": 3,
         "columns_mobile": "1",
-        "auto_slide": false,
+        "auto_slide": true,
+        "show_slider_nav": false,
         "auto_slide_speed": 4
       }
     },
@@ -395,6 +400,7 @@
         "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#c27a63",
         "auto_slide": true,
+        "show_slider_nav": true,
         "auto_slide_speed": 4,
         "button_label": "SEE ALL REVIEWS",
         "button_link": ""

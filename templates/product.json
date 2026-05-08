@@ -279,7 +279,7 @@
       "settings": {
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
         "heading": "OLD 10X STYLER VS. NEW 10X STYLER",
-        "open_first_row": true,
+        "open_first_row": false,
         "show_slider_buttons": false,
         "section_bg_color": "#fffaf7",
         "content_bg_color": "#ffffff",

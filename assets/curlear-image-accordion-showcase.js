@@ -11,6 +11,14 @@
 
     let activeIndex = 0;
 
+    const updateRowHeights = () => {
+      rows.forEach((row) => {
+        const content = row.querySelector('.curlear-image-accordion-showcase__row-content');
+        if (!content) return;
+        row.style.setProperty('--curlear-row-max-height', `${content.scrollHeight + 28}px`);
+      });
+    };
+
     const render = () => {
       slides.forEach((slide, index) => {
         const isActive = index === activeIndex;
@@ -33,6 +41,7 @@
 
     rows.forEach((row, rowIndex) => {
       row.addEventListener('toggle', () => {
+        updateRowHeights();
         if (!row.open) return;
         rows.forEach((other, otherIndex) => {
           if (otherIndex !== rowIndex) other.open = false;
@@ -64,6 +73,8 @@
     }, { passive: true });
 
     const openRowIndex = rows.findIndex((row) => row.open);
+    updateRowHeights();
+    window.addEventListener('resize', updateRowHeights);
     if (openRowIndex >= 0) {
       setActive(openRowIndex);
     } else {

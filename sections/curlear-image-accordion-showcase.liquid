@@ -10,7 +10,10 @@
   "
 >
   <div class="page-width">
-    <div class="curlear-image-accordion-showcase__inner" data-curlear-accordion-showcase>
+    <div
+      class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %}"
+      data-curlear-accordion-showcase
+    >
       <div class="curlear-image-accordion-showcase__media">
         {% assign image_blocks_count = 0 %}
         {% assign fallback_image = blank %}
@@ -72,7 +75,10 @@
         {% endif %}
       </div>
 
-      <div class="curlear-image-accordion-showcase__content">
+      <div class="curlear-image-accordion-showcase__content curlear-image-accordion-showcase__content--{{ section.settings.content_alignment }}">
+        {% if section.settings.top_heading != blank %}
+          <p class="curlear-image-accordion-showcase__top-heading">{{ section.settings.top_heading }}</p>
+        {% endif %}
         {% if section.settings.caption != blank %}
           <p class="curlear-image-accordion-showcase__caption">{{ section.settings.caption }}</p>
         {% endif %}
@@ -85,7 +91,20 @@
             <details class="curlear-image-accordion-showcase__row" data-curlear-showcase-row data-index="{{ forloop.index0 }}" {% if section.settings.open_first_row and forloop.first %}open{% endif %}>
               <summary class="curlear-image-accordion-showcase__summary">
                 <span>{{ block.settings.heading | default: 'Feature' | escape }}</span>
-                <span class="curlear-image-accordion-showcase__arrow"></span>
+                <span class="curlear-image-accordion-showcase__arrow{% if section.settings.arrow_icon != blank %} has-custom-icon{% endif %}">
+                  {% if section.settings.arrow_icon != blank %}
+                    {{
+                      section.settings.arrow_icon
+                      | image_url: width: 48
+                      | image_tag:
+                        class: 'curlear-image-accordion-showcase__arrow-icon',
+                        loading: 'lazy',
+                        widths: '24, 36, 48',
+                        sizes: '24px',
+                        alt: 'Toggle row'
+                    }}
+                  {% endif %}
+                </span>
               </summary>
               <div class="curlear-image-accordion-showcase__content-wrap">
                 <div class="curlear-image-accordion-showcase__row-content rte">{{ block.settings.content }}</div>
@@ -105,6 +124,12 @@
   "class": "section-curlear-image-accordion-showcase",
   "max_blocks": 8,
   "settings": [
+    {
+      "type": "text",
+      "id": "top_heading",
+      "label": "Top heading (above caption)",
+      "default": "COMPARE FEATURES"
+    },
     {
       "type": "text",
       "id": "caption",
@@ -128,6 +153,28 @@
       "id": "show_slider_buttons",
       "label": "Show image slider buttons",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_columns_mobile",
+      "label": "Reverse columns (image first)",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content vertical alignment",
+      "default": "start",
+      "options": [
+        { "value": "start", "label": "Start" },
+        { "value": "center", "label": "Center" },
+        { "value": "end", "label": "End" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_icon",
+      "label": "Accordion arrow icon"
     },
     {
       "type": "color",

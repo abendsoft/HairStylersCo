@@ -282,7 +282,7 @@
         "open_first_row": false,
         "show_slider_buttons": false,
         "section_bg_color": "#fffaf7",
-        "content_bg_color": "#ffffff",
+        "content_bg_color": "#fffaf7",
         "media_bg_color": "#e8d6cc"
       }
     },

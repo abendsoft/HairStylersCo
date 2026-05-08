@@ -235,6 +235,57 @@
         "media_bg_color": "#e8d6cc"
       }
     },
+    "curlear_image_accordion_showcase_NNPnT4": {
+      "type": "curlear-image-accordion-showcase",
+      "blocks": {
+        "row_gKLY7B": {
+          "type": "row",
+          "settings": {
+            "heading": "Sleeker, Modern Design",
+            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ STYLER</p>",
+            "image": "shopify://shop_images/7c655520b05d1206bc158c602b97108b92dec03f.webp"
+          }
+        },
+        "row_WNVNE6": {
+          "type": "row",
+          "settings": {
+            "heading": "Faster Heat-Up",
+            "content": ""
+          }
+        },
+        "row_AbeeeE": {
+          "type": "row",
+          "settings": {
+            "heading": "Optimized Vibrations",
+            "content": "<p>Optimized Vibrations<br/><br/></p>"
+          }
+        },
+        "row_HYVKkm": {
+          "type": "row",
+          "settings": {
+            "heading": "Personalized Styling",
+            "content": "",
+            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+          }
+        }
+      },
+      "block_order": [
+        "row_gKLY7B",
+        "row_WNVNE6",
+        "row_AbeeeE",
+        "row_HYVKkm"
+      ],
+      "name": "Curlear image accordion",
+      "settings": {
+        "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
+        "heading": "OLD 10X STYLER VS. NEW 10X STYLER",
+        "open_first_row": true,
+        "show_slider_buttons": false,
+        "section_bg_color": "#fffaf7",
+        "content_bg_color": "#ffffff",
+        "media_bg_color": "#e8d6cc"
+      }
+    },
     "curlear_image_text_cards_Abg73e": {
       "type": "curlear-image-text-cards",
       "blocks": {
@@ -410,6 +461,7 @@
   "order": [
     "main",
     "curlear_image_accordion_showcase_UdPirh",
+    "curlear_image_accordion_showcase_NNPnT4",
     "curlear_image_text_cards_Abg73e",
     "curlear_comparison_gallery_epbRim",
     "curlear_hero_features_9Ear7N",

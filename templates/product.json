@@ -226,63 +226,15 @@
       ],
       "name": "Curlear image accordion",
       "settings": {
+        "top_heading": "COMPARE FEATURES",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
         "heading": "OLD 10X STYLER VS. NEW 10X STYLER",
         "open_first_row": true,
         "show_slider_buttons": false,
+        "reverse_columns_mobile": false,
+        "content_alignment": "start",
         "section_bg_color": "#fffaf7",
         "content_bg_color": "#ffffff",
-        "media_bg_color": "#e8d6cc"
-      }
-    },
-    "curlear_image_accordion_showcase_NNPnT4": {
-      "type": "curlear-image-accordion-showcase",
-      "blocks": {
-        "row_gKLY7B": {
-          "type": "row",
-          "settings": {
-            "heading": "Sleeker, Modern Design",
-            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ STYLER</p>",
-            "image": "shopify://shop_images/7c655520b05d1206bc158c602b97108b92dec03f.webp"
-          }
-        },
-        "row_WNVNE6": {
-          "type": "row",
-          "settings": {
-            "heading": "Faster Heat-Up",
-            "content": ""
-          }
-        },
-        "row_AbeeeE": {
-          "type": "row",
-          "settings": {
-            "heading": "Optimized Vibrations",
-            "content": "<p>Optimized Vibrations<br/><br/></p>"
-          }
-        },
-        "row_HYVKkm": {
-          "type": "row",
-          "settings": {
-            "heading": "Personalized Styling",
-            "content": "",
-            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
-          }
-        }
-      },
-      "block_order": [
-        "row_gKLY7B",
-        "row_WNVNE6",
-        "row_AbeeeE",
-        "row_HYVKkm"
-      ],
-      "name": "Curlear image accordion",
-      "settings": {
-        "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
-        "heading": "OLD 10X STYLER VS. NEW 10X STYLER",
-        "open_first_row": false,
-        "show_slider_buttons": false,
-        "section_bg_color": "#fffaf7",
-        "content_bg_color": "#fffaf7",
         "media_bg_color": "#e8d6cc"
       }
     },
@@ -415,6 +367,79 @@
         "bottom_padding": 0
       }
     },
+    "curlear_image_accordion_showcase_NNPnT4": {
+      "type": "curlear-image-accordion-showcase",
+      "blocks": {
+        "row_gKLY7B": {
+          "type": "row",
+          "settings": {
+            "heading": "Is this curling iron suitable for professional stylists?",
+            "content": "<p>OLD 10X™ STYLER vs. NEIs this curling iron suitable for professional stylists?<br/><br/>W 10X™ STYLER</p>",
+            "image": "shopify://shop_images/7c655520b05d1206bc158c602b97108b92dec03f.webp"
+          }
+        },
+        "row_WNVNE6": {
+          "type": "row",
+          "settings": {
+            "heading": "How does the Bio Ionic Long Barrel Curling Iron work for different hair types?",
+            "content": "<p>How does the Bio Ionic Long Barrel Curling Iron work for different hair types?<br/><br/></p>"
+          }
+        },
+        "row_AbeeeE": {
+          "type": "row",
+          "settings": {
+            "heading": "What barrel sizes are available for the long barrel curling iron?",
+            "content": "<p>What barrel sizes are available for the long barrel curling iron?<br/><br/></p>"
+          }
+        },
+        "row_HYVKkm": {
+          "type": "row",
+          "settings": {
+            "heading": "Is the curling iron dual voltage for international use?",
+            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>",
+            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+          }
+        },
+        "row_cerqmX": {
+          "type": "row",
+          "settings": {
+            "heading": "What heat setting should I use for my hair type?",
+            "content": "<p>What heat setting should I use for my hair type?<br/><br/></p>",
+            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+          }
+        },
+        "row_NfWeMN": {
+          "type": "row",
+          "settings": {
+            "heading": "How long does it take to heat up?",
+            "content": "<p>How long does it take to heat up?<br/><br/></p>",
+            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+          }
+        }
+      },
+      "block_order": [
+        "row_gKLY7B",
+        "row_WNVNE6",
+        "row_AbeeeE",
+        "row_HYVKkm",
+        "row_cerqmX",
+        "row_NfWeMN"
+      ],
+      "name": "Curlear image accordion",
+      "settings": {
+        "top_heading": "",
+        "caption": "",
+        "heading": "FAQs",
+        "open_first_row": false,
+        "show_slider_buttons": false,
+        "reverse_columns_mobile": true,
+        "content_alignment": "end",
+        "arrow_icon": "shopify://shop_images/down-arrow.png",
+        "section_bg_color": "#fffaf7",
+        "content_bg_color": "#fffaf7",
+        "media_bg_color": "#e8d6cc"
+      }
+    },
     "curlear_featured_collection_UgaMhn": {
       "type": "curlear-featured-collection",
       "name": "Curlear feature collection",
@@ -461,10 +486,10 @@
   "order": [
     "main",
     "curlear_image_accordion_showcase_UdPirh",
-    "curlear_image_accordion_showcase_NNPnT4",
     "curlear_image_text_cards_Abg73e",
     "curlear_comparison_gallery_epbRim",
     "curlear_hero_features_9Ear7N",
+    "curlear_image_accordion_showcase_NNPnT4",
     "curlear_featured_collection_UgaMhn",
     "related-products"
   ]

@@ -475,7 +475,61 @@
         "comparison_row_mLf3fD": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Adjustable Heat",
+            "text_column_1": "Swivel Cord",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        },
+        "comparison_row_9wte8x": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Automatic Shut-Off",
+            "text_column_2": "1 hour",
+            "text_column_3": "1 hour",
+            "text_column_4": "1 hour"
+          }
+        },
+        "comparison_row_ADnrz7": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Wattage Rating",
+            "text_column_2": "56W",
+            "text_column_3": "66W",
+            "text_column_4": "75W"
+          }
+        },
+        "comparison_row_rLryaC": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Temperature",
+            "text_column_2": "Up to 430°F",
+            "text_column_3": "Up to 430°F",
+            "text_column_4": "Up to 385°F"
+          }
+        },
+        "comparison_row_6tfccL": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Weight (without cord)",
+            "text_column_2": "7.86oz",
+            "text_column_3": "7.90oz",
+            "text_column_4": "10.72oz"
+          }
+        },
+        "comparison_row_ciJnM9": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Cord Length",
+            "text_column_2": "9ft",
+            "text_column_3": "9ft",
+            "text_column_4": "9ft"
+          }
+        },
+        "comparison_row_wjihe9": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Universal Voltage",
             "text_column_2": "Yes",
             "text_column_3": "Yes",
             "text_column_4": "Yes"
@@ -487,7 +541,13 @@
         "comparison_row_qk8wcz",
         "comparison_row_P7BQjK",
         "comparison_row_hQj6gN",
-        "comparison_row_mLf3fD"
+        "comparison_row_mLf3fD",
+        "comparison_row_9wte8x",
+        "comparison_row_ADnrz7",
+        "comparison_row_rLryaC",
+        "comparison_row_6tfccL",
+        "comparison_row_ciJnM9",
+        "comparison_row_wjihe9"
       ],
       "name": "Curlear product compare",
       "settings": {

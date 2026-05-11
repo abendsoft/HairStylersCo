@@ -107,7 +107,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 789px) {
   .curlear-image-text-cards__top {
     flex-direction: column;
     gap: 1rem;

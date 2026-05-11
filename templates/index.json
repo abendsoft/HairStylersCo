@@ -271,6 +271,7 @@
         "auto_slide_speed": 4,
         "enable_marquee": true,
         "use_slider_instead_of_marquee": false,
+        "mobile_use_slider_instead_of_marquee": false,
         "show_slider_nav": false,
         "marquee_speed": 85
       }
@@ -355,7 +356,7 @@
         "top_text_color": "#ffffff",
         "bottom_heading": "MORE SHINE. LESS DAMAGE.",
         "bottom_heading_color": "#ffffff",
-        "section_height": 720
+        "section_height": 500
       }
     },
     "curlear_testimonial_slider_T3WHPc": {

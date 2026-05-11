@@ -88,6 +88,8 @@
 
   .curlear-press-quote__aside {
     justify-content: flex-start;
+  padding-right: 30px;
+  padding-top: 20px;
   }
 
   .curlear-press-quote__brand {

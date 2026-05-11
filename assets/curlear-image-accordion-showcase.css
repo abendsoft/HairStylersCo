@@ -4,8 +4,8 @@
 
 .curlear-image-accordion-showcase__inner {
   display: grid;
-  grid-template-columns: minmax(0, 50%) minmax(0, 50%);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  margin-top: 2rem;
   align-items: stretch;
   padding: 40px 20px;
 }

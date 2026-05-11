@@ -348,7 +348,7 @@
       "type": "curlear-image-text-banner",
       "name": "Curlear text banner",
       "settings": {
-        "background_image": "shopify://shop_images/65edb07c91e524feb080c97563b69df242f32bd6.png",
+        "background_image": "shopify://shop_images/65edb07c91e524feb080c97563b69df242f32bd6.webp",
         "image_opacity": 60,
         "top_heading": "Consistent Heat",
         "top_heading_color": "#ffffff",
@@ -356,7 +356,7 @@
         "top_text_color": "#ffffff",
         "bottom_heading": "MORE SHINE. LESS DAMAGE.",
         "bottom_heading_color": "#ffffff",
-        "section_height": 700
+        "section_height": 600
       }
     },
     "curlear_testimonial_slider_T3WHPc": {

@@ -441,16 +441,16 @@
           "settings": {
             "text_column_1": "Ceramic Mineral Complex",
             "text_column_2": "Yes",
-            "text_column_3": "No",
-            "text_column_4": "Yes"
+            "text_column_3": "Yes",
+            "text_column_4": "No"
           }
         },
         "comparison_row_qk8wcz": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "PTC Heater",
-            "text_column_2": "Yes",
-            "text_column_3": "Yes",
+            "text_column_1": "BioCeramic MCH Heater",
+            "text_column_2": "No",
+            "text_column_3": "No",
             "text_column_4": "No"
           }
         },
@@ -471,13 +471,23 @@
             "text_column_3": "Yes",
             "text_column_4": "Yes"
           }
+        },
+        "comparison_row_mLf3fD": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_2": "Yes",
+            "text_column_3": "No",
+            "text_column_4": "Yes"
+          }
         }
       },
       "block_order": [
         "comparison_row_yL7bTz",
         "comparison_row_qk8wcz",
         "comparison_row_P7BQjK",
-        "comparison_row_hQj6gN"
+        "comparison_row_hQj6gN",
+        "comparison_row_mLf3fD"
       ],
       "name": "Curlear product compare",
       "settings": {

@@ -62,7 +62,7 @@
 
 .curlear-press-quote__aside {
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: right;
   text-align: center;
   min-height: 100%;

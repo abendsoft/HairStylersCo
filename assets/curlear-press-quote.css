@@ -8,6 +8,7 @@
 .curlear-press-quote__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 49%);
+  gap: 3.2rem 4rem;
   align-items: center;
 }
 

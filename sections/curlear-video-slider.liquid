@@ -23,6 +23,7 @@
         data-autoplay="{{ section.settings.auto_slide }}"
         data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
         data-marquee-speed="{{ section.settings.marquee_speed }}"
+        data-mobile-slider="{% if marquee_enabled and section.settings.mobile_use_slider_instead_of_marquee %}true{% else %}false{% endif %}"
       >
         {% if section.settings.show_slider_nav and marquee_enabled == false and section.blocks.size > section.settings.columns_desktop %}
           <div class="curlear-video-slider__nav">
@@ -49,8 +50,6 @@
             <article
               class="curlear-video-slider__card"
               data-product-url="{% if card_product != blank %}{{ card_product.url }}{% endif %}"
-              role="link"
-              tabindex="0"
               {{ block.shopify_attributes }}
             >
               <div class="curlear-video-slider__media">
@@ -218,6 +217,13 @@
       "id": "use_slider_instead_of_marquee",
       "label": "Use slider instead of marquee",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_use_slider_instead_of_marquee",
+      "label": "On mobile, use slider instead of marquee",
+      "default": false,
+      "info": "When marquee is enabled, mobile shows a scrollable row instead of the moving marquee. Desktop keeps the marquee. If Auto slide is also on, the mobile row advances automatically until the shopper touches it."
     },
     {
       "type": "checkbox",

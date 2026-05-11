@@ -3,10 +3,14 @@
 
 {% liquid
   assign cards_count = section.blocks.size
-  assign cards_per_row = section.settings.cards_per_row_desktop | plus: 0
+  assign cards_per_row_desktop = section.settings.cards_per_row_desktop | plus: 0
+  assign cards_per_row_mobile = section.settings.cards_per_row_mobile | plus: 0
   assign slider_enabled = false
-  if section.settings.layout_mode == 'slider' and cards_count > cards_per_row
-    assign slider_enabled = true
+  # Slider JS when horizontal overflow is possible on desktop OR mobile (not desktop-only).
+  if section.settings.layout_mode == 'slider'
+    if cards_count > cards_per_row_desktop or cards_count > cards_per_row_mobile
+      assign slider_enabled = true
+    endif
   endif
 %}
 

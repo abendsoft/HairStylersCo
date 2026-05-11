@@ -40,42 +40,59 @@
   border-radius: 1rem;
   overflow: hidden;
   background: #f2f2f2;
-  min-height: var(--curlear-showcase-item-height-desktop, 300px);
+  min-height: var(--curlear-showcase-item-height-desktop, 260px);
+  height: var(--curlear-showcase-item-height-desktop, 260px);
 }
 
-.curlear-showcase-snippet__media {
+/* Image: fill the fixed-height slide */
+.curlear-showcase-snippet__item > .curlear-showcase-snippet__media {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: var(--curlear-showcase-item-height-desktop, 300px);
   object-fit: cover;
   display: block;
 }
 
-.curlear-showcase-snippet__cta-wrap {
+/* Video wrapper + video fill the slide (avoids intrinsic video height gap at bottom) */
+.curlear-showcase-snippet__media-wrap--video {
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.product-form__buttons--curlear-showcase .product-form__submit {
-  color: var(--curlear-showcase-btn-text, #fff);
-  background: var(--curlear-showcase-btn-bg, #e7bda9);
-  border-radius: 0.8rem;
+.curlear-showcase-snippet__media-wrap--video .curlear-showcase-snippet__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.product-form__buttons--curlear-showcase .product-form__submit.curlear-showcase-snippet__cta--gradient {
-  background: linear-gradient(
-    180deg,
-    var(--curlear-showcase-btn-grad-start, #f2c6b4) 0%,
-    var(--curlear-showcase-btn-grad-mid, #ecb7a3) 52%,
-    var(--curlear-showcase-btn-grad-end, #c27a63) 100%
-  );
+.curlear-showcase-snippet__mute {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
 }
 
-.product-form__buttons--curlear-showcase {
-  display: none !important;
+.curlear-showcase-snippet__mute-icon {
+  font-size: 1.35rem;
+  pointer-events: none;
 }
 
 .curlear-showcase-snippet__nav {
@@ -199,9 +216,9 @@
     grid-auto-columns: calc((100% - 0.8rem) / 2);
   }
 
-  .curlear-showcase-snippet__item,
-  .curlear-showcase-snippet__media {
+  .curlear-showcase-snippet__item {
     min-height: var(--curlear-showcase-item-height-mobile, 320px);
+    height: var(--curlear-showcase-item-height-mobile, 320px);
   }
 
   .curlear-showcase-snippet__wrap--wider {

@@ -17,27 +17,41 @@
     };
 
     let dragging = false;
+    let activePointerId = null;
 
-    const onPointerDown = (event) => {
-      dragging = true;
-      handle.setPointerCapture(event.pointerId);
+    const removeDocumentListeners = () => {
+      document.removeEventListener('pointermove', onDocumentPointerMove);
+      document.removeEventListener('pointerup', onDocumentPointerEnd);
+      document.removeEventListener('pointercancel', onDocumentPointerEnd);
+    };
+
+    const onDocumentPointerMove = (event) => {
+      if (!dragging || event.pointerId !== activePointerId) return;
       setPosition(event.clientX);
       event.preventDefault();
     };
 
-    const onPointerMove = (event) => {
-      if (!dragging) return;
-      setPosition(event.clientX);
+    const onDocumentPointerEnd = (event) => {
+      if (!dragging || event.pointerId !== activePointerId) return;
+      dragging = false;
+      activePointerId = null;
+      removeDocumentListeners();
     };
 
-    const onPointerUp = () => {
-      dragging = false;
+    const onPointerDown = (event) => {
+      if (dragging) return;
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      activePointerId = event.pointerId;
+      setPosition(event.clientX);
+      event.preventDefault();
+
+      document.addEventListener('pointermove', onDocumentPointerMove, { passive: false });
+      document.addEventListener('pointerup', onDocumentPointerEnd);
+      document.addEventListener('pointercancel', onDocumentPointerEnd);
     };
 
     handle.addEventListener('pointerdown', onPointerDown);
-    handle.addEventListener('pointermove', onPointerMove);
-    handle.addEventListener('pointerup', onPointerUp);
-    handle.addEventListener('pointercancel', onPointerUp);
   };
 
   const initSectionSlider = (root) => {
@@ -53,31 +67,33 @@
       return first.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
     };
 
-    const move = (dir = 1) => {
+    const move = (dir = 1, smooth = true) => {
       const maxScroll = track.scrollWidth - track.clientWidth;
       if (maxScroll <= 0) return;
       const amount = step();
       if (amount <= 0) return;
 
+      const behavior = smooth ? 'smooth' : 'auto';
+
       if (dir > 0 && track.scrollLeft >= maxScroll - 1) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
+        track.scrollTo({ left: 0, behavior });
         return;
       }
       if (dir < 0 && track.scrollLeft <= 1) {
-        track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        track.scrollTo({ left: maxScroll, behavior });
         return;
       }
 
       const next = track.scrollLeft + amount * dir;
-      track.scrollTo({ left: clamp(next, 0, maxScroll), behavior: 'smooth' });
+      track.scrollTo({ left: clamp(next, 0, maxScroll), behavior });
     };
 
-    if (prevBtn) prevBtn.addEventListener('click', () => move(-1));
-    if (nextBtn) nextBtn.addEventListener('click', () => move(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => move(-1, true));
+    if (nextBtn) nextBtn.addEventListener('click', () => move(1, true));
 
     if (root.dataset.autoSlide !== 'true') return;
     const speed = parseInt(root.dataset.speed || '4000', 10);
-    let timer = setInterval(() => move(1), Math.max(2000, speed));
+    let timer = setInterval(() => move(1, false), Math.max(2000, speed));
     root.addEventListener('mouseenter', () => clearInterval(timer));
     root.addEventListener('mouseleave', () => {
       timer = setInterval(() => move(1), Math.max(2000, speed));

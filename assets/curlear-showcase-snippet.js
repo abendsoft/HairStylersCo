@@ -1,4 +1,25 @@
 (() => {
+  const bindShowcaseVideoMute = (root) => {
+    root.querySelectorAll('[data-curlear-showcase-mute]').forEach((btn) => {
+      const wrap = btn.closest('.curlear-showcase-snippet__media-wrap--video');
+      if (!wrap) return;
+      const video = wrap.querySelector('video.curlear-showcase-snippet__media');
+      if (!video) return;
+
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const isMuted = btn.dataset.muted === 'true';
+        video.muted = !isMuted;
+        const nextMuted = !isMuted;
+        btn.dataset.muted = nextMuted ? 'true' : 'false';
+        btn.setAttribute('aria-label', nextMuted ? 'Unmute video' : 'Mute video');
+        const label = btn.querySelector('[data-curlear-showcase-mute-label]');
+        if (label) label.textContent = nextMuted ? '🔇' : '🔊';
+      });
+    });
+  };
+
   const initShowcase = (root) => {
     const track = root.querySelector('[data-curlear-showcase-track]');
     const prev = root.querySelector('[data-curlear-showcase-prev]');
@@ -52,5 +73,8 @@
     });
   };
 
-  document.querySelectorAll('[data-curlear-showcase]').forEach(initShowcase);
+  document.querySelectorAll('[data-curlear-showcase]').forEach((root) => {
+    bindShowcaseVideoMute(root);
+    initShowcase(root);
+  });
 })();

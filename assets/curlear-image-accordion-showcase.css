@@ -197,13 +197,28 @@
     padding: 20px 10px;
   }
 
+  /* Always image on top, content below on mobile (ignore column reverse) */
   .curlear-image-accordion-showcase__media {
-    order: 2;
+    order: 1;
   }
 
   .curlear-image-accordion-showcase__content {
-    order: 1;
+    order: 2;
     padding: 10px;
+    justify-content: flex-start;
   }
 
+  .curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__media {
+    order: 1;
+  }
+
+  .curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__content {
+    order: 2;
+    justify-content: flex-start;
+  }
+
+  .curlear-image-accordion-showcase__content.curlear-image-accordion-showcase__content--center,
+  .curlear-image-accordion-showcase__content.curlear-image-accordion-showcase__content--end {
+    justify-content: flex-start;
+  }
 }

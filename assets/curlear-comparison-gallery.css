@@ -94,6 +94,8 @@
   background: transparent;
   padding: 0;
   cursor: ew-resize;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .curlear-comparison-card__handle-line {
@@ -104,6 +106,7 @@
   width: 2px;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.95);
+  pointer-events: none;
 }
 
 .curlear-comparison-card__handle-dot {
@@ -116,6 +119,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
 }
 
 .curlear-comparison-card__handle-dot::before {

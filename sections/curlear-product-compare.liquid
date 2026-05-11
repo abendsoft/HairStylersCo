@@ -1,0 +1,385 @@
+{{ 'curlear-product-compare.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign row_count = section.blocks.size
+  if row_count > 0
+    assign grid_rows = 'auto repeat(' | append: row_count | append: ', minmax(2.85rem, auto))'
+  else
+    assign grid_rows = 'auto'
+  endif
+  assign col2_img_alt = section.settings.column_2_heading | default: 'Product'
+  assign col3_img_alt = section.settings.column_3_heading | default: 'Product'
+  assign col4_img_alt = section.settings.column_4_heading | default: 'Product'
+  assign c2_fr = '1fr'
+  assign c3_fr = '1fr'
+  assign c4_fr = '1fr'
+  case section.settings.highlight_column
+    when '3'
+      assign c3_fr = '1.15fr'
+    when '4'
+      assign c4_fr = '1.15fr'
+    else
+      assign c2_fr = '1.15fr'
+  endcase
+  assign grid_cols = 'minmax(11rem, 1fr) var(--cpc-gap) minmax(9.5rem, ' | append: c2_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c3_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c4_fr | append: ')'
+%}
+
+<section
+  class="curlear-product-compare section-{{ section.id }}-padding"
+  style="
+    --cpc-section-bg: {{ section.settings.section_background_color }};
+    --cpc-table-bg: {{ section.settings.table_column_background_color }};
+    --cpc-gradient-1: {{ section.settings.gradient_color_1 }};
+    --cpc-gradient-2: {{ section.settings.gradient_color_2 }};
+    --cpc-gradient-3: {{ section.settings.gradient_color_3 }};
+    --cpc-section-padding-top: {{ section.settings.padding_top }}px;
+    --cpc-section-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="page-width curlear-product-compare__inner">
+    <div class="curlear-product-compare__scroll">
+      <div
+        class="curlear-product-compare__matrix"
+        style="grid-template-rows: {{ grid_rows }}; grid-template-columns: {{ grid_cols }};"
+      >
+        <div class="curlear-product-compare__labels">
+          <h2 class="curlear-product-compare__title">
+            {{ section.settings.first_column_heading | default: 'Compare our Products' | escape }}
+          </h2>
+          {% for block in section.blocks %}
+            <p class="curlear-product-compare__label-cell" {{ block.shopify_attributes }}>
+              {{ block.settings.text_column_1 | escape }}
+            </p>
+          {% endfor %}
+        </div>
+
+        <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--1" aria-hidden="true"></div>
+
+        <div
+          class="curlear-product-compare__product-col curlear-product-compare__product-col--2{% if section.settings.highlight_column == '2' %} is-selected{% endif %}"
+        >
+          <div class="curlear-product-compare__product-head">
+            {% if section.settings.column_2_image != blank %}
+              <div class="curlear-product-compare__product-thumb">
+                {{
+                  section.settings.column_2_image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '60, 80, 120',
+                    sizes: '42px',
+                    alt: col2_img_alt
+                }}
+              </div>
+            {% endif %}
+            {% if section.settings.column_2_heading != blank %}
+              <p class="curlear-product-compare__product-name">{{ section.settings.column_2_heading | escape }}</p>
+            {% endif %}
+            {% if section.settings.column_2_price != blank %}
+              <p class="curlear-product-compare__product-price">{{ section.settings.column_2_price | escape }}</p>
+            {% endif %}
+          </div>
+          {% for block in section.blocks %}
+            <p class="curlear-product-compare__data-cell">
+              {{ block.settings.text_column_2 | escape }}
+            </p>
+          {% endfor %}
+        </div>
+
+        <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--2" aria-hidden="true"></div>
+
+        <div
+          class="curlear-product-compare__product-col curlear-product-compare__product-col--3{% if section.settings.highlight_column == '3' %} is-selected{% endif %}"
+        >
+          <div class="curlear-product-compare__product-head">
+            {% if section.settings.column_3_image != blank %}
+              <div class="curlear-product-compare__product-thumb">
+                {{
+                  section.settings.column_3_image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '60, 80, 120',
+                    sizes: '42px',
+                    alt: col3_img_alt
+                }}
+              </div>
+            {% endif %}
+            {% if section.settings.column_3_heading != blank %}
+              <p class="curlear-product-compare__product-name">{{ section.settings.column_3_heading | escape }}</p>
+            {% endif %}
+            {% if section.settings.column_3_price != blank %}
+              <p class="curlear-product-compare__product-price">{{ section.settings.column_3_price | escape }}</p>
+            {% endif %}
+          </div>
+          {% for block in section.blocks %}
+            <p class="curlear-product-compare__data-cell">
+              {{ block.settings.text_column_3 | escape }}
+            </p>
+          {% endfor %}
+        </div>
+
+        <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--3" aria-hidden="true"></div>
+
+        <div
+          class="curlear-product-compare__product-col curlear-product-compare__product-col--4{% if section.settings.highlight_column == '4' %} is-selected{% endif %}"
+        >
+          <div class="curlear-product-compare__product-head">
+            {% if section.settings.column_4_image != blank %}
+              <div class="curlear-product-compare__product-thumb">
+                {{
+                  section.settings.column_4_image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '60, 80, 120',
+                    sizes: '42px',
+                    alt: col4_img_alt
+                }}
+              </div>
+            {% endif %}
+            {% if section.settings.column_4_heading != blank %}
+              <p class="curlear-product-compare__product-name">{{ section.settings.column_4_heading | escape }}</p>
+            {% endif %}
+            {% if section.settings.column_4_price != blank %}
+              <p class="curlear-product-compare__product-price">{{ section.settings.column_4_price | escape }}</p>
+            {% endif %}
+          </div>
+          {% for block in section.blocks %}
+            <p class="curlear-product-compare__data-cell">
+              {{ block.settings.text_column_4 | escape }}
+            </p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear product compare",
+  "tag": "section",
+  "class": "section-curlear-product-compare",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "first_column_heading",
+      "label": "First column heading",
+      "default": "Compare our Products"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 (product)"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "Product name",
+      "default": "5 in 1 Hair Styler"
+    },
+    {
+      "type": "text",
+      "id": "column_2_price",
+      "label": "Price text",
+      "default": "£64.99"
+    },
+    {
+      "type": "header",
+      "content": "Column 3 (product)"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_3_heading",
+      "label": "Product name",
+      "default": "10X Styler"
+    },
+    {
+      "type": "text",
+      "id": "column_3_price",
+      "label": "Price text",
+      "default": "£79.99"
+    },
+    {
+      "type": "header",
+      "content": "Column 4 (product)"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_4_heading",
+      "label": "Product name",
+      "default": "Travel Styler"
+    },
+    {
+      "type": "text",
+      "id": "column_4_price",
+      "label": "Price text",
+      "default": "£49.99"
+    },
+    {
+      "type": "header",
+      "content": "Highlight column"
+    },
+    {
+      "type": "select",
+      "id": "highlight_column",
+      "label": "Column with gradient (animated)",
+      "default": "2",
+      "options": [
+        { "value": "2", "label": "Column 2" },
+        { "value": "3", "label": "Column 3" },
+        { "value": "4", "label": "Column 4" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background (column 1 & gaps)",
+      "default": "#D9D9D9"
+    },
+    {
+      "type": "color",
+      "id": "table_column_background_color",
+      "label": "Compare table background (columns 2–4)",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient stop 1 (highlighted column)",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient stop 2",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_3",
+      "label": "Gradient stop 3",
+      "default": "#C27A63"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text_column_1",
+          "label": "Text column 1 (feature label)",
+          "default": "Ceramic Mineral Complex"
+        },
+        {
+          "type": "text",
+          "id": "text_column_2",
+          "label": "Text column 2",
+          "default": "Yes"
+        },
+        {
+          "type": "text",
+          "id": "text_column_3",
+          "label": "Text column 3",
+          "default": "No"
+        },
+        {
+          "type": "text",
+          "id": "text_column_4",
+          "label": "Text column 4",
+          "default": "Yes"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear product compare",
+      "blocks": [
+        {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_2": "Yes",
+            "text_column_3": "No",
+            "text_column_4": "Yes"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "PTC Heater",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "No"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Temperature",
+            "text_column_2": "Up to 430°F",
+            "text_column_3": "1 hour",
+            "text_column_4": "Up to 430°F"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Auto shut-off",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

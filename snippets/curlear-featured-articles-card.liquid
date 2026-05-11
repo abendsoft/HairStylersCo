@@ -1,0 +1,80 @@
+{% liquid
+  assign excerpt_text = ''
+  if show_description
+    if article.excerpt.size > 0
+      assign excerpt_text = article.excerpt | strip_html | truncatewords: 32
+    elsif article.content.size > 0
+      assign excerpt_text = article.content | strip_html | truncatewords: 32
+    endif
+  endif
+%}
+
+<article class="curlear-featured-articles__card"{% if shopify_attributes != blank %} {{ shopify_attributes }}{% endif %}>
+  <a class="curlear-featured-articles__card-link" href="{{ article.url }}">
+    {% if show_image %}
+      <div class="curlear-featured-articles__media">
+        {% if article.image != blank %}
+          {{
+            article.image
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              widths: '375, 550, 750, 900',
+              sizes: '(min-width: 990px) 30vw, 90vw',
+              alt: article.title
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+
+        {% if show_date %}
+          <div class="curlear-featured-articles__date-badge">
+            <span class="curlear-featured-articles__date-day">{{ article.published_at | date: '%d' }}</span>
+            <span class="curlear-featured-articles__date-month">{{ article.published_at | date: '%b' | upcase }}</span>
+          </div>
+        {% endif %}
+      </div>
+    {% elsif show_date %}
+      <div class="curlear-featured-articles__media">
+        <div class="curlear-featured-articles__date-badge">
+          <span class="curlear-featured-articles__date-day">{{ article.published_at | date: '%d' }}</span>
+          <span class="curlear-featured-articles__date-month">{{ article.published_at | date: '%b' | upcase }}</span>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="curlear-featured-articles__body">
+      {% if show_title %}
+        <h3 class="curlear-featured-articles__title">{{ article.title | escape }}</h3>
+      {% endif %}
+
+      {% if show_description and excerpt_text != blank %}
+        <p class="curlear-featured-articles__excerpt">{{ excerpt_text | escape }}</p>
+      {% endif %}
+
+      {% if show_continue_reading %}
+        <span class="curlear-featured-articles__cta">
+          <span class="curlear-featured-articles__cta-label">{{ cta_label | default: 'Continue reading' | escape }}</span>
+          <svg
+            class="curlear-featured-articles__cta-chevron"
+            width="6"
+            height="10"
+            viewBox="0 0 6 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M1 9L5 5L1 1"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      {% endif %}
+    </div>
+  </a>
+</article>

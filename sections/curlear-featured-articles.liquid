@@ -1,0 +1,427 @@
+{{ 'curlear-featured-articles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-featured-articles.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign layout_slider = false
+  if section.settings.layout == 'slider'
+    assign layout_slider = true
+  endif
+
+  assign use_blog_feed = false
+  if section.settings.article_source == 'blog'
+    assign use_blog_feed = true
+  endif
+
+  assign card_count = 0
+  if use_blog_feed and section.settings.blog != blank
+    assign lim = section.settings.blog_post_limit
+    assign ac = section.settings.blog.articles_count
+    if ac > lim
+      assign card_count = lim
+    else
+      assign card_count = ac
+    endif
+  else
+    for block in section.blocks
+      if block.settings.article != blank
+        assign card_count = card_count | plus: 1
+      endif
+    endfor
+  endif
+
+  assign view_all_href = ''
+  if section.settings.show_view_all
+    assign view_dest = section.settings.view_all_destination | default: 'automatic'
+    case view_dest
+      when 'custom_url'
+        if section.settings.view_all_url != blank
+          assign view_all_href = section.settings.view_all_url
+        endif
+      when 'all_blogs_page'
+        if section.settings.view_all_page != blank
+          assign view_all_href = section.settings.view_all_page.url
+        endif
+      when 'blog_archive'
+        if section.settings.blog != blank
+          assign view_all_href = section.settings.blog.url
+        endif
+      else
+        if section.settings.view_all_url != blank
+          assign view_all_href = section.settings.view_all_url
+        elsif section.settings.blog != blank
+          assign view_all_href = section.settings.blog.url
+        endif
+    endcase
+  endif
+
+  assign show_header_row = false
+  if section.settings.heading != blank
+    assign show_header_row = true
+  endif
+  if section.settings.show_view_all and view_all_href != blank
+    assign show_header_row = true
+  endif
+%}
+
+<section
+  class="curlear-featured-articles"
+  data-curlear-featured-articles
+  data-layout="{% if layout_slider %}slider{% else %}grid{% endif %}"
+  style="
+    {% if section.settings.background_style == 'gradient' %}
+      background: linear-gradient(90deg, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }}, {{ section.settings.gradient_color_3 }});
+    {% else %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    --cfa-heading-color: {{ section.settings.heading_color }};
+    --cfa-padding-top: {{ section.settings.padding_top }}px;
+    --cfa-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --cfa-cols-desktop: {{ section.settings.columns_desktop }};
+    --cfa-cols-mobile: {{ section.settings.columns_mobile }};
+  "
+>
+  <div class="page-width curlear-featured-articles__inner">
+    {% if show_header_row %}
+      <div class="curlear-featured-articles__head">
+        {% if section.settings.heading != blank %}
+          <h2 class="curlear-featured-articles__heading">{{ section.settings.heading | escape }}</h2>
+        {% else %}
+          <div class="curlear-featured-articles__heading-spacer" aria-hidden="true"></div>
+        {% endif %}
+
+        {% if section.settings.show_view_all and view_all_href != blank %}
+          <a class="curlear-featured-articles__view-all" href="{{ view_all_href }}">
+            {{ section.settings.view_all_label | default: 'View all' | escape }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% capture cfa_cards %}
+      {% if use_blog_feed and section.settings.blog != blank %}
+        {% for article in section.settings.blog.articles limit: section.settings.blog_post_limit %}
+          {% render 'curlear-featured-articles-card',
+            article: article,
+            show_image: section.settings.feed_show_image,
+            show_date: section.settings.feed_show_date,
+            show_title: section.settings.feed_show_title,
+            show_description: section.settings.feed_show_description,
+            show_continue_reading: section.settings.feed_show_continue_reading,
+            cta_label: section.settings.cta_label,
+            shopify_attributes: ''
+          %}
+        {% endfor %}
+      {% else %}
+        {% for block in section.blocks %}
+          {% assign article = block.settings.article %}
+          {% if article == blank %}
+          {% else %}
+            {% render 'curlear-featured-articles-card',
+              article: article,
+              show_image: block.settings.show_image,
+              show_date: block.settings.show_date,
+              show_title: block.settings.show_title,
+              show_description: block.settings.show_description,
+              show_continue_reading: block.settings.show_continue_reading,
+              cta_label: section.settings.cta_label,
+              shopify_attributes: block.shopify_attributes
+            %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endcapture %}
+
+    {% if layout_slider %}
+      <div class="curlear-featured-articles__wrap">
+        <button
+          type="button"
+          class="curlear-featured-articles__nav curlear-featured-articles__nav--prev is-hidden"
+          data-cfa-prev
+          aria-label="Previous"
+        >
+          &#8249;
+        </button>
+
+        <div class="curlear-featured-articles__track curlear-featured-articles__track--slider" data-cfa-track>
+          {{ cfa_cards }}
+        </div>
+
+        <button type="button" class="curlear-featured-articles__nav curlear-featured-articles__nav--next" data-cfa-next aria-label="Next">
+          &#8250;
+        </button>
+      </div>
+    {% else %}
+      <div class="curlear-featured-articles__track curlear-featured-articles__track--grid" data-cfa-track>
+        {{ cfa_cards }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear featured articles",
+  "tag": "section",
+  "class": "section-curlear-featured-articles",
+  "max_blocks": 9,
+  "settings": [
+    {
+      "type": "select",
+      "id": "article_source",
+      "label": "Articles",
+      "default": "manual",
+      "options": [
+        { "value": "manual", "label": "Manual (blocks below)" },
+        { "value": "blog", "label": "From blog (automatic)" }
+      ]
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "blog_post_limit",
+      "min": 1,
+      "max": 9,
+      "step": 1,
+      "label": "Number of articles (blog mode)",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Blog feed — card options"
+    },
+    {
+      "type": "paragraph",
+      "content": "These apply when “From blog” is selected. Manual blocks are ignored in that mode."
+    },
+    {
+      "type": "checkbox",
+      "id": "feed_show_image",
+      "label": "Show image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "feed_show_date",
+      "label": "Show date badge on image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "feed_show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "feed_show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "feed_show_continue_reading",
+      "label": "Show continue reading",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Heading & view all"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show “View all”",
+      "default": true,
+      "info": "Turn off to hide the View all control in the section header (heading can still show)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Articles"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "view_all_destination",
+      "label": "“View all” links to",
+      "default": "automatic",
+      "options": [
+        { "value": "automatic", "label": "Custom URL if set, else blog archive" },
+        { "value": "blog_archive", "label": "This section’s blog only" },
+        { "value": "all_blogs_page", "label": "A page (e.g. all blogs)" },
+        { "value": "custom_url", "label": "Custom URL only" }
+      ],
+      "info": "Pick a page for an “all blogs” hub, or use automatic / blog only with the Blog setting above."
+    },
+    {
+      "type": "page",
+      "id": "view_all_page",
+      "label": "All blogs / listing page"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all link text",
+      "default": "View all"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "Custom “View all” URL",
+      "info": "Used when destination is Custom URL (any internal or external link)."
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "label": "Background style",
+      "default": "gradient",
+      "options": [
+        { "value": "solid", "label": "Solid color" },
+        { "value": "gradient", "label": "Gradient" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color (solid)",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_3",
+      "label": "Gradient color 3",
+      "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "grid",
+      "options": [
+        { "value": "grid", "label": "Grid" },
+        { "value": "slider", "label": "Slider" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Blog cards per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Blog cards per row (mobile)",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Continue reading label",
+      "default": "Continue reading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "blog_card",
+      "name": "Blog card",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "label": "Show image",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_date",
+          "label": "Show date badge on image",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title",
+          "label": "Show title",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_description",
+          "label": "Show description",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_continue_reading",
+          "label": "Show continue reading",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear featured articles",
+      "blocks": [
+        { "type": "blog_card" },
+        { "type": "blog_card" },
+        { "type": "blog_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

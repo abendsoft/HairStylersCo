@@ -1,9 +1,59 @@
 (() => {
+  const MOBILE_MAX = 989;
+
+  const isMobileSliderMarquee = (wrap) =>
+    wrap.dataset.mobileSlider === 'true' && window.innerWidth <= MOBILE_MAX;
+
   const goToProduct = (event, card) => {
+    if (!event.target.closest('.curlear-video-slider__product')) return;
     if (event.target.closest('a, button')) return;
     const url = card.dataset.productUrl;
     if (!url) return;
     window.location.href = url;
+  };
+
+  const syncMuteUi = (muteBtn, muted) => {
+    const label = muteBtn.querySelector('[data-curlear-mute-label]');
+    muteBtn.dataset.muted = muted ? 'true' : 'false';
+    muteBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+    if (label) label.textContent = muted ? '🔇' : '🔊';
+  };
+
+  const postYoutubeCommand = (ytFrame, func, args = []) => {
+    if (!ytFrame || !ytFrame.contentWindow) return;
+    ytFrame.contentWindow.postMessage(
+      JSON.stringify({ event: 'command', func, args }),
+      '*'
+    );
+  };
+
+  const unmuteAndPlayMedia = (card) => {
+    const muteBtn = card.querySelector('[data-curlear-mute]');
+    const htmlVideo = card.querySelector('video.curlear-video-slider__video');
+    const ytFrame = card.querySelector('iframe[data-curlear-youtube]');
+
+    if (htmlVideo) {
+      htmlVideo.muted = false;
+      htmlVideo.play().catch(() => {});
+      if (muteBtn) syncMuteUi(muteBtn, false);
+    }
+
+    if (ytFrame) {
+      postYoutubeCommand(ytFrame, 'unMute');
+      postYoutubeCommand(ytFrame, 'playVideo');
+      if (muteBtn) syncMuteUi(muteBtn, false);
+    }
+  };
+
+  const bindMediaClick = (card) => {
+    const media = card.querySelector('.curlear-video-slider__media');
+    if (!media) return;
+
+    media.addEventListener('click', (event) => {
+      if (event.target.closest('[data-curlear-mute]')) return;
+      event.stopPropagation();
+      unmuteAndPlayMedia(card);
+    });
   };
 
   const bindMute = (card) => {
@@ -14,7 +64,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-      const label = muteBtn.querySelector('[data-curlear-mute-label]');
       const isMuted = muteBtn.dataset.muted === 'true';
       const htmlVideo = card.querySelector('video.curlear-video-slider__video');
       const ytFrame = card.querySelector('iframe[data-curlear-youtube]');
@@ -23,22 +72,11 @@
         htmlVideo.muted = !isMuted;
       }
 
-      if (ytFrame && ytFrame.contentWindow) {
-        const command = isMuted ? 'unMute' : 'mute';
-        ytFrame.contentWindow.postMessage(
-          JSON.stringify({
-            event: 'command',
-            func: command,
-            args: []
-          }),
-          '*'
-        );
+      if (ytFrame) {
+        postYoutubeCommand(ytFrame, isMuted ? 'unMute' : 'mute');
       }
 
-      const nextMuted = !isMuted;
-      muteBtn.dataset.muted = nextMuted ? 'true' : 'false';
-      muteBtn.setAttribute('aria-label', nextMuted ? 'Unmute video' : 'Mute video');
-      if (label) label.textContent = nextMuted ? '🔇' : '🔊';
+      syncMuteUi(muteBtn, !isMuted);
     });
   };
 
@@ -52,6 +90,7 @@
 
       const originalWidth = track.scrollWidth;
       originalCards.forEach((card) => {
+        if (card.dataset.curlearClone === 'true') return;
         const clone = card.cloneNode(true);
         clone.dataset.curlearClone = 'true';
         clone.removeAttribute('id');
@@ -78,6 +117,13 @@
       const delta = Math.min(34, time - lastFrame);
       lastFrame = time;
 
+      if (isMobileSliderMarquee(wrap)) {
+        track.style.transform = '';
+        track.dataset.curlearMarqueeOffset = '0';
+        window.requestAnimationFrame(tick);
+        return;
+      }
+
       if (!paused) {
         let offset = parseFloat(track.dataset.curlearMarqueeOffset || '0');
         offset += delta * speedPxPerMs;
@@ -102,6 +148,7 @@
     };
 
     const pauseMarqueeForTouch = () => {
+      if (isMobileSliderMarquee(wrap)) return;
       setTouchPausedState(true);
       track.style.transform = 'translate3d(0, 0, 0)';
       track.dataset.curlearMarqueeOffset = '0';
@@ -146,6 +193,7 @@
         goToProduct(event, card);
       });
       bindMute(card);
+      bindMediaClick(card);
     });
 
     const moveByOneCard = (direction = 1) => {
@@ -172,17 +220,47 @@
     if (prevBtn) prevBtn.addEventListener('click', () => moveByOneCard(-1));
     if (nextBtn) nextBtn.addEventListener('click', () => moveByOneCard(1));
 
-    if (marqueeEnabled) return;
-
     const autoplay = wrap.dataset.autoplay === 'true';
     const speed = parseInt(wrap.dataset.speed || '4000', 10);
+    const intervalMs = Math.max(2000, speed);
+
+    let mobileMarqueeAutoplayTimer = null;
+    const stopMobileMarqueeAutoplay = () => {
+      if (mobileMarqueeAutoplayTimer) {
+        clearInterval(mobileMarqueeAutoplayTimer);
+        mobileMarqueeAutoplayTimer = null;
+      }
+    };
+
+    const startMobileMarqueeAutoplay = () => {
+      if (!marqueeEnabled || wrap.dataset.mobileSlider !== 'true' || !autoplay) return;
+      if (window.innerWidth > MOBILE_MAX) return;
+      if (mobileMarqueeAutoplayTimer) return;
+      mobileMarqueeAutoplayTimer = setInterval(() => moveByOneCard(1), intervalMs);
+    };
+
+    if (marqueeEnabled && wrap.dataset.mobileSlider === 'true' && autoplay) {
+      startMobileMarqueeAutoplay();
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= MOBILE_MAX) startMobileMarqueeAutoplay();
+        else stopMobileMarqueeAutoplay();
+      });
+      wrap.addEventListener('touchstart', stopMobileMarqueeAutoplay, { passive: true });
+      wrap.addEventListener('mouseenter', stopMobileMarqueeAutoplay);
+      wrap.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= MOBILE_MAX) startMobileMarqueeAutoplay();
+      });
+    }
+
+    if (marqueeEnabled) return;
+
     if (!autoplay) return;
 
-    let timer = setInterval(() => moveByOneCard(1), Math.max(2000, speed));
+    let timer = setInterval(() => moveByOneCard(1), intervalMs);
     stopStandardAutoplay = () => clearInterval(timer);
     wrap.addEventListener('mouseenter', () => clearInterval(timer));
     wrap.addEventListener('mouseleave', () => {
-      timer = setInterval(() => moveByOneCard(1), Math.max(2000, speed));
+      timer = setInterval(() => moveByOneCard(1), intervalMs);
     });
 
     wrap.addEventListener('touchstart', () => {

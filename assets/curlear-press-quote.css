@@ -87,9 +87,11 @@
     grid-template-columns: 1fr;
     gap: 2.4rem;
   }
-
+.curlear-press-quote__main{
+  padding-left: 0px
+}
   .curlear-press-quote__aside {
-    justify-content: flex-start;
+  justify-content: flex-start;
   padding-right: 30px;
   padding-top: 50px;
   }

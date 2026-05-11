@@ -12,11 +12,24 @@
 {% endcomment %}
 <div {{ block.shopify_attributes }}>
   {%- style -%}
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear {
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit {
       color: {{ block.settings.curlear_button_text_color | default: '#FFFFFF' }};
       background: {{ block.settings.curlear_button_bg | default: '#E7BDA9' }};
       border: 0;
       box-shadow: none;
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      min-width: 0;
     }
 
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient {
@@ -28,7 +41,9 @@
       );
       border: 0;
       box-shadow: none;
-      border-radius: 10px
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px 0px;
     }
   {%- endstyle -%}
 

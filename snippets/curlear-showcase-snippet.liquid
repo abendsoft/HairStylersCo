@@ -49,7 +49,7 @@
     data-speed="{{ auto_slide_speed | default: 4 | times: 1000 }}"
   >
     {% if heading != blank %}
-      <h3 class="curlear-showcase-snippet__heading">{{ heading | escape }}</h3>
+      <p class="curlear-showcase-snippet__heading">{{ heading | escape }}</p>
     {% endif %}
 
     <div class="curlear-showcase-snippet__wrap{% if wider_desktop %} curlear-showcase-snippet__wrap--wider{% endif %}">

@@ -8,7 +8,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
   grid-template-areas: "heading text image";
   gap: 3rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .curlear-expertise__heading {

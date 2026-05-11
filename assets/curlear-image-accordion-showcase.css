@@ -5,7 +5,7 @@
 .curlear-image-accordion-showcase__inner {
   display: grid;
   grid-template-columns: minmax(0, 40%) minmax(0, 60%);
-  margin-top: 2rem;
+  margin-top: 3rem;
   align-items: stretch;
   padding: 40px 20px;
 }

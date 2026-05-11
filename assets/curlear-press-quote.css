@@ -79,7 +79,9 @@
   font-weight: 500;
   color: var(--curlear-press-text, #1a1a1a);
 }
-
+.curlear-press-quote__main{
+  padding-left: 40px;
+}
 @media screen and (max-width: 989px) {
   .curlear-press-quote__grid {
     grid-template-columns: 1fr;

@@ -111,7 +111,7 @@
             "visible_desktop": 4,
             "auto_slide_speed": 4,
             "item_height_desktop": 300,
-            "item_height_mobile": 240,
+            "item_height_mobile": 260,
             "wider_desktop": true,
             "media_1_video": "shopify://files/videos/ssstik.io_@ashleylamarca_1777992698378.mp4",
             "media_2_video": "shopify://files/videos/ssstik.io_@jesslui_1777992738737.mp4",
@@ -433,6 +433,143 @@
         "media_bg_color": "#e8d6cc"
       }
     },
+    "curlear_product_compare_A73wxy": {
+      "type": "curlear-product-compare",
+      "blocks": {
+        "comparison_row_yL7bTz": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_2": "Yes",
+            "text_column_3": "No",
+            "text_column_4": "Yes"
+          }
+        },
+        "comparison_row_qk8wcz": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "PTC Heater",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "No"
+          }
+        },
+        "comparison_row_P7BQjK": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Temperature",
+            "text_column_2": "Up to 430°F",
+            "text_column_3": "1 hour",
+            "text_column_4": "Up to 430°F"
+          }
+        },
+        "comparison_row_hQj6gN": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Auto shut-off",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_row_yL7bTz",
+        "comparison_row_qk8wcz",
+        "comparison_row_P7BQjK",
+        "comparison_row_hQj6gN"
+      ],
+      "name": "Curlear product compare",
+      "settings": {
+        "first_column_heading": "Compare our Products",
+        "column_2_heading": "5 in 1 Hair Styler",
+        "column_2_price": "£64.99",
+        "column_3_heading": "10X Styler",
+        "column_3_price": "£79.99",
+        "column_4_heading": "Travel Styler",
+        "column_4_price": "£49.99",
+        "highlight_column": "2",
+        "section_background_color": "#fffaf7",
+        "table_column_background_color": "#FFFFFF",
+        "gradient_color_1": "#F2C6B4",
+        "gradient_color_2": "#ECB7A3",
+        "gradient_color_3": "#C27A63",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "curlear_featured_articles_7MKx8E": {
+      "type": "curlear-featured-articles",
+      "blocks": {
+        "blog_card_yRPkWY": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        },
+        "blog_card_9UQx9C": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        },
+        "blog_card_wT6AmA": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        }
+      },
+      "block_order": [
+        "blog_card_yRPkWY",
+        "blog_card_9UQx9C",
+        "blog_card_wT6AmA"
+      ],
+      "name": "Curlear featured articles",
+      "settings": {
+        "article_source": "blog",
+        "blog": "news",
+        "blog_post_limit": 6,
+        "feed_show_image": true,
+        "feed_show_date": true,
+        "feed_show_title": true,
+        "feed_show_description": true,
+        "feed_show_continue_reading": true,
+        "show_view_all": false,
+        "heading": "Featured Articles",
+        "heading_color": "#FFFFFF",
+        "view_all_destination": "automatic",
+        "view_all_page": "",
+        "view_all_label": "View all",
+        "view_all_url": "",
+        "background_style": "gradient",
+        "background_color": "#ECB7A3",
+        "gradient_color_1": "#F2C6B4",
+        "gradient_color_2": "#ECB7A3",
+        "gradient_color_3": "#C27A63",
+        "layout": "grid",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "cta_label": "Continue reading",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
     "curlear_featured_collection_UgaMhn": {
       "type": "curlear-featured-collection",
       "name": "Curlear feature collection",
@@ -483,6 +620,8 @@
     "curlear_comparison_gallery_epbRim",
     "curlear_hero_features_9Ear7N",
     "curlear_image_accordion_showcase_NNPnT4",
+    "curlear_product_compare_A73wxy",
+    "curlear_featured_articles_7MKx8E",
     "curlear_featured_collection_UgaMhn",
     "related-products"
   ]

@@ -457,27 +457,27 @@
         "comparison_row_P7BQjK": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Temperature",
-            "text_column_2": "Up to 430°F",
-            "text_column_3": "1 hour",
-            "text_column_4": "Up to 430°F"
-          }
-        },
-        "comparison_row_hQj6gN": {
-          "type": "comparison_row",
-          "settings": {
-            "text_column_1": "Auto shut-off",
+            "text_column_1": "PTC Heater",
             "text_column_2": "Yes",
             "text_column_3": "Yes",
             "text_column_4": "Yes"
           }
         },
+        "comparison_row_hQj6gN": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Far Infrared Heat",
+            "text_column_2": "No",
+            "text_column_3": "No",
+            "text_column_4": "No"
+          }
+        },
         "comparison_row_mLf3fD": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_1": "Adjustable Heat",
             "text_column_2": "Yes",
-            "text_column_3": "No",
+            "text_column_3": "Yes",
             "text_column_4": "Yes"
           }
         }

@@ -66,6 +66,8 @@
   justify-content: right;
   text-align: center;
   min-height: 100%;
+  padding-right: 70px;
+  padding-top: 50px;
 }
 
 .curlear-press-quote__brand {

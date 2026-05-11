@@ -239,23 +239,23 @@
           "settings": {
             "image": "shopify://shop_images/6957331e135b7cdc3f3f5fa663750866a1d2ec1a.png",
             "heading": "Best for",
-            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair. Stylists - if you're working on 1-8 heads a day</p>"
           }
         },
         "card_W9Mf4F": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/850b3a8f72fb3ba94a456ed807e8279edc5b493c.png",
-            "heading": "Best for",
-            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+            "heading": "Where it fits in your routine",
+            "text": "<p>The .75\" creates spirals and tight curls, the 1\" forms medium-sized curls, the 1.25\" produces voluminous, soft waves, and the 1.5\" delivers a polished blowout finish.<br/><br/></p>"
           }
         },
         "card_j8hnBh": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/36a3d8260dd6f57f3ede861e10e5de7044964771.png",
-            "heading": "Best for",
-            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair.</p>"
+            "heading": "Why you'll love it",
+            "text": "<p>2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.</p>"
           }
         }
       },
@@ -563,10 +563,10 @@
         "column_4_price": "£49.99",
         "highlight_column": "2",
         "section_background_color": "#fffaf7",
-        "table_column_background_color": "#FFFFFF",
-        "gradient_color_1": "#F2C6B4",
-        "gradient_color_2": "#ECB7A3",
-        "gradient_color_3": "#C27A63",
+        "table_column_background_color": "#ffffff",
+        "gradient_color_1": "#f2c6b4",
+        "gradient_color_2": "#ecb7a3",
+        "gradient_color_3": "#c27a63",
         "padding_top": 52,
         "padding_bottom": 52
       }
@@ -625,16 +625,16 @@
         "feed_show_continue_reading": true,
         "show_view_all": false,
         "heading": "Featured Articles",
-        "heading_color": "#FFFFFF",
+        "heading_color": "#ffffff",
         "view_all_destination": "automatic",
         "view_all_page": "",
         "view_all_label": "View all",
         "view_all_url": "",
         "background_style": "gradient",
-        "background_color": "#ECB7A3",
-        "gradient_color_1": "#F2C6B4",
-        "gradient_color_2": "#ECB7A3",
-        "gradient_color_3": "#C27A63",
+        "background_color": "#ecb7a3",
+        "gradient_color_1": "#f2c6b4",
+        "gradient_color_2": "#ecb7a3",
+        "gradient_color_3": "#c27a63",
         "layout": "grid",
         "columns_desktop": 3,
         "columns_mobile": "1",

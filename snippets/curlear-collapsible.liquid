@@ -3,7 +3,18 @@
     <details class="curlear-collapsible__row" {% if open_first_row %}open{% endif %}>
       <summary class="curlear-collapsible__summary">
         <span class="curlear-collapsible__summary-left">{{ row_1_title | escape }}</span>
-        <span class="curlear-collapsible__caret"></span>
+        <span class="curlear-collapsible__caret{% if caret_icon != blank %} curlear-collapsible__caret--image{% endif %}">
+          {%- if caret_icon != blank -%}
+            <img
+              src="{{ caret_icon | image_url: width: 64 }}"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </span>
       </summary>
       <div class="curlear-collapsible__content-wrap">
         <div class="curlear-collapsible__content rte">{{ row_1_content }}</div>
@@ -14,7 +25,18 @@
     <details class="curlear-collapsible__row">
       <summary class="curlear-collapsible__summary">
         <span class="curlear-collapsible__summary-left">{{ row_2_title | escape }}</span>
-        <span class="curlear-collapsible__caret"></span>
+        <span class="curlear-collapsible__caret{% if caret_icon != blank %} curlear-collapsible__caret--image{% endif %}">
+          {%- if caret_icon != blank -%}
+            <img
+              src="{{ caret_icon | image_url: width: 64 }}"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </span>
       </summary>
       <div class="curlear-collapsible__content-wrap">
         <div class="curlear-collapsible__content rte">{{ row_2_content }}</div>
@@ -25,7 +47,18 @@
     <details class="curlear-collapsible__row">
       <summary class="curlear-collapsible__summary">
         <span class="curlear-collapsible__summary-left">{{ row_3_title | escape }}</span>
-        <span class="curlear-collapsible__caret"></span>
+        <span class="curlear-collapsible__caret{% if caret_icon != blank %} curlear-collapsible__caret--image{% endif %}">
+          {%- if caret_icon != blank -%}
+            <img
+              src="{{ caret_icon | image_url: width: 64 }}"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </span>
       </summary>
       <div class="curlear-collapsible__content-wrap">
         <div class="curlear-collapsible__content rte">{{ row_3_content }}</div>
@@ -36,7 +69,18 @@
     <details class="curlear-collapsible__row">
       <summary class="curlear-collapsible__summary">
         <span class="curlear-collapsible__summary-left">{{ row_4_title | escape }}</span>
-        <span class="curlear-collapsible__caret"></span>
+        <span class="curlear-collapsible__caret{% if caret_icon != blank %} curlear-collapsible__caret--image{% endif %}">
+          {%- if caret_icon != blank -%}
+            <img
+              src="{{ caret_icon | image_url: width: 64 }}"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </span>
       </summary>
       <div class="curlear-collapsible__content-wrap">
         <div class="curlear-collapsible__content rte">{{ row_4_content }}</div>

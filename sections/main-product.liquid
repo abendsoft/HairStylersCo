@@ -44,10 +44,9 @@
     }
 
     {% if section.settings.full_width %}
-      .section-{{ section.id }}-padding .product__info-container.product__column-sticky {
+      .section-{{ section.id }}-padding .product--pin-details .product__info-wrapper.product__column-sticky {
         padding: 20px;
-        width: 100%;
-        max-width: 100%;
+        box-sizing: border-box;
       }
 
       @media screen and (max-width: 749px) {
@@ -78,6 +77,24 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    {%- comment -%}
+      Default PDP (gallery sticky): pull the product row up by section padding-top so media
+      can sit flush with the top of the section while keeping section bottom padding.
+    {%- endcomment -%}
+    {%- if section.settings.enable_sticky_info and section.settings.sticky_info_column == false -%}
+      @media screen and (max-width: 749px) {
+        .section-{{ section.id }}-padding .product--has-sticky-column:not(.product--pin-details) {
+          margin-top: -{{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+        }
+      }
+
+      @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding .product--has-sticky-column:not(.product--pin-details) {
+          margin-top: -{{ section.settings.padding_top }}px;
+        }
+      }
+    {%- endif -%}
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -114,16 +131,22 @@
     >
   {%- endif -%}
 
+  {%- liquid
+    assign curlear_pin_product_details = false
+    if section.settings.enable_sticky_info and section.settings.sticky_info_column
+      assign curlear_pin_product_details = true
+    endif
+  -%}
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="{% if section.settings.full_width %}product__full-width{% else %}page-width{% endif %}">
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}{% if section.settings.enable_sticky_info %} product--has-sticky-column{% endif %}{% if curlear_pin_product_details %} product--pin-details{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if curlear_pin_product_details %} product__column-sticky{% endif %}{% if settings.animations_reveal_on_scroll %}{% unless curlear_pin_product_details %} scroll-trigger animate--slide-in{% endunless %}{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
-          class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          class="product__info-container"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -316,17 +339,14 @@
               {%- when 'curlear_collapsible' -%}
                 {% render 'curlear-collapsible',
                   open_first_row: block.settings.open_first_row,
+                  caret_icon: block.settings.caret_icon,
                   row_1_title: block.settings.row_1_title,
-                  row_1_icon: block.settings.row_1_icon,
                   row_1_content: block.settings.row_1_content,
                   row_2_title: block.settings.row_2_title,
-                  row_2_icon: block.settings.row_2_icon,
                   row_2_content: block.settings.row_2_content,
                   row_3_title: block.settings.row_3_title,
-                  row_3_icon: block.settings.row_3_icon,
                   row_3_content: block.settings.row_3_content,
                   row_4_title: block.settings.row_4_title,
-                  row_4_icon: block.settings.row_4_icon,
                   row_4_content: block.settings.row_4_content
                 %}
               {%- when 'curlear_icon_text' -%}
@@ -1876,17 +1896,19 @@
           "label": "Initially open first row",
           "default": true
         },
+        {
+          "type": "image_picker",
+          "id": "caret_icon",
+          "label": "Expand/collapse icon",
+          "info": "Optional. Replaces the + / − caret for all rows. Suggested: simple chevron or plus (approx. 48×48px)."
+        },
         { "type": "text", "id": "row_1_title", "label": "Row 1 heading", "default": "Size guide" },
-        { "type": "text", "id": "row_1_icon", "label": "Row 1 icon", "default": "✦" },
         { "type": "richtext", "id": "row_1_content", "label": "Row 1 content" },
         { "type": "text", "id": "row_2_title", "label": "Row 2 heading", "default": "Details" },
-        { "type": "text", "id": "row_2_icon", "label": "Row 2 icon", "default": "✦" },
         { "type": "richtext", "id": "row_2_content", "label": "Row 2 content" },
         { "type": "text", "id": "row_3_title", "label": "Row 3 heading", "default": "Specs & features" },
-        { "type": "text", "id": "row_3_icon", "label": "Row 3 icon", "default": "✦" },
         { "type": "richtext", "id": "row_3_content", "label": "Row 3 content" },
         { "type": "text", "id": "row_4_title", "label": "Row 4 heading" },
-        { "type": "text", "id": "row_4_icon", "label": "Row 4 icon", "default": "✦" },
         { "type": "richtext", "id": "row_4_content", "label": "Row 4 content" }
       ]
     },
@@ -2532,6 +2554,13 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_info_column",
+      "default": false,
+      "label": "Details stay visible (gallery scrolls)",
+      "info": "Requires Sticky content. When off: images stay put while details scroll (default). When on: details stay put while images scroll — desktop only, 750px+."
     },
     {
       "type": "color_scheme",

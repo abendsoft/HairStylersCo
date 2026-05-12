@@ -1,5 +1,13 @@
 product-info {
   display: block;
+  overflow: visible;
+}
+
+/* Sticky needs a visible overflow chain from product-info down to the viewport */
+product-info .product__full-width,
+product-info .page-width,
+product-info .product.grid {
+  overflow: visible;
 }
 
 .product {
@@ -8,6 +16,107 @@ product-info {
 
 .product.grid {
   gap: 0;
+}
+
+@media screen and (min-width: 750px) {
+  product-info:has(.product--pin-details) {
+    background-attachment: scroll;
+  }
+
+  .product--has-sticky-column.grid {
+    align-items: stretch;
+    max-width: 100%;
+  }
+
+  /**
+   * Flex items default to min-width:auto, so wide children (e.g. horizontal carousels)
+   * can force the info column wider than its slot and overlap the gallery + cause
+   * horizontal page scroll. Allow both columns to respect their grid/flex widths.
+   */
+  .product--has-sticky-column.grid > .grid__item {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .product--has-sticky-column .product__media-wrapper {
+    min-width: 0;
+  }
+
+  .product--has-sticky-column .product__info-wrapper {
+    min-width: 0;
+  }
+
+  /* Default: sticky gallery only works if the gallery is shorter than the stretched grid cell */
+  .product--has-sticky-column:not(.product--pin-details) .product__media-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product--has-sticky-column:not(.product--pin-details) media-gallery.product__column-sticky {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product--pin-details:not(.product--no-media) .product__media-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: min(100vh, 100rem);
+  }
+
+  .product--pin-details:not(.product--no-media) media-gallery {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product--pin-details .product__info-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /**
+   * Pin: sticky on the wrapper + scroll on .product__info-container avoids browsers where
+   * overflow on the same node as position:sticky breaks sticking. Max-height caps height
+   * so sticky can engage when the info column is taller than the gallery.
+   */
+  .product--pin-details .product__info-wrapper.product__column-sticky {
+    align-self: flex-start;
+    flex: 0 1 auto;
+    min-width: 0;
+    box-sizing: border-box;
+    max-height: calc(100vh - 4rem - var(--header-height, 0px));
+    max-height: calc(100svh - 4rem - var(--header-height, 0px));
+    overflow: visible;
+  }
+
+  .product--pin-details .product__info-wrapper.product__column-sticky > .product__info-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(100vh - 4rem - var(--header-height, 0px));
+    max-height: calc(100svh - 4rem - var(--header-height, 0px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .product--pin-details .product__info-wrapper.product__column-sticky > .product__info-container::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+media-gallery {
+  display: block;
+  width: 100%;
 }
 
 .product--no-media {
@@ -22,8 +131,9 @@ product-info {
 @media screen and (min-width: 750px) {
   .product__column-sticky {
     display: block;
+    position: -webkit-sticky;
     position: sticky;
-    top: 3rem;
+    top: calc(2rem + var(--header-height, 0px));
     z-index: 2;
   }
 
@@ -36,7 +146,7 @@ product-info {
   }
 
   .product__info-wrapper--extra-padding {
-    padding: 0 0 0 2rem;
+    padding: 0 20px 0 2rem;
   }
 
   .product--right .product__info-wrapper {
@@ -288,8 +398,15 @@ a.product__text {
 }
 
 @media screen and (min-width: 750px) {
-  .product__info-container {
+  .product:not(.product--no-media) .product__info-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .product--no-media .product__info-container {
     max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .product__info-container .price--on-sale .price-item--regular {

@@ -1,8 +1,13 @@
-{% if cart == empty %}
-  <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-{% else %}
-  <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-{% endif %}
+<span class="svg-wrapper">
+  <img
+    src="{{ 'famicons_cart-outline.png' | file_url }}"
+    alt=""
+    width="44"
+    height="44"
+    loading="eager"
+    decoding="async"
+  >
+</span>
 
 <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
 {%- if cart != empty -%}

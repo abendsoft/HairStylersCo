@@ -139,6 +139,13 @@
   height: 100%;
 }
 
+/* While a row is open, the text column grows; keep media at the image's natural height at this width (JS sets --curlear-locked-media-height). */
+.curlear-image-accordion-showcase__inner.curlear-image-accordion-showcase--lock-media-height .curlear-image-accordion-showcase__media {
+  height: var(--curlear-locked-media-height);
+  max-height: var(--curlear-locked-media-height);
+  align-self: start;
+}
+
 .curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__media {
   order: 1;
 }

@@ -158,6 +158,7 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "sticky_info_column": false,
         "color_scheme": "scheme-1",
         "full_width": true,
         "media_size": "small",

@@ -1,5 +1,12 @@
 .curlear-showcase-snippet {
   margin: 2.4rem 0;
+  max-width: 100%;
+}
+
+/* Negative margins break out of the PDP column and can cause horizontal page scroll + overlap. */
+.product__info-container .curlear-showcase-snippet__wrap--wider {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .curlear-showcase-snippet__heading {
@@ -13,6 +20,7 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0.8rem;
+  min-width: 0;
 }
 
 .curlear-showcase-snippet__wrap--wider {
@@ -117,10 +125,27 @@
 
 .curlear-collapsible__row {
   border-top: 1px solid #d9d9d9;
+  padding: 0 20px;
 }
 
 .curlear-collapsible__row:first-child {
   border-top: 0;
+}
+
+.curlear-collapsible__caret--image::before {
+  content: none;
+}
+
+.curlear-collapsible__caret--image img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.curlear-collapsible__row[open] .curlear-collapsible__caret--image img {
+  transform: rotate(180deg);
 }
 
 .curlear-collapsible__summary {
@@ -150,7 +175,6 @@
 }
 
 .curlear-collapsible__caret::before {
-  content: '+';
   font-size: 2rem;
   line-height: 1;
   display: inline-block;
@@ -159,6 +183,10 @@
 
 .curlear-collapsible__row[open] .curlear-collapsible__caret::before {
   content: '-';
+}
+
+.curlear-collapsible__row[open] .curlear-collapsible__caret--image::before {
+  content: none;
 }
 
 .curlear-collapsible__content-wrap {

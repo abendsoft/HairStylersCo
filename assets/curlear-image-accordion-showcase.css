@@ -92,9 +92,7 @@
   line-height: 1;
 }
 
-.curlear-image-accordion-showcase__row[open] .curlear-image-accordion-showcase__arrow::before {
-  content: '-';
-}
+
 
 .curlear-image-accordion-showcase__arrow-icon {
   width: 100%;

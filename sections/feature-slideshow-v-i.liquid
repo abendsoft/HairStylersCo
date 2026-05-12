@@ -1,0 +1,682 @@
+{% comment %}
+  Feature Slideshow V/I — full-viewport vertical slides (wheel + touch).
+  Self-contained: styles and scripts in this file; Swiper 11 loaded from jsDelivr once per page.
+{% endcomment %}
+
+{%- liquid
+  assign swiper_css = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
+  assign swiper_js = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'
+-%}
+
+{%- style -%}
+  #FeatureSlideshowVI-{{ section.id }} {
+    --fsvi-heading-color: {{ section.settings.heading_color }};
+    --fsvi-heading-size: {{ section.settings.heading_size }}px;
+    --fsvi-heading-bottom: {{ section.settings.heading_bottom }}px;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} a.feature-slideshow-vi__media-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__layer--desktop {
+    display: block;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__layer--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__layer--desktop {
+      display: none;
+    }
+    #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__layer--mobile {
+      display: block;
+    }
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    vertical-align: middle;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__heading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--fsvi-heading-bottom);
+    z-index: 2;
+    pointer-events: none;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  #FeatureSlideshowVI-{{ section.id }} .feature-slideshow-vi__heading span {
+    display: inline-block;
+    color: var(--fsvi-heading-color);
+    font-size: var(--fsvi-heading-size);
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Optional hook: enable “Transparent header” in section settings, then style in your theme */
+  body.feature-slideshow-vi-transparent-header .shopify-section-header,
+  body.feature-slideshow-vi-transparent-header #shopify-section-header {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.feature-slideshow-vi-transparent-header .shopify-section-header.isolate,
+  body.feature-slideshow-vi-transparent-header #shopify-section-header .header-wrapper {
+    background: transparent !important;
+  }
+{%- endstyle -%}
+
+<div
+  id="FeatureSlideshowVI-{{ section.id }}"
+  class="feature-slideshow-vi"
+  data-section-id="{{ section.id }}"
+  data-transparent-header="{% if section.settings.transparent_header %}true{% else %}false{% endif %}"
+  data-slide-speed="{{ section.settings.slide_speed }}"
+  data-wheel-sensitivity="{{ section.settings.wheel_sensitivity }}"
+  data-theme-provides-swiper="{% if section.settings.theme_provides_swiper %}true{% else %}false{% endif %}"
+>
+  <div class="swiper feature-slideshow-vi__swiper" aria-roledescription="carousel">
+    <div class="swiper-wrapper">
+      {%- assign fsvi_first_visible = true -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type != 'slide' -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          assign show_slide = false
+          if block.settings.media_type == 'image'
+            if block.settings.image_desktop != blank or block.settings.image_mobile != blank
+              assign show_slide = true
+            endif
+          else
+            if block.settings.video_desktop != blank or block.settings.video_mobile != blank
+              assign show_slide = true
+            endif
+          endif
+        -%}
+        {%- unless show_slide -%}{%- continue -%}{%- endunless -%}
+
+        {%- liquid
+          assign img_loading = 'lazy'
+          if fsvi_first_visible
+            assign img_loading = 'eager'
+            assign fsvi_first_visible = false
+          endif
+        -%}
+
+        <div class="swiper-slide feature-slideshow-vi__slide" {{ block.shopify_attributes }}>
+          {%- liquid
+            assign fsvi_slide_link = block.settings.slide_link
+            assign fsvi_link_aria = block.settings.link_accessibility_label | default: block.settings.slide_heading | default: 'Slide link'
+          -%}
+          <div class="feature-slideshow-vi__media">
+            {%- if fsvi_slide_link != blank -%}
+              <a
+                class="feature-slideshow-vi__media-link"
+                href="{{ fsvi_slide_link }}"
+                aria-label="{{ fsvi_link_aria | escape }}"
+              >
+            {%- endif -%}
+            {%- if block.settings.media_type == 'video' -%}
+              <div class="feature-slideshow-vi__layer feature-slideshow-vi__layer--desktop">
+                {%- if block.settings.video_desktop != blank -%}
+                  {{
+                    block.settings.video_desktop
+                    | video_tag:
+                      class: 'feature-slideshow-vi__video',
+                      autoplay: false,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      preload: 'metadata',
+                      image_size: '3840x'
+                  }}
+                {%- elsif block.settings.video_mobile != blank -%}
+                  {{
+                    block.settings.video_mobile
+                    | video_tag:
+                      class: 'feature-slideshow-vi__video',
+                      autoplay: false,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      preload: 'metadata',
+                      image_size: '3840x'
+                  }}
+                {%- else -%}
+                  <div class="feature-slideshow-vi__placeholder">Add desktop or mobile video</div>
+                {%- endif -%}
+              </div>
+              <div class="feature-slideshow-vi__layer feature-slideshow-vi__layer--mobile">
+                {%- if block.settings.video_mobile != blank -%}
+                  {{
+                    block.settings.video_mobile
+                    | video_tag:
+                      class: 'feature-slideshow-vi__video',
+                      autoplay: false,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      preload: 'metadata',
+                      image_size: '1100x'
+                  }}
+                {%- elsif block.settings.video_desktop != blank -%}
+                  {{
+                    block.settings.video_desktop
+                    | video_tag:
+                      class: 'feature-slideshow-vi__video',
+                      autoplay: false,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      preload: 'metadata',
+                      image_size: '1100x'
+                  }}
+                {%- else -%}
+                  <div class="feature-slideshow-vi__placeholder">Add mobile or desktop video</div>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <div class="feature-slideshow-vi__layer feature-slideshow-vi__layer--desktop">
+                {%- if block.settings.image_desktop != blank -%}
+                  {%- assign fsvi_img_alt = block.settings.image_desktop.alt
+                    | default: block.settings.slide_heading
+                    | default: 'Slide'
+                  -%}
+                  {{
+                    block.settings.image_desktop
+                    | image_url: width: 3840
+                    | image_tag:
+                      class: 'feature-slideshow-vi__img',
+                      widths: '750, 1100, 1500, 1780, 2000, 3000, 3840',
+                      sizes: '100vw',
+                      loading: img_loading,
+                      alt: fsvi_img_alt
+                  }}
+                {%- elsif block.settings.image_mobile != blank -%}
+                  {%- assign fsvi_img_alt = block.settings.image_mobile.alt
+                    | default: block.settings.slide_heading
+                    | default: 'Slide'
+                  -%}
+                  {{
+                    block.settings.image_mobile
+                    | image_url: width: 1500
+                    | image_tag:
+                      class: 'feature-slideshow-vi__img',
+                      widths: '375, 550, 750, 1100, 1500',
+                      sizes: '100vw',
+                      loading: img_loading,
+                      alt: fsvi_img_alt
+                  }}
+                {%- else -%}
+                  <div class="feature-slideshow-vi__placeholder">Add desktop or mobile image</div>
+                {%- endif -%}
+              </div>
+              <div class="feature-slideshow-vi__layer feature-slideshow-vi__layer--mobile">
+                {%- if block.settings.image_mobile != blank -%}
+                  {%- assign fsvi_img_alt = block.settings.image_mobile.alt
+                    | default: block.settings.slide_heading
+                    | default: 'Slide'
+                  -%}
+                  {{
+                    block.settings.image_mobile
+                    | image_url: width: 1500
+                    | image_tag:
+                      class: 'feature-slideshow-vi__img',
+                      widths: '375, 550, 750, 1100, 1500',
+                      sizes: '100vw',
+                      loading: img_loading,
+                      alt: fsvi_img_alt
+                  }}
+                {%- elsif block.settings.image_desktop != blank -%}
+                  {%- assign fsvi_img_alt = block.settings.image_desktop.alt
+                    | default: block.settings.slide_heading
+                    | default: 'Slide'
+                  -%}
+                  {{
+                    block.settings.image_desktop
+                    | image_url: width: 1500
+                    | image_tag:
+                      class: 'feature-slideshow-vi__img',
+                      widths: '750, 1100, 1500',
+                      sizes: '100vw',
+                      loading: img_loading,
+                      alt: fsvi_img_alt
+                  }}
+                {%- else -%}
+                  <div class="feature-slideshow-vi__placeholder">Add mobile or desktop image</div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if fsvi_slide_link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.show_heading and block.settings.slide_heading != blank -%}
+            <div class="feature-slideshow-vi__heading">
+              <span>{{ block.settings.slide_heading | escape }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var rootId = 'FeatureSlideshowVI-{{ section.id }}';
+    var SWIPER_SRC = {{ swiper_js | json }};
+    var SWIPER_CSS = {{ swiper_css | json }};
+
+    function qs(sel, ctx) {
+      return (ctx || document).querySelector(sel);
+    }
+
+    function qsa(sel, ctx) {
+      return Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
+    }
+
+    function ensureSwiperCss() {
+      if (document.getElementById('FeatureSlideshowVI-swiper-css')) return;
+      var l = document.createElement('link');
+      l.id = 'FeatureSlideshowVI-swiper-css';
+      l.rel = 'stylesheet';
+      l.href = SWIPER_CSS;
+      document.head.appendChild(l);
+    }
+
+    function bumpTransparentHeader(delta) {
+      if (!document.body) return;
+      window.__fsviHeaderTransparentRef =
+        (window.__fsviHeaderTransparentRef || 0) + delta;
+      if (window.__fsviHeaderTransparentRef < 0) {
+        window.__fsviHeaderTransparentRef = 0;
+      }
+      if (window.__fsviHeaderTransparentRef > 0) {
+        document.body.classList.add('feature-slideshow-vi-transparent-header');
+      } else {
+        document.body.classList.remove('feature-slideshow-vi-transparent-header');
+      }
+    }
+
+    function loadScriptOnce(src, id, done) {
+      if (window.Swiper) return done();
+      var existing = id ? document.getElementById(id) : null;
+      if (existing) {
+        if (window.Swiper) done();
+        else existing.addEventListener('load', done, { once: true });
+        return;
+      }
+      var s = document.createElement('script');
+      if (id) s.id = id;
+      s.src = src;
+      s.async = true;
+      s.onload = done;
+      s.onerror = function () {
+        console.warn(
+          'Feature Slideshow V/I: Swiper failed to load from CDN. Add Swiper to your theme or allow cdn.jsdelivr.net in CSP.'
+        );
+      };
+      document.head.appendChild(s);
+    }
+
+    function pauseAllVideos(scope) {
+      qsa('video', scope).forEach(function (v) {
+        try {
+          v.pause();
+        } catch (e) {}
+      });
+    }
+
+    function playActiveVideos(scope) {
+      var slide = qs('.swiper-slide-active', scope);
+      if (!slide) return;
+      qsa('video', slide).forEach(function (v) {
+        v.muted = true;
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      });
+    }
+
+    function initSection() {
+      var root = document.getElementById(rootId);
+      if (!root) return;
+
+      var el = qs('.feature-slideshow-vi__swiper', root);
+      if (!el) return;
+
+      var themeProvides =
+        root.getAttribute('data-theme-provides-swiper') === 'true';
+
+      if (typeof Swiper === 'undefined') {
+        if (themeProvides) {
+          console.warn(
+            'Feature Slideshow V/I: Swiper is not on window. Disable “Theme already includes Swiper” or load swiper-bundle before this section.'
+          );
+          return;
+        }
+        ensureSwiperCss();
+        loadScriptOnce(SWIPER_SRC, 'FeatureSlideshowVI-swiper-js', function () {
+          initSection();
+        });
+        return;
+      }
+
+      if (el.dataset.fsviInitialized === 'true') return;
+      var slides = qsa('.swiper-slide', el);
+      if (slides.length === 0) return;
+
+      if (!themeProvides) ensureSwiperCss();
+
+      var transparent =
+        root.getAttribute('data-transparent-header') === 'true';
+      var speed = parseInt(root.getAttribute('data-slide-speed'), 10) || 900;
+      var sensitivity =
+        parseFloat(root.getAttribute('data-wheel-sensitivity')) || 1;
+
+      if (transparent) {
+        bumpTransparentHeader(1);
+        root._featureSlideshowViTransparent = true;
+      }
+
+      var swiper = new Swiper(el, {
+        direction: 'vertical',
+        speed: speed,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        allowTouchMove: true,
+        watchSlidesProgress: true,
+        mousewheel: {
+          forceToAxis: true,
+          sensitivity: sensitivity,
+          releaseOnEdges: true,
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        effect: 'creative',
+        creativeEffect: {
+          prev: {
+            translate: [0, '-0%', -1],
+          },
+          next: {
+            translate: [0, '100%', 0],
+          },
+        },
+        on: {
+          init: function () {
+            pauseAllVideos(root);
+            playActiveVideos(root);
+          },
+          slideChangeTransitionEnd: function () {
+            pauseAllVideos(root);
+            playActiveVideos(root);
+          },
+        },
+      });
+
+      el.dataset.fsviInitialized = 'true';
+      root._featureSlideshowViSwiper = swiper;
+    }
+
+    function destroySection() {
+      var root = document.getElementById(rootId);
+      if (!root) return;
+      pauseAllVideos(root);
+      if (
+        root._featureSlideshowViSwiper &&
+        typeof root._featureSlideshowViSwiper.destroy === 'function'
+      ) {
+        try {
+          root._featureSlideshowViSwiper.destroy(true, true);
+        } catch (e) {}
+        root._featureSlideshowViSwiper = null;
+      }
+      var el = qs('.feature-slideshow-vi__swiper', root);
+      if (el) el.dataset.fsviInitialized = 'false';
+      if (root._featureSlideshowViTransparent) {
+        bumpTransparentHeader(-1);
+        root._featureSlideshowViTransparent = false;
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSection);
+    } else {
+      initSection();
+    }
+
+    document.addEventListener('shopify:section:load', function (ev) {
+      if (ev.detail && ev.detail.sectionId === '{{ section.id }}') initSection();
+    });
+    document.addEventListener('shopify:section:unload', function (ev) {
+      if (ev.detail && ev.detail.sectionId === '{{ section.id }}') destroySection();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Feature Slideshow V/I",
+  "tag": "section",
+  "class": "section-feature-slideshow-v-i",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "label": "Transparent header overlay",
+      "default": false,
+      "info": "When enabled, adds body class feature-slideshow-vi-transparent-header (and basic header transparency CSS). Place this section at the top of the page and adjust your header CSS in the theme if needed."
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 400,
+      "max": 1600,
+      "step": 50,
+      "unit": "ms",
+      "label": "Transition duration",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "wheel_sensitivity",
+      "min": 0.3,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Mouse wheel sensitivity",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom",
+      "min": 16,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading offset from bottom",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "theme_provides_swiper",
+      "label": "Theme already includes Swiper 11",
+      "default": false,
+      "info": "When enabled, this section does not load Swiper from jsDelivr. Load swiper-bundle.min.js and swiper-bundle.min.css in your theme (same major version recommended)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video (Shopify hosted)" }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image",
+          "info": "Shown below 750px. Falls back to desktop image if empty."
+        },
+        {
+          "type": "video",
+          "id": "video_desktop",
+          "label": "Desktop video"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Mobile video",
+          "info": "Shown below 750px. Falls back to desktop video if empty."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_heading",
+          "label": "Show bottom heading",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "slide_heading",
+          "label": "Heading",
+          "default": "BOUTIQUE"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Link (optional)",
+          "info": "Wraps the slide media only (not the bottom heading). Opens in the same tab."
+        },
+        {
+          "type": "text",
+          "id": "link_accessibility_label",
+          "label": "Link accessibility label",
+          "info": "Screen reader label for the link. Defaults to the heading, or “Slide link” if empty."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Slideshow V/I",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

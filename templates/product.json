@@ -127,16 +127,12 @@
           "settings": {
             "open_first_row": true,
             "row_1_title": "Size guide",
-            "row_1_icon": "✦",
             "row_1_content": "<p>.75\" = Create gorgeous spirals and tight curls with lasting bounce, adding spring and volume to straight or wavy hair<br/><br/>1\" = Perfect for uniform curls, this versatile barrel delivers classic or modern styles with a strong C-shape for defined, medium-sized curls<br/><br/>1.25\" = Effortlessly craft voluminous curls, sultry waves, or beachy vibes with this larger barrel for soft, natural-looking waves<br/><br/>1.5\" = This is your blowout in a barrel, with big, soft bends and signature volume for a polished effortless finish<br/><br/></p>",
             "row_2_title": "Details",
-            "row_2_icon": "✦",
             "row_2_content": "",
             "row_3_title": "Specs & features",
-            "row_3_icon": "✦",
             "row_3_content": "",
             "row_4_title": "",
-            "row_4_icon": "✦",
             "row_4_content": ""
           }
         }
@@ -158,7 +154,7 @@
       ],
       "settings": {
         "enable_sticky_info": true,
-        "sticky_info_column": false,
+        "sticky_info_column": true,
         "color_scheme": "scheme-1",
         "full_width": true,
         "media_size": "small",

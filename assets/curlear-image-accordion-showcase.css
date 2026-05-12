@@ -13,7 +13,8 @@
 .curlear-image-accordion-showcase__content {
   order: 1;
   background: var(--curlear-showcase-content-bg, #f7f7f7);
-  padding: 70px 30px;
+  padding: var(--curlear-accordion-content-padding-top, 70px) var(--curlear-accordion-content-padding-right, 30px)
+    var(--curlear-accordion-content-padding-bottom, 70px) var(--curlear-accordion-content-padding-left, 30px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -209,7 +210,6 @@
 
   .curlear-image-accordion-showcase__content {
     order: 2;
-    padding: 10px;
     justify-content: flex-start;
   }
 

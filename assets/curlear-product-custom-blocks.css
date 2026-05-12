@@ -150,7 +150,7 @@
 }
 
 .curlear-collapsible__caret::before {
-  content: '+';
+  content: '+';
   font-size: 2rem;
   line-height: 1;
   display: inline-block;

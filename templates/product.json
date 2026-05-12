@@ -217,7 +217,7 @@
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
         "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
-        "open_first_row": true,
+        "open_first_row": false,
         "show_slider_buttons": false,
         "reverse_columns_mobile": false,
         "content_alignment": "start",

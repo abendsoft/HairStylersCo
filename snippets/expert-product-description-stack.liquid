@@ -44,7 +44,9 @@
         {% endif %}
         {% liquid
           assign epd_spec_has_row = false
-          if block.settings.row_1_name != blank or block.settings.row_1_detail != blank
+          if block.settings.table_rows != blank
+            assign epd_spec_has_row = true
+          elsif block.settings.row_1_name != blank or block.settings.row_1_detail != blank
             assign epd_spec_has_row = true
           elsif block.settings.row_2_name != blank or block.settings.row_2_detail != blank
             assign epd_spec_has_row = true
@@ -86,6 +88,12 @@
                 </tr>
               </thead>
               <tbody>
+                {% if block.settings.table_rows != blank %}
+                  {% render 'expert-product-description-pipe-lines',
+                    content: block.settings.table_rows,
+                    variant: 'table'
+                  %}
+                {% else %}
                 {% if block.settings.row_1_name != blank or block.settings.row_1_detail != blank %}
                   <tr>
                     <td>{{ block.settings.row_1_name | escape }}</td>
@@ -175,6 +183,7 @@
                     <td>{{ block.settings.row_15_name | escape }}</td>
                     <td class="rte">{{ block.settings.row_15_detail }}</td>
                   </tr>
+                {% endif %}
                 {% endif %}
               </tbody>
             </table>

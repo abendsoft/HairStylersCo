@@ -1,7 +1,7 @@
 {% comment %}
   Parses richtext into lines split by </p> and <br>; each line must contain "|".
   @param content {string} richtext source
-  @param variant {string} "flavour" | "steps"
+  @param variant {string} "flavour" | "steps" | "table"
 {% endcomment %}
 
 {% if content != blank %}
@@ -36,7 +36,16 @@
       {% endfor %}
     {% endif %}
 
-    {% if variant == 'steps' %}
+    {% if variant == 'table' %}
+      <tr>
+        <td>{{ epd_ptitle | escape }}</td>
+        <td class="rte">
+          {% if epd_pdesc != blank %}
+            <p>{{ epd_pdesc | escape }}</p>
+          {% endif %}
+        </td>
+      </tr>
+    {% elsif variant == 'steps' %}
       {% assign epd_pl_step_num = epd_pl_step_num | plus: 1 %}
       <div class="epd-usage-step">
         <div class="epd-usage-step__num">{{ epd_pl_step_num }}</div>

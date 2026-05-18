@@ -1,6 +1,16 @@
 {% comment %}
   Feature Slideshow V/I — full-viewport vertical slides (wheel + touch).
-  Self-contained: styles and scripts in this file; Swiper 11 loaded from jsDelivr once per page.
+
+  Swiper 11 is required. This section can load it from jsDelivr automatically; some themes or
+  Content-Security-Policy rules block that. If the slideshow does nothing or stays on slide 1:
+
+  1) Online store → Themes → … → Edit code → layout/theme.liquid
+  2) Inside <head> (before </head>), add once:
+       {% render 'feature-slideshow-v-i-swiper' %}
+     (Copy snippets/feature-slideshow-v-i-swiper.liquid into that theme if missing.)
+  3) Save. Optional: enable section setting "Theme already includes Swiper 11".
+
+  Or paste the same <link> + <script> URLs from that snippet manually into theme.liquid.
 {% endcomment %}
 
 {%- liquid
@@ -390,7 +400,8 @@
       var s = document.createElement('script');
       if (id) s.id = id;
       s.src = src;
-      s.async = true;
+      s.async = false;
+      s.defer = false;
       s.onload = done;
       s.onerror = function () {
         console.warn(
@@ -602,7 +613,7 @@
       "id": "theme_provides_swiper",
       "label": "Theme already includes Swiper 11",
       "default": false,
-      "info": "When enabled, this section does not load Swiper from jsDelivr. Load swiper-bundle.min.js and swiper-bundle.min.css in your theme (same major version recommended)."
+      "info": "If the slider does not work, add snippet feature-slideshow-v-i-swiper to layout/theme.liquid (see section top comment), then enable this. When off, the section injects Swiper from jsDelivr (some stores block that)."
     }
   ],
   "blocks": [

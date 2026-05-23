@@ -43,6 +43,8 @@
     --epd-flavour-card-top: {{ section.settings.flavour_card_top_border }};
     --epd-flavour-card-heading: {{ section.settings.flavour_card_heading }};
     --epd-flavour-card-text: {{ section.settings.flavour_card_text }};
+    --epd-flavour-card-heading-hover: {{ section.settings.flavour_card_heading_hover }};
+    --epd-flavour-card-text-hover: {{ section.settings.flavour_card_text_hover }};
   "
 >
   <div class="epd__inner">
@@ -578,6 +580,7 @@
 
   #shopify-section-{{ sid }} .epd-flavour-card :is(h1, h2, h3, h4, h5, h6) {
     color: var(--epd-flavour-card-heading);
+    transition: color 0.22s ease;
   }
 
   #shopify-section-{{ sid }} .epd-flavour-card p {
@@ -585,10 +588,19 @@
     color: var(--epd-flavour-card-text);
     line-height: 1.6;
     font-size: calc(var(--epd-body-size) * 0.98);
+    transition: color 0.22s ease;
   }
 
   #shopify-section-{{ sid }} .epd-flavour-card p + p {
     margin-top: 0.5rem;
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card:hover :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--epd-flavour-card-heading-hover);
+  }
+
+  #shopify-section-{{ sid }} .epd-flavour-card:hover p {
+    color: var(--epd-flavour-card-text-hover);
   }
 
   #shopify-section-{{ sid }} .epd-flavour-card:hover {
@@ -1278,6 +1290,18 @@
       "type": "color",
       "id": "flavour_card_text",
       "label": "Card text",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "color",
+      "id": "flavour_card_heading_hover",
+      "label": "Card heading (hover)",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "flavour_card_text_hover",
+      "label": "Card text (hover)",
       "default": "#4a4a4a"
     }
   ],

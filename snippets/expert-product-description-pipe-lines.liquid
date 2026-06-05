@@ -1,5 +1,7 @@
 {% comment %}
-  Parses richtext into lines split by </p> and <br>; each line must contain "|".
+  Parses richtext into lines split by </p>, <br>, and </li>.
+  Steps variant: lines WITH "|" → title badge + description.
+                 lines WITHOUT "|" → badge + plain description only (no heading rendered).
   @param content {string} richtext source
   @param variant {string} "flavour" | "steps" | "table"
 {% endcomment %}
@@ -8,6 +10,7 @@
   {% assign epd_pl_mark = '[[[epd-pipe-line]]]' %}
   {% assign epd_pl_src = content %}
   {% assign epd_pl_src = epd_pl_src | replace: '</p>', epd_pl_mark %}
+  {% assign epd_pl_src = epd_pl_src | replace: '</li>', epd_pl_mark %}
   {% assign epd_pl_src = epd_pl_src | replace: '<p>', '' %}
   {% assign epd_pl_src = epd_pl_src | replace: '<br />', epd_pl_mark %}
   {% assign epd_pl_src = epd_pl_src | replace: '<br/>', epd_pl_mark %}
@@ -22,11 +25,45 @@
   {% for epd_pl_chunk in epd_pl_chunks %}
     {% assign epd_line = epd_pl_chunk | strip_html | strip %}
     {% if epd_line == '' %}{% continue %}{% endif %}
-    {% unless epd_line contains '|' %}{% continue %}{% endunless %}
-    {% assign epd_pp = epd_line | split: '|' %}
-    {% assign epd_ptitle = epd_pp[0] | strip %}
-    {% assign epd_pdesc = '' %}
-    {% if epd_pp.size > 1 %}
+
+    {% if variant == 'steps' %}
+      {% assign epd_pl_step_num = epd_pl_step_num | plus: 1 %}
+
+      {% if epd_line contains '|' %}
+        {% comment %} Has pipe: title | description — show both {% endcomment %}
+        {% assign epd_pp = epd_line | split: '|' %}
+        {% assign epd_ptitle = epd_pp[0] | strip %}
+        {% assign epd_pdesc = '' %}
+        {% for epd_ppart in epd_pp %}
+          {% if forloop.index0 == 1 %}
+            {% assign epd_pdesc = epd_ppart | strip %}
+          {% elsif forloop.index0 > 1 %}
+            {% assign epd_pdesc = epd_pdesc | append: '|' | append: epd_ppart | strip %}
+          {% endif %}
+        {% endfor %}
+        <div class="epd-usage-step epd-usage-step--titled">
+          <div class="epd-usage-step__num">{{ epd_pl_step_num }}</div>
+          <div class="epd-usage-step-text rte">
+            {% if epd_ptitle != blank %}<h3 class="epd-usage-step__title">{{ epd_ptitle }}</h3>{% endif %}
+            {% if epd_pdesc != blank %}<p class="epd-usage-step__desc">{{ epd_pdesc }}</p>{% endif %}
+          </div>
+        </div>
+
+      {% else %}
+        {% comment %} No pipe: full line is description only — no heading rendered {% endcomment %}
+        <div class="epd-usage-step epd-usage-step--plain">
+          <div class="epd-usage-step__num">{{ epd_pl_step_num }}</div>
+          <div class="epd-usage-step-text rte">
+            <p class="epd-usage-step__desc">{{ epd_line }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+    {% elsif variant == 'table' %}
+      {% unless epd_line contains '|' %}{% continue %}{% endunless %}
+      {% assign epd_pp = epd_line | split: '|' %}
+      {% assign epd_ptitle = epd_pp[0] | strip %}
+      {% assign epd_pdesc = '' %}
       {% for epd_ppart in epd_pp %}
         {% if forloop.index0 == 1 %}
           {% assign epd_pdesc = epd_ppart | strip %}
@@ -34,38 +71,27 @@
           {% assign epd_pdesc = epd_pdesc | append: '|' | append: epd_ppart | strip %}
         {% endif %}
       {% endfor %}
-    {% endif %}
-
-    {% if variant == 'table' %}
       <tr>
-        <td>{{ epd_ptitle | escape }}</td>
-        <td class="rte">
-          {% if epd_pdesc != blank %}
-            <p>{{ epd_pdesc | escape }}</p>
-          {% endif %}
-        </td>
+        <td>{{ epd_ptitle }}</td>
+        <td class="rte">{% if epd_pdesc != blank %}<p>{{ epd_pdesc }}</p>{% endif %}</td>
       </tr>
-    {% elsif variant == 'steps' %}
-      {% assign epd_pl_step_num = epd_pl_step_num | plus: 1 %}
-      <div class="epd-usage-step">
-        <div class="epd-usage-step__num">{{ epd_pl_step_num }}</div>
-        <div class="epd-usage-step-text rte">
-          {% if epd_ptitle != blank %}
-            <h3>{{ epd_ptitle | escape }}</h3>
-          {% endif %}
-          {% if epd_pdesc != blank %}
-            <p>{{ epd_pdesc | escape }}</p>
-          {% endif %}
-        </div>
-      </div>
+
     {% else %}
+      {% comment %} Flavour cards {% endcomment %}
+      {% unless epd_line contains '|' %}{% continue %}{% endunless %}
+      {% assign epd_pp = epd_line | split: '|' %}
+      {% assign epd_ptitle = epd_pp[0] | strip %}
+      {% assign epd_pdesc = '' %}
+      {% for epd_ppart in epd_pp %}
+        {% if forloop.index0 == 1 %}
+          {% assign epd_pdesc = epd_ppart | strip %}
+        {% elsif forloop.index0 > 1 %}
+          {% assign epd_pdesc = epd_pdesc | append: '|' | append: epd_ppart | strip %}
+        {% endif %}
+      {% endfor %}
       <div class="epd-flavour-card rte">
-        {% if epd_ptitle != blank %}
-          <h3>{{ epd_ptitle | escape }}</h3>
-        {% endif %}
-        {% if epd_pdesc != blank %}
-          <p>{{ epd_pdesc | escape }}</p>
-        {% endif %}
+        {% if epd_ptitle != blank %}<h3>{{ epd_ptitle }}</h3>{% endif %}
+        {% if epd_pdesc != blank %}<p>{{ epd_pdesc }}</p>{% endif %}
       </div>
     {% endif %}
   {% endfor %}

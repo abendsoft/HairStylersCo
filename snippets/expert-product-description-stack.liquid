@@ -22,6 +22,12 @@
 
   {% case block.type %}
     {% when 'about' %}
+      {% liquid
+        assign epd_about_text = block.settings.text | strip_html | strip
+        unless block.settings.title != blank or epd_about_text != blank
+          continue
+        endunless
+      %}
       <article
         class="epd-about epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -34,6 +40,45 @@
       </article>
 
     {% when 'spec_table' %}
+      {% liquid
+        assign epd_spec_has_row = false
+        if block.settings.table_rows != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_1_name != blank or block.settings.row_1_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_2_name != blank or block.settings.row_2_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_3_name != blank or block.settings.row_3_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_4_name != blank or block.settings.row_4_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_5_name != blank or block.settings.row_5_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_6_name != blank or block.settings.row_6_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_7_name != blank or block.settings.row_7_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_8_name != blank or block.settings.row_8_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_9_name != blank or block.settings.row_9_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_10_name != blank or block.settings.row_10_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_11_name != blank or block.settings.row_11_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_12_name != blank or block.settings.row_12_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_13_name != blank or block.settings.row_13_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_14_name != blank or block.settings.row_14_detail != blank
+          assign epd_spec_has_row = true
+        elsif block.settings.row_15_name != blank or block.settings.row_15_detail != blank
+          assign epd_spec_has_row = true
+        endif
+        unless block.settings.title != blank or epd_spec_has_row
+          continue
+        endunless
+      %}
       <article
         class="epd-specs epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -42,42 +87,6 @@
         {% if block.settings.title != blank %}
           <h2>{{ block.settings.title | escape }}</h2>
         {% endif %}
-        {% liquid
-          assign epd_spec_has_row = false
-          if block.settings.table_rows != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_1_name != blank or block.settings.row_1_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_2_name != blank or block.settings.row_2_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_3_name != blank or block.settings.row_3_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_4_name != blank or block.settings.row_4_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_5_name != blank or block.settings.row_5_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_6_name != blank or block.settings.row_6_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_7_name != blank or block.settings.row_7_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_8_name != blank or block.settings.row_8_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_9_name != blank or block.settings.row_9_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_10_name != blank or block.settings.row_10_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_11_name != blank or block.settings.row_11_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_12_name != blank or block.settings.row_12_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_13_name != blank or block.settings.row_13_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_14_name != blank or block.settings.row_14_detail != blank
-            assign epd_spec_has_row = true
-          elsif block.settings.row_15_name != blank or block.settings.row_15_detail != blank
-            assign epd_spec_has_row = true
-          endif
-        %}
         {% if epd_spec_has_row %}
           <div class="epd-table-wrap">
             <table class="epd-table">
@@ -387,8 +396,39 @@
         {% assign epd_flavour_mode = 'none' %}
       {% endif %}
       {% liquid
+        assign epd_f_intro = block.settings.intro | strip_html | strip
+        assign epd_f_cards = block.settings.card_list | strip_html | strip
+        assign epd_f_intro_2 = block.settings.intro_2 | strip_html | strip
+        assign epd_f_cards_2 = block.settings.card_list_2 | strip_html | strip
+        assign epd_f_intro_3 = block.settings.intro_3 | strip_html | strip
+        assign epd_f_cards_3 = block.settings.card_list_3 | strip_html | strip
+        assign epd_f_has_content = false
+        if block.settings.title != blank
+          assign epd_f_has_content = true
+        elsif epd_f_intro != blank
+          assign epd_f_has_content = true
+        elsif block.settings.image != blank
+          assign epd_f_has_content = true
+        elsif epd_f_cards != blank
+          assign epd_f_has_content = true
+        elsif block.settings.title_2 != blank
+          assign epd_f_has_content = true
+        elsif epd_f_intro_2 != blank
+          assign epd_f_has_content = true
+        elsif epd_f_cards_2 != blank
+          assign epd_f_has_content = true
+        elsif block.settings.title_3 != blank
+          assign epd_f_has_content = true
+        elsif epd_f_intro_3 != blank
+          assign epd_f_has_content = true
+        elsif epd_f_cards_3 != blank
+          assign epd_f_has_content = true
+        endif
+        unless epd_f_has_content
+          continue
+        endunless
         assign epd_f_extra = false
-        if block.settings.title_2 != blank or block.settings.intro_2 != blank or block.settings.card_list_2 != blank or block.settings.title_3 != blank or block.settings.intro_3 != blank or block.settings.card_list_3 != blank
+        if block.settings.title_2 != blank or epd_f_intro_2 != blank or epd_f_cards_2 != blank or block.settings.title_3 != blank or epd_f_intro_3 != blank or epd_f_cards_3 != blank
           assign epd_f_extra = true
         endif
       %}
@@ -451,6 +491,12 @@
         {% assign epd_flavour_mode = 'in_section' %}
 
     {% when 'flavour_card' %}
+      {% liquid
+        assign epd_flavour_card_body = block.settings.content | strip_html | strip
+        unless epd_flavour_card_body != blank
+          continue
+        endunless
+      %}
       {% if epd_flavour_mode == 'none' %}
         <div class="epd-flavour-grid">
           {% assign epd_flavour_mode = 'orphan' %}
@@ -464,6 +510,12 @@
       </div>
 
     {% when 'whats_in_box' %}
+      {% liquid
+        assign epd_box_list_text = block.settings.list | strip_html | strip
+        unless block.settings.title != blank or block.settings.image != blank or epd_box_list_text != blank
+          continue
+        endunless
+      %}
       <section
         class="epd-box epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -495,6 +547,12 @@
       </section>
 
     {% when 'pricing' %}
+      {% liquid
+        assign epd_pricing_body = block.settings.content | strip_html | strip
+        unless block.settings.title != blank or epd_pricing_body != blank
+          continue
+        endunless
+      %}
       <section
         class="epd-pricing epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -512,6 +570,30 @@
         if epd_u_intro1 == blank and block.settings.intro != blank
           assign epd_u_intro1 = block.settings.intro
         endif
+        assign epd_u_intro1_text = epd_u_intro1 | strip_html | strip
+        assign epd_u_intro2_text = block.settings.intro_2 | strip_html | strip
+        assign epd_u_steps1_text = block.settings.steps_1 | strip_html | strip
+        assign epd_u_steps2_text = block.settings.steps_2 | strip_html | strip
+        assign epd_u_note_text = block.settings.steps_1_note | strip_html | strip
+        assign epd_u_has_content = false
+        if block.settings.heading_1 != blank
+          assign epd_u_has_content = true
+        elsif epd_u_intro1_text != blank
+          assign epd_u_has_content = true
+        elsif epd_u_steps1_text != blank
+          assign epd_u_has_content = true
+        elsif epd_u_note_text != blank
+          assign epd_u_has_content = true
+        elsif block.settings.heading_2 != blank
+          assign epd_u_has_content = true
+        elsif epd_u_intro2_text != blank
+          assign epd_u_has_content = true
+        elsif epd_u_steps2_text != blank
+          assign epd_u_has_content = true
+        endif
+        unless epd_u_has_content
+          continue
+        endunless
       %}
       <section
         class="epd-usage epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}{% if block.settings.usage_step_text_bg %} epd-usage--step-text-bg{% endif %}"
@@ -540,6 +622,33 @@
       </section>
 
     {% when 'faq_list' %}
+      {% liquid
+        assign epd_faq_any = false
+        if block.settings.question_1 != blank or block.settings.answer_1 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_2 != blank or block.settings.answer_2 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_3 != blank or block.settings.answer_3 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_4 != blank or block.settings.answer_4 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_5 != blank or block.settings.answer_5 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_6 != blank or block.settings.answer_6 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_7 != blank or block.settings.answer_7 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_8 != blank or block.settings.answer_8 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_9 != blank or block.settings.answer_9 != blank
+          assign epd_faq_any = true
+        elsif block.settings.question_10 != blank or block.settings.answer_10 != blank or block.settings.answer_10_alt != blank
+          assign epd_faq_any = true
+        endif
+        unless epd_faq_any
+          continue
+        endunless
+      %}
       <div
         class="epd-faq-wrap epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -727,6 +836,12 @@
       </div>
 
     {% when 'rich_text' %}
+      {% liquid
+        assign epd_rich_body = block.settings.content | strip_html | strip
+        unless block.settings.title != blank or epd_rich_body != blank
+          continue
+        endunless
+      %}
       <div
         class="epd-rich epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"
@@ -739,6 +854,12 @@
       </div>
 
     {% when 'custom_liquid' %}
+      {% liquid
+        assign epd_custom_code = block.settings.custom_liquid | strip
+        unless epd_custom_code != blank
+          continue
+        endunless
+      %}
       <div
         class="epd-custom epd-block-root{% if block.settings.align_center %} epd-block--center{% endif %}"
         style="--epd-desk-pad: {{ block.settings.extra_padding_desktop | default: 0 }}px;"

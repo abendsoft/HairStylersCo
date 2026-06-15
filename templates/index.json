@@ -23,10 +23,10 @@
             "text_color": "#ffffff",
             "button_background": "#333333",
             "button_text_color": "#ffffff",
-            "use_gradient_button": true,
+            "use_gradient_button": false,
             "button_gradient_start": "#f8d0bd",
             "button_gradient_end": "#d99077",
-            "image": "shopify://shop_images/921ff8043e261c2f4a69062bba83e1e90871cd6e.png",
+            "image": "shopify://shop_images/e562a223ba84296cf56c9a48297a86de5406bd3b.webp",
             "video_url": "",
             "video_autoplay": true
           }

@@ -65,7 +65,7 @@
         "image_QHtqwb": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/14d8ffb38332f25284444c9633cb5a5474ee84fd.png"
+            "image": "shopify://shop_images/Rectangle.webp"
           }
         }
       },
@@ -113,7 +113,7 @@
           "settings": {
             "collection": "",
             "custom_heading": "All-in-One Stylers",
-            "image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933.png"
+            "image": "shopify://shop_images/Rectangle_4.webp"
           }
         },
         "collection_KcBNrr": {
@@ -121,7 +121,7 @@
           "settings": {
             "collection": "",
             "custom_heading": "HAIR DRYERS",
-            "image": "shopify://shop_images/db6ca14df871f0b8c04affde01042abc560c40ff.png"
+            "image": "shopify://shop_images/Rectangle_3.webp"
           }
         },
         "collection_iNpLiw": {
@@ -129,7 +129,7 @@
           "settings": {
             "collection": "",
             "custom_heading": "Hair Curlers",
-            "image": "shopify://shop_images/247fa8039be5ff09ac43125f8d2b281d4ae568f6.png"
+            "image": "shopify://shop_images/Rectangle_2.webp"
           }
         },
         "collection_JWcK6f": {
@@ -137,7 +137,7 @@
           "settings": {
             "collection": "",
             "custom_heading": "Hair Straighteners",
-            "image": "shopify://shop_images/dca05a4fb3b7e6ad9d2a086e529eb2ec3f6f8320.png"
+            "image": "shopify://shop_images/Rectangle_1.webp"
           }
         }
       },
@@ -282,7 +282,7 @@
         "image_card_z4h8kp": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/d3ba7400f8926c2dbd312a40698265886fe402d0.png",
+            "image": "shopify://shop_images/Rectangle_7.webp",
             "overlay_heading": "STRAIGHT",
             "overlay_text": "One pass. Smooth.",
             "button_label": "Shop now",
@@ -292,7 +292,7 @@
         "image_card_Bq7Uty": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/ba13272e0e8d579eea63e588548689e788cdb645.png",
+            "image": "shopify://shop_images/Rectangle_6.webp",
             "overlay_heading": "WAVES",
             "overlay_text": "Loose. Lived-in.",
             "button_label": "Shop now",
@@ -302,7 +302,7 @@
         "image_card_gKzr9q": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/a461d099cdb79575163dc7ec9c4b7fa5328c642a.png",
+            "image": "shopify://shop_images/Rectangle_5.webp",
             "overlay_heading": "VOLUME",
             "overlay_text": "Lift that stays.",
             "button_label": "Shop now",

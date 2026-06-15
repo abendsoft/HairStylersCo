@@ -348,8 +348,8 @@
       "type": "curlear-image-text-banner",
       "name": "Curlear text banner",
       "settings": {
-        "background_image": "shopify://shop_images/65edb07c91e524feb080c97563b69df242f32bd6.webp",
-        "image_opacity": 60,
+        "background_image": "shopify://shop_images/Rectangle_8.webp",
+        "image_opacity": 100,
         "top_heading": "Consistent Heat",
         "top_heading_color": "#ffffff",
         "top_text": "Same temperature, edge to edge. No hot spots. No over-styling.",

@@ -15,7 +15,7 @@
   style="--curlear-cards-bg: {{ section.settings.background_color }};"
 >
   <div class="page-width page-width-padding">
-    <div class="curlear-image-text-cards__top">
+    <div class="curlear-image-text-cards__top{% if section.settings.header_alignment == 'center' %} curlear-image-text-cards__top--center{% endif %}">
       {% if section.settings.heading != blank %}
         <h2 class="curlear-image-text-cards__heading">{{ section.settings.heading }}</h2>
       {% endif %}
@@ -88,14 +88,24 @@
     {
       "type": "text",
       "id": "heading",
-      "label": "Left heading",
+      "label": "Heading",
       "default": "Versatile Curling Made Easy"
     },
     {
       "type": "text",
       "id": "top_text",
-      "label": "Right text",
+      "label": "Text",
       "default": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types."
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Heading and text alignment",
+      "default": "split",
+      "options": [
+        { "value": "split", "label": "Split (heading left, text right)" },
+        { "value": "center", "label": "Center (heading above text)" }
+      ]
     },
     {
       "type": "color",

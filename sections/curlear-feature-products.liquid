@@ -1,0 +1,307 @@
+{{ 'curlear-product-info-extras.css' | asset_url | stylesheet_tag }}
+{{ 'curlear-feature-products.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-feature-products.js' | asset_url }}" defer="defer"></script>
+
+{% style %}
+  #shopify-section-{{ section.id }} .curlear-feature-products {
+    --curlear-feature-bg: {{ section.settings.background_color }};
+    --curlear-feature-text: {{ section.settings.text_color }};
+    --curlear-feature-star-color: {{ section.settings.star_color }};
+    --curlear-feature-button-bg: {{ section.settings.button_color }};
+    --curlear-feature-button-text: {{ section.settings.button_text_color }};
+    --curlear-feature-button-grad-start: {{ section.settings.button_gradient_start }};
+    --curlear-feature-button-grad-end: {{ section.settings.button_gradient_end }};
+    --curlear-feature-dot-active: {{ section.settings.dot_active_color }};
+  }
+{% endstyle %}
+
+<section class="curlear-feature-products section-{{ section.id }}-padding">
+  <div
+    class="curlear-feature-products__slider-wrap"
+    data-curlear-feature-products
+    data-autoplay="{% if section.settings.auto_slide %}true{% else %}false{% endif %}"
+    data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+  >
+    <div class="curlear-feature-products__track" data-curlear-feature-track>
+      {% for block in section.blocks %}
+        {%- liquid
+          assign block_product = all_products[block.settings.product]
+          assign v = block_product.selected_or_first_available_variant
+          assign slide_image = block.settings.image
+          if slide_image == blank and block_product != blank and block_product.featured_image != blank
+            assign slide_image = block_product.featured_image
+          endif
+        -%}
+
+        <article class="curlear-feature-products__slide" data-curlear-feature-slide {{ block.shopify_attributes }}>
+          <div class="curlear-feature-products__slide-inner">
+            <div class="curlear-feature-products__media">
+              {% if slide_image != blank %}
+                {{
+                  slide_image
+                  | image_url: width: 1400
+                  | image_tag:
+                    class: 'curlear-feature-products__image',
+                    loading: 'lazy',
+                    widths: '550, 760, 990, 1200, 1400',
+                    sizes: '(min-width: 990px) 55vw, 100vw',
+                    alt: block_product.title | default: 'Product image'
+                }}
+              {% else %}
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'curlear-feature-products__image placeholder-svg' }}
+              {% endif %}
+            </div>
+
+            <div class="curlear-feature-products__content">
+              {% if block.settings.top_text != blank %}
+                <p class="curlear-feature-products__top-text">{{ block.settings.top_text | escape }}</p>
+              {% endif %}
+
+              {% render 'curlear-ratings',
+                show_rating: true,
+                rating_text: block.settings.rating_text,
+                rating_value: block.settings.rating_value,
+                star_color: section.settings.star_color,
+                text_color: section.settings.text_color,
+                star_size: 18
+              %}
+
+              <h3 class="curlear-feature-products__title">
+                {% if block_product != blank %}
+                  {{ block_product.title | escape }}
+                {% else %}
+                  {{ 'products.product.product' | t }}
+                {% endif %}
+              </h3>
+
+              {% if block.settings.description != blank %}
+                <div class="curlear-feature-products__description rte">
+                  {{ block.settings.description }}
+                </div>
+              {% elsif block_product != blank and block_product.description != blank %}
+                <div class="curlear-feature-products__description rte">
+                  {{ block_product.description | strip_html | truncate: 220 }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.below_description_text != blank %}
+                <p class="curlear-feature-products__below-desc">{{ block.settings.below_description_text | escape }}</p>
+              {% endif %}
+
+              {% if block_product != blank %}
+                <div class="curlear-feature-products__price-row">
+                  <div class="curlear-feature-products__price">
+                    {% render 'price',
+                      product: block_product,
+                      use_variant: true,
+                      price_class: '',
+                      show_compare_at_price: true
+                    %}
+                  </div>
+                  {% if block.settings.view_details_label != blank %}
+                    <a class="curlear-feature-products__details" href="{{ block_product.url }}">
+                      {{ block.settings.view_details_label | escape }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if block.settings.below_price_text != blank %}
+                <p class="curlear-feature-products__below-price">{{ block.settings.below_price_text | escape }}</p>
+              {% endif %}
+
+              {% if block_product != blank %}
+                <product-form class="curlear-feature-products__form" data-section-id="{{ section.id }}">
+                  {% form 'product', block_product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+                    <input type="hidden" name="id" value="{{ v.id }}" {% unless v.available %}disabled{% endunless %}>
+                    <button
+                      type="submit"
+                      name="add"
+                      class="curlear-feature-products__btn{% if section.settings.use_gradient_button %} curlear-feature-products__btn--gradient{% endif %}"
+                      {% unless v.available %}disabled{% endunless %}
+                    >
+                      {% if v.available %}
+                        {{ block.settings.button_label | default: 'Add to cart' | escape }}
+                      {% else %}
+                        {{ 'products.product.sold_out' | t }}
+                      {% endif %}
+                    </button>
+                  {% endform %}
+                </product-form>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="curlear-feature-products__dots" data-curlear-feature-dots aria-label="Slider pagination">
+      {% for block in section.blocks %}
+        <button
+          type="button"
+          class="curlear-feature-products__dot{% if forloop.first %} is-active{% endif %}"
+          data-curlear-feature-dot
+          aria-label="Go to slide {{ forloop.index }}"
+        ></button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curlear festure products",
+  "tag": "section",
+  "class": "section-curlear-feature-products",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFAF7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Stars color",
+      "default": "#E5B09E"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#D99077"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient_button",
+      "label": "Use gradient on button",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_start",
+      "label": "Button gradient start",
+      "default": "#F8D0BD"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_end",
+      "label": "Button gradient end",
+      "default": "#D99077"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#3B3B3B"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Auto slide",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product slide",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product image",
+          "info": "Optional. Falls back to the selected product image if empty."
+        },
+        {
+          "type": "text",
+          "id": "top_text",
+          "label": "Top single line text",
+          "default": "Customer favourite"
+        },
+        {
+          "type": "range",
+          "id": "rating_value",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "label": "Rating value (0–5)",
+          "default": 4.6
+        },
+        {
+          "type": "text",
+          "id": "rating_text",
+          "label": "Rating text",
+          "default": "4.6 (2997 reviews)"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "below_description_text",
+          "label": "Single line text (below description)",
+          "default": "Precision in every pass. Speed in every style."
+        },
+        {
+          "type": "text",
+          "id": "below_price_text",
+          "label": "Single line text (below price)"
+        },
+        {
+          "type": "text",
+          "id": "view_details_label",
+          "label": "View details label",
+          "default": "View Full Details"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Add to cart"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear festure products",
+      "blocks": [
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

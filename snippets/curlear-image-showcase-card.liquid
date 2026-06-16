@@ -1,0 +1,42 @@
+{% comment %}
+  @param block {object}
+  @param image_sizes {string}
+{% endcomment %}
+
+<article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
+  <div class="curlear-image-showcase__media">
+    {% if block.settings.image != blank %}
+      {{
+        block.settings.image
+        | image_url: width: 1600
+        | image_tag:
+          class: 'curlear-image-showcase__image',
+          loading: 'lazy',
+          widths: '550, 760, 990, 1200, 1600',
+          sizes: image_sizes,
+          alt: block.settings.overlay_heading
+      }}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'curlear-image-showcase__image placeholder-svg' }}
+    {% endif %}
+  </div>
+
+  {% if block.settings.overlay_heading != blank or block.settings.overlay_text != blank or block.settings.button_label != blank %}
+    <div class="curlear-image-showcase__overlay">
+      {% if block.settings.overlay_heading != blank %}
+        <p class="curlear-image-showcase__overlay-heading">{{ block.settings.overlay_heading }}</p>
+      {% endif %}
+      {% if block.settings.overlay_text != blank %}
+        <p class="curlear-image-showcase__overlay-text">{{ block.settings.overlay_text }}</p>
+      {% endif %}
+      {% if block.settings.button_label != blank %}
+        <a
+          class="curlear-image-showcase__overlay-button"
+          href="{{ block.settings.button_link | default: '#' }}"
+        >
+          {{ block.settings.button_label }} &rarr;
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+</article>

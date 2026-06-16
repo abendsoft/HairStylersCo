@@ -7,6 +7,7 @@
     --section-padding-bottom: {{ section.settings.bottom_padding }}px;
     --curlear-hero-bg-color: {{ section.settings.background_color }};
     --curlear-hero-bg-gradient: linear-gradient(135deg, {{ section.settings.gradient_color_1 }}, {{ section.settings.gradient_color_2 }});
+    --curlear-hero-desktop-height: {{ section.settings.desktop_section_height }}px;
   "
 >
   <div class="page-width">
@@ -197,6 +198,25 @@
       "type": "image_picker",
       "id": "image",
       "label": "Right image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_section_height",
+      "min": 280,
+      "max": 720,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop section height",
+      "default": 480,
+      "info": "Controls the image area height on desktop. Mobile layout is not affected."
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
     },
     {
       "type": "range",

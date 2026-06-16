@@ -26,7 +26,40 @@ if (!customElements.get('product-info')) {
         );
 
         this.initQuantityHandlers();
+        this.initPinDetailsScrollChain();
         this.dispatchEvent(new CustomEvent('product-info:loaded', { bubbles: true }));
+      }
+
+      initPinDetailsScrollChain() {
+        if (this.pinDetailsWheelHandler) return;
+
+        this.pinDetailsWheelHandler = (event) => {
+          if (!window.matchMedia('(min-width: 750px)').matches) return;
+
+          const container = event.target.closest(
+            '.product--pin-details .product__info-wrapper.product__column-sticky > .product__info-container'
+          );
+          if (!container || !this.contains(container)) return;
+
+          const maxScroll = container.scrollHeight - container.clientHeight;
+          const deltaY = event.deltaY;
+
+          if (maxScroll <= 1) {
+            event.preventDefault();
+            window.scrollBy({ top: deltaY, left: event.deltaX, behavior: 'auto' });
+            return;
+          }
+
+          const atTop = container.scrollTop <= 0;
+          const atBottom = container.scrollTop >= maxScroll - 1;
+
+          if ((deltaY > 0 && atBottom) || (deltaY < 0 && atTop)) {
+            event.preventDefault();
+            window.scrollBy({ top: deltaY, left: event.deltaX, behavior: 'auto' });
+          }
+        };
+
+        this.addEventListener('wheel', this.pinDetailsWheelHandler, { passive: false, capture: true });
       }
 
       addPreProcessCallback(callback) {
@@ -48,6 +81,10 @@ if (!customElements.get('product-info')) {
       disconnectedCallback() {
         this.onVariantChangeUnsubscriber();
         this.cartUpdateUnsubscriber?.();
+        if (this.pinDetailsWheelHandler) {
+          this.removeEventListener('wheel', this.pinDetailsWheelHandler, { capture: true });
+          this.pinDetailsWheelHandler = undefined;
+        }
       }
 
       initializeProductSwapUtility() {

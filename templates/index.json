@@ -162,11 +162,11 @@
         "use_gradient_button": true,
         "button_gradient_start": "#f8d0bd",
         "button_gradient_end": "#d99077",
-        "layout_mode": "slider",
+        "layout_mode": "grid",
         "columns_desktop": 4,
         "columns_mobile": "1",
         "show_arrow_mobile": true,
-        "auto_slide": true,
+        "auto_slide": false,
         "show_slider_nav": false,
         "auto_slide_speed": 4
       }

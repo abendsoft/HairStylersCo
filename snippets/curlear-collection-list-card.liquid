@@ -1,0 +1,88 @@
+{% comment %}
+  @param block {object}
+  @param cols_desktop {number}
+  @param cols_mobile {string}
+{% endcomment %}
+
+{%- liquid
+  assign block_collection = collections[block.settings.collection]
+  assign block_image = block.settings.image
+  assign product_thumb = block.settings.product_image
+  if product_thumb == blank and block_collection != blank and block_collection.products_count > 0 and block_collection.products.first.featured_image != blank
+    assign product_thumb = block_collection.products.first.featured_image
+  endif
+  assign card_heading = block.settings.custom_heading | default: block_collection.title | default: 'Collection'
+  assign card_alt = card_heading
+  assign desktop_vw = 100 | divided_by: cols_desktop
+  assign mobile_vw = 100 | divided_by: cols_mobile
+  assign image_sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, ' | append: mobile_vw | append: 'vw'
+-%}
+
+<a
+  class="curlear-collection-list__card"
+  href="{% if block_collection != blank %}{{ block_collection.url }}{% else %}#{% endif %}"
+>
+  <div class="curlear-collection-list__image-wrap">
+    {% if block_image != blank %}
+      {{
+        block_image
+        | image_url: width: 1400
+        | image_tag:
+          class: 'curlear-collection-list__image',
+          loading: 'lazy',
+          widths: '550, 760, 990, 1200, 1400',
+          sizes: image_sizes,
+          alt: card_alt
+      }}
+    {% elsif block_collection != blank and block_collection.featured_image != blank %}
+      {{
+        block_collection.featured_image
+        | image_url: width: 1400
+        | image_tag:
+          class: 'curlear-collection-list__image',
+          loading: 'lazy',
+          widths: '550, 760, 990, 1200, 1400',
+          sizes: image_sizes,
+          alt: block_collection.featured_image.alt | default: card_alt
+      }}
+    {% elsif block_collection != blank and block_collection.products_count > 0 and block_collection.products.first.featured_image != blank %}
+      {{
+        block_collection.products.first.featured_image
+        | image_url: width: 1400
+        | image_tag:
+          class: 'curlear-collection-list__image',
+          loading: 'lazy',
+          widths: '550, 760, 990, 1200, 1400',
+          sizes: image_sizes,
+          alt: card_alt
+      }}
+    {% else %}
+      {{ 'collection-1' | placeholder_svg_tag: 'curlear-collection-list__image placeholder-svg' }}
+    {% endif %}
+    <div class="curlear-collection-list__shade" aria-hidden="true"></div>
+  </div>
+
+  <div class="curlear-collection-list__footer">
+    <div class="curlear-collection-list__meta">
+      <p class="curlear-collection-list__card-heading">{{ card_heading | escape }}</p>
+      <span class="curlear-collection-list__arrow" aria-hidden="true">
+        &rarr;
+      </span>
+    </div>
+
+    {% if product_thumb != blank %}
+      <div class="curlear-collection-list__product">
+        {{
+          product_thumb
+          | image_url: width: 600
+          | image_tag:
+            class: 'curlear-collection-list__product-image',
+            loading: 'lazy',
+            widths: '200, 280, 360, 450, 600',
+            sizes: '180px',
+            alt: ''
+        }}
+      </div>
+    {% endif %}
+  </div>
+</a>

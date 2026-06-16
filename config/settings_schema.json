@@ -1510,6 +1510,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "curlear_card_show_label_before_title",
+        "label": "Show label before title",
+        "info": "Shows custom.product_label to the left of the product title. Requires the product label metafield to be filled in.",
+        "default": false
+      },
+      {
         "type": "color",
         "id": "curlear_card_label_bg_color",
         "label": "Label background color",

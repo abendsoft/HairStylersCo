@@ -1,24 +1,46 @@
 {{ 'curlear-image-showcase.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-image-showcase.js' | asset_url }}" defer="defer"></script>
 
+{% style %}
+  #shopify-section-{{ section.id }} .curlear-image-showcase__slider,
+  #shopify-section-{{ section.id }} .curlear-image-showcase__grid {
+    --curlear-image-cols: {{ section.settings.columns_desktop }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .curlear-image-showcase__slider,
+    #shopify-section-{{ section.id }} .curlear-image-showcase__grid {
+      --curlear-image-cols: {{ section.settings.columns_mobile }};
+    }
+  }
+{% endstyle %}
+
+{%- liquid
+  assign desktop_vw = 100 | divided_by: section.settings.columns_desktop
+  assign mobile_vw = 100 | divided_by: section.settings.columns_mobile
+  assign image_sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, ' | append: mobile_vw | append: 'vw'
+-%}
+
 <section
-  class="curlear-image-showcase section-{{ section.id }}-padding"
+  class="curlear-image-showcase section-{{ section.id }}-padding{% unless section.settings.full_width %} curlear-image-showcase--contained{% endunless %}"
   style="background-color: {{ section.settings.background_color }};"
 >
-  <div class="{% if section.settings.full_width %}curlear-image-showcase__container--full{% else %}page-width{% endif %}">
-    {% if section.settings.heading != blank %}
+  {% if section.settings.heading != blank %}
+    <div class="page-width">
       <h2 class="curlear-image-showcase__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
+    </div>
+  {% endif %}
 
-    {% if section.blocks.size > 0 %}
-      {% if section.settings.layout_mode == 'slider' %}
+  {% if section.blocks.size > 0 %}
+    {% if section.settings.layout_mode == 'slider' %}
+      <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
         <div
           class="curlear-image-showcase__slider-wrap"
           data-curlear-image-slider
-          data-autoplay="{{ section.settings.auto_slide }}"
+          data-autoplay="{% if section.settings.auto_slide %}true{% else %}false{% endif %}"
           data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
         >
-          {% if section.settings.show_slider_nav and section.blocks.size > section.settings.columns_desktop %}
+          {% if section.settings.show_slider_nav and section.blocks.size > 1 %}
             <div class="curlear-image-showcase__nav">
               <button
                 type="button"
@@ -38,100 +60,23 @@
               </button>
             </div>
           {% endif %}
-          <div
-            class="curlear-image-showcase__slider"
-            style="--curlear-image-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-image-cols-mobile: {{ section.settings.columns_mobile }};"
-            data-curlear-image-slider-track
-          >
+          <div class="curlear-image-showcase__slider" data-curlear-image-slider-track>
             {% for block in section.blocks %}
-              <article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
-                <div class="curlear-image-showcase__media">
-                  {% if block.settings.image != blank %}
-                    {{
-                      block.settings.image
-                      | image_url: width: 1600
-                      | image_tag:
-                        class: 'curlear-image-showcase__image',
-                        loading: 'lazy',
-                        widths: '550, 760, 990, 1200, 1600',
-                        sizes: '(min-width: 990px) 30vw, 90vw',
-                        alt: block.settings.overlay_heading
-                    }}
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'curlear-image-showcase__image placeholder-svg' }}
-                  {% endif %}
-                </div>
-
-                {% if block.settings.overlay_heading != blank or block.settings.overlay_text != blank or block.settings.button_label != blank %}
-                  <div class="curlear-image-showcase__overlay">
-                    {% if block.settings.overlay_heading != blank %}
-                      <p class="curlear-image-showcase__overlay-heading">{{ block.settings.overlay_heading }}</p>
-                    {% endif %}
-                    {% if block.settings.overlay_text != blank %}
-                      <p class="curlear-image-showcase__overlay-text">{{ block.settings.overlay_text }}</p>
-                    {% endif %}
-                    {% if block.settings.button_label != blank %}
-                      <a
-                        class="curlear-image-showcase__overlay-button"
-                        href="{{ block.settings.button_link | default: '#' }}"
-                      >
-                        {{ block.settings.button_label }} &rarr;
-                      </a>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </article>
+              {% render 'curlear-image-showcase-card', block: block, image_sizes: image_sizes %}
             {% endfor %}
           </div>
         </div>
-      {% else %}
-        <div
-          class="curlear-image-showcase__grid"
-          style="--curlear-image-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-image-cols-mobile: {{ section.settings.columns_mobile }};"
-        >
+      </div>
+    {% else %}
+      <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
+        <div class="curlear-image-showcase__grid">
           {% for block in section.blocks %}
-            <article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
-              <div class="curlear-image-showcase__media">
-                {% if block.settings.image != blank %}
-                  {{
-                    block.settings.image
-                    | image_url: width: 1600
-                    | image_tag:
-                      class: 'curlear-image-showcase__image',
-                      loading: 'lazy',
-                      widths: '550, 760, 990, 1200, 1600',
-                      sizes: '(min-width: 990px) 30vw, 90vw',
-                      alt: block.settings.overlay_heading
-                  }}
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'curlear-image-showcase__image placeholder-svg' }}
-                {% endif %}
-              </div>
-
-              {% if block.settings.overlay_heading != blank or block.settings.overlay_text != blank or block.settings.button_label != blank %}
-                <div class="curlear-image-showcase__overlay">
-                  {% if block.settings.overlay_heading != blank %}
-                    <p class="curlear-image-showcase__overlay-heading">{{ block.settings.overlay_heading }}</p>
-                  {% endif %}
-                  {% if block.settings.overlay_text != blank %}
-                    <p class="curlear-image-showcase__overlay-text">{{ block.settings.overlay_text }}</p>
-                  {% endif %}
-                  {% if block.settings.button_label != blank %}
-                    <a
-                      class="curlear-image-showcase__overlay-button"
-                      href="{{ block.settings.button_link | default: '#' }}"
-                    >
-                      {{ block.settings.button_label }} &rarr;
-                    </a>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </article>
+            {% render 'curlear-image-showcase-card', block: block, image_sizes: image_sizes %}
           {% endfor %}
         </div>
-      {% endif %}
+      </div>
     {% endif %}
-  </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -157,7 +102,7 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width section",
-      "default": false
+      "default": true
     },
     {
       "type": "select",

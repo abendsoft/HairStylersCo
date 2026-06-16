@@ -125,7 +125,7 @@
 
 .curlear-collapsible__row {
   border-top: 1px solid #d9d9d9;
-  padding: 0 20px;
+  padding: 0 20px 0px 0px;
 }
 
 .curlear-collapsible__row:first-child {

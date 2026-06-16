@@ -47,6 +47,57 @@
         "background_color": "#f5f5f5"
       }
     },
+    "curlear_icon_text_bar_yqWGeP": {
+      "type": "curlear-icon-text-bar",
+      "blocks": {
+        "item_bPhyQR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Vector.png",
+            "icon_svg": "",
+            "heading": "1000+ Customers"
+          }
+        },
+        "item_BxiRzW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/streamline_shipping-truck.png",
+            "icon_svg": "",
+            "heading": "Free Shipping"
+          }
+        },
+        "item_UD34Xe": {
+          "type": "item",
+          "settings": {
+            "icon_svg": "<svg width=\"96\" height=\"19\" viewbox=\"0 0 96 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.0195 5.93555C10.2872 6.75952 11.0555 7.31728 11.9218 7.31738H14.7607L12.4638 8.98633C11.7633 9.49558 11.4698 10.3979 11.7373 11.2217L12.6152 13.9219L10.3183 12.2529C9.61751 11.7439 8.66862 11.744 7.96774 12.2529L5.67087 13.9219L6.54782 11.2217C6.81542 10.3977 6.52215 9.49557 5.82126 8.98633L3.52536 7.31738H6.36325C7.2297 7.31738 7.99785 6.75959 8.26559 5.93555L9.14255 3.23633L10.0195 5.93555Z\" stroke=\"black\" stroke-width=\"2\"></path>\n<path d=\"M29.4481 5.93555C29.7158 6.75952 30.4841 7.31728 31.3505 7.31738H34.1893L31.8925 8.98633C31.1919 9.49558 30.8984 10.3979 31.1659 11.2217L32.0438 13.9219L29.7469 12.2529C29.0461 11.7439 28.0972 11.744 27.3964 12.2529L25.0995 13.9219L25.9764 11.2217C26.244 10.3977 25.9508 9.49557 25.2499 8.98633L22.954 7.31738H25.7919C26.6583 7.31738 27.4265 6.75959 27.6942 5.93555L28.5712 3.23633L29.4481 5.93555Z\" stroke=\"black\" stroke-width=\"2\"></path>\n<path d=\"M48.8766 5.93555C49.1444 6.75952 49.9126 7.31728 50.779 7.31738H53.6179L51.321 8.98633C50.6204 9.49558 50.327 10.3979 50.5944 11.2217L51.4724 13.9219L49.1755 12.2529C48.4747 11.7439 47.5258 11.744 46.8249 12.2529L44.528 13.9219L45.405 11.2217C45.6726 10.3977 45.3793 9.49557 44.6784 8.98633L42.3825 7.31738H45.2204C46.0869 7.31738 46.855 6.75959 47.1227 5.93555L47.9997 3.23633L48.8766 5.93555Z\" stroke=\"black\" stroke-width=\"2\"></path>\n<path d=\"M68.3053 5.93555C68.573 6.75952 69.3413 7.31728 70.2076 7.31738H73.0465L70.7496 8.98633C70.049 9.49558 69.7556 10.3979 70.023 11.2217L70.901 13.9219L68.6041 12.2529C67.9033 11.7439 66.9544 11.744 66.2535 12.2529L63.9566 13.9219L64.8336 11.2217C65.1012 10.3977 64.8079 9.49557 64.107 8.98633L61.8111 7.31738H64.649C65.5155 7.31738 66.2836 6.75959 66.5514 5.93555L67.4283 3.23633L68.3053 5.93555Z\" stroke=\"black\" stroke-width=\"2\"></path>\n<path d=\"M87.7338 5.93555C88.0015 6.75952 88.7698 7.31728 89.6361 7.31738H92.475L90.1781 8.98633C89.4776 9.49558 89.1841 10.3979 89.4516 11.2217L90.3295 13.9219L88.0326 12.2529C87.3318 11.7439 86.3829 11.744 85.682 12.2529L83.3852 13.9219L84.2621 11.2217C84.5297 10.3977 84.2364 9.49557 83.5356 8.98633L81.2397 7.31738H84.0775C84.944 7.31738 85.7121 6.75959 85.9799 5.93555L86.8568 3.23633L87.7338 5.93555Z\" stroke=\"black\" stroke-width=\"2\"></path>\n</svg>",
+            "heading": "5 Star Rating"
+          }
+        },
+        "item_tcgwQA": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/ic_outline-sell.png",
+            "icon_svg": "",
+            "heading": "Best Selling In UK"
+          }
+        }
+      },
+      "block_order": [
+        "item_bPhyQR",
+        "item_BxiRzW",
+        "item_UD34Xe",
+        "item_tcgwQA"
+      ],
+      "name": "Icon text bar",
+      "settings": {
+        "background_color": "#e8d5cc",
+        "heading_color": "#1a1a1a",
+        "heading_size": 20,
+        "divider_color": "#1a1a1a",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
     "curlear_expertise_DE6Bme": {
       "type": "curlear-expertise",
       "blocks": {
@@ -113,7 +164,8 @@
           "settings": {
             "collection": "",
             "custom_heading": "All-in-One Stylers",
-            "image": "shopify://shop_images/Rectangle_4.webp"
+            "image": "shopify://shop_images/Rectangle_4.webp",
+            "product_image": "shopify://shop_images/Untitled-1_1.png"
           }
         },
         "collection_KcBNrr": {
@@ -121,7 +173,8 @@
           "settings": {
             "collection": "",
             "custom_heading": "HAIR DRYERS",
-            "image": "shopify://shop_images/Rectangle_3.webp"
+            "image": "shopify://shop_images/Rectangle_3.webp",
+            "product_image": "shopify://shop_images/Untitled-1_3.png"
           }
         },
         "collection_iNpLiw": {
@@ -129,7 +182,8 @@
           "settings": {
             "collection": "",
             "custom_heading": "Hair Curlers",
-            "image": "shopify://shop_images/Rectangle_2.webp"
+            "image": "shopify://shop_images/Rectangle_2.webp",
+            "product_image": "shopify://shop_images/Untitled-1_2.png"
           }
         },
         "collection_JWcK6f": {
@@ -137,7 +191,8 @@
           "settings": {
             "collection": "",
             "custom_heading": "Hair Straighteners",
-            "image": "shopify://shop_images/Rectangle_1.webp"
+            "image": "shopify://shop_images/Rectangle_1.webp",
+            "product_image": "shopify://shop_images/Untitled-1_4.png"
           }
         }
       },
@@ -162,11 +217,11 @@
         "use_gradient_button": true,
         "button_gradient_start": "#f8d0bd",
         "button_gradient_end": "#d99077",
-        "layout_mode": "grid",
+        "layout_mode": "slider",
         "columns_desktop": 4,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "show_arrow_mobile": true,
-        "auto_slide": false,
+        "auto_slide": true,
         "show_slider_nav": false,
         "auto_slide_speed": 4
       }
@@ -356,7 +411,7 @@
         "top_text_color": "#ffffff",
         "bottom_heading": "MORE SHINE. LESS DAMAGE.",
         "bottom_heading_color": "#ffffff",
-        "section_height": 600
+        "section_height": 550
       }
     },
     "curlear_testimonial_slider_T3WHPc": {
@@ -396,6 +451,7 @@
       "settings": {
         "heading": "Hear it From Them",
         "background_image": "shopify://shop_images/Ellipse_12_1.png",
+        "bg_gradient_density": 0,
         "star_color": "#ecb7a3",
         "button_gradient_start": "#f2c6b4",
         "button_gradient_middle": "#ecb7a3",
@@ -405,6 +461,73 @@
         "auto_slide_speed": 4,
         "button_label": "SEE ALL REVIEWS",
         "button_link": ""
+      }
+    },
+    "curlear_feature_products_TgM3zV": {
+      "type": "curlear-feature-products",
+      "blocks": {
+        "product_RpJyPp": {
+          "type": "product",
+          "settings": {
+            "product": "5-in-1-styler",
+            "image": "shopify://shop_images/5_7.png",
+            "top_text": "Customer favourite",
+            "rating_value": 4.6,
+            "rating_text": "4.6 (2997 reviews)",
+            "description": "",
+            "below_description_text": "Precision in every pass. Speed in every style.",
+            "below_price_text": "",
+            "view_details_label": "View Full Details",
+            "button_label": "Add to cart"
+          }
+        },
+        "product_BtfXQJ": {
+          "type": "product",
+          "settings": {
+            "product": "pro-dryer",
+            "top_text": "Customer favourite",
+            "rating_value": 4.6,
+            "rating_text": "4.6 (2997 reviews)",
+            "description": "",
+            "below_description_text": "Precision in every pass. Speed in every style.",
+            "below_price_text": "",
+            "view_details_label": "View Full Details",
+            "button_label": "Add to cart"
+          }
+        },
+        "product_a4PpeY": {
+          "type": "product",
+          "settings": {
+            "product": "airstraight-styler-wand",
+            "top_text": "Customer favourite",
+            "rating_value": 4.6,
+            "rating_text": "4.6 (2997 reviews)",
+            "description": "",
+            "below_description_text": "Precision in every pass. Speed in every style.",
+            "below_price_text": "",
+            "view_details_label": "View Full Details",
+            "button_label": "Add to cart"
+          }
+        }
+      },
+      "block_order": [
+        "product_RpJyPp",
+        "product_BtfXQJ",
+        "product_a4PpeY"
+      ],
+      "name": "Curlear festure products",
+      "settings": {
+        "background_color": "#fffaf7",
+        "text_color": "#1a1a1a",
+        "star_color": "#e5b09e",
+        "button_color": "#d99077",
+        "button_text_color": "#ffffff",
+        "use_gradient_button": true,
+        "button_gradient_start": "#f8d0bd",
+        "button_gradient_end": "#d99077",
+        "dot_active_color": "#3b3b3b",
+        "auto_slide": false,
+        "auto_slide_speed": 4
       }
     },
     "curlear_community_marquee_Kk3czr": {
@@ -520,6 +643,7 @@
   },
   "order": [
     "curlear_slideshow_LyxYXx",
+    "curlear_icon_text_bar_yqWGeP",
     "curlear_expertise_DE6Bme",
     "curlear_featured_collection_HXc7mt",
     "curlear_collection_list_EyNWTJ",
@@ -528,6 +652,7 @@
     "curlear_press_quote_gPcUrn",
     "curlear_image_text_banner_fJHUkb",
     "curlear_testimonial_slider_T3WHPc",
+    "curlear_feature_products_TgM3zV",
     "curlear_community_marquee_Kk3czr"
   ]
 }

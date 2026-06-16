@@ -6,7 +6,7 @@
   margin: 0 0 1.6rem;
   color: #fff;
   text-align: center;
-  font-size: clamp(2.8rem, 3.2vw, 4.2rem);
+  font-size: clamp(2.8rem, 3.2vw, 3.6rem);
   font-weight: 400;
 }
 
@@ -44,6 +44,12 @@
   aspect-ratio: 0.72;
   background: #e9d8cd;
   user-select: none;
+}
+
+@media screen and (min-width: 990px) {
+  .curlear-comparison-card {
+    aspect-ratio: 9 / 10;
+  }
 }
 
 .curlear-comparison-card__image {

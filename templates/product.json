@@ -79,14 +79,20 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": false,
+            "show_dynamic_checkout": true,
             "show_gift_card_recipient": false,
-            "curlear_button_use_gradient": true,
-            "curlear_button_bg": "#e7bda9",
-            "curlear_button_text_color": "#ffffff",
+            "curlear_button_use_gradient": false,
+            "curlear_button_bg": "#ffffff",
+            "curlear_button_text_color": "#000000",
             "curlear_button_gradient_start": "#f2c6b4",
             "curlear_button_gradient_middle": "#ecb7a3",
-            "curlear_button_gradient_end": "#c27a63"
+            "curlear_button_gradient_end": "#c27a63",
+            "curlear_buy_now_use_gradient": true,
+            "curlear_buy_now_bg": "#e7bda9",
+            "curlear_buy_now_text_color": "#ffffff",
+            "curlear_buy_now_gradient_start": "#f2c6b4",
+            "curlear_buy_now_gradient_middle": "#ecb7a3",
+            "curlear_buy_now_gradient_end": "#c27a63"
           }
         },
         "curlear_icon_text_xCzzwh": {
@@ -181,8 +187,7 @@
           "type": "row",
           "settings": {
             "heading": "Sleeker, Modern Design",
-            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ </p>",
-            "image": "shopify://shop_images/Rectangle_12.webp"
+            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ </p>"
           }
         },
         "row_WQkP4q": {
@@ -215,19 +220,20 @@
       ],
       "name": "Curlear image accordion",
       "settings": {
+        "image": "shopify://shop_images/Rectangle_130.png",
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
         "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
         "open_first_row": false,
-        "show_slider_buttons": false,
         "reverse_columns_mobile": false,
         "content_alignment": "start",
-        "content_padding_top": 70,
-        "content_padding_right": 30,
-        "content_padding_bottom": 70,
-        "content_padding_left": 30,
+        "content_full_width": false,
+        "content_padding_top": 0,
+        "content_padding_right": 6,
+        "content_padding_bottom": 12,
+        "content_padding_left": 12,
         "arrow_icon": "shopify://shop_images/down-arrow.png",
-        "section_bg_color": "#fffaf7",
+        "section_bg_color": "#ffffff",
         "content_bg_color": "#ffffff",
         "media_bg_color": "#e8d6cc"
       }
@@ -269,7 +275,8 @@
       "settings": {
         "heading": "Versatile Curling Made Easy",
         "top_text": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.",
-        "background_color": "#fffaf7",
+        "header_alignment": "center",
+        "background_color": "#ffffff",
         "layout_mode": "grid",
         "cards_desktop": "3",
         "show_slider_buttons": false,
@@ -357,6 +364,7 @@
         "line_text": "Long Barrel Advantage",
         "description": "<p>The 2\" extended barrel allows users to wrap more hair per section, cutting down styling time.</p>",
         "image": "shopify://shop_images/90a7e487043c1c37b379ffebd5472cc680bf362f.webp",
+        "desktop_section_height": 520,
         "top_padding": 0,
         "bottom_padding": 0
       }
@@ -368,8 +376,7 @@
           "type": "row",
           "settings": {
             "heading": "Is this curling iron suitable for professional stylists?",
-            "content": "<p>OLD 10X™ STYLER vs. NEIs this curling iron suitable for professional stylists?<br/><br/>W 10X™ STYLER</p>",
-            "image": "shopify://shop_images/53160326c7a5042b53ab6a60d8076c59e638da06.webp"
+            "content": "<p>OLD 10X™ STYLER vs. NEIs this curling iron suitable for professional stylists?<br/><br/>W 10X™ STYLER</p>"
           }
         },
         "row_WNVNE6": {
@@ -390,24 +397,21 @@
           "type": "row",
           "settings": {
             "heading": "Is the curling iron dual voltage for international use?",
-            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>",
-            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>"
           }
         },
         "row_cerqmX": {
           "type": "row",
           "settings": {
             "heading": "What heat setting should I use for my hair type?",
-            "content": "<p>What heat setting should I use for my hair type?<br/><br/></p>",
-            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+            "content": "<p>What heat setting should I use for my hair type?<br/><br/></p>"
           }
         },
         "row_NfWeMN": {
           "type": "row",
           "settings": {
             "heading": "How long does it take to heat up?",
-            "content": "<p>How long does it take to heat up?<br/><br/></p>",
-            "image": "shopify://shop_images/c83d85de978566c551beb5656ab5b09691ba72d6.png"
+            "content": "<p>How long does it take to heat up?<br/><br/></p>"
           }
         }
       },
@@ -421,17 +425,18 @@
       ],
       "name": "Curlear image accordion",
       "settings": {
+        "image": "shopify://shop_images/Rectangle_89.png",
         "top_heading": "",
         "caption": "",
         "heading": "FAQs",
         "open_first_row": false,
-        "show_slider_buttons": false,
         "reverse_columns_mobile": true,
-        "content_alignment": "end",
-        "content_padding_top": 70,
-        "content_padding_right": 30,
-        "content_padding_bottom": 70,
-        "content_padding_left": 30,
+        "content_alignment": "start",
+        "content_full_width": true,
+        "content_padding_top": 0,
+        "content_padding_right": 24,
+        "content_padding_bottom": 24,
+        "content_padding_left": 24,
         "arrow_icon": "shopify://shop_images/down-arrow.png",
         "section_bg_color": "#fffaf7",
         "content_bg_color": "#fffaf7",

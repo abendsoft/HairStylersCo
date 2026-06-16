@@ -8,6 +8,7 @@
     --curlear-testimonial-button-gradient-start: {{ section.settings.button_gradient_start }};
     --curlear-testimonial-button-gradient-middle: {{ section.settings.button_gradient_middle }};
     --curlear-testimonial-button-gradient-end: {{ section.settings.button_gradient_end }};
+    --curlear-testimonial-bg-gradient-density: {{ section.settings.bg_gradient_density | divided_by: 100.0 }};
   "
 >
   <div class="curlear-testimonial-slider__bg">
@@ -114,6 +115,16 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background image"
+    },
+    {
+      "type": "range",
+      "id": "bg_gradient_density",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background gradient density",
+      "default": 45
     },
     {
       "type": "color",

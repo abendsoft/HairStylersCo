@@ -1,0 +1,186 @@
+{{ 'curlear-icon-text-bar.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .curlear-icon-text-bar__heading {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .curlear-icon-text-bar__item + .curlear-icon-text-bar__item::before {
+    background: {{ section.settings.divider_color }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign citb_items = 0
+  for block in section.blocks
+    assign citb_block_svg = block.settings.icon_svg | strip
+    if block.settings.icon != blank or citb_block_svg != blank or block.settings.heading != blank
+      assign citb_items = citb_items | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if citb_items > 0 -%}
+  <div class="curlear-icon-text-bar">
+    <div class="page-width">
+      <div class="curlear-icon-text-bar__grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign citb_icon_svg = block.settings.icon_svg | strip
+            unless block.settings.icon != blank or citb_icon_svg != blank or block.settings.heading != blank
+              continue
+            endunless
+          -%}
+          <div
+            class="curlear-icon-text-bar__item"
+            role="listitem"
+            {{ block.shopify_attributes }}
+          >
+            {%- if citb_icon_svg != blank -%}
+              <div class="curlear-icon-text-bar__icon curlear-icon-text-bar__icon--svg" aria-hidden="true">
+                {{ block.settings.icon_svg }}
+              </div>
+            {%- elsif block.settings.icon != blank -%}
+              <div class="curlear-icon-text-bar__icon">
+                {{
+                  block.settings.icon
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '40, 60, 80, 100, 120',
+                    sizes: '48px',
+                    alt: block.settings.heading
+                }}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <p class="curlear-icon-text-bar__heading">{{ block.settings.heading | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Icon text bar",
+  "tag": "section",
+  "class": "section-curlear-icon-text-bar",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f7f4f0"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "info": "Paste inline SVG code (e.g. <svg>...</svg>). Used instead of the icon image when filled in."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Feature text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon text bar",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "heading": "1000+ Customers"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "heading": "Free Shipping"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "heading": "5 Star Rating"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "heading": "Best Selling In UK"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

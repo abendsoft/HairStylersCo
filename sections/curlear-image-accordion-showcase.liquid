@@ -1,6 +1,18 @@
 {{ 'curlear-image-accordion-showcase.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-image-accordion-showcase.js' | asset_url }}" defer="defer"></script>
 
+{%- liquid
+  assign showcase_image = section.settings.image
+  if showcase_image == blank
+    for block in section.blocks
+      if block.settings.image != blank
+        assign showcase_image = block.settings.image
+        break
+      endif
+    endfor
+  endif
+-%}
+
 <section
   class="curlear-image-accordion-showcase section-{{ section.id }}-padding"
   style="
@@ -15,71 +27,28 @@
 >
   <div class="page-width">
     <div
-      class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %}"
+      class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %} curlear-image-accordion-showcase__inner--align-{{ section.settings.content_alignment }}"
       data-curlear-accordion-showcase
     >
       <div class="curlear-image-accordion-showcase__media">
-        {% assign image_blocks_count = 0 %}
-        {% assign fallback_image = blank %}
-        {% for block in section.blocks %}
-          {% if block.settings.image != blank %}
-            {% assign image_blocks_count = image_blocks_count | plus: 1 %}
-            {% if fallback_image == blank %}
-              {% assign fallback_image = block.settings.image %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-
-        <div class="curlear-image-accordion-showcase__slider" data-curlear-showcase-track>
-          {% for block in section.blocks %}
-            <article
-              class="curlear-image-accordion-showcase__slide{% if forloop.first %} is-active{% endif %}"
-              data-curlear-showcase-slide
-              data-index="{{ forloop.index0 }}"
-              data-has-image="{% if block.settings.image != blank %}true{% else %}false{% endif %}"
-              {% unless forloop.first %}hidden{% endunless %}
-              {{ block.shopify_attributes }}
-            >
-              {% if block.settings.image != blank %}
-                {{
-                  block.settings.image
-                  | image_url: width: 1800
-                  | image_tag:
-                    class: 'curlear-image-accordion-showcase__image',
-                    loading: 'lazy',
-                    widths: '550, 760, 990, 1200, 1500, 1800',
-                    sizes: '(min-width: 990px) 50vw, 100vw',
-                    alt: block.settings.heading
-                }}
-              {% elsif fallback_image != blank %}
-                {{
-                  fallback_image
-                  | image_url: width: 1800
-                  | image_tag:
-                    class: 'curlear-image-accordion-showcase__image',
-                    loading: 'lazy',
-                    widths: '550, 760, 990, 1200, 1500, 1800',
-                    sizes: '(min-width: 990px) 50vw, 100vw',
-                    alt: section.settings.heading
-                }}
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-
-        {% if image_blocks_count > 1 and section.settings.show_slider_buttons %}
-          <div class="curlear-image-accordion-showcase__nav">
-            <button type="button" class="curlear-image-accordion-showcase__nav-btn" data-curlear-showcase-prev aria-label="Previous image">
-              &#8249;
-            </button>
-            <button type="button" class="curlear-image-accordion-showcase__nav-btn" data-curlear-showcase-next aria-label="Next image">
-              &#8250;
-            </button>
-          </div>
+        {% if showcase_image != blank %}
+          {{
+            showcase_image
+            | image_url: width: 1400
+            | image_tag:
+              class: 'curlear-image-accordion-showcase__image',
+              loading: 'lazy',
+              widths: '550, 760, 990, 1200, 1400',
+              sizes: '(min-width: 990px) 48vw, 100vw',
+              alt: section.settings.heading
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'curlear-image-accordion-showcase__image placeholder-svg' }}
         {% endif %}
       </div>
 
-      <div class="curlear-image-accordion-showcase__content curlear-image-accordion-showcase__content--{{ section.settings.content_alignment }}">
+      <div class="curlear-image-accordion-showcase__content curlear-image-accordion-showcase__content--{{ section.settings.content_alignment }}{% unless section.settings.content_full_width %} curlear-image-accordion-showcase__content--narrow{% endunless %}">
+        <div class="curlear-image-accordion-showcase__content-body">
         {% if section.settings.top_heading != blank %}
           <p class="curlear-image-accordion-showcase__top-heading">{{ section.settings.top_heading }}</p>
         {% endif %}
@@ -92,7 +61,7 @@
 
         <div class="curlear-image-accordion-showcase__rows">
           {% for block in section.blocks %}
-            <details class="curlear-image-accordion-showcase__row" data-curlear-showcase-row data-index="{{ forloop.index0 }}" {% if section.settings.open_first_row and forloop.first %}open{% endif %}>
+            <details class="curlear-image-accordion-showcase__row" data-curlear-showcase-row {{ block.shopify_attributes }} {% if section.settings.open_first_row and forloop.first %}open{% endif %}>
               <summary class="curlear-image-accordion-showcase__summary">
                 <span>{{ block.settings.heading | default: 'Feature' | escape }}</span>
                 <span class="curlear-image-accordion-showcase__arrow{% if section.settings.arrow_icon != blank %} has-custom-icon{% endif %}">
@@ -116,6 +85,7 @@
             </details>
           {% endfor %}
         </div>
+        </div>
       </div>
     </div>
   </div>
@@ -128,6 +98,12 @@
   "class": "section-curlear-image-accordion-showcase",
   "max_blocks": 8,
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section image",
+      "info": "One image shown beside the accordion on all rows."
+    },
     {
       "type": "text",
       "id": "top_heading",
@@ -154,12 +130,6 @@
     },
     {
       "type": "checkbox",
-      "id": "show_slider_buttons",
-      "label": "Show image slider buttons",
-      "default": true
-    },
-    {
-      "type": "checkbox",
       "id": "reverse_columns_mobile",
       "label": "Reverse columns (image first)",
       "default": false
@@ -176,6 +146,13 @@
       ]
     },
     {
+      "type": "checkbox",
+      "id": "content_full_width",
+      "label": "Full content width on desktop",
+      "default": false,
+      "info": "When enabled, content spans the full column width. When disabled, content uses a narrower width (recommended for start alignment)."
+    },
+    {
       "type": "header",
       "content": "Content area padding"
     },
@@ -187,7 +164,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding top",
-      "default": 70
+      "default": 48
     },
     {
       "type": "range",
@@ -197,7 +174,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding right",
-      "default": 30
+      "default": 24
     },
     {
       "type": "range",
@@ -207,7 +184,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 70
+      "default": 48
     },
     {
       "type": "range",
@@ -217,7 +194,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding left",
-      "default": 30
+      "default": 24
     },
     {
       "type": "image_picker",
@@ -258,11 +235,6 @@
           "type": "richtext",
           "id": "content",
           "label": "Row content"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Row image"
         }
       ]
     }

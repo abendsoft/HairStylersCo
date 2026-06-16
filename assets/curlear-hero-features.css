@@ -54,6 +54,7 @@
   padding: 0.55rem 1.1rem;
   font-size: 1.25rem;
   line-height: 1.2;
+  font-weight: bold;
 }
 
 .curlear-hero-features__line {
@@ -84,6 +85,22 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+@media screen and (min-width: 990px) {
+  .curlear-hero-features__media {
+    height: var(--curlear-hero-desktop-height, 480px);
+    max-height: var(--curlear-hero-desktop-height, 480px);
+    overflow: hidden;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .curlear-hero-features__image {
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
 }
 
 @media screen and (max-width: 989px) {

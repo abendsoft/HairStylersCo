@@ -1,6 +1,28 @@
 {{ 'curlear-collection-list.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-collection-list.js' | asset_url }}" defer="defer"></script>
 
+{% style %}
+  #shopify-section-{{ section.id }} .curlear-collection-list__slider,
+  #shopify-section-{{ section.id }} .curlear-collection-list__grid {
+    --curlear-list-cols: {{ section.settings.columns_desktop }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .curlear-collection-list__slider,
+    #shopify-section-{{ section.id }} .curlear-collection-list__grid {
+      --curlear-list-cols: {{ section.settings.columns_mobile }};
+    }
+  }
+
+  {% unless section.settings.show_arrow_mobile %}
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .curlear-collection-list__arrow {
+        display: none;
+      }
+    }
+  {% endunless %}
+{% endstyle %}
+
 <section
   class="curlear-collection-list section-{{ section.id }}-padding"
   style="{% if section.settings.use_section_bg_gradient %}background: linear-gradient(180deg, {{ section.settings.section_bg_gradient_start }}, {{ section.settings.section_bg_gradient_end }});{% else %}background-color: {{ section.settings.section_bg_color }};{% endif %}"
@@ -19,17 +41,17 @@
       {% endif %}
     </div>
   </div>
-  <div class="page-width">
 
-    {% if section.blocks.size > 0 %}
-      {% if section.settings.layout_mode == 'slider' %}
-        <div
-          class="curlear-collection-list__slider-wrap"
-          data-curlear-collection-slider
-          data-autoplay="{{ section.settings.auto_slide }}"
-          data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
-        >
-          {% if section.settings.show_slider_nav and section.blocks.size > section.settings.columns_desktop %}
+  {% if section.blocks.size > 0 %}
+    {% if section.settings.layout_mode == 'slider' %}
+      <div
+        class="curlear-collection-list__slider-wrap"
+        data-curlear-collection-slider
+        data-autoplay="{% if section.settings.auto_slide %}true{% else %}false{% endif %}"
+        data-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+      >
+        {% if section.settings.show_slider_nav and section.blocks.size > 1 %}
+          <div class="page-width">
             <div class="curlear-collection-list__nav">
               <button
                 type="button"
@@ -48,131 +70,37 @@
                 &#8250;
               </button>
             </div>
-          {% endif %}
-          <div
-            class="curlear-collection-list__slider"
-            style="--curlear-list-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-list-cols-mobile: {{ section.settings.columns_mobile }};"
-            data-curlear-collection-slider-track
-          >
-            {% for block in section.blocks %}
-              {% assign block_collection = collections[block.settings.collection] %}
-              {% assign block_image = block.settings.image %}
-              <div class="curlear-collection-list__item" {{ block.shopify_attributes }}>
-                <a class="curlear-collection-list__card" href="{% if block_collection != blank %}{{ block_collection.url }}{% else %}#{% endif %}">
-                  <div class="curlear-collection-list__image-wrap">
-                    {% if block_image != blank %}
-                      {{
-                        block_image
-                        | image_url: width: 1400
-                        | image_tag:
-                          class: 'curlear-collection-list__image',
-                          loading: 'lazy',
-                          widths: '550, 760, 990, 1200, 1400',
-                          sizes: '(min-width: 990px) 30vw, 90vw',
-                          alt: block.settings.custom_heading | default: block_collection.title
-                      }}
-                    {% elsif block_collection != blank and block_collection.featured_image != blank %}
-                      {{
-                        block_collection.featured_image
-                        | image_url: width: 1400
-                        | image_tag:
-                          class: 'curlear-collection-list__image',
-                          loading: 'lazy',
-                          widths: '550, 760, 990, 1200, 1400',
-                          sizes: '(min-width: 990px) 30vw, 90vw',
-                          alt: block_collection.featured_image.alt
-                      }}
-                    {% elsif block_collection != blank and block_collection.products_count > 0 and block_collection.products.first.featured_image != blank %}
-                      {{
-                        block_collection.products.first.featured_image
-                        | image_url: width: 1400
-                        | image_tag:
-                          class: 'curlear-collection-list__image',
-                          loading: 'lazy',
-                          widths: '550, 760, 990, 1200, 1400',
-                          sizes: '(min-width: 990px) 30vw, 90vw',
-                          alt: block_collection.title
-                      }}
-                    {% else %}
-                      {{ 'collection-1' | placeholder_svg_tag: 'curlear-collection-list__image placeholder-svg' }}
-                    {% endif %}
-                  </div>
-                  <div class="curlear-collection-list__meta">
-                    <p class="curlear-collection-list__card-heading">
-                      {{ block.settings.custom_heading | default: block_collection.title | default: 'Collection' | escape }}
-                    </p>
-                    <span class="curlear-collection-list__arrow{% unless section.settings.show_arrow_mobile %} curlear-collection-list__arrow--hide-mobile{% endunless %}">
-                      &rarr;
-                    </span>
-                  </div>
-                </a>
-              </div>
-            {% endfor %}
           </div>
-        </div>
-      {% else %}
+        {% endif %}
         <div
-          class="curlear-collection-list__grid"
-          style="--curlear-list-cols-desktop: {{ section.settings.columns_desktop }}; --curlear-list-cols-mobile: {{ section.settings.columns_mobile }};"
+          class="curlear-collection-list__slider"
+          data-curlear-collection-slider-track
         >
           {% for block in section.blocks %}
-            {% assign block_collection = collections[block.settings.collection] %}
-            {% assign block_image = block.settings.image %}
             <div class="curlear-collection-list__item" {{ block.shopify_attributes }}>
-              <a class="curlear-collection-list__card" href="{% if block_collection != blank %}{{ block_collection.url }}{% else %}#{% endif %}">
-                <div class="curlear-collection-list__image-wrap">
-                  {% if block_image != blank %}
-                    {{
-                      block_image
-                      | image_url: width: 1400
-                      | image_tag:
-                        class: 'curlear-collection-list__image',
-                        loading: 'lazy',
-                        widths: '550, 760, 990, 1200, 1400',
-                        sizes: '(min-width: 990px) 30vw, 90vw',
-                        alt: block.settings.custom_heading | default: block_collection.title
-                    }}
-                  {% elsif block_collection != blank and block_collection.featured_image != blank %}
-                    {{
-                      block_collection.featured_image
-                      | image_url: width: 1400
-                      | image_tag:
-                        class: 'curlear-collection-list__image',
-                        loading: 'lazy',
-                        widths: '550, 760, 990, 1200, 1400',
-                        sizes: '(min-width: 990px) 30vw, 90vw',
-                        alt: block_collection.featured_image.alt
-                    }}
-                  {% elsif block_collection != blank and block_collection.products_count > 0 and block_collection.products.first.featured_image != blank %}
-                    {{
-                      block_collection.products.first.featured_image
-                      | image_url: width: 1400
-                      | image_tag:
-                        class: 'curlear-collection-list__image',
-                        loading: 'lazy',
-                        widths: '550, 760, 990, 1200, 1400',
-                        sizes: '(min-width: 990px) 30vw, 90vw',
-                        alt: block_collection.title
-                    }}
-                  {% else %}
-                    {{ 'collection-1' | placeholder_svg_tag: 'curlear-collection-list__image placeholder-svg' }}
-                  {% endif %}
-                </div>
-                <div class="curlear-collection-list__meta">
-                  <p class="curlear-collection-list__card-heading">
-                    {{ block.settings.custom_heading | default: block_collection.title | default: 'Collection' | escape }}
-                  </p>
-                  <span class="curlear-collection-list__arrow{% unless section.settings.show_arrow_mobile %} curlear-collection-list__arrow--hide-mobile{% endunless %}">
-                    &rarr;
-                  </span>
-                </div>
-              </a>
+              {% render 'curlear-collection-list-card',
+                block: block,
+                cols_desktop: section.settings.columns_desktop,
+                cols_mobile: section.settings.columns_mobile
+              %}
             </div>
           {% endfor %}
         </div>
-      {% endif %}
+      </div>
+    {% else %}
+      <div class="curlear-collection-list__grid">
+        {% for block in section.blocks %}
+          <div class="curlear-collection-list__item" {{ block.shopify_attributes }}>
+            {% render 'curlear-collection-list-card',
+              block: block,
+              cols_desktop: section.settings.columns_desktop,
+              cols_mobile: section.settings.columns_mobile
+            %}
+          </div>
+        {% endfor %}
+      </div>
     {% endif %}
-  </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -263,7 +191,7 @@
       "type": "select",
       "id": "layout_mode",
       "label": "Layout mode",
-      "default": "slider",
+      "default": "grid",
       "options": [
         { "value": "slider", "label": "Slider" },
         { "value": "grid", "label": "Grid" }
@@ -336,7 +264,14 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Custom image"
+          "label": "Background image",
+          "info": "Lifestyle/model photo for the card background. Falls back to collection image if empty."
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image",
+          "info": "Product cutout shown on the right (e.g. styler, dryer). Falls back to the first product image in the collection."
         }
       ]
     }

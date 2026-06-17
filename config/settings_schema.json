@@ -147,8 +147,9 @@
       {
         "type": "checkbox",
         "id": "enable_custom_paragraph_font",
-        "label": "Use Avenir LT Pro for all paragraph text",
-        "default": false
+        "label": "Use Avenir LT Pro for body text",
+        "info": "Applies to paragraphs, buttons, labels, and other non-heading text. Headings keep the heading font.",
+        "default": true
       }
     ]
   },

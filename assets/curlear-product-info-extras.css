@@ -17,7 +17,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  margin: 0 0 1.2rem;
+  margin: 0px;
 }
 
 .curlear-ratings__stars {
@@ -54,7 +54,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 3rem;
-  margin: 1.2rem 0 1.6rem;
+  margin: 2.2rem 0 1.6rem;
 }
 
 .curlear-icons-text-small__item {

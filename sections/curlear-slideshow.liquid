@@ -58,11 +58,18 @@
         {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
         {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
         {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+        {%- capture btn_gradient_angle -%}
+          {%- render 'curlear-button-gradient-angle',
+            direction: block.settings.button_gradient_direction,
+            angle: block.settings.button_gradient_angle,
+            default_angle: '90deg'
+          -%}
+        {%- endcapture -%}
         <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
           {% render 'custom-slideshow-slide-bg', block: block, loading: 'eager', fetchpriority: true %}
           <div
             class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
-            style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+            style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }}; --cs-button-gradient-angle: {{ btn_gradient_angle }};"
           >
             <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
             <div class="curlear-slideshow__text">{{ body_text }}</div>
@@ -111,13 +118,20 @@
                     {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
                     {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
                     {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+                    {%- capture btn_gradient_angle -%}
+                      {%- render 'curlear-button-gradient-angle',
+                        direction: block.settings.button_gradient_direction,
+                        angle: block.settings.button_gradient_angle,
+                        default_angle: '90deg'
+                      -%}
+                    {%- endcapture -%}
                     <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
                       {%- assign slide_loading = 'lazy' -%}
                       {%- if forloop.first -%}{%- assign slide_loading = 'eager' -%}{%- endif -%}
                       {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading, fetchpriority: forloop.first %}
                       <div
                         class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
-                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }}; --cs-button-gradient-angle: {{ btn_gradient_angle }};"
                       >
                         <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
                         <div class="curlear-slideshow__text">{{ body_text }}</div>
@@ -147,13 +161,20 @@
                     {%- assign cta_label = block.settings.button_label | default: default_button_label -%}
                     {%- assign btn_gradient_start = block.settings.button_gradient_start | default: block.settings.button_background -%}
                     {%- assign btn_gradient_end = block.settings.button_gradient_end | default: block.settings.button_background -%}
+                    {%- capture btn_gradient_angle -%}
+                      {%- render 'curlear-button-gradient-angle',
+                        direction: block.settings.button_gradient_direction,
+                        angle: block.settings.button_gradient_angle,
+                        default_angle: '90deg'
+                      -%}
+                    {%- endcapture -%}
                     <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
                       {%- assign slide_loading_alt = 'lazy' -%}
                       {%- if forloop.first -%}{%- assign slide_loading_alt = 'eager' -%}{%- endif -%}
                       {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading_alt, fetchpriority: forloop.first %}
                       <div
                         class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
-                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }};"
+                        style="--cs-heading-color: {{ block.settings.heading_color }}; --cs-text-color: {{ block.settings.text_color }}; --cs-button-bg: {{ block.settings.button_background }}; --cs-button-text: {{ block.settings.button_text_color }}; --cs-button-gradient-start: {{ btn_gradient_start }}; --cs-button-gradient-end: {{ btn_gradient_end }}; --cs-button-gradient-angle: {{ btn_gradient_angle }};"
                       >
                         <h2 class="curlear-slideshow__heading">{{ heading_text | escape }}</h2>
                         <div class="curlear-slideshow__text">{{ body_text }}</div>
@@ -349,6 +370,30 @@
           "id": "button_gradient_end",
           "label": "Button gradient end",
           "default": "#d99077"
+        },
+        {
+          "type": "select",
+          "id": "button_gradient_direction",
+          "label": "Button gradient direction",
+          "default": "left_right",
+          "options": [
+            { "value": "top_bottom", "label": "Top to bottom" },
+            { "value": "bottom_top", "label": "Bottom to top" },
+            { "value": "left_right", "label": "Left to right" },
+            { "value": "right_left", "label": "Right to left" },
+            { "value": "custom", "label": "Custom angle" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "button_gradient_angle",
+          "min": 0,
+          "max": 360,
+          "step": 4,
+          "unit": "deg",
+          "label": "Button gradient angle",
+          "default": 180,
+          "info": "Used when direction is set to Custom angle."
         },
         {
           "type": "image_picker",

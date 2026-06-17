@@ -19,7 +19,7 @@
 }
 
 .curlear-hero-features__content {
-  max-width: 52rem;
+  max-width: 53rem;
 }
 
 .curlear-hero-features__heading {
@@ -33,14 +33,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 1.8rem;
   margin-bottom: 2rem;
 }
 
 .curlear-hero-features__pills-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 1.8rem;
 }
 
 .curlear-hero-features__pill {
@@ -52,15 +52,16 @@
   border: 1px solid rgba(17, 17, 17, 0.2);
   border-radius: 999px;
   padding: 0.55rem 1.1rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.2;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .curlear-hero-features__line {
   margin: 0 0 1rem;
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.15;
+  font-weight: 500;
 }
 
 .curlear-hero-features__description {

@@ -11,6 +11,18 @@
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
 <div {{ block.shopify_attributes }}>
+  {%- capture curlear_button_gradient_angle -%}
+    {%- render 'curlear-button-gradient-angle',
+      direction: block.settings.curlear_button_gradient_direction,
+      angle: block.settings.curlear_button_gradient_angle
+    -%}
+  {%- endcapture -%}
+  {%- capture curlear_buy_now_gradient_angle -%}
+    {%- render 'curlear-button-gradient-angle',
+      direction: block.settings.curlear_buy_now_gradient_direction,
+      angle: block.settings.curlear_buy_now_gradient_angle
+    -%}
+  {%- endcapture -%}
   {%- style -%}
     #shopify-section-{{ section_id }} .product-form__buttons--curlear {
       max-width: 100%;
@@ -49,16 +61,35 @@
       align-items: center;
     }
 
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit::before,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit::after,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded::before,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded::after,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button']::before,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button']::after {
+      content: none !important;
+      display: none !important;
+      box-shadow: none !important;
+    }
+
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:hover,
-    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:focus-visible {
-      border-color: transparent !important;
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:focus,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:focus-visible,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:active,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:not([disabled]):hover::after,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit:not([disabled]):hover::before {
+      color: {{ block.settings.curlear_button_text_color | default: '#FFFFFF' }} !important;
+      background: {{ block.settings.curlear_button_bg | default: '#E7BDA9' }} !important;
+      border: 1px solid rgba(20, 20, 20, 0.2) !important;
       outline: none !important;
       box-shadow: none !important;
+      transform: none !important;
+      opacity: 1 !important;
     }
 
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient {
       background: linear-gradient(
-        180deg,
+        {{ curlear_button_gradient_angle }},
         {{ block.settings.curlear_button_gradient_start | default: '#F2C6B4' }} 0%,
         {{ block.settings.curlear_button_gradient_middle | default: '#ECB7A3' }} 52%,
         {{ block.settings.curlear_button_gradient_end | default: '#C27A63' }} 100%
@@ -69,6 +100,23 @@
       padding: 0;
     }
 
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient:hover,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient:focus,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient:focus-visible,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .product-form__submit.curlear-buy-button--gradient:active {
+      background: linear-gradient(
+        {{ curlear_button_gradient_angle }},
+        {{ block.settings.curlear_button_gradient_start | default: '#F2C6B4' }} 0%,
+        {{ block.settings.curlear_button_gradient_middle | default: '#ECB7A3' }} 52%,
+        {{ block.settings.curlear_button_gradient_end | default: '#C27A63' }} 100%
+      ) !important;
+      border: 0 !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button {
       width: 100%;
       min-width: 0;
@@ -76,20 +124,13 @@
 
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button {
       min-height: 5.6rem;
-      border-radius: 1.2rem;
+      border-radius: 1rem;
       box-shadow: none;
       border: 1px solid rgba(20, 20, 20, 0.2);
-      font-size: 1.3rem;
+      font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-    }
-
-    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button:hover,
-    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button:focus-visible {
-      border-color: transparent !important;
-      outline: none !important;
-      box-shadow: none !important;
     }
 
     #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded {
@@ -97,15 +138,56 @@
       background: {{ block.settings.curlear_buy_now_bg | default: '#E7BDA9' }};
     }
 
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button:hover,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button:focus,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button:focus-visible,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:hover,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:focus,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:focus-visible,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:active,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:hover:not([disabled]),
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:not([disabled]):hover::after,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:not([disabled]):hover::before,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button']:hover,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button']:focus,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button']:focus-visible,
+    #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button [role='button'].focused {
+      color: {{ block.settings.curlear_buy_now_text_color | default: '#FFFFFF' }} !important;
+      background: {{ block.settings.curlear_buy_now_bg | default: '#E7BDA9' }} !important;
+      border: 1px solid rgba(20, 20, 20, 0.2) !important;
+      outline: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
     {% if block.settings.curlear_buy_now_use_gradient %}
       #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded {
         background: linear-gradient(
-          180deg,
+          {{ curlear_buy_now_gradient_angle }},
           {{ block.settings.curlear_buy_now_gradient_start | default: '#F2C6B4' }} 0%,
           {{ block.settings.curlear_buy_now_gradient_middle | default: '#ECB7A3' }} 52%,
           {{ block.settings.curlear_buy_now_gradient_end | default: '#C27A63' }} 100%
         );
         border: 0;
+      }
+
+      #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:hover,
+      #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:focus,
+      #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:focus-visible,
+      #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:active,
+      #shopify-section-{{ section_id }} .product-form__buttons--curlear .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+        background: linear-gradient(
+          {{ curlear_buy_now_gradient_angle }},
+          {{ block.settings.curlear_buy_now_gradient_start | default: '#F2C6B4' }} 0%,
+          {{ block.settings.curlear_buy_now_gradient_middle | default: '#ECB7A3' }} 52%,
+          {{ block.settings.curlear_buy_now_gradient_end | default: '#C27A63' }} 100%
+        ) !important;
+        border: 0 !important;
+        outline: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        opacity: 1 !important;
       }
     {% endif %}
 

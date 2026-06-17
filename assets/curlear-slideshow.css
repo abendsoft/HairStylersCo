@@ -220,7 +220,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
 }
 
 .curlear-slideshow__slide-bg--video {
@@ -317,7 +317,7 @@
 }
 
 .curlear-slideshow__text--avenir {
-  font-family: "Avenir LT Pro", "Avenir", "Avenir Next", sans-serif;
+  font-family: var(--font-body-family);
 }
 
 .curlear-slideshow__button {
@@ -334,7 +334,7 @@
 }
 
 .curlear-slideshow__button--gradient {
-  background: linear-gradient(90deg, var(--cs-button-gradient-start, #f8d0bd), var(--cs-button-gradient-end, #d99077));
+  background: linear-gradient(var(--cs-button-gradient-angle, 90deg), var(--cs-button-gradient-start, #f8d0bd), var(--cs-button-gradient-end, #d99077));
 }
 
 .curlear-slideshow__button--with-arrow {

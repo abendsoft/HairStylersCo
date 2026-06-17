@@ -11,7 +11,53 @@
       endif
     endfor
   endif
+
+  assign use_custom_column_widths = section.settings.use_custom_column_widths
+  assign content_column_width = section.settings.content_column_width | default: 50
+  assign media_column_width = section.settings.media_column_width | default: 50
+  assign column_width_total = content_column_width | plus: media_column_width
+  if use_custom_column_widths and column_width_total > 0
+    assign content_column_width = content_column_width | times: 100 | divided_by: column_width_total
+    assign media_column_width = 100 | minus: content_column_width
+  else
+    assign content_column_width = 50
+    assign media_column_width = 50
+  endif
+
+  if section.settings.reverse_columns_mobile
+    assign grid_column_one_width = media_column_width
+    assign grid_column_two_width = content_column_width
+  else
+    assign grid_column_one_width = content_column_width
+    assign grid_column_two_width = media_column_width
+  endif
 -%}
+
+{% style %}
+  @media screen and (min-width: 990px) {
+    {% if section.settings.use_custom_column_widths %}
+      #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols {
+        grid-template-columns: minmax(0, {{ grid_column_one_width }}%) minmax(0, {{ grid_column_two_width }}%);
+      }
+
+      #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols .curlear-image-accordion-showcase__content {
+        grid-column: 1;
+      }
+
+      #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols .curlear-image-accordion-showcase__media {
+        grid-column: 2;
+      }
+
+      #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols.curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__content {
+        grid-column: 2;
+      }
+
+      #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols.curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__media {
+        grid-column: 1;
+      }
+    {% endif %}
+  }
+{% endstyle %}
 
 <section
   class="curlear-image-accordion-showcase section-{{ section.id }}-padding"
@@ -27,7 +73,7 @@
 >
   <div class="page-width">
     <div
-      class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %} curlear-image-accordion-showcase__inner--align-{{ section.settings.content_alignment }}"
+      class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %}{% if section.settings.use_custom_column_widths %} curlear-image-accordion-showcase__inner--custom-cols{% endif %} curlear-image-accordion-showcase__inner--align-{{ section.settings.content_alignment }}"
       data-curlear-accordion-showcase
     >
       <div class="curlear-image-accordion-showcase__media">
@@ -133,6 +179,38 @@
       "id": "reverse_columns_mobile",
       "label": "Reverse columns (image first)",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Column widths (desktop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_column_widths",
+      "label": "Use custom column widths",
+      "default": false,
+      "info": "Adjust the content and image column split on desktop. Mobile always stacks to one column."
+    },
+    {
+      "type": "range",
+      "id": "content_column_width",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Content column width",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "media_column_width",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Image column width",
+      "default": 50,
+      "info": "Widths are scaled proportionally to total 100%."
     },
     {
       "type": "select",

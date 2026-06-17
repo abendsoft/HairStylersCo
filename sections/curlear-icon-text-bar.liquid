@@ -28,8 +28,8 @@
 -%}
 
 {%- if citb_items > 0 -%}
-  <div class="curlear-icon-text-bar">
-    <div class="page-width">
+  <div class="curlear-icon-text-bar{% if section.settings.full_width %} curlear-icon-text-bar--full-width{% endif %}">
+    <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
       <div class="curlear-icon-text-bar__grid" role="list">
         {%- for block in section.blocks -%}
           {%- liquid
@@ -77,6 +77,12 @@
   "class": "section-curlear-icon-text-bar",
   "max_blocks": 4,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
     {
       "type": "color",
       "id": "background_color",

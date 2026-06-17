@@ -1,0 +1,30 @@
+{% comment %}
+  Returns a CSS gradient angle (e.g. 180deg) from direction + angle settings.
+
+  @param direction {string}
+  @param angle {number}
+  @param default_angle {string} optional fallback when direction is blank
+{% endcomment %}
+{%- liquid
+  if direction == blank
+    if default_angle != blank
+      assign output_angle = default_angle
+    else
+      assign output_angle = '180deg'
+    endif
+  else
+    case direction
+      when 'bottom_top'
+        assign output_angle = '0deg'
+      when 'left_right'
+        assign output_angle = '90deg'
+      when 'right_left'
+        assign output_angle = '270deg'
+      when 'custom'
+        assign output_angle = angle | default: 180 | append: 'deg'
+      else
+        assign output_angle = '180deg'
+    endcase
+  endif
+-%}
+{{- output_angle -}}

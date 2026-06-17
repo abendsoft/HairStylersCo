@@ -118,12 +118,14 @@
   letter-spacing: 0.06em;
   font-size: 14px;
   line-height: 1;
-  color: #fff;
+  border: 0;
+  box-sizing: border-box;
+  color: var(--curlear-btn-text-color, #fff);
   background: linear-gradient(
-    180deg,
-    var(--curlear-testimonial-button-gradient-start, #f2c6b4) 0%,
-    var(--curlear-testimonial-button-gradient-middle, #ecb7a3) 52%,
-    var(--curlear-testimonial-button-gradient-end, #c27a63) 100%
+    var(--curlear-btn-gradient-angle, 180deg),
+    var(--curlear-btn-gradient-start, #f2c6b4) 0%,
+    var(--curlear-btn-gradient-middle, #ecb7a3) 52%,
+    var(--curlear-btn-gradient-end, #c27a63) 100%
   );
   box-shadow: 0 6px 16px rgba(170, 110, 88, 0.2);
 }

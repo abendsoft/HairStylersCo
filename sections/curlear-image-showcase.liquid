@@ -21,9 +21,24 @@
   assign image_sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, ' | append: mobile_vw | append: 'vw'
 -%}
 
+{%- capture button_gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.button_gradient_direction,
+    angle: section.settings.button_gradient_angle
+  -%}
+{%- endcapture -%}
+
 <section
   class="curlear-image-showcase section-{{ section.id }}-padding{% unless section.settings.full_width %} curlear-image-showcase--contained{% endunless %}"
-  style="background-color: {{ section.settings.background_color }};"
+  style="
+    background-color: {{ section.settings.background_color }};
+    --curlear-btn-gradient-start: {{ section.settings.button_gradient_start }};
+    --curlear-btn-gradient-middle: {{ section.settings.button_gradient_middle }};
+    --curlear-btn-gradient-end: {{ section.settings.button_gradient_end }};
+    --curlear-btn-gradient-angle: {{ button_gradient_angle }};
+    --curlear-btn-text-color: {{ section.settings.button_text_color }};
+    --curlear-image-showcase-btn-bg: {{ section.settings.button_color }};
+  "
 >
   {% if section.settings.heading != blank %}
     <div class="page-width">
@@ -62,7 +77,13 @@
           {% endif %}
           <div class="curlear-image-showcase__slider" data-curlear-image-slider-track>
             {% for block in section.blocks %}
-              {% render 'curlear-image-showcase-card', block: block, image_sizes: image_sizes %}
+              {% render 'curlear-image-showcase-card',
+                block: block,
+                image_sizes: image_sizes,
+                use_gradient_button: section.settings.use_gradient_button,
+                show_button_arrow: section.settings.show_button_arrow,
+                button_arrow_icon: section.settings.button_arrow_icon
+              %}
             {% endfor %}
           </div>
         </div>
@@ -71,7 +92,13 @@
       <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
         <div class="curlear-image-showcase__grid">
           {% for block in section.blocks %}
-            {% render 'curlear-image-showcase-card', block: block, image_sizes: image_sizes %}
+            {% render 'curlear-image-showcase-card',
+              block: block,
+              image_sizes: image_sizes,
+              use_gradient_button: section.settings.use_gradient_button,
+              show_button_arrow: section.settings.show_button_arrow,
+              button_arrow_icon: section.settings.button_arrow_icon
+            %}
           {% endfor %}
         </div>
       </div>
@@ -103,6 +130,83 @@
       "id": "full_width",
       "label": "Full width section",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Overlay button"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient_button",
+      "label": "Use gradient for button",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#E7BDA9",
+      "info": "Used when gradient is disabled."
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_start",
+      "label": "Button gradient start",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_middle",
+      "label": "Button gradient middle",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_end",
+      "label": "Button gradient end",
+      "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "button_gradient_direction",
+      "label": "Button gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Button gradient angle",
+      "default": 180,
+      "info": "Used when direction is set to Custom angle."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Show arrow after button label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "button_arrow_icon",
+      "label": "Button arrow icon",
+      "info": "Shown after the button label. Uses the default arrow when empty."
     },
     {
       "type": "select",

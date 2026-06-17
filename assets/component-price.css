@@ -21,6 +21,7 @@
 .price .price-item {
   display: inline-block;
   margin: 0 1rem 0 0;
+  font-weight: bold;
 }
 
 .price__regular .price-item--regular {
@@ -45,7 +46,7 @@
 
 @media screen and (min-width: 750px) {
   .price--large {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
 

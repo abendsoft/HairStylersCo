@@ -53,13 +53,13 @@
 
 .curlear-community-marquee__bottom {
   text-align: center;
-  padding-top: 6rem;
-  padding-bottom: 5rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .curlear-community-marquee__bottom-heading {
   margin: 0;
-  font-size: clamp(3.4rem, 3vw, 4.8rem);
+  font-size: clamp(3.4rem, 3vw, 3.8rem);
   line-height: 1.15;
   font-weight: 400;
 }
@@ -69,18 +69,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 16rem;
-  min-height: 4.4rem;
-  padding: 1.1rem 2.6rem;
-  border-radius: 1rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: 12px;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 1.7rem;
+  font-size: 15px;
   line-height: 1;
   color: #fff;
   background: linear-gradient(
-    180deg,
+    var(--curlear-community-button-gradient-angle, 180deg),
     var(--curlear-community-button-gradient-start, #f2c6b4) 0%,
     var(--curlear-community-button-gradient-middle, #ecb7a3) 52%,
     var(--curlear-community-button-gradient-end, #c27a63) 100%

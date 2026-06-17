@@ -1,5 +1,12 @@
 {{ 'curlear-community-marquee.css' | asset_url | stylesheet_tag }}
 
+{%- capture button_gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.button_gradient_direction,
+    angle: section.settings.button_gradient_angle
+  -%}
+{%- endcapture -%}
+
 <section
   class="curlear-community-marquee section-{{ section.id }}-padding"
   style="
@@ -9,6 +16,7 @@
     --curlear-community-button-gradient-start: {{ section.settings.button_gradient_start }};
     --curlear-community-button-gradient-middle: {{ section.settings.button_gradient_middle }};
     --curlear-community-button-gradient-end: {{ section.settings.button_gradient_end }};
+    --curlear-community-button-gradient-angle: {{ button_gradient_angle }};
   "
 >
   <div class="page-width">
@@ -180,6 +188,30 @@
       "id": "button_gradient_end",
       "label": "Button gradient end",
       "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "button_gradient_direction",
+      "label": "Button gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Button gradient angle",
+      "default": 180,
+      "info": "Used when direction is set to Custom angle."
     }
   ],
   "blocks": [

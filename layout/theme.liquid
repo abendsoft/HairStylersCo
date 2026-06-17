@@ -100,7 +100,8 @@
       }
 
       :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --font-avenir-family: "Avenir LT Pro", "Avenir", "Avenir Next", sans-serif;
+        --font-body-family: {% if settings.enable_custom_paragraph_font %}"Avenir LT Pro", "Avenir", "Avenir Next",{% endif %} {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
         --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
@@ -247,14 +248,6 @@
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
       }
-
-      {% if settings.enable_custom_paragraph_font %}
-      p,
-      .rte p,
-      .curlear-slideshow__text {
-        font-family: "Avenir LT Pro", "Avenir", "Avenir Next", sans-serif;
-      }
-      {% endif %}
 
       @media screen and (min-width: 750px) {
         body {

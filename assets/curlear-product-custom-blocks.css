@@ -168,6 +168,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
+  font-weight: 700;
+  color: black;
 }
 
 .curlear-collapsible__icon {

@@ -4,6 +4,11 @@
   gap: 1.75rem 1rem;
 }
 
+.curlear-icon-text-bar--full-width {
+  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+}
+
 .curlear-icon-text-bar__item {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,26 @@
 {{ 'curlear-collection-list.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-collection-list.js' | asset_url }}" defer="defer"></script>
 
+{%- liquid
+  assign show_card_overlay = section.settings.show_card_overlay
+  if show_card_overlay == nil
+    assign show_card_overlay = true
+  endif
+
+  assign card_overlay_color = section.settings.card_overlay_color | default: '#000000'
+  assign card_overlay_opacity = section.settings.card_overlay_opacity | default: 45 | times: 0.01
+  assign card_overlay_mid_opacity = section.settings.card_overlay_opacity | default: 45 | times: 0.0044
+  assign card_overlay_mid = card_overlay_color | color_modify: 'alpha', card_overlay_mid_opacity
+  assign card_overlay_end = card_overlay_color | color_modify: 'alpha', card_overlay_opacity
+-%}
+
+{%- capture button_gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.button_gradient_direction,
+    angle: section.settings.button_gradient_angle
+  -%}
+{%- endcapture -%}
+
 {% style %}
   #shopify-section-{{ section.id }} .curlear-collection-list__slider,
   #shopify-section-{{ section.id }} .curlear-collection-list__grid {
@@ -21,11 +41,34 @@
       }
     }
   {% endunless %}
+
+  {% if show_card_overlay %}
+    #shopify-section-{{ section.id }} .curlear-collection-list__footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        {{ card_overlay_mid }} 55%,
+        {{ card_overlay_end }} 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+  {% endif %}
 {% endstyle %}
 
 <section
   class="curlear-collection-list section-{{ section.id }}-padding"
-  style="{% if section.settings.use_section_bg_gradient %}background: linear-gradient(180deg, {{ section.settings.section_bg_gradient_start }}, {{ section.settings.section_bg_gradient_end }});{% else %}background-color: {{ section.settings.section_bg_color }};{% endif %}"
+  style="
+    {% if section.settings.use_section_bg_gradient %}background: linear-gradient(180deg, {{ section.settings.section_bg_gradient_start }}, {{ section.settings.section_bg_gradient_end }});{% else %}background-color: {{ section.settings.section_bg_color }};{% endif %}
+    --curlear-btn-gradient-start: {{ section.settings.button_gradient_start }};
+    --curlear-btn-gradient-middle: {{ section.settings.button_gradient_middle }};
+    --curlear-btn-gradient-end: {{ section.settings.button_gradient_end }};
+    --curlear-btn-gradient-angle: {{ button_gradient_angle }};
+    --curlear-btn-text-color: {{ section.settings.button_text_color }};
+  "
 >
   <div class="curlear-collection-list__top" style="background-color: {{ section.settings.section_bg_color }};">
     <div class="page-width curlear-collection-list__top-inner">
@@ -34,7 +77,7 @@
         <a
           class="curlear-collection-list__button{% if section.settings.use_gradient_button %} curlear-collection-list__button--gradient{% endif %}"
           href="{{ section.settings.button_link }}"
-          style="--curlear-list-btn-bg: {{ section.settings.button_color }}; --curlear-list-btn-color: {{ section.settings.button_text_color }}; --curlear-list-btn-gradient-start: {{ section.settings.button_gradient_start }}; --curlear-list-btn-gradient-end: {{ section.settings.button_gradient_end }};"
+          style="--curlear-list-btn-bg: {{ section.settings.button_color }}; --curlear-list-btn-color: {{ section.settings.button_text_color }};"
         >
           {{ section.settings.button_label }}
         </a>
@@ -173,19 +216,49 @@
       "type": "checkbox",
       "id": "use_gradient_button",
       "label": "Use gradient for button",
-      "default": false
+      "default": true
     },
     {
       "type": "color",
       "id": "button_gradient_start",
       "label": "Button gradient start",
-      "default": "#F8D0BD"
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "button_gradient_middle",
+      "label": "Button gradient middle",
+      "default": "#ECB7A3"
     },
     {
       "type": "color",
       "id": "button_gradient_end",
       "label": "Button gradient end",
-      "default": "#D99077"
+      "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "button_gradient_direction",
+      "label": "Button gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "button_gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Button gradient angle",
+      "default": 180,
+      "info": "Rotate the gradient to any angle. Used when direction is set to Custom angle."
     },
     {
       "type": "select",
@@ -221,6 +294,32 @@
       "id": "show_arrow_mobile",
       "label": "Show arrow on mobile",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Footer overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_overlay",
+      "label": "Show footer overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "card_overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "card_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 45
     },
     {
       "type": "checkbox",
@@ -272,6 +371,12 @@
           "id": "product_image",
           "label": "Product image",
           "info": "Product cutout shown on the right (e.g. styler, dryer). Falls back to the first product image in the collection."
+        },
+        {
+          "type": "image_picker",
+          "id": "arrow_icon",
+          "label": "Arrow icon",
+          "info": "Optional custom arrow beside the collection name. Uses the default arrow when empty."
         }
       ]
     }

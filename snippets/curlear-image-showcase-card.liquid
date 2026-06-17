@@ -1,6 +1,9 @@
 {% comment %}
   @param block {object}
   @param image_sizes {string}
+  @param use_gradient_button {boolean}
+  @param show_button_arrow {boolean}
+  @param button_arrow_icon {image}
 {% endcomment %}
 
 <article class="curlear-image-showcase__item" {{ block.shopify_attributes }}>
@@ -31,10 +34,34 @@
       {% endif %}
       {% if block.settings.button_label != blank %}
         <a
-          class="curlear-image-showcase__overlay-button"
+          class="curlear-image-showcase__overlay-button{% if use_gradient_button %} curlear-image-showcase__overlay-button--gradient{% endif %}"
           href="{{ block.settings.button_link | default: '#' }}"
         >
-          {{ block.settings.button_label }} &rarr;
+          {%- liquid
+            assign display_button_arrow = show_button_arrow
+            if display_button_arrow == nil
+              assign display_button_arrow = true
+            endif
+          -%}
+          <span class="curlear-image-showcase__overlay-button-label">{{ block.settings.button_label }}</span>
+          {% if display_button_arrow %}
+            <span class="curlear-image-showcase__overlay-button-arrow{% if button_arrow_icon != blank %} curlear-image-showcase__overlay-button-arrow--custom{% endif %}" aria-hidden="true">
+              {% if button_arrow_icon != blank %}
+                {{
+                  button_arrow_icon
+                  | image_url: width: 80
+                  | image_tag:
+                    class: 'curlear-image-showcase__overlay-button-arrow-icon',
+                    loading: 'lazy',
+                    widths: '24, 36, 48, 64, 80',
+                    sizes: '20px',
+                    alt: ''
+                }}
+              {% else %}
+                &rarr;
+              {% endif %}
+            </span>
+          {% endif %}
         </a>
       {% endif %}
     </div>

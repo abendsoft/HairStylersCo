@@ -12,10 +12,24 @@
   endif
 -%}
 
+{%- capture button_gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.quickview_gradient_direction,
+    angle: section.settings.quickview_gradient_angle
+  -%}
+{%- endcapture -%}
+
 <section
   class="curlear-featured-collection section-{{ section.id }}-padding"
   data-section-id="{{ section.id }}"
-  style="background-color: {{ section_bg_color }};"
+  style="
+    background-color: {{ section_bg_color }};
+    --curlear-btn-gradient-start: {{ section.settings.quickview_gradient_start }};
+    --curlear-btn-gradient-middle: {{ section.settings.quickview_gradient_middle }};
+    --curlear-btn-gradient-end: {{ section.settings.quickview_gradient_end }};
+    --curlear-btn-gradient-angle: {{ button_gradient_angle }};
+    --curlear-btn-text-color: {{ section.settings.collection_button_text_color }};
+  "
 >
   <div class="page-width">
     <div class="curlear-featured-collection__top">
@@ -24,9 +38,23 @@
         <a
           class="curlear-featured-collection__button{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
           href="{{ featured_collection.url }}"
-          style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }}; --curlear-collection-btn-grad-start: {{ section.settings.quickview_gradient_start }}; --curlear-collection-btn-grad-end: {{ section.settings.quickview_gradient_end }};"
+          style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }};"
         >
-          {{ section.settings.button_label }}
+          <span class="curlear-featured-collection__button-label">{{ section.settings.button_label }}</span>
+          {% if section.settings.button_arrow_icon != blank %}
+            <span class="curlear-featured-collection__button-arrow" aria-hidden="true">
+              {{
+                section.settings.button_arrow_icon
+                | image_url: width: 48
+                | image_tag:
+                  class: 'curlear-featured-collection__button-arrow-icon',
+                  loading: 'lazy',
+                  widths: '20, 28, 36, 48',
+                  sizes: '20px',
+                  alt: ''
+              }}
+            </span>
+          {% endif %}
         </a>
       {% endif %}
     </div>
@@ -136,6 +164,12 @@
       "default": "Shop all best sellers"
     },
     {
+      "type": "image_picker",
+      "id": "button_arrow_icon",
+      "label": "Collection button arrow icon",
+      "info": "Optional arrow shown after the button label."
+    },
+    {
       "type": "color",
       "id": "collection_button_color",
       "label": "Collection button color",
@@ -172,19 +206,49 @@
       "type": "checkbox",
       "id": "quickview_use_gradient",
       "label": "Use gradient for collection button",
-      "default": false
+      "default": true
     },
     {
       "type": "color",
       "id": "quickview_gradient_start",
-      "label": "Collection button gradient start",
-      "default": "#F8D0BD"
+      "label": "Button gradient start",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "quickview_gradient_middle",
+      "label": "Button gradient middle",
+      "default": "#ECB7A3"
     },
     {
       "type": "color",
       "id": "quickview_gradient_end",
-      "label": "Collection button gradient end",
-      "default": "#D99077"
+      "label": "Button gradient end",
+      "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "quickview_gradient_direction",
+      "label": "Button gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "quickview_gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Button gradient angle",
+      "default": 180,
+      "info": "Used when direction is set to Custom angle."
     },
     {
       "type": "color",

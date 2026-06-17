@@ -59,15 +59,29 @@
     {% else %}
       {{ 'collection-1' | placeholder_svg_tag: 'curlear-collection-list__image placeholder-svg' }}
     {% endif %}
-    <div class="curlear-collection-list__shade" aria-hidden="true"></div>
   </div>
 
   <div class="curlear-collection-list__footer">
     <div class="curlear-collection-list__meta">
-      <p class="curlear-collection-list__card-heading">{{ card_heading | escape }}</p>
-      <span class="curlear-collection-list__arrow" aria-hidden="true">
-        &rarr;
-      </span>
+      <p class="curlear-collection-list__card-heading">
+        {{ card_heading | escape }}
+        <span class="curlear-collection-list__arrow{% if block.settings.arrow_icon != blank %} curlear-collection-list__arrow--custom{% endif %}" aria-hidden="true">
+          {% if block.settings.arrow_icon != blank %}
+            {{
+              block.settings.arrow_icon
+              | image_url: width: 80
+              | image_tag:
+                class: 'curlear-collection-list__arrow-icon',
+                loading: 'lazy',
+                widths: '24, 36, 48, 64, 80',
+                sizes: '32px',
+                alt: ''
+            }}
+          {% else %}
+            &rarr;
+          {% endif %}
+        </span>
+      </p>
     </div>
 
     {% if product_thumb != blank %}

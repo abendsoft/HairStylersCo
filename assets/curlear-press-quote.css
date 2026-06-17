@@ -1,6 +1,6 @@
 .curlear-press-quote {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
   background-color: var(--curlear-press-bg, #f7f4f0);
   color: var(--curlear-press-text, #1a1a1a);
 }
@@ -14,7 +14,7 @@
 
 .curlear-press-quote__caption {
   margin: 0 0 1.2rem;
-  font-size: 1.2rem;
+  font-size: 24px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
@@ -51,7 +51,7 @@
 
 .curlear-press-quote__footer-tag {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.3rem;
   background-color: var(--curlear-press-tag-bg, #c4a574);
   color: var(--curlear-press-tag-color, #fff);
   text-transform: uppercase;

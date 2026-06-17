@@ -17,15 +17,17 @@
           "settings": {
             "heading": "Style That Holds",
             "text": "No tug. No repeat passes. No drop by noon.\nTools that get it right first time.",
-            "button_label": "Order Now",
+            "button_label": "SHOP NOW",
             "button_link": "",
             "heading_color": "#ffffff",
             "text_color": "#ffffff",
-            "button_background": "#333333",
+            "button_background": "#000000",
             "button_text_color": "#ffffff",
             "use_gradient_button": false,
             "button_gradient_start": "#f8d0bd",
             "button_gradient_end": "#d99077",
+            "button_gradient_direction": "left_right",
+            "button_gradient_angle": 180,
             "image": "shopify://shop_images/e562a223ba84296cf56c9a48297a86de5406bd3b.webp",
             "video_url": "",
             "video_autoplay": true
@@ -90,6 +92,7 @@
       ],
       "name": "Icon text bar",
       "settings": {
+        "full_width": true,
         "background_color": "#e8d5cc",
         "heading_color": "#1a1a1a",
         "heading_size": 20,
@@ -145,7 +148,10 @@
         "image_ratio": "square",
         "quickview_use_gradient": true,
         "quickview_gradient_start": "#f8d0bd",
+        "quickview_gradient_middle": "#ecb7a3",
         "quickview_gradient_end": "#d99077",
+        "quickview_gradient_direction": "custom",
+        "quickview_gradient_angle": 172,
         "section_bg_color": "#fffaf7",
         "section_bg_opacity": 100,
         "products_to_show": 8,
@@ -163,9 +169,10 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "custom_heading": "All-in-One Stylers",
+            "custom_heading": "HAIR STYLERS",
             "image": "shopify://shop_images/Rectangle_4.webp",
-            "product_image": "shopify://shop_images/Untitled-1_1.png"
+            "product_image": "shopify://shop_images/Untitled-1_1.png",
+            "arrow_icon": "shopify://shop_images/Vector_8c60e948-aac1-405b-a933-6c5d8e273dd0.png"
           }
         },
         "collection_KcBNrr": {
@@ -174,7 +181,8 @@
             "collection": "",
             "custom_heading": "HAIR DRYERS",
             "image": "shopify://shop_images/Rectangle_3.webp",
-            "product_image": "shopify://shop_images/Untitled-1_3.png"
+            "product_image": "shopify://shop_images/Untitled-1_3.png",
+            "arrow_icon": "shopify://shop_images/Vector_8c60e948-aac1-405b-a933-6c5d8e273dd0.png"
           }
         },
         "collection_iNpLiw": {
@@ -183,7 +191,8 @@
             "collection": "",
             "custom_heading": "Hair Curlers",
             "image": "shopify://shop_images/Rectangle_2.webp",
-            "product_image": "shopify://shop_images/Untitled-1_2.png"
+            "product_image": "shopify://shop_images/Untitled-1_2.png",
+            "arrow_icon": "shopify://shop_images/Vector_8c60e948-aac1-405b-a933-6c5d8e273dd0.png"
           }
         },
         "collection_JWcK6f": {
@@ -192,7 +201,8 @@
             "collection": "",
             "custom_heading": "Hair Straighteners",
             "image": "shopify://shop_images/Rectangle_1.webp",
-            "product_image": "shopify://shop_images/Untitled-1_4.png"
+            "product_image": "shopify://shop_images/Untitled-1_4.png",
+            "arrow_icon": "shopify://shop_images/Vector_8c60e948-aac1-405b-a933-6c5d8e273dd0.png"
           }
         }
       },
@@ -216,12 +226,18 @@
         "button_text_color": "#ffffff",
         "use_gradient_button": true,
         "button_gradient_start": "#f8d0bd",
+        "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#d99077",
+        "button_gradient_direction": "custom",
+        "button_gradient_angle": 148,
         "layout_mode": "slider",
         "columns_desktop": 4,
         "columns_mobile": "2",
         "show_arrow_mobile": true,
-        "auto_slide": true,
+        "show_card_overlay": true,
+        "card_overlay_color": "#000000",
+        "card_overlay_opacity": 30,
+        "auto_slide": false,
         "show_slider_nav": false,
         "auto_slide_speed": 4
       }
@@ -375,6 +391,16 @@
         "heading": "Everything You Need For Prettier Hair",
         "background_color": "#fffaf7",
         "full_width": true,
+        "use_gradient_button": true,
+        "button_color": "#e7bda9",
+        "button_text_color": "#ffffff",
+        "button_gradient_start": "#f2c6b4",
+        "button_gradient_middle": "#ecb7a3",
+        "button_gradient_end": "#c27a63",
+        "button_gradient_direction": "custom",
+        "button_gradient_angle": 120,
+        "show_button_arrow": true,
+        "button_arrow_icon": "shopify://shop_images/guidance_up-arrow_1.png",
         "layout_mode": "slider",
         "columns_desktop": 3,
         "columns_mobile": "1",
@@ -411,7 +437,7 @@
         "top_text_color": "#ffffff",
         "bottom_heading": "MORE SHINE. LESS DAMAGE.",
         "bottom_heading_color": "#ffffff",
-        "section_height": 550
+        "section_height": 600
       }
     },
     "curlear_testimonial_slider_T3WHPc": {
@@ -456,6 +482,8 @@
         "button_gradient_start": "#f2c6b4",
         "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#c27a63",
+        "button_gradient_direction": "top_bottom",
+        "button_gradient_angle": 180,
         "auto_slide": true,
         "show_slider_nav": true,
         "auto_slide_speed": 4,
@@ -524,7 +552,10 @@
         "button_text_color": "#ffffff",
         "use_gradient_button": true,
         "button_gradient_start": "#f8d0bd",
+        "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#d99077",
+        "button_gradient_direction": "top_bottom",
+        "button_gradient_angle": 64,
         "dot_active_color": "#3b3b3b",
         "auto_slide": false,
         "auto_slide_speed": 4
@@ -637,7 +668,9 @@
         "button_link": "",
         "button_gradient_start": "#f2c6b4",
         "button_gradient_middle": "#ecb7a3",
-        "button_gradient_end": "#c27a63"
+        "button_gradient_end": "#c27a63",
+        "button_gradient_direction": "top_bottom",
+        "button_gradient_angle": 48
       }
     }
   },

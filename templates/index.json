@@ -168,10 +168,10 @@
         "collection_MAgEQy": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "frontpage",
             "custom_heading": "HAIR STYLERS",
             "image": "shopify://shop_images/Rectangle_4.webp",
-            "product_image": "shopify://shop_images/Untitled-1_1.png",
+            "product_image": "shopify://shop_images/Group_147.png",
             "arrow_icon": "shopify://shop_images/Vector_8c60e948-aac1-405b-a933-6c5d8e273dd0.png"
           }
         },

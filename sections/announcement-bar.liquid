@@ -12,14 +12,39 @@
   if section.blocks.size > 0
     assign announcement_bar = true
   endif
+
+  assign use_gradient_background = section.settings.use_gradient_background
+  if use_gradient_background == nil
+    assign use_gradient_background = false
+  endif
 -%}
+
+{%- capture gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.gradient_direction,
+    angle: section.settings.gradient_angle
+  -%}
+{%- endcapture -%}
+
+{% if use_gradient_background %}
+  {% style %}
+    #shopify-section-{{ section.id }} .utility-bar--curlear-gradient {
+      background: linear-gradient(
+        {{ gradient_angle }},
+        {{ section.settings.gradient_start | default: '#F2C6B4' }} 0%,
+        {{ section.settings.gradient_middle | default: '#ECB7A3' }} 52%,
+        {{ section.settings.gradient_end | default: '#C27A63' }} 100%
+      );
+    }
+  {% endstyle %}
+{% endif %}
 
 {% if social_icons %}
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
 <div
-  class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
+  class="utility-bar color-{{ section.settings.color_scheme }}{% unless use_gradient_background %} gradient{% endunless %}{% if use_gradient_background %} utility-bar--curlear-gradient{% endif %}{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
 >
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
     {%- if section.settings.show_social and social_icons -%}
@@ -192,7 +217,59 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
+    {
+      "type": "header",
+      "content": "Background gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient_background",
+      "label": "Use gradient background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "gradient_start",
+      "label": "Gradient start",
+      "default": "#F2C6B4"
+    },
+    {
+      "type": "color",
+      "id": "gradient_middle",
+      "label": "Gradient middle",
+      "default": "#ECB7A3"
+    },
+    {
+      "type": "color",
+      "id": "gradient_end",
+      "label": "Gradient end",
+      "default": "#C27A63"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "Gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Gradient angle",
+      "default": 180,
+      "info": "Used when direction is set to Custom angle."
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",

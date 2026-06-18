@@ -130,7 +130,7 @@
   font-size: clamp(2.2rem, 4vw, 3.6rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
-  padding-bottom: 2rem;
+  padding-bottom: 15px;
   align-self: start;
 }
 
@@ -223,7 +223,7 @@
   flex: 1;
   min-width: 0;
   font-family: var(--font-body-family, system-ui, sans-serif);
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.25;
 }
 

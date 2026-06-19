@@ -87,16 +87,16 @@
             "curlear_button_gradient_start": "#f2c6b4",
             "curlear_button_gradient_middle": "#ecb7a3",
             "curlear_button_gradient_end": "#c27a63",
-            "curlear_button_gradient_direction": "top_bottom",
-            "curlear_button_gradient_angle": 180,
+            "curlear_button_gradient_direction": "left_right",
+            "curlear_button_gradient_angle": 204,
             "curlear_buy_now_use_gradient": true,
             "curlear_buy_now_bg": "#e7bda9",
             "curlear_buy_now_text_color": "#ffffff",
             "curlear_buy_now_gradient_start": "#f2c6b4",
             "curlear_buy_now_gradient_middle": "#ecb7a3",
             "curlear_buy_now_gradient_end": "#c27a63",
-            "curlear_buy_now_gradient_direction": "top_bottom",
-            "curlear_buy_now_gradient_angle": 180
+            "curlear_buy_now_gradient_direction": "custom",
+            "curlear_buy_now_gradient_angle": 148
           }
         },
         "curlear_icon_text_xCzzwh": {

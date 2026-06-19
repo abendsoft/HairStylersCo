@@ -554,8 +554,8 @@
         "button_gradient_start": "#f8d0bd",
         "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#d99077",
-        "button_gradient_direction": "top_bottom",
-        "button_gradient_angle": 64,
+        "button_gradient_direction": "custom",
+        "button_gradient_angle": 168,
         "dot_active_color": "#3b3b3b",
         "auto_slide": false,
         "auto_slide_speed": 4
@@ -669,8 +669,8 @@
         "button_gradient_start": "#f2c6b4",
         "button_gradient_middle": "#ecb7a3",
         "button_gradient_end": "#c27a63",
-        "button_gradient_direction": "top_bottom",
-        "button_gradient_angle": 48
+        "button_gradient_direction": "custom",
+        "button_gradient_angle": 168
       }
     }
   },

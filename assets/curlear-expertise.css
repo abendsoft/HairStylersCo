@@ -36,11 +36,13 @@
 .curlear-expertise__text ul,
 .curlear-expertise__text ol {
   margin: 0;
-  padding-left: 2rem;
+  padding-left: 1.6em;
+  list-style-position: outside;
 }
 
 .curlear-expertise__text li {
   margin-bottom: 0.8rem;
+  padding-left: 0.35em;
 }
 
 .curlear-expertise__text li::marker {

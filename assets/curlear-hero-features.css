@@ -19,7 +19,7 @@
 }
 
 .curlear-hero-features__content {
-  max-width: 53rem;
+  max-width: 60rem;
 }
 
 .curlear-hero-features__heading {
@@ -54,14 +54,14 @@
   padding: 0.55rem 1.1rem;
   font-size: 17px;
   line-height: 1.2;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .curlear-hero-features__line {
   margin: 0 0 1rem;
   font-size: clamp(2rem, 2.4vw, 3rem);
   line-height: 1.15;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .curlear-hero-features__description {

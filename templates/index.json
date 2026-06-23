@@ -95,7 +95,11 @@
         "heading_size": 20,
         "divider_color": "#1a1a1a",
         "padding_top": 32,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "mobile_use_slider": true,
+        "mobile_columns": "1",
+        "mobile_auto_slide": true,
+        "mobile_auto_slide_speed": 3
       }
     },
     "curlear_expertise_DE6Bme": {
@@ -429,11 +433,11 @@
         "background_image": "shopify://shop_images/Rectangle_8.webp",
         "image_opacity": 100,
         "top_heading": "Consistent Heat",
-        "top_heading_color": "#F5F5F5",
+        "top_heading_color": "#f5f5f5",
         "top_text": "Same temperature, edge to edge. No hot spots. No over-styling.",
-        "top_text_color": "#F5F5F5",
+        "top_text_color": "#f5f5f5",
         "bottom_heading": "MORE SHINE. LESS DAMAGE.",
-        "bottom_heading_color": "#F5F5F5",
+        "bottom_heading_color": "#f5f5f5",
         "section_height": 600
       }
     },

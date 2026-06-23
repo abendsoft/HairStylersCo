@@ -136,13 +136,14 @@
 
 .curlear-video-slider__product-title {
   font-size: 1.6rem;
-  line-height: 1.3;
+  line-height: 1.15;
 }
 
 .curlear-video-slider__product-price {
-  margin-top: 0.4rem;
+  margin-top: 0.15rem;
   font-size: 1.6rem;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
 /* 990px–1199px: at most 5 videos per row (uses setting when lower) */

@@ -15,9 +15,8 @@
 .curlear-press-quote__caption {
   margin: 0 0 1.2rem;
   font-size: 24px;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--curlear-press-text, #1a1a1a);
 }
 
@@ -52,7 +51,7 @@
 
 .curlear-press-quote__footer-tag {
   display: inline-block;
-  padding: 0.3rem 0.3rem;
+  padding: 5px 10px;
   background-color: var(--curlear-press-tag-bg, #c4a574);
   color: var(--curlear-press-tag-color, #fff);
   text-transform: uppercase;
@@ -84,6 +83,11 @@
   padding-left: 40px;
 }
 @media screen and (max-width: 989px) {
+  .curlear-press-quote {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
   .curlear-press-quote__grid {
     grid-template-columns: 1fr;
     gap: 2.4rem;

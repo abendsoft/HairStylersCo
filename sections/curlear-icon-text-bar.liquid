@@ -1,10 +1,14 @@
 {{ 'curlear-icon-text-bar.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.mobile_use_slider -%}
+  <script src="{{ 'curlear-icon-text-bar.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    --citb-mobile-cols: {{ section.settings.mobile_columns }};
   }
 
   #shopify-section-{{ section.id }} .curlear-icon-text-bar__heading {
@@ -28,9 +32,16 @@
 -%}
 
 {%- if citb_items > 0 -%}
-  <div class="curlear-icon-text-bar{% if section.settings.full_width %} curlear-icon-text-bar--full-width{% endif %}">
+  <div
+    class="curlear-icon-text-bar{% if section.settings.full_width %} curlear-icon-text-bar--full-width{% endif %}{% if section.settings.mobile_use_slider %} curlear-icon-text-bar--mobile-slider{% endif %}"
+    {% if section.settings.mobile_use_slider %}
+      data-curlear-icon-text-bar
+      data-autoplay="{% if section.settings.mobile_auto_slide %}true{% else %}false{% endif %}"
+      data-speed="{{ section.settings.mobile_auto_slide_speed | times: 1000 }}"
+    {% endif %}
+  >
     <div class="{% unless section.settings.full_width %}page-width{% endunless %}">
-      <div class="curlear-icon-text-bar__grid" role="list">
+      <div class="curlear-icon-text-bar__grid" role="list" data-curlear-icon-text-bar-track>
         {%- for block in section.blocks -%}
           {%- liquid
             assign citb_icon_svg = block.settings.icon_svg | strip
@@ -130,6 +141,42 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_use_slider",
+      "label": "Show as slider on mobile",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Items per row on mobile",
+      "default": "2",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_auto_slide",
+      "label": "Auto slide on mobile (slider mode)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_auto_slide_speed",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto slide speed",
+      "default": 4
     }
   ],
   "blocks": [

@@ -61,6 +61,15 @@
 }
 
 @media screen and (max-width: 989px) {
+  .curlear-expertise {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  .curlear-expertise__heading h2 {
+    font-size: 28px;
+  }
+
   .curlear-expertise__inner {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -69,5 +78,4 @@
       "text";
     gap: 2rem;
   }
-
 }

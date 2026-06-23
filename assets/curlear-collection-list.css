@@ -254,12 +254,17 @@
   .curlear-collection-list__product-image {
     max-height: clamp(48px, 14vw, 110px);
   }
+
+  .curlear-collection-list__top-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .curlear-collection-list__top-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 }

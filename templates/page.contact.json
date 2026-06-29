@@ -83,7 +83,7 @@
           "settings": {
             "heading": "How To Use",
             "intro": "<p>Getting started is simple. Follow these steps to enjoy your first use.</p>",
-            "steps": "<p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p>",
+            "steps": "<p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p><p>Enjoy | Inhale gently and enjoy your vape.</p><p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p><p>Enjoy | Inhale gently and enjoy your vape.</p>",
             "footer_heading": "",
             "footer_text": "<p>This product contains nicotine which is a highly addictive substance. Keep out of reach of children and pets.</p>"
           }
@@ -105,7 +105,6 @@
         "how_to_use_8bAgEy",
         "whats_in_box_PVVakp"
       ],
-      "disabled": true,
       "name": "Curlear product tabs",
       "settings": {
         "tab_overview_label": "Overview",

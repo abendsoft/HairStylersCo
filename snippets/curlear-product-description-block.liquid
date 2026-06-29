@@ -1,0 +1,191 @@
+{% comment %}
+  Renders one Curlear product description block.
+  @param block {object}
+{% endcomment %}
+
+{% case block.type %}
+  {% when 'overview' %}
+    {% liquid
+      assign cpd_cards = block.settings.cards | strip_html | strip
+      assign cpd_highlight = block.settings.highlight_heading | strip
+      assign cpd_highlight_text = block.settings.highlight_text | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--overview" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.text }}</div>
+      {% endif %}
+      {% if cpd_cards != blank %}
+        <div class="cpd-overview-grid">
+          {% render 'curlear-pipe-lines', content: block.settings.cards, variant: 'overview' %}
+        </div>
+      {% endif %}
+      {% if cpd_highlight != blank or cpd_highlight_text != blank %}
+        <div class="cpd-highlight">
+          {% if cpd_highlight != blank %}
+            <h3 class="cpd-highlight__heading">{{ block.settings.highlight_heading | escape }}</h3>
+          {% endif %}
+          {% if block.settings.highlight_text != blank %}
+            <div class="cpd-highlight__text rte">{{ block.settings.highlight_text }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </article>
+
+  {% when 'specifications' %}
+    {% liquid
+      assign cpd_rows = block.settings.rows | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--specs" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if cpd_rows != blank %}
+        <div class="cpd-spec-list">
+          {% render 'curlear-pipe-lines', content: block.settings.rows, variant: 'spec' %}
+        </div>
+      {% endif %}
+    </article>
+
+  {% when 'features' %}
+    <article class="cpd-block cpd-block--features" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      <div class="cpd-feature-list">
+        {% for i in (1..6) %}
+          {% liquid
+            assign image_key = 'image_' | append: i
+            assign title_key = 'title_' | append: i
+            assign text_key = 'text_' | append: i
+            assign reverse_key = 'reverse_' | append: i
+            assign cpd_image = block.settings[image_key]
+            assign cpd_title = block.settings[title_key]
+            assign cpd_text = block.settings[text_key]
+            assign cpd_reverse = block.settings[reverse_key]
+          %}
+          {% if cpd_image != blank or cpd_title != blank or cpd_text != blank %}
+            <div class="cpd-feature{% if cpd_reverse %} cpd-feature--reverse{% endif %}">
+              <div class="cpd-feature__media">
+                {% if cpd_image != blank %}
+                  {{
+                    cpd_image
+                    | image_url: width: 1000
+                    | image_tag:
+                      class: 'cpd-feature__image',
+                      loading: 'lazy',
+                      widths: '400, 600, 800, 1000',
+                      sizes: '(min-width: 990px) 42vw, 100vw',
+                      alt: cpd_title
+                  }}
+                {% endif %}
+              </div>
+              <div class="cpd-feature__content">
+                {% if cpd_title != blank %}
+                  <h3 class="cpd-feature__title">{{ cpd_title | escape }}</h3>
+                {% endif %}
+                {% if cpd_text != blank %}
+                  <div class="cpd-feature__text rte">{{ cpd_text }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </article>
+
+  {% when 'flavours' %}
+    {% liquid
+      assign cpd_flavours = block.settings.flavours | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--flavours" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.intro != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.intro }}</div>
+      {% endif %}
+      {% if cpd_flavours != blank %}
+        <div class="cpd-flavour-list">
+          {% render 'curlear-pipe-lines', content: block.settings.flavours, variant: 'flavour' %}
+        </div>
+      {% endif %}
+    </article>
+
+  {% when 'whats_in_box' %}
+    {% liquid
+      assign cpd_box_items = block.settings.items | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--whats-in-box" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.text }}</div>
+      {% endif %}
+      {% if cpd_box_items != blank %}
+        <div class="cpd-box-item-list">
+          {% render 'curlear-pipe-lines', content: block.settings.items, variant: 'line' %}
+        </div>
+      {% endif %}
+    </article>
+
+  {% when 'how_to_use' %}
+    {% liquid
+      assign cpd_steps = block.settings.steps | strip_html | strip
+      assign cpd_footer_heading = block.settings.footer_heading | strip
+      assign cpd_footer_text = block.settings.footer_text | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--how-to-use" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.intro != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.intro }}</div>
+      {% endif %}
+      {% if cpd_steps != blank %}
+        {% render 'curlear-pipe-lines', content: block.settings.steps, variant: 'step' %}
+      {% endif %}
+      {% if cpd_footer_heading != blank or cpd_footer_text != blank %}
+        <div class="cpd-warning">
+          {% if block.settings.footer_icon != blank %}
+            <div class="cpd-warning__icon" aria-hidden="true">
+              {{
+                block.settings.footer_icon
+                | image_url: width: 80
+                | image_tag: loading: 'lazy', widths: '40, 80', sizes: '40px', alt: ''
+              }}
+            </div>
+          {% endif %}
+          <div class="cpd-warning__content">
+            {% if cpd_footer_heading != blank %}
+              <h3 class="cpd-warning__heading">{{ block.settings.footer_heading | escape }}</h3>
+            {% endif %}
+            {% if block.settings.footer_text != blank %}
+              <div class="cpd-warning__text rte">{{ block.settings.footer_text }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </article>
+{% endcase %}

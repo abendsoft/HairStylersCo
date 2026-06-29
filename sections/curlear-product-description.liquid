@@ -1,0 +1,512 @@
+{{ 'curlear-product-description.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'curlear-product-description.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign cpd_tab_order = 'overview,specifications,features,flavours,whats_in_box,how_to_use' | split: ','
+  assign cpd_first_tab = ''
+
+  for tab_type in cpd_tab_order
+    for block in section.blocks
+      if block.type == tab_type and cpd_first_tab == ''
+        assign cpd_first_tab = tab_type
+      endif
+    endfor
+  endfor
+-%}
+
+{%- if cpd_first_tab != '' -%}
+  <section
+    class="curlear-product-description section-{{ section.id }}-padding"
+    style="
+      --cpd-bg: {{ section.settings.background_color }};
+      --cpd-surface: {{ section.settings.surface_color }};
+      --cpd-card-bg: {{ section.settings.card_background_color }};
+      --cpd-heading: {{ section.settings.heading_color }};
+      --cpd-text: {{ section.settings.text_color }};
+      --cpd-muted: {{ section.settings.muted_text_color }};
+      --cpd-accent: {{ section.settings.accent_color }};
+      --cpd-highlight-heading: {{ section.settings.highlight_heading_color }};
+      --cpd-warning-bg: {{ section.settings.warning_background_color }};
+      --cpd-warning-text: {{ section.settings.warning_text_color }};
+      --cpd-border: {{ section.settings.border_color }};
+      --cpd-max-width: {{ section.settings.max_width }}px;
+      --cpd-pad-top: {{ section.settings.padding_top }}px;
+      --cpd-pad-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div class="curlear-product-description__inner">
+      <div class="cpd-tabs" data-cpd-tabs>
+        <div class="cpd-tabs__nav" role="tablist">
+          {%- for tab_type in cpd_tab_order -%}
+            {%- assign cpd_tab_has_content = false -%}
+            {%- assign cpd_tab_label = '' -%}
+
+            {%- case tab_type -%}
+              {%- when 'overview' -%}
+                {%- assign cpd_tab_label = section.settings.tab_overview_label | default: 'Overview' -%}
+              {%- when 'specifications' -%}
+                {%- assign cpd_tab_label = section.settings.tab_specs_label | default: 'Specs' -%}
+              {%- when 'features' -%}
+                {%- assign cpd_tab_label = section.settings.tab_features_label | default: 'Features' -%}
+              {%- when 'flavours' -%}
+                {%- assign cpd_tab_label = section.settings.tab_flavours_label | default: 'Flavours' -%}
+              {%- when 'whats_in_box' -%}
+                {%- assign cpd_tab_label = section.settings.tab_whats_in_box_label | default: "What's in the box" -%}
+              {%- when 'how_to_use' -%}
+                {%- assign cpd_tab_label = section.settings.tab_how_to_use_label | default: 'How To Use' -%}
+            {%- endcase -%}
+
+            {%- for block in section.blocks -%}
+              {%- if block.type == tab_type -%}
+                {%- assign cpd_tab_has_content = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if cpd_tab_has_content -%}
+              <button
+                type="button"
+                class="cpd-tabs__trigger{% if tab_type == cpd_first_tab %} is-active{% endif %}"
+                data-cpd-tab-trigger
+                data-cpd-tab="{{ tab_type }}"
+                role="tab"
+                aria-selected="{% if tab_type == cpd_first_tab %}true{% else %}false{% endif %}"
+                aria-controls="cpd-panel-{{ tab_type }}-{{ section.id }}"
+                id="cpd-tab-{{ tab_type }}-{{ section.id }}"
+              >
+                {{ cpd_tab_label | escape }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="cpd-tabs__panels">
+          {%- for tab_type in cpd_tab_order -%}
+            {%- assign cpd_panel_has_content = false -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == tab_type -%}
+                {%- assign cpd_panel_has_content = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if cpd_panel_has_content -%}
+              <div
+                class="cpd-tabs__panel{% if tab_type == cpd_first_tab %} is-active{% endif %}"
+                id="cpd-panel-{{ tab_type }}-{{ section.id }}"
+                role="tabpanel"
+                aria-labelledby="cpd-tab-{{ tab_type }}-{{ section.id }}"
+                data-cpd-panel="{{ tab_type }}"
+                {% unless tab_type == cpd_first_tab %}hidden{% endunless %}
+              >
+                {%- for block in section.blocks -%}
+                  {%- if block.type == tab_type -%}
+                    {% render 'curlear-product-description-block', block: block %}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Curlear product tabs",
+  "tag": "section",
+  "class": "section-curlear-product-description",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "text",
+      "id": "tab_overview_label",
+      "label": "Overview tab label",
+      "default": "Overview"
+    },
+    {
+      "type": "text",
+      "id": "tab_specs_label",
+      "label": "Specifications tab label",
+      "default": "Specs"
+    },
+    {
+      "type": "text",
+      "id": "tab_features_label",
+      "label": "Features tab label",
+      "default": "Features"
+    },
+    {
+      "type": "text",
+      "id": "tab_flavours_label",
+      "label": "Flavours tab label",
+      "default": "Flavours"
+    },
+    {
+      "type": "text",
+      "id": "tab_whats_in_box_label",
+      "label": "What's in the box tab label",
+      "default": "What's in the box"
+    },
+    {
+      "type": "text",
+      "id": "tab_how_to_use_label",
+      "label": "How to use tab label",
+      "default": "How To Use"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0b1719"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Feature image background",
+      "default": "#122428"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#13262a"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#f4f7f7"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Muted text color",
+      "default": "#8fa5a8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#3db8b0"
+    },
+    {
+      "type": "color",
+      "id": "highlight_heading_color",
+      "label": "Highlight heading color",
+      "default": "#e8a4a4"
+    },
+    {
+      "type": "color",
+      "id": "warning_background_color",
+      "label": "Warning box background",
+      "default": "#3d2424"
+    },
+    {
+      "type": "color",
+      "id": "warning_text_color",
+      "label": "Warning box text color",
+      "default": "#f4f7f7"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#234148"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Max width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "overview",
+      "name": "Product overview",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Product Overview"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Describe your product in a few sentences.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "cards",
+          "label": "Overview cards",
+          "info": "One card per line. Format: Heading | Caption — e.g. 10,000 | Puffs",
+          "default": "<p>10,000 | Puffs</p><p>1000mAh | Battery</p><p>USB-C | Charging</p><p>20mg | Nicotine</p>"
+        },
+        {
+          "type": "text",
+          "id": "highlight_heading",
+          "label": "Highlight heading",
+          "default": "Best in Class"
+        },
+        {
+          "type": "richtext",
+          "id": "highlight_text",
+          "label": "Highlight text",
+          "default": "<p>Add a short highlight message below the overview cards.</p>"
+        }
+      ]
+    },
+    {
+      "type": "specifications",
+      "name": "Specifications",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "rows",
+          "label": "Specification rows",
+          "info": "One row per line. Format: Label | Value — e.g. Puff Count | Up to 10,000",
+          "default": "<p>Puff Count | Up to 10,000</p><p>Battery | 1000mAh Rechargeable</p><p>Charging | USB-C</p><p>Nicotine Strength | 20mg (2%)</p>"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "name": "Features (6 items)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Features"
+        },
+        { "type": "header", "content": "Feature 1" },
+        { "type": "image_picker", "id": "image_1", "label": "Image" },
+        { "type": "text", "id": "title_1", "label": "Heading" },
+        { "type": "richtext", "id": "text_1", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_1",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 2" },
+        { "type": "image_picker", "id": "image_2", "label": "Image" },
+        { "type": "text", "id": "title_2", "label": "Heading" },
+        { "type": "richtext", "id": "text_2", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_2",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 3" },
+        { "type": "image_picker", "id": "image_3", "label": "Image" },
+        { "type": "text", "id": "title_3", "label": "Heading" },
+        { "type": "richtext", "id": "text_3", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_3",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 4" },
+        { "type": "image_picker", "id": "image_4", "label": "Image" },
+        { "type": "text", "id": "title_4", "label": "Heading" },
+        { "type": "richtext", "id": "text_4", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_4",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 5" },
+        { "type": "image_picker", "id": "image_5", "label": "Image" },
+        { "type": "text", "id": "title_5", "label": "Heading" },
+        { "type": "richtext", "id": "text_5", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_5",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 6" },
+        { "type": "image_picker", "id": "image_6", "label": "Image" },
+        { "type": "text", "id": "title_6", "label": "Heading" },
+        { "type": "richtext", "id": "text_6", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_6",
+          "label": "Image on right (desktop)",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "flavours",
+      "name": "Flavours",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Available Flavours"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro text",
+          "default": "<p>Choose from an extensive range of carefully crafted flavours.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "flavours",
+          "label": "Flavour cards",
+          "info": "One flavour per line. Format: Flavour name | Description",
+          "default": "<p>Blackcurrant Squash | A bold blackcurrant flavour with a smooth finish.</p><p>Grape GB | Sweet grape notes with a crisp aftertaste.</p>"
+        }
+      ]
+    },
+    {
+      "type": "whats_in_box",
+      "name": "What's in the box",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "What's in the Box"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Everything you need to get started.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "items",
+          "label": "Box items",
+          "info": "One item per line, bullet, or numbered list. Each line becomes a card.",
+          "default": "<p>CP-10K Device</p><p>USB-C Charging Cable</p><p>User Manual</p><p>Warranty Card</p>"
+        }
+      ]
+    },
+    {
+      "type": "how_to_use",
+      "name": "How to use",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "How To Use"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro text",
+          "default": "<p>Getting started is simple. Follow these steps to enjoy your first use.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "steps",
+          "label": "Steps",
+          "info": "One step per line. Format: Heading | Text — e.g. Charge the Device | Connect via USB-C until full.",
+          "default": "<p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p><p>Enjoy | Inhale gently and enjoy your vape.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Footer notice"
+        },
+        {
+          "type": "image_picker",
+          "id": "footer_icon",
+          "label": "Footer icon"
+        },
+        {
+          "type": "text",
+          "id": "footer_heading",
+          "label": "Footer heading"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text",
+          "default": "<p>This product contains nicotine which is a highly addictive substance. Keep out of reach of children and pets.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curlear product tabs",
+      "blocks": [
+        { "type": "overview" },
+        { "type": "specifications" },
+        { "type": "features" },
+        { "type": "flavours" },
+        { "type": "whats_in_box" },
+        { "type": "how_to_use" }
+      ]
+    }
+  ]
+}
+{% endschema %}

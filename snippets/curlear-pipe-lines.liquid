@@ -1,0 +1,98 @@
+{% comment %}
+  Parses richtext into lines split by paragraphs and line breaks.
+  @param content {string} richtext source
+  @param variant {string} overview | spec | flavour | line | step
+{% endcomment %}
+
+{% if content != blank %}
+  {% assign cpd_mark = '[[[cpd-pipe-line]]]' %}
+  {% assign cpd_src = content %}
+  {% assign cpd_src = cpd_src | replace: '</p>', cpd_mark %}
+  {% assign cpd_src = cpd_src | replace: '</li>', cpd_mark %}
+  {% assign cpd_src = cpd_src | replace: '<p>', '' %}
+  {% assign cpd_src = cpd_src | replace: '<li>', '' %}
+  {% assign cpd_src = cpd_src | replace: '<br />', cpd_mark %}
+  {% assign cpd_src = cpd_src | replace: '<br/>', cpd_mark %}
+  {% assign cpd_src = cpd_src | replace: '<br>', cpd_mark %}
+  {% assign cpd_chunks = cpd_src | split: cpd_mark %}
+
+  {% if variant == 'step' %}
+    <div class="cpd-steps">
+  {% endif %}
+
+  {% assign cpd_step_num = 0 %}
+  {% for cpd_chunk in cpd_chunks %}
+    {% assign cpd_line = cpd_chunk | strip_html | strip %}
+    {% if cpd_line != '' %}
+      {% if variant == 'line' %}
+        <div class="cpd-box-item-card">
+          <p class="cpd-box-item-card__text">{{ cpd_line | escape }}</p>
+        </div>
+      {% elsif cpd_line contains '|' %}
+        {% assign cpd_parts = cpd_line | split: '|' %}
+        {% assign cpd_title = cpd_parts[0] | strip %}
+        {% assign cpd_desc = '' %}
+        {% for cpd_part in cpd_parts %}
+          {% if forloop.index0 == 1 %}
+            {% assign cpd_desc = cpd_part | strip %}
+          {% elsif forloop.index0 > 1 %}
+            {% assign cpd_desc = cpd_desc | append: '|' | append: cpd_part | strip %}
+          {% endif %}
+        {% endfor %}
+
+        {% if variant == 'overview' %}
+          <div class="cpd-overview-card">
+            {% if cpd_title != blank %}
+              <p class="cpd-overview-card__heading">{{ cpd_title | escape }}</p>
+            {% endif %}
+            {% if cpd_desc != blank %}
+              <p class="cpd-overview-card__caption">{{ cpd_desc | escape }}</p>
+            {% endif %}
+          </div>
+        {% elsif variant == 'spec' %}
+          <div class="cpd-spec-row">
+            {% if cpd_title != blank %}
+              <span class="cpd-spec-row__label">{{ cpd_title | escape }}</span>
+            {% endif %}
+            {% if cpd_desc != blank %}
+              <span class="cpd-spec-row__value">{{ cpd_desc | escape }}</span>
+            {% endif %}
+          </div>
+        {% elsif variant == 'step' %}
+          {% assign cpd_step_num = cpd_step_num | plus: 1 %}
+          {% if cpd_step_num < 10 %}
+            {% assign cpd_step_label = '0' | append: cpd_step_num %}
+          {% else %}
+            {% assign cpd_step_label = cpd_step_num %}
+          {% endif %}
+          <div class="cpd-step">
+            <div class="cpd-step__marker">
+              <span class="cpd-step__number">{{ cpd_step_label }}</span>
+            </div>
+            <div class="cpd-step__card">
+              {% if cpd_title != blank %}
+                <h3 class="cpd-step__title">{{ cpd_title | escape }}</h3>
+              {% endif %}
+              {% if cpd_desc != blank %}
+                <p class="cpd-step__text">{{ cpd_desc | escape }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% else %}
+          <div class="cpd-flavour-card">
+            {% if cpd_title != blank %}
+              <h3 class="cpd-flavour-card__title">{{ cpd_title | escape }}</h3>
+            {% endif %}
+            {% if cpd_desc != blank %}
+              <p class="cpd-flavour-card__text">{{ cpd_desc | escape }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if variant == 'step' %}
+    </div>
+  {% endif %}
+{% endif %}

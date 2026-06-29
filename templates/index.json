@@ -29,6 +29,7 @@
             "button_gradient_direction": "left_right",
             "button_gradient_angle": 180,
             "image": "shopify://shop_images/e562a223ba84296cf56c9a48297a86de5406bd3b.webp",
+            "mobile_image": "shopify://shop_images/1.webp",
             "video_url": "",
             "video_autoplay": true
           }
@@ -217,7 +218,7 @@
       "settings": {
         "heading": "Shop by Category",
         "section_bg_color": "#fffaf7",
-        "use_section_bg_gradient": true,
+        "use_section_bg_gradient": false,
         "section_bg_gradient_start": "#e8d6cc",
         "section_bg_gradient_end": "#d9b8a9",
         "show_button": true,

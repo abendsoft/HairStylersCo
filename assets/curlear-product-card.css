@@ -215,11 +215,24 @@
   position: relative;
 }
 
-.product__media-item.curlear-media-item--with-label .curlear-product-card__label {
+.product__media-item.curlear-media-item--with-label > .curlear-product-card__label {
+  position: absolute;
   left: 0;
   right: auto;
   top: 0;
   writing-mode: horizontal-tb;
   text-orientation: mixed;
   padding: 0.8rem 1rem;
+  z-index: 3;
+}
+
+@media screen and (max-width: 749px) {
+  .product__media-item.curlear-media-item--with-label {
+    display: block;
+  }
+
+  .product__media-item.curlear-media-item--with-label > .curlear-product-card__label {
+    left: 1.2rem;
+    top: 1.2rem;
+  }
 }

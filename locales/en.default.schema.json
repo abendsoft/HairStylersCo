@@ -1800,6 +1800,9 @@
           },
           "options__3": {
             "label": "Square"
+          },
+          "options__4": {
+            "label": "Contain"
           }
         },
         "show_secondary_image": {

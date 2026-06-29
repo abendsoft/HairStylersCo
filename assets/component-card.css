@@ -8,6 +8,7 @@
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);
+  margin: 1px;
 }
 
 .card:not(.ratio) {
@@ -294,6 +295,10 @@
   object-fit: cover;
   object-position: center center;
   width: 100%;
+}
+
+.card--image-contain .card__media .media img {
+  object-fit: contain;
 }
 
 .card__inner:not(.ratio) > .card__content {

@@ -75,7 +75,7 @@
       <h2 class="curlear-collection-list__heading">{{ section.settings.heading }}</h2>
       {% if section.settings.show_button and section.settings.button_label != blank and section.settings.button_link != blank %}
         <a
-          class="curlear-collection-list__button{% if section.settings.use_gradient_button %} curlear-collection-list__button--gradient{% endif %}"
+          class="curlear-collection-list__button curlear-collection-list__button--top{% if section.settings.use_gradient_button %} curlear-collection-list__button--gradient{% endif %}"
           href="{{ section.settings.button_link }}"
           style="--curlear-list-btn-bg: {{ section.settings.button_color }}; --curlear-list-btn-color: {{ section.settings.button_text_color }};"
         >
@@ -130,6 +130,17 @@
           {% endfor %}
         </div>
       </div>
+      {% if section.settings.show_button and section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div class="page-width curlear-collection-list__button-wrap">
+          <a
+            class="curlear-collection-list__button curlear-collection-list__button--bottom{% if section.settings.use_gradient_button %} curlear-collection-list__button--gradient{% endif %}"
+            href="{{ section.settings.button_link }}"
+            style="--curlear-list-btn-bg: {{ section.settings.button_color }}; --curlear-list-btn-color: {{ section.settings.button_text_color }};"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {% endif %}
     {% else %}
       <div class="curlear-collection-list__grid">
         {% for block in section.blocks %}
@@ -142,6 +153,17 @@
           </div>
         {% endfor %}
       </div>
+      {% if section.settings.show_button and section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div class="page-width curlear-collection-list__button-wrap">
+          <a
+            class="curlear-collection-list__button curlear-collection-list__button--bottom{% if section.settings.use_gradient_button %} curlear-collection-list__button--gradient{% endif %}"
+            href="{{ section.settings.button_link }}"
+            style="--curlear-list-btn-bg: {{ section.settings.button_color }}; --curlear-list-btn-color: {{ section.settings.button_text_color }};"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {% endif %}
     {% endif %}
   {% endif %}
 </section>

@@ -95,7 +95,7 @@
   max-width: 64rem;
   font-size: clamp(2.5rem, 2.6vw, 4rem);
   line-height: 1.2;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .curlear-testimonial-slider__name {
@@ -144,6 +144,10 @@
   .curlear-testimonial-slider {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .curlear-testimonial-slider__inner {
+    padding: 20px 50px 20px;
   }
 
   .curlear-testimonial-slider__track {

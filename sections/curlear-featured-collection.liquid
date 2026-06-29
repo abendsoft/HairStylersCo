@@ -36,7 +36,7 @@
       <h2 class="curlear-featured-collection__heading">{{ section.settings.heading }}</h2>
       {% if section.settings.show_collection_button and featured_collection != blank %}
         <a
-          class="curlear-featured-collection__button{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
+          class="curlear-featured-collection__button curlear-featured-collection__button--top{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
           href="{{ featured_collection.url }}"
           style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }};"
         >
@@ -103,6 +103,31 @@
             <div class="curlear-featured-collection__progress-bar" data-curlear-slider-progress></div>
           </div>
         </div>
+        {% if section.settings.show_collection_button and featured_collection != blank %}
+          <div class="curlear-featured-collection__button-wrap">
+            <a
+              class="curlear-featured-collection__button curlear-featured-collection__button--bottom{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
+              href="{{ featured_collection.url }}"
+              style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }};"
+            >
+              <span class="curlear-featured-collection__button-label">{{ section.settings.button_label }}</span>
+              {% if section.settings.button_arrow_icon != blank %}
+                <span class="curlear-featured-collection__button-arrow" aria-hidden="true">
+                  {{
+                    section.settings.button_arrow_icon
+                    | image_url: width: 48
+                    | image_tag:
+                      class: 'curlear-featured-collection__button-arrow-icon',
+                      loading: 'lazy',
+                      widths: '20, 28, 36, 48',
+                      sizes: '20px',
+                      alt: ''
+                  }}
+                </span>
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
       {% else %}
         <div
           class="curlear-featured-collection__grid"
@@ -119,6 +144,31 @@
             </div>
           {% endfor %}
         </div>
+        {% if section.settings.show_collection_button and featured_collection != blank %}
+          <div class="curlear-featured-collection__button-wrap">
+            <a
+              class="curlear-featured-collection__button curlear-featured-collection__button--bottom{% if section.settings.quickview_use_gradient %} curlear-featured-collection__button--gradient{% endif %}"
+              href="{{ featured_collection.url }}"
+              style="--curlear-collection-btn-bg: {{ section.settings.collection_button_color }}; --curlear-collection-btn-color: {{ section.settings.collection_button_text_color }};"
+            >
+              <span class="curlear-featured-collection__button-label">{{ section.settings.button_label }}</span>
+              {% if section.settings.button_arrow_icon != blank %}
+                <span class="curlear-featured-collection__button-arrow" aria-hidden="true">
+                  {{
+                    section.settings.button_arrow_icon
+                    | image_url: width: 48
+                    | image_tag:
+                      class: 'curlear-featured-collection__button-arrow-icon',
+                      loading: 'lazy',
+                      widths: '20, 28, 36, 48',
+                      sizes: '20px',
+                      alt: ''
+                  }}
+                </span>
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
       {% endif %}
     {% else %}
       <p>No collection selected.</p>

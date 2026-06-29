@@ -274,3 +274,13 @@
     margin-right: 0;
   }
 }
+
+@media screen and (max-width: 749px) {
+  .curlear-icon-with-text-custom__text {
+    line-height: 18px;
+  }
+
+  .curlear-collapsible__summary-left {
+    font-size: 15px;
+  }
+}

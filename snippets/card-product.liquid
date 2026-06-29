@@ -35,6 +35,8 @@
       assign ratio = 0.8
     elsif card_product.featured_media and media_aspect_ratio == 'adapt'
       assign ratio = card_product.featured_media.aspect_ratio
+    elsif media_aspect_ratio == 'contain'
+      assign ratio = 1
     endif
     if ratio == 0 or ratio == null
       assign ratio = 1
@@ -48,6 +50,7 @@
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if extend_height %} card--extend-height{% endif %}
+        {% if media_aspect_ratio == 'contain' %} card--image-contain{% endif %}
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
       "
@@ -581,6 +584,7 @@
       class="
         card card--{{ settings.card_style }}
         {% if extend_height %} card--extend-height{% endif %}
+        {% if media_aspect_ratio == 'contain' %} card--image-contain{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
       "

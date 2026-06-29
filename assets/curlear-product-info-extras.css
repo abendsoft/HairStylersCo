@@ -75,3 +75,14 @@
   object-fit: contain;
   display: block;
 }
+
+@media screen and (max-width: 749px) {
+  .curlear-icons-text-small {
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .curlear-icons-text-small__item {
+    font-size: 15px;
+  }
+}

@@ -90,14 +90,14 @@
 }
 
 .curlear-image-text-cards__card-heading {
-  margin: 0.9rem 0 0.4rem;
+  margin: 15px 0 10px;
   font-size: 19px;
   line-height: 1.25;
   font-weight: 400;
 }
 
 .curlear-image-text-cards__card-text {
-  margin: 0;
+  margin: 0 0 10px;
   font-size: 14px;
   line-height: 1.45;
 }
@@ -159,6 +159,11 @@
 }
 
 @media screen and (max-width: 749px) {
+  .page-width-padding {
+    padding-top: 15px;
+    padding-bottom: 40px;
+  }
+
   .curlear-image-text-cards__list--grid {
     grid-template-columns: 1fr;
   }

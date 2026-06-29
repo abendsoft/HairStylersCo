@@ -157,6 +157,22 @@
   }
 }
 
+.curlear-featured-collection__button-wrap {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .curlear-featured-collection__top .curlear-featured-collection__button--top {
+    display: none;
+  }
+
+  .curlear-featured-collection__button-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .curlear-featured-collection__top {
     flex-direction: column;

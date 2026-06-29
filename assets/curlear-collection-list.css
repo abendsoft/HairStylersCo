@@ -218,6 +218,10 @@
   object-fit: contain;
 }
 
+.curlear-collection-list__button-wrap {
+  display: none;
+}
+
 @media screen and (max-width: 749px) {
   .curlear-collection-list__heading {
     font-size: 3rem;
@@ -258,6 +262,19 @@
   .curlear-collection-list__top-inner {
     flex-direction: column;
     align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .curlear-collection-list__top .curlear-collection-list__button--top {
+    display: none;
+  }
+
+  .curlear-collection-list__button-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.6rem;
+    padding-bottom: 2rem;
   }
 }
 

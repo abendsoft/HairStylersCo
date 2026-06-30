@@ -1,20 +1,7 @@
 {{ 'curlear-product-description.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-product-description.js' | asset_url }}" defer="defer"></script>
 
-{%- liquid
-  assign cpd_tab_order = 'overview,specifications,features,flavours,whats_in_box,how_to_use' | split: ','
-  assign cpd_first_tab = ''
-
-  for tab_type in cpd_tab_order
-    for block in section.blocks
-      if block.type == tab_type and cpd_first_tab == ''
-        assign cpd_first_tab = tab_type
-      endif
-    endfor
-  endfor
--%}
-
-{%- if cpd_first_tab != '' -%}
+{%- if section.blocks.size > 0 -%}
   <section
     class="curlear-product-description section-{{ section.id }}-padding"
     style="
@@ -37,11 +24,10 @@
     <div class="curlear-product-description__inner">
       <div class="cpd-tabs" data-cpd-tabs>
         <div class="cpd-tabs__nav" role="tablist">
-          {%- for tab_type in cpd_tab_order -%}
-            {%- assign cpd_tab_has_content = false -%}
+          {%- for block in section.blocks -%}
             {%- assign cpd_tab_label = '' -%}
 
-            {%- case tab_type -%}
+            {%- case block.type -%}
               {%- when 'overview' -%}
                 {%- assign cpd_tab_label = section.settings.tab_overview_label | default: 'Overview' -%}
               {%- when 'specifications' -%}
@@ -52,60 +38,43 @@
                 {%- assign cpd_tab_label = section.settings.tab_flavours_label | default: 'Flavours' -%}
               {%- when 'whats_in_box' -%}
                 {%- assign cpd_tab_label = section.settings.tab_whats_in_box_label | default: "What's in the box" -%}
+              {%- when 'affordable_pricing' -%}
+                {%- assign cpd_tab_label = section.settings.tab_affordable_pricing_label | default: 'Affordable pricing' -%}
               {%- when 'how_to_use' -%}
                 {%- assign cpd_tab_label = section.settings.tab_how_to_use_label | default: 'How To Use' -%}
+              {%- when 'when_to_replace' -%}
+                {%- assign cpd_tab_label = section.settings.tab_when_to_replace_label | default: 'When to replace' -%}
+              {%- when 'faq' -%}
+                {%- assign cpd_tab_label = section.settings.tab_faq_label | default: 'FAQ' -%}
             {%- endcase -%}
 
-            {%- for block in section.blocks -%}
-              {%- if block.type == tab_type -%}
-                {%- assign cpd_tab_has_content = true -%}
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-
-            {%- if cpd_tab_has_content -%}
-              <button
-                type="button"
-                class="cpd-tabs__trigger{% if tab_type == cpd_first_tab %} is-active{% endif %}"
-                data-cpd-tab-trigger
-                data-cpd-tab="{{ tab_type }}"
-                role="tab"
-                aria-selected="{% if tab_type == cpd_first_tab %}true{% else %}false{% endif %}"
-                aria-controls="cpd-panel-{{ tab_type }}-{{ section.id }}"
-                id="cpd-tab-{{ tab_type }}-{{ section.id }}"
-              >
-                {{ cpd_tab_label | escape }}
-              </button>
-            {%- endif -%}
+            <button
+              type="button"
+              class="cpd-tabs__trigger{% if forloop.first %} is-active{% endif %}"
+              data-cpd-tab-trigger
+              data-cpd-tab="{{ block.id }}"
+              role="tab"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-controls="cpd-panel-{{ block.id }}-{{ section.id }}"
+              id="cpd-tab-{{ block.id }}-{{ section.id }}"
+            >
+              {{ cpd_tab_label | escape }}
+            </button>
           {%- endfor -%}
         </div>
 
         <div class="cpd-tabs__panels">
-          {%- for tab_type in cpd_tab_order -%}
-            {%- assign cpd_panel_has_content = false -%}
-            {%- for block in section.blocks -%}
-              {%- if block.type == tab_type -%}
-                {%- assign cpd_panel_has_content = true -%}
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-
-            {%- if cpd_panel_has_content -%}
-              <div
-                class="cpd-tabs__panel{% if tab_type == cpd_first_tab %} is-active{% endif %}"
-                id="cpd-panel-{{ tab_type }}-{{ section.id }}"
-                role="tabpanel"
-                aria-labelledby="cpd-tab-{{ tab_type }}-{{ section.id }}"
-                data-cpd-panel="{{ tab_type }}"
-                {% unless tab_type == cpd_first_tab %}hidden{% endunless %}
-              >
-                {%- for block in section.blocks -%}
-                  {%- if block.type == tab_type -%}
-                    {% render 'curlear-product-description-block', block: block %}
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
+          {%- for block in section.blocks -%}
+            <div
+              class="cpd-tabs__panel{% if forloop.first %} is-active{% endif %}"
+              id="cpd-panel-{{ block.id }}-{{ section.id }}"
+              role="tabpanel"
+              aria-labelledby="cpd-tab-{{ block.id }}-{{ section.id }}"
+              data-cpd-panel="{{ block.id }}"
+              {% unless forloop.first %}hidden{% endunless %}
+            >
+              {% render 'curlear-product-description-block', block: block %}
+            </div>
           {%- endfor -%}
         </div>
       </div>
@@ -155,9 +124,27 @@
     },
     {
       "type": "text",
+      "id": "tab_affordable_pricing_label",
+      "label": "Affordable pricing tab label",
+      "default": "Affordable pricing"
+    },
+    {
+      "type": "text",
       "id": "tab_how_to_use_label",
       "label": "How to use tab label",
       "default": "How To Use"
+    },
+    {
+      "type": "text",
+      "id": "tab_when_to_replace_label",
+      "label": "When to replace tab label",
+      "default": "When to replace"
+    },
+    {
+      "type": "text",
+      "id": "tab_faq_label",
+      "label": "FAQ tab label",
+      "default": "FAQ"
     },
     {
       "type": "header",
@@ -282,12 +269,89 @@
           "label": "Description",
           "default": "<p>Describe your product in a few sentences.</p>"
         },
+        { "type": "header", "content": "Card 1" },
+        { "type": "image_picker", "id": "card_1_icon", "label": "Icon or image" },
         {
-          "type": "richtext",
-          "id": "cards",
-          "label": "Overview cards",
-          "info": "One card per line. Format: Heading | Caption — e.g. 10,000 | Puffs",
-          "default": "<p>10,000 | Puffs</p><p>1000mAh | Battery</p><p>USB-C | Charging</p><p>20mg | Nicotine</p>"
+          "type": "text",
+          "id": "card_1_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_1_heading", "label": "Heading", "default": "10,000" },
+        { "type": "text", "id": "card_1_caption", "label": "Caption", "default": "Puffs" },
+        { "type": "header", "content": "Card 2" },
+        { "type": "image_picker", "id": "card_2_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_2_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_2_heading", "label": "Heading", "default": "1000mAh" },
+        { "type": "text", "id": "card_2_caption", "label": "Caption", "default": "Battery" },
+        { "type": "header", "content": "Card 3" },
+        { "type": "image_picker", "id": "card_3_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_3_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_3_heading", "label": "Heading", "default": "USB-C" },
+        { "type": "text", "id": "card_3_caption", "label": "Caption", "default": "Charging" },
+        { "type": "header", "content": "Card 4" },
+        { "type": "image_picker", "id": "card_4_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_4_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_4_heading", "label": "Heading", "default": "20+" },
+        { "type": "text", "id": "card_4_caption", "label": "Caption", "default": "Flavours" },
+        { "type": "header", "content": "Card 5" },
+        { "type": "image_picker", "id": "card_5_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_5_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_5_heading", "label": "Heading" },
+        { "type": "text", "id": "card_5_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 6" },
+        { "type": "image_picker", "id": "card_6_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_6_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_6_heading", "label": "Heading" },
+        { "type": "text", "id": "card_6_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 7" },
+        { "type": "image_picker", "id": "card_7_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_7_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_7_heading", "label": "Heading" },
+        { "type": "text", "id": "card_7_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 8" },
+        { "type": "image_picker", "id": "card_8_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_8_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 🔋). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_8_heading", "label": "Heading" },
+        { "type": "text", "id": "card_8_caption", "label": "Caption" },
+        {
+          "type": "header",
+          "content": "Highlight"
         },
         {
           "type": "text",
@@ -325,7 +389,7 @@
     },
     {
       "type": "features",
-      "name": "Features (6 items)",
+      "name": "Features (8 items)",
       "limit": 1,
       "settings": [
         {
@@ -393,6 +457,26 @@
           "id": "reverse_6",
           "label": "Image on right (desktop)",
           "default": false
+        },
+        { "type": "header", "content": "Feature 7" },
+        { "type": "image_picker", "id": "image_7", "label": "Image" },
+        { "type": "text", "id": "title_7", "label": "Heading" },
+        { "type": "richtext", "id": "text_7", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_7",
+          "label": "Image on right (desktop)",
+          "default": false
+        },
+        { "type": "header", "content": "Feature 8" },
+        { "type": "image_picker", "id": "image_8", "label": "Image" },
+        { "type": "text", "id": "title_8", "label": "Heading" },
+        { "type": "richtext", "id": "text_8", "label": "Text" },
+        {
+          "type": "checkbox",
+          "id": "reverse_8",
+          "label": "Image on right (desktop)",
+          "default": false
         }
       ]
     },
@@ -449,6 +533,25 @@
       ]
     },
     {
+      "type": "affordable_pricing",
+      "name": "Affordable pricing",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Affordable Pricing"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Content",
+          "default": "<p>Add your affordable pricing message here.</p>"
+        }
+      ]
+    },
+    {
       "type": "how_to_use",
       "name": "How to use",
       "limit": 1,
@@ -493,6 +596,215 @@
           "default": "<p>This product contains nicotine which is a highly addictive substance. Keep out of reach of children and pets.</p>"
         }
       ]
+    },
+    {
+      "type": "when_to_replace",
+      "name": "When to replace",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "When To Replace"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro text",
+          "default": "<p>Know when it's time to replace your pod or coil for the best experience.</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "steps",
+          "label": "Steps",
+          "info": "One step per line. Format: Heading | Text — e.g. Burnt Taste | Replace the pod when flavour tastes burnt.",
+          "default": "<p>Burnt Taste | Replace the pod when flavour tastes burnt or harsh.</p><p>Weak Vapour | Swap the pod if vapour production drops noticeably.</p><p>Leaking | Replace if you see consistent leaking around the pod base.</p><p>Pod Lifespan | Most pods last 1–2 weeks depending on usage.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Footer notice"
+        },
+        {
+          "type": "image_picker",
+          "id": "footer_icon",
+          "label": "Footer icon"
+        },
+        {
+          "type": "text",
+          "id": "footer_heading",
+          "label": "Footer heading"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text",
+          "default": "<p>Always use genuine replacement pods designed for your device.</p>"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Frequently Asked Questions"
+        },
+        {
+          "type": "richtext",
+          "id": "intro",
+          "label": "Intro text",
+          "default": "<p>Find quick answers to common questions about this product.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Question 1"
+        },
+        {
+          "type": "text",
+          "id": "question_1",
+          "label": "Question",
+          "default": "How long does the battery last?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_1",
+          "label": "Answer",
+          "default": "<p>Battery life depends on usage, but most users get a full day on a single charge.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Question 2"
+        },
+        {
+          "type": "text",
+          "id": "question_2",
+          "label": "Question",
+          "default": "Is this device refillable?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_2",
+          "label": "Answer",
+          "default": "<p>This model uses pre-filled pods. Simply replace the pod when empty.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Question 3"
+        },
+        {
+          "type": "text",
+          "id": "question_3",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_3",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 4"
+        },
+        {
+          "type": "text",
+          "id": "question_4",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_4",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 5"
+        },
+        {
+          "type": "text",
+          "id": "question_5",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_5",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 6"
+        },
+        {
+          "type": "text",
+          "id": "question_6",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_6",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 7"
+        },
+        {
+          "type": "text",
+          "id": "question_7",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_7",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 8"
+        },
+        {
+          "type": "text",
+          "id": "question_8",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_8",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 9"
+        },
+        {
+          "type": "text",
+          "id": "question_9",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_9",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Question 10"
+        },
+        {
+          "type": "text",
+          "id": "question_10",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_10",
+          "label": "Answer"
+        }
+      ]
     }
   ],
   "presets": [
@@ -504,7 +816,10 @@
         { "type": "features" },
         { "type": "flavours" },
         { "type": "whats_in_box" },
-        { "type": "how_to_use" }
+        { "type": "affordable_pricing" },
+        { "type": "how_to_use" },
+        { "type": "when_to_replace" },
+        { "type": "faq" }
       ]
     }
   ]

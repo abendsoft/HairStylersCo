@@ -6,7 +6,6 @@
 {% case block.type %}
   {% when 'overview' %}
     {% liquid
-      assign cpd_cards = block.settings.cards | strip_html | strip
       assign cpd_highlight = block.settings.highlight_heading | strip
       assign cpd_highlight_text = block.settings.highlight_text | strip_html | strip
     %}
@@ -20,11 +19,48 @@
       {% if block.settings.text != blank %}
         <div class="cpd-block__intro rte">{{ block.settings.text }}</div>
       {% endif %}
-      {% if cpd_cards != blank %}
-        <div class="cpd-overview-grid">
-          {% render 'curlear-pipe-lines', content: block.settings.cards, variant: 'overview' %}
-        </div>
-      {% endif %}
+      <div class="cpd-overview-grid">
+        {% for i in (1..8) %}
+          {% liquid
+            assign icon_key = 'card_' | append: i | append: '_icon'
+            assign icon_emoji_key = 'card_' | append: i | append: '_icon_emoji'
+            assign heading_key = 'card_' | append: i | append: '_heading'
+            assign caption_key = 'card_' | append: i | append: '_caption'
+            assign cpd_card_icon = block.settings[icon_key]
+            assign cpd_card_icon_emoji = block.settings[icon_emoji_key] | strip
+            assign cpd_card_heading = block.settings[heading_key]
+            assign cpd_card_caption = block.settings[caption_key]
+          %}
+          {% if cpd_card_icon_emoji != blank or cpd_card_icon != blank or cpd_card_heading != blank or cpd_card_caption != blank %}
+            <div class="cpd-overview-card">
+              {% if cpd_card_icon_emoji != blank %}
+                <div class="cpd-overview-card__icon-wrap cpd-overview-card__icon-wrap--emoji" aria-hidden="true">
+                  <span class="cpd-overview-card__emoji">{{ cpd_card_icon_emoji | escape }}</span>
+                </div>
+              {% elsif cpd_card_icon != blank %}
+                <div class="cpd-overview-card__icon-wrap">
+                  {{
+                    cpd_card_icon
+                    | image_url: width: 120
+                    | image_tag:
+                      class: 'cpd-overview-card__icon',
+                      loading: 'lazy',
+                      widths: '48, 72, 96, 120',
+                      sizes: '48px',
+                      alt: cpd_card_heading
+                  }}
+                </div>
+              {% endif %}
+              {% if cpd_card_heading != blank %}
+                <p class="cpd-overview-card__heading">{{ cpd_card_heading | escape }}</p>
+              {% endif %}
+              {% if cpd_card_caption != blank %}
+                <p class="cpd-overview-card__caption">{{ cpd_card_caption | escape }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
       {% if cpd_highlight != blank or cpd_highlight_text != blank %}
         <div class="cpd-highlight">
           {% if cpd_highlight != blank %}
@@ -64,7 +100,7 @@
         </div>
       {% endif %}
       <div class="cpd-feature-list">
-        {% for i in (1..6) %}
+        {% for i in (1..8) %}
           {% liquid
             assign image_key = 'image_' | append: i
             assign title_key = 'title_' | append: i
@@ -147,6 +183,19 @@
       {% endif %}
     </article>
 
+  {% when 'affordable_pricing' %}
+    <article class="cpd-block cpd-block--affordable-pricing" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <div class="cpd-affordable-pricing__content rte">{{ block.settings.text }}</div>
+      {% endif %}
+    </article>
+
   {% when 'how_to_use' %}
     {% liquid
       assign cpd_steps = block.settings.steps | strip_html | strip
@@ -187,5 +236,89 @@
           </div>
         </div>
       {% endif %}
+    </article>
+
+  {% when 'when_to_replace' %}
+    {% liquid
+      assign cpd_steps = block.settings.steps | strip_html | strip
+      assign cpd_footer_heading = block.settings.footer_heading | strip
+      assign cpd_footer_text = block.settings.footer_text | strip_html | strip
+    %}
+    <article class="cpd-block cpd-block--when-to-replace" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.intro != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.intro }}</div>
+      {% endif %}
+      {% if cpd_steps != blank %}
+        {% render 'curlear-pipe-lines', content: block.settings.steps, variant: 'step' %}
+      {% endif %}
+      {% if cpd_footer_heading != blank or cpd_footer_text != blank %}
+        <div class="cpd-warning">
+          {% if block.settings.footer_icon != blank %}
+            <div class="cpd-warning__icon" aria-hidden="true">
+              {{
+                block.settings.footer_icon
+                | image_url: width: 80
+                | image_tag: loading: 'lazy', widths: '40, 80', sizes: '40px', alt: ''
+              }}
+            </div>
+          {% endif %}
+          <div class="cpd-warning__content">
+            {% if cpd_footer_heading != blank %}
+              <h3 class="cpd-warning__heading">{{ block.settings.footer_heading | escape }}</h3>
+            {% endif %}
+            {% if block.settings.footer_text != blank %}
+              <div class="cpd-warning__text rte">{{ block.settings.footer_text }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </article>
+
+  {% when 'faq' %}
+    <article class="cpd-block cpd-block--faq" {{ block.shopify_attributes }}>
+      {% if block.settings.heading != blank %}
+        <div class="cpd-block__heading-wrap">
+          <h2 class="cpd-block__heading">{{ block.settings.heading | escape }}</h2>
+          <div class="cpd-block__heading-line" aria-hidden="true"></div>
+        </div>
+      {% endif %}
+      {% if block.settings.intro != blank %}
+        <div class="cpd-block__intro rte">{{ block.settings.intro }}</div>
+      {% endif %}
+      <div class="cpd-faq-list" data-cpd-faq>
+        {% for i in (1..10) %}
+          {% liquid
+            assign cpd_q_key = 'question_' | append: i
+            assign cpd_a_key = 'answer_' | append: i
+            assign cpd_question = block.settings[cpd_q_key] | strip
+            assign cpd_answer_html = block.settings[cpd_a_key]
+            assign cpd_answer_text = block.settings[cpd_a_key] | strip_html | strip
+          %}
+          {% if cpd_question != blank or cpd_answer_text != blank %}
+            <div class="cpd-faq-item" data-cpd-faq-item>
+              <button
+                type="button"
+                class="cpd-faq-item__trigger"
+                data-cpd-faq-trigger
+                aria-expanded="false"
+              >
+                <span class="cpd-faq-item__question">{{ cpd_question | escape }}</span>
+                <span class="cpd-faq-item__icon" aria-hidden="true"></span>
+              </button>
+              <div class="cpd-faq-item__panel" data-cpd-faq-panel>
+                {% if cpd_answer_html != blank %}
+                  <div class="cpd-faq-item__answer rte">{{ cpd_answer_html }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </article>
 {% endcase %}

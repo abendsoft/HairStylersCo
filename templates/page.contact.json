@@ -181,6 +181,7 @@
         "when_to_replace_JYmMkq",
         "faq_YUMj8D"
       ],
+      "disabled": true,
       "name": "Curlear product tabs",
       "settings": {
         "tab_overview_label": "Overview",

@@ -5,13 +5,11 @@
 .curlear-custom-footer > .curlear-custom-footer__container {
   background: var(--curlear-footer-bg, #080a14);
   color: var(--curlear-footer-text, #f1f1f1);
-  border-radius: 1.4rem;
   overflow: hidden;
   padding-left: 2.4rem;
   padding-right: 2.4rem;
   max-width: none;
   width: auto;
-  margin: 15px;
 }
 .margin-footer{
   margin: 0;
@@ -82,6 +80,20 @@
   margin-bottom: 1.4rem;
 }
 
+.curlear-custom-footer__form-message {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.curlear-custom-footer__form-message--error {
+  color: #ffb4b4;
+}
+
+.curlear-custom-footer__form-message--success {
+  color: #b8f5c3;
+}
+
 .curlear-custom-footer__input {
   width: 100%;
   border: 0;
@@ -94,16 +106,31 @@
 
 .curlear-custom-footer__submit {
   width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   cursor: pointer;
-  padding: 0.9rem 1.5rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  font-size: 14px;
   line-height: 1;
-  color: #111;
+  font-weight: 400;
+  color: var(--curlear-footer-button-text, #ffffff);
   background: var(--curlear-footer-button-bg, #ffffff);
   justify-self: center;
+}
+
+.curlear-custom-footer__submit--gradient {
+  background: linear-gradient(
+    var(--curlear-footer-button-gradient-angle, 180deg),
+    var(--curlear-footer-button-gradient-start, #f2c6b4) 0%,
+    var(--curlear-footer-button-gradient-middle, #ecb7a3) 52%,
+    var(--curlear-footer-button-gradient-end, #c27a63) 100%
+  );
+  box-shadow: 0 6px 16px rgba(170, 110, 88, 0.2);
 }
 
 .curlear-custom-footer__policy {
@@ -152,7 +179,6 @@
 @media screen and (max-width: 989px) {
   .curlear-custom-footer > .curlear-custom-footer__container {
     margin: 0;
-    border-radius: 1rem;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
   }
@@ -175,5 +201,11 @@
 
   .curlear-custom-footer__policies {
     justify-content: flex-start;
+  }
+
+  .curlear-custom-footer__submit {
+    min-width: 14.5rem;
+    min-height: 4.1rem;
+    padding: 1rem 2rem;
   }
 }

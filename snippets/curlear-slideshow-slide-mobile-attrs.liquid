@@ -1,0 +1,23 @@
+{% comment %}
+  Slide aspect ratio attrs for custom height mode (mobile + wide desktop).
+  @param block {object}
+  @param cpd_slide_height {string}
+{% endcomment %}
+{%- liquid
+  assign cs_slide_mobile_class = ''
+  assign cs_slide_mobile_style = ''
+  if cpd_slide_height == 'custom'
+    assign cs_slide_mobile_class = ' curlear-slideshow__slide-inner--wide-adapt'
+    assign cs_wide_aspect = 1.777
+    if block.settings.image != blank
+      assign cs_wide_aspect = block.settings.image.aspect_ratio
+    endif
+    if block.settings.video != blank
+      assign cs_wide_aspect = 1.777
+    elsif block.settings.video_url != blank and block.settings.video_url.id != blank
+      assign cs_wide_aspect = 1.777
+    endif
+    assign cs_slide_mobile_style = '--cs-slide-wide-aspect-ratio: ' | append: cs_wide_aspect | append: ';'
+  endif
+-%}
+{{- cs_slide_mobile_class -}}|{{- cs_slide_mobile_style -}}

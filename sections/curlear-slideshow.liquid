@@ -2,7 +2,15 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
-{%- assign first_block = section.blocks.first -%}
+{%- liquid
+  assign first_block = section.blocks.first
+  assign cpd_slide_height = section.settings.slide_height
+  if cpd_slide_height == 'small' or cpd_slide_height == 'medium' or cpd_slide_height == 'large'
+    assign cpd_slide_height = 'custom'
+  endif
+  assign cpd_mobile_slide_height = section.settings.mobile_slide_height | default: 90
+  assign cpd_desktop_slide_height = section.settings.desktop_slide_height | default: 600
+-%}
 {%- assign first_has_video = false -%}
 {%- if first_block.settings.video != blank -%}
   {%- assign first_has_video = true -%}
@@ -10,10 +18,22 @@
   {%- assign first_has_video = true -%}
 {%- endif -%}
 {%- assign adapt_ratio = '' -%}
-{%- if section.settings.slide_height == 'adapt_image' and first_block.settings.image != blank -%}
-  {%- assign adapt_ratio = 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 -%}
-{%- elsif section.settings.slide_height == 'adapt_image' and first_has_video -%}
-  {%- assign adapt_ratio = 56.25 -%}
+{%- assign cs_mobile_adapt_ratio = '' -%}
+{%- if section.settings.slide_height == 'adapt_image' -%}
+  {%- if first_block.settings.image != blank -%}
+    {%- assign adapt_ratio = 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 -%}
+  {%- elsif first_block.settings.mobile_image != blank -%}
+    {%- assign adapt_ratio = 1 | divided_by: first_block.settings.mobile_image.aspect_ratio | times: 100 -%}
+  {%- elsif first_has_video -%}
+    {%- assign adapt_ratio = 56.25 -%}
+  {%- endif -%}
+  {%- if first_block.settings.mobile_image != blank -%}
+    {%- assign cs_mobile_adapt_ratio = 1 | divided_by: first_block.settings.mobile_image.aspect_ratio | times: 100 -%}
+  {%- elsif first_block.settings.image != blank -%}
+    {%- assign cs_mobile_adapt_ratio = 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 -%}
+  {%- elsif first_has_video -%}
+    {%- assign cs_mobile_adapt_ratio = 56.25 -%}
+  {%- endif -%}
 {%- endif -%}
 {%- assign default_heading = 'Curlear Hair Care Collection' -%}
 {%- assign default_text = 'Nourish your hair with clean ingredients designed for shine, strength, and everyday confidence.' -%}
@@ -25,15 +45,25 @@
       content: '';
       display: block;
     }
+
+    {%- if cs_mobile_adapt_ratio != '' -%}
+      @media screen and (max-width: 749px) {
+        #CurlearSlideshow-{{ section.id }} .curlear-slideshow__slider-inner::before {
+          padding-bottom: {{ cs_mobile_adapt_ratio }}%;
+        }
+      }
+    {%- endif -%}
   {%- endstyle -%}
 {%- endif -%}
 {%- style -%}
   #CurlearSlideshow-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
+    --cs-slide-height-mobile: {{ cpd_mobile_slide_height }}vh;
+    --cs-slide-height-desktop: {{ cpd_desktop_slide_height }}px;
   }
 {%- endstyle -%}
 
-<div id="CurlearSlideshow-{{ section.id }}" class="curlear-slideshow-section curlear-slideshow-section--height-{{ section.settings.slide_height }}{% unless section.settings.show_arrows %} curlear-slideshow-section--no-arrows{% endunless %}">
+<div id="CurlearSlideshow-{{ section.id }}" class="curlear-slideshow-section curlear-slideshow-section--height-{{ cpd_slide_height }}{% unless section.settings.show_arrows %} curlear-slideshow-section--no-arrows{% endunless %}">
   {%- if section.blocks.size == 0 -%}
     <div class="curlear-slideshow">
       <div class="curlear-slideshow__wrapper">
@@ -51,7 +81,7 @@
     </div>
   {%- elsif section.blocks.size == 1 -%}
     <div class="curlear-slideshow curlear-slideshow--single">
-      <div class="curlear-slideshow__wrapper{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner{% endif %}">
+      <div class="curlear-slideshow__wrapper{% if cpd_slide_height == 'adapt_image' %} curlear-slideshow__slider-inner{% endif %}">
         {%- assign block = section.blocks.first -%}
         {%- assign heading_text = block.settings.heading | default: default_heading -%}
         {%- assign body_text = block.settings.text | default: default_text -%}
@@ -65,7 +95,11 @@
             default_angle: '90deg'
           -%}
         {%- endcapture -%}
-        <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+        {%- capture cs_mobile_attrs -%}
+          {%- render 'curlear-slideshow-slide-mobile-attrs', block: block, cpd_slide_height: cpd_slide_height -%}
+        {%- endcapture -%}
+        {%- assign cs_mobile_parts = cs_mobile_attrs | split: '|' -%}
+        <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}{{ cs_mobile_parts[0] }}" style="{{ cs_mobile_parts[1] }}">
           {% render 'custom-slideshow-slide-bg', block: block, loading: 'eager', fetchpriority: true %}
           <div
             class="curlear-slideshow__content curlear-slideshow__content--{{ section.settings.desktop_content_position }} curlear-slideshow__content--mobile-{{ section.settings.mobile_content_position }}"
@@ -95,7 +129,7 @@
               <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}" aria-controls="Slider-{{ section.id }}">
                 <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
               </button>
-              <div class="curlear-slideshow__slider-inner{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
+              <div class="curlear-slideshow__slider-inner{% if cpd_slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
               <div
                 class="grid grid--1-col slider slider--everywhere"
                 id="Slider-{{ section.id }}"
@@ -125,7 +159,11 @@
                         default_angle: '90deg'
                       -%}
                     {%- endcapture -%}
-                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+                    {%- capture cs_mobile_attrs -%}
+                      {%- render 'curlear-slideshow-slide-mobile-attrs', block: block, cpd_slide_height: cpd_slide_height -%}
+                    {%- endcapture -%}
+                    {%- assign cs_mobile_parts = cs_mobile_attrs | split: '|' -%}
+                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}{{ cs_mobile_parts[0] }}" style="{{ cs_mobile_parts[1] }}">
                       {%- assign slide_loading = 'lazy' -%}
                       {%- if forloop.first -%}{%- assign slide_loading = 'eager' -%}{%- endif -%}
                       {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading, fetchpriority: forloop.first %}
@@ -152,7 +190,7 @@
           {%- else -%}
             <div class="announcement-bar-slider slider-buttons">
               <button type="button" class="slider-button slider-button--prev visually-hidden" name="previous" aria-controls="Slider-{{ section.id }}"><span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span></button>
-              <div class="curlear-slideshow__slider-inner{% if section.settings.slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
+              <div class="curlear-slideshow__slider-inner{% if cpd_slide_height == 'adapt_image' %} curlear-slideshow__slider-inner--adapt{% endif %}">
               <div class="grid grid--1-col slider slider--everywhere" id="Slider-{{ section.id }}" aria-live="polite" aria-atomic="true" data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed }}">
                 {%- for block in section.blocks -%}
                   <div class="slideshow__slide slider__slide grid__item grid--1-col" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }} role="group" aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ section.blocks.size }}" tabindex="-1">
@@ -168,7 +206,11 @@
                         default_angle: '90deg'
                       -%}
                     {%- endcapture -%}
-                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}">
+                    {%- capture cs_mobile_attrs -%}
+                      {%- render 'curlear-slideshow-slide-mobile-attrs', block: block, cpd_slide_height: cpd_slide_height -%}
+                    {%- endcapture -%}
+                    {%- assign cs_mobile_parts = cs_mobile_attrs | split: '|' -%}
+                    <div class="curlear-slideshow__slide-inner curlear-slideshow__slide-inner--content-{{ section.settings.desktop_content_position }}{{ cs_mobile_parts[0] }}" style="{{ cs_mobile_parts[1] }}">
                       {%- assign slide_loading_alt = 'lazy' -%}
                       {%- if forloop.first -%}{%- assign slide_loading_alt = 'eager' -%}{%- endif -%}
                       {% render 'custom-slideshow-slide-bg', block: block, loading: slide_loading_alt, fetchpriority: forloop.first %}
@@ -277,14 +319,36 @@
     {
       "type": "select",
       "id": "slide_height",
-      "label": "t:sections.slideshow.settings.slide_height.label",
+      "label": "Slide height",
       "options": [
-        { "value": "adapt_image", "label": "t:sections.slideshow.settings.slide_height.options__1.label" },
-        { "value": "small", "label": "t:sections.slideshow.settings.slide_height.options__2.label" },
-        { "value": "medium", "label": "t:sections.slideshow.settings.slide_height.options__3.label" },
-        { "value": "large", "label": "t:sections.slideshow.settings.slide_height.options__4.label" }
+        { "value": "custom", "label": "Custom height" },
+        { "value": "adapt_image", "label": "Adapt to image" }
       ],
-      "default": "medium"
+      "default": "custom"
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_height",
+      "min": 40,
+      "max": 100,
+      "step": 1,
+      "unit": "vh",
+      "label": "Mobile slide height",
+      "default": 90,
+      "info": "Used when slide height is set to Custom height.",
+      "visible_if": "{{ section.settings.slide_height == 'custom' }}"
+    },
+    {
+      "type": "range",
+      "id": "desktop_slide_height",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop slide height",
+      "default": 600,
+      "info": "Used on tablet and desktop up to 1549px. From 1550px, slides use the original full-width large height.",
+      "visible_if": "{{ section.settings.slide_height == 'custom' }}"
     },
     {
       "type": "header",

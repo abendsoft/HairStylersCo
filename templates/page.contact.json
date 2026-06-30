@@ -25,10 +25,193 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "curlear_product_description_WWBapt": {
+      "type": "curlear-product-description",
+      "blocks": {
+        "overview_dGNMEP": {
+          "type": "overview",
+          "settings": {
+            "heading": "Product Overview",
+            "text": "<p>Describe your product in a few sentences.</p>",
+            "card_1_icon_emoji": "",
+            "card_1_heading": "10,000",
+            "card_1_caption": "Puffs",
+            "card_2_icon_emoji": "",
+            "card_2_heading": "1000mAh",
+            "card_2_caption": "Battery",
+            "card_3_icon_emoji": "",
+            "card_3_heading": "USB-C",
+            "card_3_caption": "Charging",
+            "card_4_icon_emoji": "",
+            "card_4_heading": "20+",
+            "card_4_caption": "Flavours",
+            "card_5_icon_emoji": "",
+            "card_5_heading": "",
+            "card_5_caption": "",
+            "card_6_icon_emoji": "",
+            "card_6_heading": "",
+            "card_6_caption": "",
+            "card_7_icon_emoji": "",
+            "card_7_heading": "",
+            "card_7_caption": "",
+            "card_8_icon_emoji": "",
+            "card_8_heading": "",
+            "card_8_caption": "",
+            "highlight_heading": "Best in Class",
+            "highlight_text": "<p>Add a short highlight message below the overview cards.</p>"
+          }
+        },
+        "specifications_76BeXF": {
+          "type": "specifications",
+          "settings": {
+            "heading": "Specifications",
+            "rows": "<p>Puff Count | Up to 10,000</p><p>Battery | 1000mAh Rechargeable</p><p>Charging | USB-C</p><p>Nicotine Strength | 20mg (2%)</p>"
+          }
+        },
+        "features_TMmQaH": {
+          "type": "features",
+          "settings": {
+            "heading": "Features",
+            "title_1": "",
+            "text_1": "",
+            "reverse_1": false,
+            "title_2": "",
+            "text_2": "",
+            "reverse_2": false,
+            "title_3": "",
+            "text_3": "",
+            "reverse_3": false,
+            "title_4": "",
+            "text_4": "",
+            "reverse_4": false,
+            "title_5": "",
+            "text_5": "",
+            "reverse_5": false,
+            "title_6": "",
+            "text_6": "",
+            "reverse_6": false,
+            "title_7": "",
+            "text_7": "",
+            "reverse_7": false,
+            "title_8": "",
+            "text_8": "",
+            "reverse_8": false
+          }
+        },
+        "flavours_9ztFeH": {
+          "type": "flavours",
+          "settings": {
+            "heading": "Available Flavours",
+            "intro": "<p>Choose from an extensive range of carefully crafted flavours.</p>",
+            "flavours": "<p>Blackcurrant Squash | A bold blackcurrant flavour with a smooth finish.</p><p>Grape GB | Sweet grape notes with a crisp aftertaste.</p>"
+          }
+        },
+        "how_to_use_8bAgEy": {
+          "type": "how_to_use",
+          "settings": {
+            "heading": "How To Use",
+            "intro": "<p>Getting started is simple. Follow these steps to enjoy your first use.</p>",
+            "steps": "<p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p><p>Enjoy | Inhale gently and enjoy your vape.</p><p>Charge the Device | Connect via USB-C until the indicator shows full.</p><p>Insert Pod | Remove silicone seal and click pod into place.</p><p>Power On | Press the fire button five times rapidly.</p><p>Enjoy | Inhale gently and enjoy your vape.</p>",
+            "footer_heading": "",
+            "footer_text": "<p>This product contains nicotine which is a highly addictive substance. Keep out of reach of children and pets.</p>"
+          }
+        },
+        "whats_in_box_PVVakp": {
+          "type": "whats_in_box",
+          "settings": {
+            "heading": "What's in the Box",
+            "text": "<p>Everything you need to get started.</p>",
+            "items": "<p>CP-10K Device</p><p>USB-C Charging Cable</p><p>User Manual</p><p>Warranty Card</p>"
+          }
+        },
+        "affordable_pricing_9Rp73n": {
+          "type": "affordable_pricing",
+          "settings": {
+            "heading": "Affordable Pricing",
+            "text": "<p>Add your affordable pricing message here.</p>"
+          }
+        },
+        "when_to_replace_JYmMkq": {
+          "type": "when_to_replace",
+          "settings": {
+            "heading": "When To Replace",
+            "intro": "<p>Know when it's time to replace your pod or coil for the best experience.</p>",
+            "steps": "<p>Burnt Taste | Replace the pod when flavour tastes burnt or harsh.</p><p>Weak Vapour | Swap the pod if vapour production drops noticeably.</p><p>Leaking | Replace if you see consistent leaking around the pod base.</p><p>Pod Lifespan | Most pods last 1–2 weeks depending on usage.</p>",
+            "footer_heading": "",
+            "footer_text": "<p>Always use genuine replacement pods designed for your device.</p>"
+          }
+        },
+        "faq_YUMj8D": {
+          "type": "faq",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "intro": "<p>Find quick answers to common questions about this product.</p>",
+            "question_1": "How long does the battery last?",
+            "answer_1": "<p>Battery life depends on usage, but most users get a full day on a single charge.</p>",
+            "question_2": "Is this device refillable?",
+            "answer_2": "<p>This model uses pre-filled pods. Simply replace the pod when empty.</p>",
+            "question_3": "",
+            "answer_3": "",
+            "question_4": "",
+            "answer_4": "",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "overview_dGNMEP",
+        "specifications_76BeXF",
+        "features_TMmQaH",
+        "flavours_9ztFeH",
+        "how_to_use_8bAgEy",
+        "whats_in_box_PVVakp",
+        "affordable_pricing_9Rp73n",
+        "when_to_replace_JYmMkq",
+        "faq_YUMj8D"
+      ],
+      "name": "Curlear product tabs",
+      "settings": {
+        "tab_overview_label": "Overview",
+        "tab_specs_label": "Specs",
+        "tab_features_label": "Features",
+        "tab_flavours_label": "Flavours",
+        "tab_whats_in_box_label": "What's in the box",
+        "tab_affordable_pricing_label": "Affordable pricing",
+        "tab_how_to_use_label": "How To Use",
+        "tab_when_to_replace_label": "When to replace",
+        "tab_faq_label": "FAQ",
+        "background_color": "#0b1719",
+        "surface_color": "#122428",
+        "card_background_color": "#13262a",
+        "heading_color": "#ffffff",
+        "text_color": "#f4f7f7",
+        "muted_text_color": "#8fa5a8",
+        "accent_color": "#3db8b0",
+        "highlight_heading_color": "#e8a4a4",
+        "warning_background_color": "#3d2424",
+        "warning_text_color": "#f4f7f7",
+        "border_color": "#234148",
+        "max_width": 1200,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "form",
+    "curlear_product_description_WWBapt"
   ]
 }

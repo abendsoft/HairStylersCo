@@ -1,5 +1,12 @@
 {{ 'curlear-custom-footer.css' | asset_url | stylesheet_tag }}
 
+{%- capture submit_button_gradient_angle -%}
+  {%- render 'curlear-button-gradient-angle',
+    direction: section.settings.submit_button_gradient_direction,
+    angle: section.settings.submit_button_gradient_angle
+  -%}
+{%- endcapture -%}
+
 <footer
   class="curlear-custom-footer section-{{ section.id }}-padding"
   style="
@@ -8,6 +15,11 @@
     --curlear-footer-heading: {{ section.settings.heading_color }};
     --curlear-footer-input-bg: {{ section.settings.input_background_color }};
     --curlear-footer-button-bg: {{ section.settings.submit_button_color }};
+    --curlear-footer-button-text: {{ section.settings.submit_button_text_color }};
+    --curlear-footer-button-gradient-start: {{ section.settings.submit_button_gradient_start }};
+    --curlear-footer-button-gradient-middle: {{ section.settings.submit_button_gradient_middle }};
+    --curlear-footer-button-gradient-end: {{ section.settings.submit_button_gradient_end }};
+    --curlear-footer-button-gradient-angle: {{ submit_button_gradient_angle }};
   "
 >
   <div class="curlear-custom-footer__container margin-footer">
@@ -62,7 +74,18 @@
 
         {%- form 'customer', id: 'CurlearCustomFooterNewsletter', class: 'curlear-custom-footer__newsletter-form' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
-          <input type="hidden" name="customer[note]" value="" data-curlear-customer-note>
+
+          {%- if form.errors -%}
+            <p class="curlear-custom-footer__form-message curlear-custom-footer__form-message--error">
+              {{ form.errors | default_errors }}
+            </p>
+          {%- endif -%}
+
+          {%- if form.posted_successfully? -%}
+            <p class="curlear-custom-footer__form-message curlear-custom-footer__form-message--success">
+              Thanks for subscribing.
+            </p>
+          {%- endif -%}
 
           <input
             type="email"
@@ -73,19 +96,23 @@
             autocorrect="off"
             autocapitalize="off"
             autocomplete="email"
+            required
           >
 
           <input
             type="tel"
             class="curlear-custom-footer__input"
-            name="contact[phone]"
-            value="{% if form.phone %}{{ form.phone }}{% endif %}"
+            name="contact[note][Phone]"
+            value=""
             placeholder="{{ section.settings.phone_placeholder }}"
             autocomplete="tel"
-            data-curlear-phone-input
           >
 
-          <button type="submit" class="curlear-custom-footer__submit">
+          <button
+            type="submit"
+            class="curlear-custom-footer__submit{% if section.settings.submit_use_gradient %} curlear-custom-footer__submit--gradient{% endif %}"
+            name="commit"
+          >
             {{ section.settings.submit_label }} &rarr;
           </button>
         {%- endform -%}
@@ -125,22 +152,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-  (() => {
-    const form = document.getElementById('CurlearCustomFooterNewsletter');
-    if (!form) return;
-
-    const phoneInput = form.querySelector('[data-curlear-phone-input]');
-    const customerNoteInput = form.querySelector('[data-curlear-customer-note]');
-    if (!phoneInput || !customerNoteInput) return;
-
-    form.addEventListener('submit', () => {
-      const phone = (phoneInput.value || '').trim();
-      customerNoteInput.value = phone ? `Phone: ${phone}` : '';
-    });
-  })();
-</script>
 
 {% schema %}
 {
@@ -197,15 +208,79 @@
       "default": "Submit"
     },
     {
-      "type": "color",
-      "id": "input_background_color",
-      "label": "Input background color",
-      "default": "#FFFFFF"
+      "type": "header",
+      "content": "Submit button"
+    },
+    {
+      "type": "checkbox",
+      "id": "submit_use_gradient",
+      "label": "Use gradient button background",
+      "default": true
     },
     {
       "type": "color",
       "id": "submit_button_color",
-      "label": "Submit button color",
+      "label": "Button background color",
+      "default": "#FFFFFF",
+      "visible_if": "{{ section.settings.submit_use_gradient == false }}"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_gradient_start",
+      "label": "Button gradient start",
+      "default": "#F2C6B4",
+      "visible_if": "{{ section.settings.submit_use_gradient }}"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_gradient_middle",
+      "label": "Button gradient middle",
+      "default": "#ECB7A3",
+      "visible_if": "{{ section.settings.submit_use_gradient }}"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_gradient_end",
+      "label": "Button gradient end",
+      "default": "#C27A63",
+      "visible_if": "{{ section.settings.submit_use_gradient }}"
+    },
+    {
+      "type": "select",
+      "id": "submit_button_gradient_direction",
+      "label": "Button gradient direction",
+      "default": "top_bottom",
+      "options": [
+        { "value": "top_bottom", "label": "Top to bottom" },
+        { "value": "bottom_top", "label": "Bottom to top" },
+        { "value": "left_right", "label": "Left to right" },
+        { "value": "right_left", "label": "Right to left" },
+        { "value": "custom", "label": "Custom angle" }
+      ],
+      "visible_if": "{{ section.settings.submit_use_gradient }}"
+    },
+    {
+      "type": "range",
+      "id": "submit_button_gradient_angle",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "deg",
+      "label": "Button gradient angle",
+      "default": 180,
+      "info": "Used when direction is set to Custom angle.",
+      "visible_if": "{{ section.settings.submit_use_gradient }}"
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Input background color",
       "default": "#FFFFFF"
     },
     {

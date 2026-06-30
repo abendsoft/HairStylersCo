@@ -98,7 +98,7 @@
         "padding_top": 32,
         "padding_bottom": 32,
         "mobile_use_slider": true,
-        "mobile_columns": "1",
+        "mobile_columns": "2",
         "mobile_auto_slide": true,
         "mobile_auto_slide_speed": 3
       }

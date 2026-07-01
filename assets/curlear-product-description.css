@@ -583,6 +583,32 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
   }
+
+  .cpd-tabs--stacked-desktop .cpd-tabs__nav {
+    display: none;
+  }
+
+  .cpd-tabs--stacked-desktop .cpd-tabs__panel {
+    display: block !important;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--cpd-border, rgba(255, 255, 255, 0.12));
+  }
+
+  .cpd-tabs--stacked-desktop .cpd-tabs__panel:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .cpd-tabs--stacked-desktop .cpd-tabs__panel:last-child {
+    margin-bottom: 0;
+  }
+
+  .cpd-tabs--stacked-desktop .cpd-tabs__panel[hidden] {
+    display: block !important;
+  }
 }
 
 @media screen and (min-width: 990px) {

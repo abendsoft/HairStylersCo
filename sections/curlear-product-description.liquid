@@ -22,7 +22,7 @@
     "
   >
     <div class="curlear-product-description__inner">
-      <div class="cpd-tabs" data-cpd-tabs>
+      <div class="cpd-tabs{% unless section.settings.desktop_use_tabs %} cpd-tabs--stacked-desktop{% endunless %}" data-cpd-tabs>
         <div class="cpd-tabs__nav" role="tablist">
           {%- for block in section.blocks -%}
             {%- assign cpd_tab_label = '' -%}
@@ -91,6 +91,13 @@
     {
       "type": "header",
       "content": "Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_use_tabs",
+      "label": "Use tabs on desktop",
+      "default": true,
+      "info": "When off, all blocks are shown stacked on desktop. Mobile always uses tabs."
     },
     {
       "type": "text",

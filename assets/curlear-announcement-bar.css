@@ -1,0 +1,70 @@
+.announcement-bar-section .utility-bar--curlear-gradient {
+  color: #1a1a1a;
+  border-bottom-color: rgba(26, 26, 26, 0.1);
+}
+
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar,
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar__announcement,
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar__message,
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar__link {
+  color: #1a1a1a;
+}
+
+.announcement-bar-section .announcement-bar__message {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  padding: 1rem 0;
+  min-height: 3.75rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.announcement-bar-section .announcement-bar__message.h5 {
+  font-size: 1.3125rem;
+}
+
+.announcement-bar-section .announcement-bar__message span {
+  display: inline-block;
+}
+
+.announcement-bar-section .announcement-bar__link:hover {
+  text-decoration: none;
+  opacity: 0.88;
+}
+
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar__link .icon-arrow {
+  width: 1rem;
+  height: auto;
+  opacity: 0.9;
+}
+
+.announcement-bar-section .announcement-bar .slider-button {
+  color: #1a1a1a;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.announcement-bar-section .announcement-bar .slider-button:hover {
+  opacity: 1;
+}
+
+.announcement-bar-section .utility-bar--curlear-gradient .announcement-bar .slider-button .icon {
+  color: #1a1a1a;
+  fill: currentColor;
+}
+
+@media screen and (max-width: 749px) {
+  .announcement-bar-section .announcement-bar__message {
+    font-size: 1.1875rem;
+    letter-spacing: 0.04em;
+    padding: 0.875rem 0.5rem;
+    line-height: 1.4;
+    min-height: 3.5rem;
+  }
+}

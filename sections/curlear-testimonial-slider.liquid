@@ -1,22 +1,10 @@
 {{ 'curlear-testimonial-slider.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-testimonial-slider.js' | asset_url }}" defer="defer"></script>
 
-{%- capture button_gradient_angle -%}
-  {%- render 'curlear-button-gradient-angle',
-    direction: section.settings.button_gradient_direction,
-    angle: section.settings.button_gradient_angle
-  -%}
-{%- endcapture -%}
-
 <section
   class="curlear-testimonial-slider section-{{ section.id }}-padding"
   style="
     --curlear-testimonial-star-color: {{ section.settings.star_color }};
-    --curlear-btn-gradient-start: {{ section.settings.button_gradient_start }};
-    --curlear-btn-gradient-middle: {{ section.settings.button_gradient_middle }};
-    --curlear-btn-gradient-end: {{ section.settings.button_gradient_end }};
-    --curlear-btn-gradient-angle: {{ button_gradient_angle }};
-    --curlear-btn-text-color: #ffffff;
     --curlear-testimonial-bg-gradient-density: {{ section.settings.bg_gradient_density | divided_by: 100.0 }};
   "
 >
@@ -94,15 +82,6 @@
           {% endfor %}
         </div>
       {% endif %}
-
-      {% if section.settings.button_label != blank %}
-        <a
-          class="curlear-testimonial-slider__button"
-          href="{{ section.settings.button_link | default: '#' }}"
-        >
-          {{ section.settings.button_label }}
-        </a>
-      {% endif %}
     </div>
   </div>
 </section>
@@ -142,48 +121,6 @@
       "default": "#D2A28E"
     },
     {
-      "type": "color",
-      "id": "button_gradient_start",
-      "label": "Button gradient start",
-      "default": "#F2C6B4"
-    },
-    {
-      "type": "color",
-      "id": "button_gradient_middle",
-      "label": "Button gradient middle",
-      "default": "#ECB7A3"
-    },
-    {
-      "type": "color",
-      "id": "button_gradient_end",
-      "label": "Button gradient end",
-      "default": "#C27A63"
-    },
-    {
-      "type": "select",
-      "id": "button_gradient_direction",
-      "label": "Button gradient direction",
-      "default": "top_bottom",
-      "options": [
-        { "value": "top_bottom", "label": "Top to bottom" },
-        { "value": "bottom_top", "label": "Bottom to top" },
-        { "value": "left_right", "label": "Left to right" },
-        { "value": "right_left", "label": "Right to left" },
-        { "value": "custom", "label": "Custom angle" }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "button_gradient_angle",
-      "min": 0,
-      "max": 360,
-      "step": 4,
-      "unit": "deg",
-      "label": "Button gradient angle",
-      "default": 180,
-      "info": "Used when direction is set to Custom angle."
-    },
-    {
       "type": "checkbox",
       "id": "auto_slide",
       "label": "Auto slide",
@@ -204,17 +141,6 @@
       "unit": "s",
       "label": "Auto slide speed",
       "default": 4
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "SEE ALL REVIEWS"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
     }
   ],
   "blocks": [

@@ -488,16 +488,9 @@
         "background_image": "shopify://shop_images/Ellipse_12_1.png",
         "bg_gradient_density": 0,
         "star_color": "#ecb7a3",
-        "button_gradient_start": "#f2c6b4",
-        "button_gradient_middle": "#ecb7a3",
-        "button_gradient_end": "#c27a63",
-        "button_gradient_direction": "custom",
-        "button_gradient_angle": 168,
         "auto_slide": true,
         "show_slider_nav": true,
-        "auto_slide_speed": 4,
-        "button_label": "SEE ALL REVIEWS",
-        "button_link": ""
+        "auto_slide_speed": 4
       }
     },
     "curlear_feature_products_TgM3zV": {

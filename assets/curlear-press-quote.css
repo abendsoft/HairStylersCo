@@ -1,6 +1,6 @@
 .curlear-press-quote {
-  padding-top: 5rem;
-  padding-bottom: 8rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
   background-color: var(--curlear-press-bg, #f7f4f0);
   color: var(--curlear-press-text, #1a1a1a);
 }
@@ -8,23 +8,34 @@
 .curlear-press-quote__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 49%);
-  gap: 3.2rem 4rem;
+  gap: 3rem 4rem;
   align-items: center;
 }
 
+.curlear-press-quote__main {
+  padding-left: 2.5rem;
+}
+
 .curlear-press-quote__caption {
-  margin: 0 0 1.2rem;
-  font-size: 24px;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-body-family);
+  font-size: 0.875rem;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--curlear-press-text, #1a1a1a);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(26, 26, 26, 0.72);
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-press-quote__heading {
   margin: 0 0 2rem;
-  font-size: clamp(2rem, 2.8vw, 3.8rem);
-  line-height: 1.35;
-  font-weight: 400;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(2rem, 2.8vw, 3.5rem);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-press-quote__heading p {
@@ -44,20 +55,21 @@
 .curlear-press-quote__footer-label {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-weight: 400;
-  font-size: 15px;
-  color: var(--curlear-press-text, #1a1a1a);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: rgba(26, 26, 26, 0.72);
 }
 
 .curlear-press-quote__footer-tag {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 0.35rem 0.75rem;
   background-color: var(--curlear-press-tag-bg, #c4a574);
   color: var(--curlear-press-tag-color, #fff);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .curlear-press-quote__aside {
@@ -66,39 +78,41 @@
   justify-content: right;
   text-align: center;
   min-height: 100%;
-  padding-right: 40px;
-  padding-top: 50px;
+  padding-right: 2.5rem;
+  padding-top: 3rem;
 }
 
 .curlear-press-quote__brand {
   margin: 0;
+  font-family: var(--font-heading-family);
   font-size: var(--curlear-press-right-size, 34px);
   line-height: 1.2;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--curlear-press-text, #1a1a1a);
+  -webkit-font-smoothing: antialiased;
 }
-.curlear-press-quote__main{
-  padding-left: 40px;
-}
+
 @media screen and (max-width: 989px) {
   .curlear-press-quote {
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
   .curlear-press-quote__grid {
     grid-template-columns: 1fr;
-    gap: 2.4rem;
+    gap: 2rem;
   }
-.curlear-press-quote__main{
-  padding-left: 0px
-}
+
+  .curlear-press-quote__main {
+    padding-left: 0;
+  }
+
   .curlear-press-quote__aside {
-  justify-content: flex-start;
-  padding-right: 30px;
-  padding-top: 15px;
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-top: 0.5rem;
   }
 
   .curlear-press-quote__brand {

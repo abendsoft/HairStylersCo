@@ -1,9 +1,5 @@
 .curlear-collection-list {
-  padding-bottom: 0rem;
-}
-
-.curlear-collection-list__top {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .curlear-collection-list__top-inner {
@@ -11,14 +7,20 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 3.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .curlear-collection-list__heading {
   margin: 0;
-  font-size: 3.2rem;
-  font-weight: 400;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale) * 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-collection-list__button:not(.curlear-collection-list__button--gradient) {
@@ -79,14 +81,20 @@
 }
 
 .curlear-collection-list__nav-btn {
-  width: 3.4rem;
-  height: 3.4rem;
-  border: 1px solid #d7d0cb;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 999px;
   background: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.curlear-collection-list__nav-btn:hover {
+  border-color: #dcb8a8;
+  background: rgba(255, 250, 247, 0.9);
 }
 
 .curlear-collection-list__slider::-webkit-scrollbar {
@@ -183,32 +191,36 @@
 .curlear-collection-list__card-heading {
   margin: 0;
   color: #fff;
-  font-size: clamp(1.1rem, 1.5vw, 3.1rem);
+  font-family: var(--font-heading-family);
+  font-size: clamp(0.9375rem, 1.2vw, 1.625rem);
   line-height: 1.2;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   font-weight: 400;
-  white-space: normal;
-  padding-left: 20px;
-  padding-bottom: 15px;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  max-width: 100%;
+  padding-left: 0;
+  padding-bottom: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-collection-list__arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
-  margin-left: 0.5rem;
+  flex-shrink: 0;
+  margin-left: 0.375rem;
   color: #fff;
-  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  font-size: clamp(1rem, 1.25vw, 1.625rem);
   line-height: 1;
-  white-space: nowrap;
 }
 
 .curlear-collection-list__arrow--custom {
-  width: clamp(1.6rem, 2vw, 2.4rem);
-  height: clamp(1.6rem, 2vw, 2.4rem);
-  vertical-align: middle;
+  width: clamp(1rem, 1.25vw, 1.625rem);
+  height: clamp(1rem, 1.25vw, 1.625rem);
 }
 
 .curlear-collection-list__arrow-icon {
@@ -224,7 +236,7 @@
 
 @media screen and (max-width: 749px) {
   .curlear-collection-list__heading {
-    font-size: 3rem;
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
   }
 
   .curlear-collection-list__meta {
@@ -232,19 +244,18 @@
   }
 
   .curlear-collection-list__card-heading {
-    font-size: clamp(1rem, 3.8vw, 3.1rem);
-    padding-left: 0px;
-    padding-bottom: 0px;
+    font-size: clamp(0.875rem, 3.2vw, 1.3125rem);
+    letter-spacing: 0.04em;
   }
 
   .curlear-collection-list__arrow {
-    font-size: clamp(1.4rem, 5vw, 2.2rem);
-    margin-left: 0.4rem;
+    font-size: clamp(0.875rem, 3.2vw, 1.3125rem);
+    margin-left: 0.3rem;
   }
 
   .curlear-collection-list__arrow--custom {
-    width: clamp(1.4rem, 5vw, 2.2rem);
-    height: clamp(1.4rem, 5vw, 2.2rem);
+    width: clamp(0.875rem, 3.2vw, 1.3125rem);
+    height: clamp(0.875rem, 3.2vw, 1.3125rem);
   }
 
   .curlear-collection-list__footer {

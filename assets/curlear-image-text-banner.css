@@ -37,27 +37,35 @@
 
 .curlear-image-text-banner__top-heading {
   margin: 0;
-  font-size: 36px;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(2.8rem, 3.5vw, 3.6rem);
   line-height: 1.15;
-  font-weight: 400;
+  letter-spacing: -0.015em;
   color: var(--curlear-image-text-banner-top-heading-color, #fff);
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-image-text-banner__top-text {
-  margin: 1.2rem auto 0;
+  margin: 1.25rem auto 0;
   max-width: 50rem;
-  font-size: 16px;
-  line-height: 1.4;
+  font-family: var(--font-body-family);
+  font-size: 1.6rem;
+  line-height: 1.55;
+  letter-spacing: 0.012em;
   color: var(--curlear-image-text-banner-top-text-color, #fff);
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-image-text-banner__bottom-heading {
   margin: 0;
-  font-size: 20px;
-  line-height: 1.25;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body-family);
+  font-size: 1.25rem;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--curlear-image-text-banner-bottom-heading-color, #fff);
 }
@@ -72,10 +80,10 @@
   }
 
   .curlear-image-text-banner__top-heading {
-    font-size: 34px;
+    font-size: clamp(2.4rem, 7vw, 3.4rem);
   }
 
   .curlear-image-text-banner__top-text {
-    font-size: 15px;
+    font-size: 1.5rem;
   }
 }

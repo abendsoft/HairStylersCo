@@ -339,21 +339,29 @@
 }
 
 .curlear-slideshow__heading {
-  font-size: 60px;
-  line-height: 1.2;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(3.2rem, 4.5vw, 6rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   margin: 0 0 1rem;
   color: var(--cs-heading-color, #ffffff);
   text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-slideshow__text {
-  font-size: 16px;
+  font-family: var(--font-body-family);
+  font-size: 1.6rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
+  letter-spacing: 0.012em;
   margin: 0 0 1.5rem;
   color: var(--cs-text-color, rgba(255, 255, 255, 0.9));
   text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
   max-width: 40rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-slideshow__text--avenir {

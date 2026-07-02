@@ -5,10 +5,16 @@
 
 .curlear-community-marquee__top-heading {
   margin: 0 0 2rem;
-  font-size: clamp(3rem, 3.2vw, 4.8rem);
-  line-height: 1.1;
-  font-weight: 400;
-  padding-top: 25px;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale) * 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: #1a1a1a;
+  text-align: center;
+  padding-top: 3.5rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-community-marquee__marquee {
@@ -35,6 +41,7 @@
   max-width: 16rem;
   height: 16rem;
   overflow: hidden;
+  border-radius: 0.5rem;
 }
 
 .curlear-community-marquee__image-link {
@@ -53,15 +60,20 @@
 
 .curlear-community-marquee__bottom {
   text-align: center;
-  padding-top: 8rem;
-  padding-bottom: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 4.5rem;
 }
 
 .curlear-community-marquee__bottom-heading {
   margin: 0;
-  font-size: clamp(3.4rem, 3vw, 3.8rem);
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale) * 3.4rem);
   line-height: 1.15;
-  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
 }
 
 .curlear-community-marquee__button {
@@ -113,6 +125,10 @@
 }
 
 @media screen and (max-width: 989px) {
+  .curlear-community-marquee__top-heading {
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
+    padding-top: 2.5rem;
+  }
   .curlear-community-marquee__marquee.is-touch-paused {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -148,6 +164,11 @@
 
   .curlear-community-marquee__bottom {
     padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .curlear-community-marquee__bottom-heading {
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
   }
 
   .curlear-community-marquee__button {

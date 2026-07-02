@@ -1,0 +1,97 @@
+.section-header .header-wrapper--border-bottom {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.shopify-section-header-sticky .section-header .header-wrapper {
+  box-shadow: 0 0.125rem 1.25rem rgba(0, 0, 0, 0.18);
+}
+
+.section-header .header.page-width {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.section-header .header__heading-link {
+  padding: 0.5rem 0.75rem;
+}
+
+.section-header .header__icons {
+  gap: 0.15rem;
+  padding-right: 0.25rem;
+}
+
+.section-header .header__icon {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section-header .header__icon:hover {
+  opacity: 0.82;
+}
+
+.section-header .header__icon .svg-wrapper > img {
+  transition: transform 0.2s ease;
+}
+
+.section-header .header__icon:hover .svg-wrapper > img {
+  transform: scale(1.04);
+}
+
+.section-header .cart-count-bubble {
+  background-color: #ecb7a3;
+  color: #1a1a1a;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  min-width: 1.7rem;
+  letter-spacing: 0;
+}
+
+.section-header .desktop-localization-wrapper .localization-form__select,
+.section-header .desktop-localization-wrapper .disclosure__link {
+  font-family: var(--font-body-family);
+}
+
+@media screen and (min-width: 990px) {
+  .section-header .header--menu-centered .header__inline-menu > .list-menu--inline {
+    gap: 0.35rem;
+  }
+
+  .section-header .header__menu-item {
+    padding: 1.2rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .section-header .header__menu-item span {
+    text-underline-offset: 0.35rem;
+  }
+
+  .section-header .header__menu-item:hover span,
+  .section-header .header__active-menu-item {
+    text-decoration-color: #ecb7a3;
+  }
+
+  .section-header details[open] > .header__menu-item {
+    text-decoration-color: #ecb7a3;
+  }
+
+  .section-header .header__submenu .header__menu-item {
+    padding: 0.8rem 2rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .section-header .header.page-width {
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .section-header .header.page-width {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+}
+
+.section-header .menu-drawer__menu-item {
+  font-family: var(--font-body-family);
+}

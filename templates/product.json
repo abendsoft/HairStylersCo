@@ -176,7 +176,7 @@
         "media_list_bg_color": "#fffaf7",
         "media_item_bg_color": "#fffaf7",
         "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "none",
         "hide_variants": true,

@@ -312,18 +312,65 @@
   color: var(--cpd-muted, #8fa5a8);
 }
 
-.cpd-box-item-list {
+.cpd-box-item-grid {
   display: grid;
-  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.cpd-box-item-grid:empty {
+  display: none;
 }
 
 .cpd-box-item-card {
   background: var(--cpd-card-bg, rgba(255, 255, 255, 0.04));
   border: 1px solid var(--cpd-border, rgba(255, 255, 255, 0.1));
-  border-radius: 0.8rem;
-  padding: 1.2rem 1.4rem;
+  border-radius: 1rem;
+  padding: 1.6rem 1.2rem;
+  text-align: center;
 }
 
+.cpd-box-item-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.8rem;
+  margin-bottom: 1rem;
+}
+
+.cpd-box-item-card__icon {
+  display: block;
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: contain;
+}
+
+.cpd-box-item-card__icon-wrap--emoji {
+  min-height: 4.8rem;
+}
+
+.cpd-box-item-card__emoji {
+  display: block;
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.cpd-box-item-card__heading {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--cpd-heading, #ffffff);
+}
+
+.cpd-box-item-card__caption {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  color: var(--cpd-muted, #8fa5a8);
+}
+
+/* Legacy class kept for backward compatibility with any old markup/CSS references */
 .cpd-box-item-card__text {
   margin: 0;
   font-size: 1.5rem;
@@ -578,11 +625,6 @@
 
   .cpd-feature--reverse .cpd-feature__content {
     order: 1;
-  }
-
-  .cpd-box-item-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.2rem;
   }
 
   .cpd-feature__media {

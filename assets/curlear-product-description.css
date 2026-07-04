@@ -314,14 +314,16 @@
 
 .cpd-box-item-list {
   display: grid;
-  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
 }
 
 .cpd-box-item-card {
   background: var(--cpd-card-bg, rgba(255, 255, 255, 0.04));
   border: 1px solid var(--cpd-border, rgba(255, 255, 255, 0.1));
-  border-radius: 0.8rem;
-  padding: 1.2rem 1.4rem;
+  border-radius: 1rem;
+  padding: 1.6rem 1.2rem;
+  text-align: center;
 }
 
 .cpd-box-item-card__text {
@@ -578,11 +580,6 @@
 
   .cpd-feature--reverse .cpd-feature__content {
     order: 1;
-  }
-
-  .cpd-box-item-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.2rem;
   }
 
   .cpd-feature__media {

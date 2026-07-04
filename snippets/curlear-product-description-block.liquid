@@ -163,9 +163,6 @@
     </article>
 
   {% when 'whats_in_box' %}
-    {% liquid
-      assign cpd_box_items = block.settings.items | strip_html | strip
-    %}
     <article class="cpd-block cpd-block--whats-in-box" {{ block.shopify_attributes }}>
       {% if block.settings.heading != blank %}
         <div class="cpd-block__heading-wrap">
@@ -176,11 +173,48 @@
       {% if block.settings.text != blank %}
         <div class="cpd-block__intro rte">{{ block.settings.text }}</div>
       {% endif %}
-      {% if cpd_box_items != blank %}
-        <div class="cpd-box-item-list">
-          {% render 'curlear-pipe-lines', content: block.settings.items, variant: 'line' %}
-        </div>
-      {% endif %}
+      <div class="cpd-box-item-list">
+        {% for i in (1..8) %}
+          {% liquid
+            assign icon_key = 'card_' | append: i | append: '_icon'
+            assign icon_emoji_key = 'card_' | append: i | append: '_icon_emoji'
+            assign heading_key = 'card_' | append: i | append: '_heading'
+            assign caption_key = 'card_' | append: i | append: '_caption'
+            assign cpd_card_icon = block.settings[icon_key]
+            assign cpd_card_icon_emoji = block.settings[icon_emoji_key] | strip
+            assign cpd_card_heading = block.settings[heading_key]
+            assign cpd_card_caption = block.settings[caption_key]
+          %}
+          {% if cpd_card_icon_emoji != blank or cpd_card_icon != blank or cpd_card_heading != blank or cpd_card_caption != blank %}
+            <div class="cpd-box-item-card">
+              {% if cpd_card_icon_emoji != blank %}
+                <div class="cpd-overview-card__icon-wrap cpd-overview-card__icon-wrap--emoji" aria-hidden="true">
+                  <span class="cpd-overview-card__emoji">{{ cpd_card_icon_emoji | escape }}</span>
+                </div>
+              {% elsif cpd_card_icon != blank %}
+                <div class="cpd-overview-card__icon-wrap">
+                  {{
+                    cpd_card_icon
+                    | image_url: width: 120
+                    | image_tag:
+                      class: 'cpd-overview-card__icon',
+                      loading: 'lazy',
+                      widths: '48, 72, 96, 120',
+                      sizes: '48px',
+                      alt: cpd_card_heading
+                  }}
+                </div>
+              {% endif %}
+              {% if cpd_card_heading != blank %}
+                <p class="cpd-overview-card__heading">{{ cpd_card_heading | escape }}</p>
+              {% endif %}
+              {% if cpd_card_caption != blank %}
+                <p class="cpd-overview-card__caption">{{ cpd_card_caption | escape }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </article>
 
   {% when 'affordable_pricing' %}

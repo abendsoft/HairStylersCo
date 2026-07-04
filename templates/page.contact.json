@@ -129,7 +129,31 @@
           "type": "whats_in_box",
           "settings": {
             "heading": "What's in the Box",
-            "text": "<p>Everything you need to get started.</p>"
+            "text": "<p>Everything you need to get started.</p>",
+            "card_1_icon_emoji": "💨",
+            "card_1_heading": "CP-10K Device",
+            "card_1_caption": "",
+            "card_2_icon_emoji": "🔋",
+            "card_2_heading": "USB-C Charging Cable",
+            "card_2_caption": "",
+            "card_3_icon_emoji": "⚡",
+            "card_3_heading": "User Manual",
+            "card_3_caption": "",
+            "card_4_icon_emoji": "🎨",
+            "card_4_heading": "Warranty Card",
+            "card_4_caption": "",
+            "card_5_icon_emoji": "",
+            "card_5_heading": "",
+            "card_5_caption": "",
+            "card_6_icon_emoji": "",
+            "card_6_heading": "",
+            "card_6_caption": "",
+            "card_7_icon_emoji": "",
+            "card_7_heading": "",
+            "card_7_caption": "",
+            "card_8_icon_emoji": "",
+            "card_8_heading": "",
+            "card_8_caption": ""
           }
         },
         "affordable_pricing_9Rp73n": {

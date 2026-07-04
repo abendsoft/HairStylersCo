@@ -1,6 +1,6 @@
 {{ 'curlear-product-description.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'curlear-product-description.js' | asset_url }}" defer="defer"></script>
- 
+
 {%- if section.blocks.size > 0 -%}
   <section
     class="curlear-product-description section-{{ section.id }}-padding"
@@ -530,13 +530,86 @@
           "label": "Description",
           "default": "<p>Everything you need to get started.</p>"
         },
+        { "type": "header", "content": "Card 1" },
+        { "type": "image_picker", "id": "card_1_icon", "label": "Icon or image" },
         {
-          "type": "richtext",
-          "id": "items",
-          "label": "Box items",
-          "info": "One item per line, bullet, or numbered list. Each line becomes a card.",
-          "default": "<p>CP-10K Device</p><p>USB-C Charging Cable</p><p>User Manual</p><p>Warranty Card</p>"
-        }
+          "type": "text",
+          "id": "card_1_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_1_heading", "label": "Heading", "default": "CP-10K Device" },
+        { "type": "text", "id": "card_1_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 2" },
+        { "type": "image_picker", "id": "card_2_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_2_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_2_heading", "label": "Heading", "default": "USB-C Charging Cable" },
+        { "type": "text", "id": "card_2_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 3" },
+        { "type": "image_picker", "id": "card_3_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_3_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_3_heading", "label": "Heading", "default": "User Manual" },
+        { "type": "text", "id": "card_3_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 4" },
+        { "type": "image_picker", "id": "card_4_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_4_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_4_heading", "label": "Heading", "default": "Warranty Card" },
+        { "type": "text", "id": "card_4_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 5" },
+        { "type": "image_picker", "id": "card_5_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_5_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_5_heading", "label": "Heading" },
+        { "type": "text", "id": "card_5_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 6" },
+        { "type": "image_picker", "id": "card_6_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_6_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_6_heading", "label": "Heading" },
+        { "type": "text", "id": "card_6_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 7" },
+        { "type": "image_picker", "id": "card_7_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_7_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_7_heading", "label": "Heading" },
+        { "type": "text", "id": "card_7_caption", "label": "Caption" },
+        { "type": "header", "content": "Card 8" },
+        { "type": "image_picker", "id": "card_8_icon", "label": "Icon or image" },
+        {
+          "type": "text",
+          "id": "card_8_icon_emoji",
+          "label": "Icon emoji",
+          "info": "Paste an emoji (e.g. 📦). Used instead of the image when filled in."
+        },
+        { "type": "text", "id": "card_8_heading", "label": "Heading" },
+        { "type": "text", "id": "card_8_caption", "label": "Caption" }
       ]
     },
     {

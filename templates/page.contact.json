@@ -129,8 +129,7 @@
           "type": "whats_in_box",
           "settings": {
             "heading": "What's in the Box",
-            "text": "<p>Everything you need to get started.</p>",
-            "items": "<p>CP-10K Device</p><p>USB-C Charging Cable</p><p>User Manual</p><p>Warranty Card</p>"
+            "text": "<p>Everything you need to get started.</p>"
           }
         },
         "affordable_pricing_9Rp73n": {

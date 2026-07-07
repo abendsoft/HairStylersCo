@@ -257,6 +257,7 @@
 .curlear-icon-with-text-custom__text {
   margin: 0.8rem 0 0;
   font-size: 1.4rem;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 989px) {

@@ -169,7 +169,7 @@
         "sticky_info_column": true,
         "color_scheme": "scheme-1",
         "full_width": true,
-        "media_size": "small",
+        "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "non_active_media_fit": "cover",

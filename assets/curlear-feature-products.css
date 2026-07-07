@@ -47,6 +47,7 @@
   background: #ead7cb;
   overflow: hidden;
   aspect-ratio: 16 / 10;
+  border-radius: 20px;
 }
 
 .curlear-feature-products__image {

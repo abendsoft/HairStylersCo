@@ -67,6 +67,7 @@
         "card_EaYQ8J": {
           "type": "card",
           "settings": {
+            "icon": "shopify://shop_images/box.png",
             "heading": "Fast Free Shipping",
             "text": "Get free shipping on all orders of more than £99"
           }
@@ -74,6 +75,7 @@
         "card_tQGmJr": {
           "type": "card",
           "settings": {
+            "icon": "shopify://shop_images/refer.png",
             "heading": "Refer a friend",
             "text": "Refer a friend and get 15% off for each other"
           }
@@ -81,6 +83,7 @@
         "card_A3rxNE": {
           "type": "card",
           "settings": {
+            "icon": "shopify://shop_images/verified.png",
             "heading": "Secure payment",
             "text": "Your payment information is secure, don't stress"
           }

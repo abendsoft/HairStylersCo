@@ -173,8 +173,8 @@
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "non_active_media_fit": "cover",
-        "media_list_bg_color": "#FFFFFF",
-        "media_item_bg_color": "#FFFFFF",
+        "media_list_bg_color": "#ffffff",
+        "media_item_bg_color": "#ffffff",
         "gallery_layout": "thumbnail_slider",
         "mobile_thumbnails": "show",
         "media_position": "left",
@@ -252,7 +252,7 @@
         "card_R6Vdjg": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_11.webp",
+            "image": "shopify://shop_images/3_1813fa7e-1a5f-4a49-9418-4958ed3fc5aa.webp",
             "heading": "Best for",
             "text": "<p>Designed for all hair types but particularly efficient for medium to long hair. Stylists - if you're working on 1-8 heads a day</p>"
           }
@@ -260,7 +260,7 @@
         "card_W9Mf4F": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_10.webp",
+            "image": "shopify://shop_images/1_06aeff37-bf76-4598-a805-1aee3fa36c1c.webp",
             "heading": "Where it fits in your routine",
             "text": "<p>The .75\" creates spirals and tight curls, the 1\" forms medium-sized curls, the 1.25\" produces voluminous, soft waves, and the 1.5\" delivers a polished blowout finish.<br/><br/></p>"
           }
@@ -268,7 +268,7 @@
         "card_j8hnBh": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_9.webp",
+            "image": "shopify://shop_images/2_8985601d-0aa2-4929-b397-0442c76f28f3.webp",
             "heading": "Why you'll love it",
             "text": "<p>2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.</p>"
           }

@@ -1,0 +1,95 @@
+.curlear-feature-cards__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.curlear-feature-cards__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.4rem 1.2rem;
+  background: var(--cfc-card-bg, #f3f3f3);
+  border-radius: var(--cfc-card-radius, 10px);
+}
+
+.curlear-feature-cards__icon {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-top: 0.1rem;
+}
+
+.curlear-feature-cards__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.curlear-feature-cards__content {
+  min-width: 0;
+}
+
+.curlear-feature-cards__heading {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--cfc-heading-color, #1f4f4a);
+}
+
+.curlear-feature-cards__text {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: var(--cfc-text-color, #1f4f4a);
+}
+
+@media screen and (max-width: 749px) {
+  .curlear-feature-cards--mobile-slider .curlear-feature-cards__list {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.2rem;
+  }
+
+  .curlear-feature-cards--mobile-slider .curlear-feature-cards__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curlear-feature-cards--mobile-slider .curlear-feature-cards__card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: start;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .curlear-feature-cards__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .curlear-feature-cards--mobile-slider .curlear-feature-cards__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .curlear-feature-cards--mobile-slider .curlear-feature-cards__card {
+    flex: none;
+    min-width: 0;
+    width: auto;
+  }
+}

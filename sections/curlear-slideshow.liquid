@@ -2,6 +2,15 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
+{%- if section.settings.use_montserrat_font -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  >
+{%- endif -%}
+
 {%- liquid
   assign first_block = section.blocks.first
   assign cpd_slide_height = section.settings.slide_height
@@ -63,7 +72,7 @@
   }
 {%- endstyle -%}
 
-<div id="CurlearSlideshow-{{ section.id }}" class="curlear-slideshow-section curlear-slideshow-section--height-{{ cpd_slide_height }}{% unless section.settings.show_arrows %} curlear-slideshow-section--no-arrows{% endunless %}">
+<div id="CurlearSlideshow-{{ section.id }}" class="curlear-slideshow-section curlear-slideshow-section--height-{{ cpd_slide_height }}{% unless section.settings.show_arrows %} curlear-slideshow-section--no-arrows{% endunless %}{% if section.settings.use_montserrat_font %} curlear-slideshow-section--montserrat{% endif %}">
   {%- if section.blocks.size == 0 -%}
     <div class="curlear-slideshow">
       <div class="curlear-slideshow__wrapper">
@@ -349,6 +358,16 @@
       "default": 600,
       "info": "Used on tablet and desktop up to 1549px. From 1550px, slides use the original full-width large height.",
       "visible_if": "{{ section.settings.slide_height == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_montserrat_font",
+      "label": "Use Montserrat font for heading, text, and button",
+      "default": false
     },
     {
       "type": "header",

@@ -335,7 +335,7 @@
   position: relative;
   z-index: 1;
   padding: 4rem 0rem 0rem 6rem;
-  max-width: 52rem;
+  max-width: 60rem;
 }
 
 .curlear-slideshow__heading {
@@ -366,6 +366,24 @@
 
 .curlear-slideshow__text--avenir {
   font-family: var(--font-body-family);
+}
+
+.curlear-slideshow-section--montserrat .curlear-slideshow__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.curlear-slideshow-section--montserrat .curlear-slideshow__text {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.curlear-slideshow-section--montserrat .curlear-slideshow__button.curlear-slideshow__button--with-arrow {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .curlear-slideshow__button {

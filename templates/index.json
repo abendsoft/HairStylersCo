@@ -53,6 +53,59 @@
         "background_color": "#f5f5f5"
       }
     },
+    "curlear_feature_cards_CawnbY": {
+      "type": "curlear-feature-cards",
+      "blocks": {
+        "card_7HUgqD": {
+          "type": "card",
+          "settings": {
+            "heading": "Customer service",
+            "text": "It's not actually free we just price it into the products."
+          }
+        },
+        "card_EaYQ8J": {
+          "type": "card",
+          "settings": {
+            "heading": "Fast Free Shipping",
+            "text": "Get free shipping on all orders of more than £0"
+          }
+        },
+        "card_tQGmJr": {
+          "type": "card",
+          "settings": {
+            "heading": "Refer a friend",
+            "text": "Refer a friend and get 15% off each other - email us"
+          }
+        },
+        "card_A3rxNE": {
+          "type": "card",
+          "settings": {
+            "heading": "Secure payment",
+            "text": "Your payment information is secure, don't stress"
+          }
+        }
+      },
+      "block_order": [
+        "card_7HUgqD",
+        "card_EaYQ8J",
+        "card_tQGmJr",
+        "card_A3rxNE"
+      ],
+      "name": "Curlear feature cards",
+      "settings": {
+        "full_width": false,
+        "background_color": "#FFFAF7",
+        "card_background_color": "#f3f3f3",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "card_border_radius": 10,
+        "padding_top": 12,
+        "padding_bottom": 4,
+        "mobile_layout": "slider",
+        "mobile_auto_slide": true,
+        "mobile_slide_speed": 3
+      }
+    },
     "curlear_icon_text_bar_yqWGeP": {
       "type": "curlear-icon-text-bar",
       "blocks": {
@@ -91,6 +144,7 @@
         "item_UD34Xe",
         "item_tcgwQA"
       ],
+      "disabled": true,
       "name": "Icon text bar",
       "settings": {
         "full_width": true,
@@ -680,6 +734,7 @@
   },
   "order": [
     "curlear_slideshow_LyxYXx",
+    "curlear_feature_cards_CawnbY",
     "curlear_icon_text_bar_yqWGeP",
     "curlear_expertise_DE6Bme",
     "curlear_featured_collection_HXc7mt",

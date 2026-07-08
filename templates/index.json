@@ -49,6 +49,7 @@
         "slide_height": "custom",
         "mobile_slide_height": 63,
         "desktop_slide_height": 530,
+        "use_montserrat_font": true,
         "background_color": "#f5f5f5"
       }
     },

@@ -59,22 +59,23 @@
         "card_7HUgqD": {
           "type": "card",
           "settings": {
+            "icon": "shopify://shop_images/support.png",
             "heading": "Customer service",
-            "text": "It's not actually free we just price it into the products."
+            "text": "Friendly support when you need."
           }
         },
         "card_EaYQ8J": {
           "type": "card",
           "settings": {
             "heading": "Fast Free Shipping",
-            "text": "Get free shipping on all orders of more than £0"
+            "text": "Get free shipping on all orders of more than £99"
           }
         },
         "card_tQGmJr": {
           "type": "card",
           "settings": {
             "heading": "Refer a friend",
-            "text": "Refer a friend and get 15% off each other - email us"
+            "text": "Refer a friend and get 15% off for each other"
           }
         },
         "card_A3rxNE": {
@@ -95,7 +96,7 @@
       "settings": {
         "full_width": false,
         "background_color": "#FFFAF7",
-        "card_background_color": "#f3f3f3",
+        "card_background_color": "#F3F3F3",
         "heading_color": "#000000",
         "text_color": "#000000",
         "card_border_radius": 10,

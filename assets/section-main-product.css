@@ -1423,6 +1423,28 @@ a.product__text {
   background-color: var(--curlear-product-media-bg, transparent) !important;
 }
 
+.product__media-wrapper .product__media-list .product__media-item .product-media-container.global-media-settings {
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  --media-border-width: 0px;
+}
+
+.product__media-wrapper .product__media-list .product__media-item .product-media-container.global-media-settings::after {
+  border-radius: 10px;
+  content: none;
+}
+
+.product__media-wrapper .product__media-list .product__media-item .product__media.media.media--transparent {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product__media-wrapper .product__media-list .product__media-item .product__media.media.media--transparent img {
+  border-radius: 10px;
+}
+
 .product-media-container.constrain-height {
   /* arbitrary offset value based on average theme spacing and header height */
   --viewport-offset: 400px;

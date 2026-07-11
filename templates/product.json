@@ -384,25 +384,26 @@
           "type": "row",
           "settings": {
             "heading": "Is this curling iron suitable for professional stylists?",
-            "content": "<p>OLD 10X™ STYLER vs. NEIs this curling iron suitable for professional stylists?<br/><br/>W 10X™ STYLER</p>"
+            "content": "<p>Yes. The 1000W motor and rapid heat technology make it powerful enough for professional use, though it's marketed as an at-home styler. Professionals can achieve salon-quality results with the three heat settings and quick-change attachment system.</p><p></p>"
           }
         },
         "row_WNVNE6": {
           "type": "row",
           "settings": {
-            "heading": "How does the Bio Ionic Long Barrel Curling Iron work for different hair types?",
-            "content": "<p>How does the Bio Ionic Long Barrel Curling Iron work for different hair types?<br/><br/></p>"
+            "heading": "How does the Curlear Long Barrel Curling Iron work for different hair types?",
+            "content": "<p>The device features intelligent heat control and anti-frizz airflow that adapts to all hair types (straight, curly, wavy, fine, thick). The technology reduces frizz and prevents damage regardless of hair type.</p><p></p>"
           }
         },
         "row_AbeeeE": {
           "type": "row",
           "settings": {
             "heading": "What barrel sizes are available for the long barrel curling iron?",
-            "content": "<p>What barrel sizes are available for the long barrel curling iron?<br/><br/></p>"
+            "content": "<p>The product includes 2x Auto Curling Barrels (Left & Right), but specific barrel sizes aren't listed in the specs. You may need to check product images or contact support for diameter details.</p><p></p>"
           }
         },
         "row_HYVKkm": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "heading": "Is the curling iron dual voltage for international use?",
             "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>"
@@ -412,14 +413,14 @@
           "type": "row",
           "settings": {
             "heading": "What heat setting should I use for my hair type?",
-            "content": "<p>What heat setting should I use for my hair type?<br/><br/></p>"
+            "content": "<p>Three temperature options: 55°C (fine/delicate), 80°C (normal), 105°C (thick/coarse). Start with the lowest setting and increase as needed.</p><p></p>"
           }
         },
         "row_NfWeMN": {
           "type": "row",
           "settings": {
             "heading": "How long does it take to heat up?",
-            "content": "<p>How long does it take to heat up?<br/><br/></p>"
+            "content": "<p>Heat-up time isn't specified in the product details. Check the user manual or product support for exact timing.</p>"
           }
         }
       },

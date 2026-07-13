@@ -40,6 +40,24 @@ class HeaderMenu extends DetailsDisclosure {
 
     this.addEventListener('mouseenter', this.onMouseEnter.bind(this));
     this.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    this.bindParentLinks();
+  }
+
+  bindParentLinks() {
+    this.querySelectorAll('summary > a.header__menu-item-link').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') {
+          event.preventDefault();
+          return;
+        }
+
+        // Navigate to the parent menu URL instead of only toggling the dropdown.
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.assign(href);
+      });
+    });
   }
 
   onToggle() {

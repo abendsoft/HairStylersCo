@@ -426,7 +426,7 @@
             "overlay_heading": "STRAIGHT",
             "overlay_text": "One pass. Smooth.",
             "button_label": "Shop now",
-            "button_link": ""
+            "button_link": "shopify://products/5-in-1-styler"
           }
         },
         "image_card_Bq7Uty": {
@@ -436,7 +436,7 @@
             "overlay_heading": "WAVES",
             "overlay_text": "Loose. Lived-in.",
             "button_label": "Shop now",
-            "button_link": ""
+            "button_link": "shopify://products/airstraight-styler-wand"
           }
         },
         "image_card_gKzr9q": {
@@ -446,7 +446,7 @@
             "overlay_heading": "VOLUME",
             "overlay_text": "Lift that stays.",
             "button_label": "Shop now",
-            "button_link": ""
+            "button_link": "shopify://products/pro-hair-dryer"
           }
         }
       },

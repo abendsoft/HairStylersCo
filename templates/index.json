@@ -99,7 +99,7 @@
       "settings": {
         "full_width": false,
         "background_color": "#fffaf7",
-        "card_background_color": "#E8D5CC",
+        "card_background_color": "#e8d5cc",
         "heading_color": "#000000",
         "text_color": "#000000",
         "card_border_radius": 10,
@@ -432,7 +432,7 @@
         "image_card_Bq7Uty": {
           "type": "image_card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_6.webp",
+            "image": "shopify://shop_images/3.png",
             "overlay_heading": "WAVES",
             "overlay_text": "Loose. Lived-in.",
             "button_label": "Shop now",

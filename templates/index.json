@@ -290,7 +290,7 @@
         "section_bg_gradient_end": "#d9b8a9",
         "show_button": true,
         "button_label": "Shop all",
-        "button_link": "#",
+        "button_link": "shopify://collections",
         "button_color": "#e7bda9",
         "button_text_color": "#ffffff",
         "use_gradient_button": true,

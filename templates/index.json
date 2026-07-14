@@ -327,7 +327,7 @@
           "settings": {
             "shopify_video": "shopify://files/videos/ssstik.io_@danielleathena_1777992723811.mp4",
             "youtube_url": "",
-            "product": "5-in-1-styler"
+            "product": "5-in-1-air-styler"
           }
         },
         "video_FV8kfx": {
@@ -359,7 +359,7 @@
           "settings": {
             "shopify_video": "shopify://files/videos/ssstik.io_@alysssablair_1777992182717.mp4",
             "youtube_url": "",
-            "product": "5-in-1-styler"
+            "product": "5-in-1-air-styler"
           }
         },
         "video_gN9HQU": {
@@ -375,7 +375,7 @@
           "settings": {
             "shopify_video": "shopify://files/videos/ssstik.io_@itskathleenngo_1777992085195.mp4",
             "youtube_url": "",
-            "product": "5-in-1-styler"
+            "product": "5-in-1-air-styler"
           }
         },
         "video_Gg8HRC": {
@@ -426,7 +426,7 @@
             "overlay_heading": "STRAIGHT",
             "overlay_text": "One pass. Smooth.",
             "button_label": "Shop now",
-            "button_link": "shopify://products/5-in-1-styler"
+            "button_link": "shopify://products/5-in-1-air-styler"
           }
         },
         "image_card_Bq7Uty": {
@@ -559,7 +559,7 @@
         "product_RpJyPp": {
           "type": "product",
           "settings": {
-            "product": "5-in-1-styler",
+            "product": "5-in-1-air-styler",
             "image": "shopify://shop_images/5_7.png",
             "top_text": "Customer favourite",
             "rating_value": 4.6,

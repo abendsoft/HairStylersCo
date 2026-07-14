@@ -436,7 +436,7 @@
             "overlay_heading": "WAVES",
             "overlay_text": "Loose. Lived-in.",
             "button_label": "Shop now",
-            "button_link": "shopify://products/airstraight-styler-wand"
+            "button_link": "shopify://products/professional-hair-dryer"
           }
         },
         "image_card_gKzr9q": {
@@ -588,7 +588,7 @@
         "product_a4PpeY": {
           "type": "product",
           "settings": {
-            "product": "airstraight-styler-wand",
+            "product": "professional-hair-dryer",
             "top_text": "Customer favourite",
             "rating_value": 4.6,
             "rating_text": "4.6 (2997 reviews)",

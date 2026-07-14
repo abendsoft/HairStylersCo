@@ -1,0 +1,726 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "curlear_breadcrumbs_Af7QmM": {
+          "type": "curlear_breadcrumbs",
+          "disabled": true,
+          "settings": {
+            "home_label": "Home",
+            "text_color": "#4a4a4a"
+          }
+        },
+        "curlear_ratings_kfUVQn": {
+          "type": "curlear_ratings",
+          "settings": {
+            "rating_value": 4.6,
+            "star_size": 17,
+            "rating_text": "4.6 (2997 reviews)",
+            "star_color": "#e5b09e",
+            "text_color": "#1a1a1a"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "text_V6Hxa3": {
+          "type": "text",
+          "settings": {
+            "text": "Precision in every pass. Speed in every style.",
+            "text_style": "body"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "curlear_icons_text_small_zpMDjt": {
+          "type": "curlear_icons_text_small",
+          "settings": {
+            "icon_color": "#1a1a1a",
+            "text_color": "#1a1a1a",
+            "icon_1": "",
+            "image_1": "shopify://shop_images/g2412.png",
+            "text_1": "Fast",
+            "icon_2": "",
+            "image_2": "shopify://shop_images/g2412_1.png",
+            "text_2": "Frizz-Free",
+            "icon_3": "",
+            "image_3": "shopify://shop_images/g2412_2.png",
+            "text_3": "Lightweight",
+            "icon_4": "",
+            "image_4": "shopify://shop_images/g2412_3.png",
+            "text_4": "Hydrating",
+            "icon_5": "",
+            "text_5": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "curlear_button_use_gradient": false,
+            "curlear_button_bg": "#000000",
+            "curlear_button_text_color": "#ffffff",
+            "curlear_button_gradient_start": "#f2c6b4",
+            "curlear_button_gradient_middle": "#ecb7a3",
+            "curlear_button_gradient_end": "#c27a63",
+            "curlear_button_gradient_direction": "left_right",
+            "curlear_button_gradient_angle": 204,
+            "curlear_buy_now_use_gradient": true,
+            "curlear_buy_now_bg": "#e7bda9",
+            "curlear_buy_now_text_color": "#ffffff",
+            "curlear_buy_now_gradient_start": "#f2c6b4",
+            "curlear_buy_now_gradient_middle": "#ecb7a3",
+            "curlear_buy_now_gradient_end": "#c27a63",
+            "curlear_buy_now_gradient_direction": "custom",
+            "curlear_buy_now_gradient_angle": 148
+          }
+        },
+        "curlear_icon_text_xCzzwh": {
+          "type": "curlear_icon_text",
+          "settings": {
+            "icon_1": "shopify://shop_images/g2412_e4419c17-edc5-4848-8a19-ba5af6330750.png",
+            "text_1": "30-Day Satisfaction Guarantee",
+            "icon_2": "shopify://shop_images/g2412_1_f0eb967a-0a24-41df-b957-9e218c01ebd5.png",
+            "text_2": "1-Year Limited Warranty",
+            "icon_3": "shopify://shop_images/g2412_2_1c9ffe6c-0a4b-4e31-857e-26ef4122f7fd.png",
+            "text_3": "Free Shipping on Orders $99+"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "curlear_showcase_snippet_Pa4Xq9": {
+          "type": "curlear_showcase_snippet",
+          "settings": {
+            "heading": "See it in action",
+            "visible_desktop": 4,
+            "auto_slide_speed": 4,
+            "item_height_desktop": 300,
+            "item_height_mobile": 260,
+            "wider_desktop": true,
+            "media_1_video": "shopify://files/videos/ssstik.io_@ashleylamarca_1777992698378.mp4",
+            "media_2_video": "shopify://files/videos/ssstik.io_@jesslui_1777992738737.mp4",
+            "media_3_video": "shopify://files/videos/ssstik.io_@itskathleenngo_1777992085195.mp4",
+            "media_4_image": "shopify://shop_images/Rectangle_68.png",
+            "media_5_image": "shopify://shop_images/92dd75d12e9d9700bc9b9f3be5e00d3fd3ef9c24.png",
+            "media_6_video": "shopify://files/videos/ssstik.io_@dearmags_1777992064455.mp4",
+            "media_7_image": "shopify://shop_images/6e3126b5bb6c2bc8be031f6a6bccba6dfaba1a21.png"
+          }
+        },
+        "curlear_collapsible_rq4Ab3": {
+          "type": "curlear_collapsible",
+          "settings": {
+            "open_first_row": true,
+            "caret_icon": "shopify://shop_images/down-arrow.png",
+            "row_1_title": "What's Included",
+            "row_1_content": "<p>2x Auto Curling Barrels (Left & Right)</p><p>1x Blow Dryer Head</p><p>1x Flat Massage Brush</p><p>1x Cylinder Massage Brush</p><p>1x User Manual</p>",
+            "row_2_title": "Details",
+            "row_2_content": "<p><strong>Premium Quality. Zero Risk.</strong><br/>Crafted from high-grade ABS and aluminium alloy, this device is built to last. And with our <strong>30-day money-back guarantee</strong>, your purchase is completely protected.</p><p><strong>Your Personal At-Home Stylist</strong><br/>Smooth, glossy, bouncy or voluminous — achieve polished, professional finishes in minutes, without ever stepping into a salon.</p><p><strong>Fast Styling for Busy Days</strong><br/>Perfect for morning routines or last-minute plans, thanks to its powerful 1000W motor and rapid heat technology.</p><p><strong>Gentle on Hair, Powerful in Performance</strong><br/>The intelligent heat control keeps your hair protected, reducing frizz and preventing damage, no matter your hair type.</p><p><strong>Compact & Travel-Ready</strong><br/>Sleek, lightweight, and easy to carry — your perfect styling partner anywhere in the world.</p><p><strong>Made for Every Hair Type</strong><br/>Straight, curly, wavy, fine, thick — this tool adapts to you, not the other way around.</p><p><strong>Five Tools in One</strong><br/>Replace clutter with one intelligent device that dries, curls, straightens, volumises, and smooths effortlessly.</p><p><strong>Endless Creativity</strong><br/>Switch attachments instantly and create a new look every day — soft curls, beach waves, sleek straight hair, or full volume.</p>",
+            "row_3_title": "Features",
+            "row_3_content": "<ul><li>3 heat/speed settings</li><li>Push-button quick-change heads</li><li>Ergonomic design</li><li>Anti-frizz airflow</li><li>Ideal for ages 7+</li></ul>",
+            "row_4_title": "",
+            "row_4_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "curlear_breadcrumbs_Af7QmM",
+        "curlear_ratings_kfUVQn",
+        "title",
+        "text_V6Hxa3",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "curlear_icons_text_small_zpMDjt",
+        "buy_buttons",
+        "curlear_icon_text_xCzzwh",
+        "description",
+        "curlear_showcase_snippet_Pa4Xq9",
+        "curlear_collapsible_rq4Ab3"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "sticky_info_column": true,
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "non_active_media_fit": "contain",
+        "media_list_bg_color": "#ffffff",
+        "media_item_bg_color": "#ffffff",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "curlear_image_accordion_showcase_UdPirh": {
+      "type": "curlear-image-accordion-showcase",
+      "blocks": {
+        "row_pXp43j": {
+          "type": "row",
+          "settings": {
+            "heading": "Sleeker, Modern Design",
+            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ </p>"
+          }
+        },
+        "row_WQkP4q": {
+          "type": "row",
+          "settings": {
+            "heading": "Faster Heat-Up",
+            "content": "<p>STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLER</p>"
+          }
+        },
+        "row_XLJKGz": {
+          "type": "row",
+          "settings": {
+            "heading": "Optimized Vibrations",
+            "content": "<p>Optimized Vibrations<br/><br/></p>"
+          }
+        },
+        "row_7LyKer": {
+          "type": "row",
+          "settings": {
+            "heading": "Personalized Styling",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_pXp43j",
+        "row_WQkP4q",
+        "row_XLJKGz",
+        "row_7LyKer"
+      ],
+      "name": "Curlear image accordion",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_130.png",
+        "top_heading": "",
+        "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
+        "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
+        "open_first_row": false,
+        "reverse_columns_mobile": false,
+        "use_custom_column_widths": true,
+        "content_column_width": 55,
+        "media_column_width": 45,
+        "content_alignment": "start",
+        "content_full_width": false,
+        "content_padding_top": 0,
+        "content_padding_right": 6,
+        "content_padding_bottom": 12,
+        "content_padding_left": 0,
+        "arrow_icon": "shopify://shop_images/down-arrow.png",
+        "section_bg_color": "#ffffff",
+        "content_bg_color": "#ffffff",
+        "media_bg_color": "#e8d6cc"
+      }
+    },
+    "curlear_image_text_cards_Abg73e": {
+      "type": "curlear-image-text-cards",
+      "blocks": {
+        "card_R6Vdjg": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3_1813fa7e-1a5f-4a49-9418-4958ed3fc5aa.webp",
+            "heading": "Best for",
+            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair. Stylists - if you're working on 1-8 heads a day</p>"
+          }
+        },
+        "card_W9Mf4F": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1_06aeff37-bf76-4598-a805-1aee3fa36c1c.webp",
+            "heading": "Where it fits in your routine",
+            "text": "<p>The .75\" creates spirals and tight curls, the 1\" forms medium-sized curls, the 1.25\" produces voluminous, soft waves, and the 1.5\" delivers a polished blowout finish.<br/><br/></p>"
+          }
+        },
+        "card_j8hnBh": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2_8985601d-0aa2-4929-b397-0442c76f28f3.webp",
+            "heading": "Why you'll love it",
+            "text": "<p>2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_R6Vdjg",
+        "card_W9Mf4F",
+        "card_j8hnBh"
+      ],
+      "name": "Curlear image text cards",
+      "settings": {
+        "heading": "Versatile Curling Made Easy",
+        "top_text": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.",
+        "header_alignment": "center",
+        "background_color": "#ffffff",
+        "layout_mode": "grid",
+        "cards_desktop": "3",
+        "show_slider_buttons": false,
+        "auto_slide": false,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_comparison_gallery_epbRim": {
+      "type": "curlear-comparison-gallery",
+      "blocks": {
+        "comparison_card_rQCmtG": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/Frame_51.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/Frame_50.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_7xVDpk": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/Frame_57.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/Frame_56.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_ANVz6Q": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/Frame_55.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/Frame_54.png",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_NFzRmG": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/Frame_53.png",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/Frame_52.png",
+            "second_label": "AFTER"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_card_rQCmtG",
+        "comparison_card_7xVDpk",
+        "comparison_card_ANVz6Q",
+        "comparison_card_NFzRmG"
+      ],
+      "name": "Curlear compare gallery",
+      "settings": {
+        "heading": "Style Gallery",
+        "background_color": "#0b0d15",
+        "layout_mode": "slider",
+        "cards_per_row_desktop": "4",
+        "cards_per_row_mobile": "2",
+        "show_nav_buttons": false,
+        "auto_slide": true,
+        "auto_slide_speed": 4
+      }
+    },
+    "curlear_hero_features_9Ear7N": {
+      "type": "curlear-hero-features",
+      "name": "Curlear hero features",
+      "settings": {
+        "enable_gradient": true,
+        "background_color": "#e8d6cc",
+        "gradient_color_1": "#e8d6cc",
+        "gradient_color_2": "#d9b8a9",
+        "heading": "Key Features",
+        "option_1": "Long Barrel Advantage",
+        "option_1_link": "",
+        "option_2": "Adjustable Heat Settings",
+        "option_2_link": "",
+        "option_3": "Automatic Shut Off",
+        "option_3_link": "",
+        "option_4": "Professional Grade Cord",
+        "option_4_link": "",
+        "option_5": "Universal Voltage",
+        "option_5_link": "",
+        "line_text": "Long Barrel Advantage",
+        "description": "<p>The 2\" extended barrel allows users to wrap more hair per section, cutting down styling time.</p>",
+        "image": "shopify://shop_images/90a7e487043c1c37b379ffebd5472cc680bf362f.webp",
+        "desktop_section_height": 520,
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
+    "curlear_image_accordion_showcase_NNPnT4": {
+      "type": "curlear-image-accordion-showcase",
+      "blocks": {
+        "row_gKLY7B": {
+          "type": "row",
+          "settings": {
+            "heading": "Is this curling iron suitable for professional stylists?",
+            "content": "<p>Yes. The 1000W motor and rapid heat technology make it powerful enough for professional use, though it's marketed as an at-home styler. Professionals can achieve salon-quality results with the three heat settings and quick-change attachment system.</p><p></p>"
+          }
+        },
+        "row_WNVNE6": {
+          "type": "row",
+          "settings": {
+            "heading": "How does the Curlear Long Barrel Curling Iron work for different hair types?",
+            "content": "<p>The device features intelligent heat control and anti-frizz airflow that adapts to all hair types (straight, curly, wavy, fine, thick). The technology reduces frizz and prevents damage regardless of hair type.</p><p></p>"
+          }
+        },
+        "row_AbeeeE": {
+          "type": "row",
+          "settings": {
+            "heading": "What barrel sizes are available for the long barrel curling iron?",
+            "content": "<p>The product includes 2x Auto Curling Barrels (Left & Right), but specific barrel sizes aren't listed in the specs. You may need to check product images or contact support for diameter details.</p><p></p>"
+          }
+        },
+        "row_HYVKkm": {
+          "type": "row",
+          "disabled": true,
+          "settings": {
+            "heading": "Is the curling iron dual voltage for international use?",
+            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>"
+          }
+        },
+        "row_cerqmX": {
+          "type": "row",
+          "settings": {
+            "heading": "What heat setting should I use for my hair type?",
+            "content": "<p>Three temperature options: 55°C (fine/delicate), 80°C (normal), 105°C (thick/coarse). Start with the lowest setting and increase as needed.</p><p></p>"
+          }
+        },
+        "row_NfWeMN": {
+          "type": "row",
+          "settings": {
+            "heading": "How long does it take to heat up?",
+            "content": "<p>Heat-up time isn't specified in the product details. Check the user manual or product support for exact timing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "row_gKLY7B",
+        "row_WNVNE6",
+        "row_AbeeeE",
+        "row_HYVKkm",
+        "row_cerqmX",
+        "row_NfWeMN"
+      ],
+      "name": "Curlear image accordion",
+      "settings": {
+        "image": "shopify://shop_images/Rectangle_89.png",
+        "top_heading": "",
+        "caption": "",
+        "heading": "FAQs",
+        "open_first_row": false,
+        "reverse_columns_mobile": true,
+        "use_custom_column_widths": false,
+        "content_column_width": 50,
+        "media_column_width": 50,
+        "content_alignment": "start",
+        "content_full_width": true,
+        "content_padding_top": 0,
+        "content_padding_right": 8,
+        "content_padding_bottom": 12,
+        "content_padding_left": 0,
+        "arrow_icon": "shopify://shop_images/down-arrow.png",
+        "section_bg_color": "#fffaf7",
+        "content_bg_color": "#fffaf7",
+        "media_bg_color": "#e8d6cc"
+      }
+    },
+    "curlear_product_compare_A73wxy": {
+      "type": "curlear-product-compare",
+      "blocks": {
+        "comparison_row_yL7bTz": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "No"
+          }
+        },
+        "comparison_row_qk8wcz": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "BioCeramic MCH Heater",
+            "text_column_2": "No",
+            "text_column_3": "No",
+            "text_column_4": "No"
+          }
+        },
+        "comparison_row_P7BQjK": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "PTC Heater",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        },
+        "comparison_row_hQj6gN": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Far Infrared Heat",
+            "text_column_2": "No",
+            "text_column_3": "No",
+            "text_column_4": "No"
+          }
+        },
+        "comparison_row_mLf3fD": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Swivel Cord",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        },
+        "comparison_row_9wte8x": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Automatic Shut-Off",
+            "text_column_2": "1 hour",
+            "text_column_3": "1 hour",
+            "text_column_4": "1 hour"
+          }
+        },
+        "comparison_row_ADnrz7": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Wattage Rating",
+            "text_column_2": "56W",
+            "text_column_3": "66W",
+            "text_column_4": "75W"
+          }
+        },
+        "comparison_row_rLryaC": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Temperature",
+            "text_column_2": "Up to 430°F",
+            "text_column_3": "Up to 430°F",
+            "text_column_4": "Up to 385°F"
+          }
+        },
+        "comparison_row_6tfccL": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Weight (without cord)",
+            "text_column_2": "7.86oz",
+            "text_column_3": "7.90oz",
+            "text_column_4": "10.72oz"
+          }
+        },
+        "comparison_row_ciJnM9": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Cord Length",
+            "text_column_2": "9ft",
+            "text_column_3": "9ft",
+            "text_column_4": "9ft"
+          }
+        },
+        "comparison_row_wjihe9": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Universal Voltage",
+            "text_column_2": "Yes",
+            "text_column_3": "Yes",
+            "text_column_4": "Yes"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_row_yL7bTz",
+        "comparison_row_qk8wcz",
+        "comparison_row_P7BQjK",
+        "comparison_row_hQj6gN",
+        "comparison_row_mLf3fD",
+        "comparison_row_9wte8x",
+        "comparison_row_ADnrz7",
+        "comparison_row_rLryaC",
+        "comparison_row_6tfccL",
+        "comparison_row_ciJnM9",
+        "comparison_row_wjihe9"
+      ],
+      "name": "Curlear product compare",
+      "settings": {
+        "first_column_heading": "Compare our Products",
+        "column_2_image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933_21ac5a0b-4e98-4405-983a-3b27d77719be.png",
+        "column_2_heading": "5 in 1 Hair Styler",
+        "column_2_price": "£64.99",
+        "column_3_image": "shopify://shop_images/dca05a4fb3b7e6ad9d2a086e529eb2ec3f6f8320_3a2007ae-c6e3-4f8a-9210-398c9a574f9a.png",
+        "column_3_heading": "10X Styler",
+        "column_3_price": "£79.99",
+        "column_4_image": "shopify://shop_images/f1cae3e287b0fdef8413285a783271ba4591a823.png",
+        "column_4_heading": "Travel Styler",
+        "column_4_price": "£49.99",
+        "highlight_column": "2",
+        "section_background_color": "#fffaf7",
+        "table_column_background_color": "#ffffff",
+        "gradient_color_1": "#f2c6b4",
+        "gradient_color_2": "#ecb7a3",
+        "gradient_color_3": "#c27a63",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "curlear_featured_articles_7MKx8E": {
+      "type": "curlear-featured-articles",
+      "blocks": {
+        "blog_card_yRPkWY": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        },
+        "blog_card_9UQx9C": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        },
+        "blog_card_wT6AmA": {
+          "type": "blog_card",
+          "settings": {
+            "article": "",
+            "show_image": true,
+            "show_date": true,
+            "show_title": true,
+            "show_description": true,
+            "show_continue_reading": true
+          }
+        }
+      },
+      "block_order": [
+        "blog_card_yRPkWY",
+        "blog_card_9UQx9C",
+        "blog_card_wT6AmA"
+      ],
+      "name": "Curlear featured articles",
+      "settings": {
+        "article_source": "blog",
+        "blog": "news",
+        "blog_post_limit": 6,
+        "feed_show_image": true,
+        "feed_show_date": true,
+        "feed_show_title": true,
+        "feed_show_description": true,
+        "feed_show_continue_reading": true,
+        "show_view_all": false,
+        "heading": "Featured Articles",
+        "heading_color": "#ffffff",
+        "view_all_destination": "automatic",
+        "view_all_page": "",
+        "view_all_label": "View all",
+        "view_all_url": "",
+        "background_style": "gradient",
+        "background_color": "#ecb7a3",
+        "gradient_color_1": "#f2c6b4",
+        "gradient_color_2": "#ecb7a3",
+        "gradient_color_3": "#c27a63",
+        "layout": "grid",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "cta_label": "Continue reading",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "curlear_featured_collection_UgaMhn": {
+      "type": "curlear-featured-collection",
+      "name": "Curlear feature collection",
+      "settings": {
+        "heading": "Recommended Products",
+        "collection": "frontpage",
+        "show_collection_button": false,
+        "button_label": "Shop all best sellers",
+        "collection_button_color": "#e7bda9",
+        "collection_button_text_color": "#ffffff",
+        "layout_mode": "slider",
+        "image_ratio": "square",
+        "quickview_use_gradient": true,
+        "quickview_gradient_start": "#f8d0bd",
+        "quickview_gradient_middle": "#ecb7a3",
+        "quickview_gradient_end": "#d99077",
+        "quickview_gradient_direction": "top_bottom",
+        "quickview_gradient_angle": 180,
+        "section_bg_color": "#fffaf7",
+        "section_bg_opacity": 100,
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "auto_slide": true,
+        "show_slider_nav": false,
+        "auto_slide_speed": 4
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "collection_button_color": "#e7bda9",
+        "collection_button_text_color": "#ffffff",
+        "image_ratio": "square",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "curlear_image_accordion_showcase_UdPirh",
+    "curlear_image_text_cards_Abg73e",
+    "curlear_comparison_gallery_epbRim",
+    "curlear_hero_features_9Ear7N",
+    "curlear_image_accordion_showcase_NNPnT4",
+    "curlear_product_compare_A73wxy",
+    "curlear_featured_articles_7MKx8E",
+    "curlear_featured_collection_UgaMhn",
+    "related-products"
+  ]
+}

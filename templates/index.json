@@ -335,7 +335,7 @@
           "settings": {
             "shopify_video": "shopify://files/videos/ssstik.io_@jesslui_1777992738737.mp4",
             "youtube_url": "",
-            "product": "pro-hair-dryer"
+            "product": "automatic-hair-curler"
           }
         },
         "video_pX3WdH": {
@@ -446,7 +446,7 @@
             "overlay_heading": "VOLUME",
             "overlay_text": "Lift that stays.",
             "button_label": "Shop now",
-            "button_link": "shopify://products/pro-hair-dryer"
+            "button_link": "shopify://products/automatic-hair-curler"
           }
         }
       },

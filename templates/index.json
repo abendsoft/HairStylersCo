@@ -237,7 +237,7 @@
         "collection_MAgEQy": {
           "type": "collection",
           "settings": {
-            "collection": "frontpage",
+            "collection": "hair-styler",
             "custom_heading": "HAIR STYLERS",
             "image": "shopify://shop_images/Rectangle_4.webp",
             "product_image": "shopify://shop_images/Group_147.png",
@@ -247,7 +247,7 @@
         "collection_KcBNrr": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "hair-styler-copy",
             "custom_heading": "HAIR DRYERS",
             "image": "shopify://shop_images/Rectangle_3.webp",
             "product_image": "shopify://shop_images/Untitled-1_3.png",
@@ -257,7 +257,7 @@
         "collection_iNpLiw": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "hair-dryer-copy",
             "custom_heading": "Hair Curlers",
             "image": "shopify://shop_images/Rectangle_2.webp",
             "product_image": "shopify://shop_images/Untitled-1_2.png",
@@ -267,7 +267,7 @@
         "collection_JWcK6f": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "hair-dryer-curler-copy",
             "custom_heading": "Hair Straighteners",
             "image": "shopify://shop_images/Rectangle_1.webp",
             "product_image": "shopify://shop_images/Untitled-1_4.png",

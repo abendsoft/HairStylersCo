@@ -98,7 +98,7 @@
 
 .cpd-block__heading {
   margin: 0 0 0.8rem;
-  font-size: clamp(2.2rem, 3vw, 2.8rem);
+  font-size: clamp(20px, 3vw, 28px);
   line-height: 1.15;
   font-weight: 700;
   color: var(--cpd-heading, #ffffff);
@@ -115,7 +115,7 @@
 .cpd-block__intro {
   margin-bottom: 2rem;
   color: var(--cpd-text, #f4f7f7);
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -147,7 +147,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 4.8rem;
+  min-height: 2.8rem;
   margin-bottom: 1rem;
 }
 
@@ -159,18 +159,18 @@
 }
 
 .cpd-overview-card__icon-wrap--emoji {
-  min-height: 4.8rem;
+  min-height: 2.8rem;
 }
 
 .cpd-overview-card__emoji {
   display: block;
-  font-size: 3.2rem;
+  font-size: 28px;
   line-height: 1;
 }
 
 .cpd-overview-card__heading {
   margin: 0 0 0.4rem;
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(16px, 4vw, 24px);
   line-height: 1.1;
   font-weight: 700;
   color: var(--cpd-accent, #3db8b0);
@@ -178,7 +178,7 @@
 
 .cpd-overview-card__caption {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 15px;
   line-height: 1.3;
   color: var(--cpd-muted, #8fa5a8);
   text-transform: uppercase;
@@ -228,13 +228,13 @@
 }
 
 .cpd-spec-row__label {
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.35;
   color: var(--cpd-muted, #8fa5a8);
 }
 
 .cpd-spec-row__value {
-  font-size: 1.4rem;
+  font-size: 16px;
   line-height: 1.35;
   font-weight: 700;
   color: var(--cpd-heading, #ffffff);
@@ -257,14 +257,12 @@
 
 .cpd-feature__media {
   background: var(--cpd-surface, #122428);
-  min-height: 16rem;
 }
 
 .cpd-feature__image {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 16rem;
   object-fit: cover;
 }
 
@@ -274,14 +272,14 @@
 
 .cpd-feature__title {
   margin: 0 0 0.8rem;
-  font-size: 1.8rem;
+  font-size: 18px;
   line-height: 1.25;
   font-weight: 700;
   color: var(--cpd-heading, #ffffff);
 }
 
 .cpd-feature__text {
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.55;
   color: var(--cpd-text, #f4f7f7);
 }
@@ -299,7 +297,7 @@
 
 .cpd-flavour-card__title {
   margin: 0 0 0.5rem;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.25;
   font-weight: 700;
   color: var(--cpd-heading, #ffffff);
@@ -307,7 +305,7 @@
 
 .cpd-flavour-card__text {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--cpd-muted, #8fa5a8);
 }
@@ -328,7 +326,7 @@
 
 .cpd-box-item-card__text {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1.35;
   font-weight: 600;
   color: var(--cpd-heading, #ffffff);
@@ -339,7 +337,7 @@
   border: 1px solid var(--cpd-border, rgba(255, 255, 255, 0.1));
   border-radius: 1rem;
   padding: 1.6rem;
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--cpd-text, #f4f7f7);
 }
@@ -404,7 +402,7 @@
   width: 4.8rem;
   height: 4.8rem;
   border-radius: 999px;
-  font-size: 1.5rem;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1;
   color: var(--cpd-heading, #ffffff);
@@ -422,7 +420,7 @@
 
 .cpd-step__title {
   margin: 0 0 0.5rem;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.25;
   font-weight: 700;
   color: var(--cpd-heading, #ffffff);
@@ -430,7 +428,7 @@
 
 .cpd-step__text {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--cpd-muted, #8fa5a8);
 }
@@ -460,14 +458,14 @@
 
 .cpd-warning__heading {
   margin: 0 0 0.5rem;
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1.3;
   font-weight: 700;
   color: var(--cpd-warning-text, #f4f7f7);
 }
 
 .cpd-warning__text {
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--cpd-warning-text, #f4f7f7);
 }
@@ -510,7 +508,7 @@
 }
 
 .cpd-faq-item__question {
-  font-size: 1.5rem;
+  font-size: 15px;
   line-height: 1.35;
   font-weight: 600;
 }
@@ -541,7 +539,7 @@
 }
 
 .cpd-faq-item__answer {
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.55;
   color: var(--cpd-text, #f4f7f7);
 }
@@ -561,7 +559,7 @@
   }
 
   .cpd-tabs__trigger {
-    font-size: 1.6rem;
+    font-size: 16px;
   }
 
   .cpd-overview-grid {
@@ -582,13 +580,6 @@
     order: 1;
   }
 
-  .cpd-feature__media {
-    min-height: 22rem;
-  }
-
-  .cpd-feature__image {
-    min-height: 22rem;
-  }
 
   .cpd-feature__content {
     display: flex;
@@ -608,9 +599,9 @@
   }
 
   .cpd-tabs--stacked .cpd-tabs__panel {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    padding-top: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
   }
 }
 

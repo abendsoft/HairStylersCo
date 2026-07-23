@@ -213,7 +213,7 @@
           "type": "row",
           "settings": {
             "heading": "Customised Results For Every Hair Type",
-            "content": "<p><br/>Choose from multiple heat, speed and attachment options to create your preferred look — from smooth straight styles to bouncy curls and added volume.</p>"
+            "content": "<p>Choose from multiple heat, speed and attachment options to create your preferred look — from smooth straight styles to bouncy curls and added volume.</p>"
           }
         }
       },
@@ -359,15 +359,15 @@
         "gradient_color_1": "#e8d6cc",
         "gradient_color_2": "#d9b8a9",
         "heading": "Key Features",
-        "option_1": "Long Barrel Advantage",
+        "option_1": "5-in-1 Styling System",
         "option_1_link": "",
         "option_2": "Adjustable Heat Settings",
         "option_2_link": "",
-        "option_3": "Automatic Shut Off",
+        "option_3": "Auto Curling Technology",
         "option_3_link": "",
-        "option_4": "Professional Grade Cord",
+        "option_4": "High-Speed Motor",
         "option_4_link": "",
-        "option_5": "Universal Voltage",
+        "option_5": "Cool Shot Function",
         "option_5_link": "",
         "line_text": "",
         "description": "",

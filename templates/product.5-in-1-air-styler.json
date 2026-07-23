@@ -191,29 +191,29 @@
         "row_pXp43j": {
           "type": "row",
           "settings": {
-            "heading": "Sleeker, Modern Design",
-            "content": "<p>One sleek barrel replaces five separate tools, so your counter (and routine) stays clutter-free.</p><p></p>"
+            "heading": "5 Styling Tools In 1",
+            "content": "<p>Replace your dryer, curler, straightener and brushes with one versatile styling system. Create curls, smooth styles, volume and effortless blowouts using five interchangeable attachments.</p>"
           }
         },
         "row_WQkP4q": {
           "type": "row",
           "settings": {
-            "heading": "Faster Heat-Up",
-            "content": "<p>Ready to style in under 60 seconds with rapid ceramic-tourmaline heating.</p>"
+            "heading": "Advanced Airflow Styling",
+            "content": "<p>High-velocity airflow shapes hair while it dries, helping create salon-inspired styles without relying on extreme heat from traditional styling tools.</p>"
           }
         },
         "row_XLJKGz": {
           "type": "row",
           "settings": {
-            "heading": "Optimized Vibrations",
-            "content": "<p>Smart oscillating technology gently guides hair for smoother, more even curls with less effort.</p>"
+            "heading": "Lower Heat, Gentle Styling",
+            "content": "<p>With three controlled heat settings (55°C, 80°C and 105°C), AEROFLUX™ lets you choose the right temperature for your hair type while maintaining styling performance.</p>"
           }
         },
         "row_7LyKer": {
           "type": "row",
           "settings": {
-            "heading": "Personalized Styling",
-            "content": "<p>5 interchangeable barrels and multiple heat settings let you customize curls, waves, and volume for any hair type.<br/><br/></p>"
+            "heading": "Customised Results For Every Hair Type",
+            "content": "<p><br/>Choose from multiple heat, speed and attachment options to create your preferred look — from smooth straight styles to bouncy curls and added volume.</p>"
           }
         }
       },
@@ -228,7 +228,7 @@
         "image": "shopify://shop_images/Rectangle_130.png",
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
-        "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
+        "heading": "OLD STYLING TOOLS VS. 5-IN-1 HAIR STYLER",
         "open_first_row": false,
         "reverse_columns_mobile": false,
         "use_custom_column_widths": true,

@@ -253,24 +253,24 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/3_1813fa7e-1a5f-4a49-9418-4958ed3fc5aa.webp",
-            "heading": "Best for",
-            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair. Stylists - if you're working on 1-8 heads a day</p>"
+            "heading": "Perfect For Every Style",
+            "text": "<p>Designed for all hair types, AEROFLUX™ helps you create effortless curls, sleek finishes, smooth blowouts and natural volume with controlled airflow and adjustable heat settings.</p>"
           }
         },
         "card_W9Mf4F": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/1_06aeff37-bf76-4598-a805-1aee3fa36c1c.webp",
-            "heading": "Where it fits in your routine",
-            "text": "<p>The .75\" creates spirals and tight curls, the 1\" forms medium-sized curls, the 1.25\" produces voluminous, soft waves, and the 1.5\" delivers a polished blowout finish.<br/><br/></p>"
+            "heading": "Where It Fits In Your Routine",
+            "text": "<p>Start with the dryer attachment to remove excess moisture, smooth with the flat brush, add volume with the cylinder brush, or create bouncy curls with the auto-curling barrels — all from one styling system.</p>"
           }
         },
         "card_j8hnBh": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/2_8985601d-0aa2-4929-b397-0442c76f28f3.webp",
-            "heading": "Why you'll love it",
-            "text": "<p>2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.</p>"
+            "heading": "Why You'll Love It",
+            "text": "<p>Experience faster, easier styling with high-velocity airflow, multiple heat options and intelligent attachment versatility — giving you the freedom to create your favourite looks every day.</p>"
           }
         }
       },
@@ -281,8 +281,8 @@
       ],
       "name": "Curlear image text cards",
       "settings": {
-        "heading": "Versatile Curling Made Easy",
-        "top_text": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.",
+        "heading": "Versatile Styling Made Easy",
+        "top_text": "Five attachments. Endless styling possibilities. Create salon-inspired looks from drying and smoothing to curls and volume — all with one powerful tool.",
         "header_alignment": "center",
         "background_color": "#ffffff",
         "layout_mode": "grid",

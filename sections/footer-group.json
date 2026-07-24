@@ -60,7 +60,7 @@
         "submit_button_gradient_direction": "top_bottom",
         "submit_button_gradient_angle": 180,
         "input_background_color": "#ffffff",
-        "policy_richtext": "<p>By submitting this form, you consent to receive informational (e.g, order updates) and/or marketing texts (e.g, cart reminders) from Big curlier including texts sent by auto dialer. Consent is not a condition of purchase. Msg & date rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link ( where available). Privacy Policy & Terms.<br/><br/></p>",
+        "policy_richtext": "<p>By submitting this form, you consent to receive informational (e.g, order updates) and/or marketing texts (e.g, cart reminders) from curlier including texts sent by auto dialer. Consent is not a condition of purchase. Msg & date rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link ( where available). Privacy Policy & Terms.<br/><br/></p>",
         "bottom_note": "",
         "show_social_icons": false,
         "copyright_text": "@2026, Curlear. All rights reserved.",

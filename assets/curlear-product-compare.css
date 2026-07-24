@@ -50,6 +50,10 @@
     margin-inline: 0;
   }
 
+  .curlear-product-compare--two-products .curlear-product-compare__matrix {
+    min-width: 52rem;
+  }
+
   .curlear-product-compare__title {
     font-size: clamp(1.75rem, 4.5vw, 2.75rem);
     padding-bottom: 1.2rem;

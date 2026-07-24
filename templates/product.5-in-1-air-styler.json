@@ -526,8 +526,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Temperature",
-            "text_column_2": "Up to 430°F",
-            "text_column_3": "Up to 630°F",
+            "text_column_2": "Up to 630°F",
+            "text_column_3": "Up to 430°F",
             "text_column_4": "Up to 385°F"
           }
         },

@@ -472,7 +472,7 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "BioCeramic MCH Heater",
-            "text_column_2": "No",
+            "text_column_2": "Yes",
             "text_column_3": "No",
             "text_column_4": "No"
           }
@@ -490,7 +490,7 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Far Infrared Heat",
-            "text_column_2": "No",
+            "text_column_2": "Yes",
             "text_column_3": "No",
             "text_column_4": "No"
           }
@@ -508,8 +508,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Automatic Shut-Off",
-            "text_column_2": "1 hour",
-            "text_column_3": "1 hour",
+            "text_column_2": "15 Minutes",
+            "text_column_3": "30 Minutes",
             "text_column_4": "1 hour"
           }
         },
@@ -527,7 +527,7 @@
           "settings": {
             "text_column_1": "Temperature",
             "text_column_2": "Up to 430°F",
-            "text_column_3": "Up to 430°F",
+            "text_column_3": "Up to 630°F",
             "text_column_4": "Up to 385°F"
           }
         },
@@ -577,10 +577,10 @@
         "first_column_heading": "Compare our Products",
         "hide_last_column": true,
         "column_2_image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933_21ac5a0b-4e98-4405-983a-3b27d77719be.png",
-        "column_2_heading": "5 in 1 Hair Styler",
+        "column_2_heading": "Us",
         "column_2_price": "£64.99",
         "column_3_image": "shopify://shop_images/dca05a4fb3b7e6ad9d2a086e529eb2ec3f6f8320_3a2007ae-c6e3-4f8a-9210-398c9a574f9a.png",
-        "column_3_heading": "10X Styler",
+        "column_3_heading": "Them",
         "column_3_price": "£79.99",
         "column_4_image": "shopify://shop_images/f1cae3e287b0fdef8413285a783271ba4591a823.png",
         "column_4_heading": "Travel Styler",

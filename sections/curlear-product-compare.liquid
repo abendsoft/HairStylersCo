@@ -7,13 +7,18 @@
   else
     assign grid_rows = 'auto'
   endif
+  assign hide_last_column = section.settings.hide_last_column
   assign col2_img_alt = section.settings.column_2_heading | default: 'Product'
   assign col3_img_alt = section.settings.column_3_heading | default: 'Product'
   assign col4_img_alt = section.settings.column_4_heading | default: 'Product'
+  assign highlight_column = section.settings.highlight_column
+  if hide_last_column and highlight_column == '4'
+    assign highlight_column = '2'
+  endif
   assign c2_fr = '1fr'
   assign c3_fr = '1fr'
   assign c4_fr = '1fr'
-  case section.settings.highlight_column
+  case highlight_column
     when '3'
       assign c3_fr = '1.15fr'
     when '4'
@@ -21,11 +26,15 @@
     else
       assign c2_fr = '1.15fr'
   endcase
-  assign grid_cols = 'minmax(11rem, 1fr) var(--cpc-gap) minmax(9.5rem, ' | append: c2_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c3_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c4_fr | append: ')'
+  if hide_last_column
+    assign grid_cols = 'minmax(11rem, 1fr) var(--cpc-gap) minmax(9.5rem, ' | append: c2_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c3_fr | append: ')'
+  else
+    assign grid_cols = 'minmax(11rem, 1fr) var(--cpc-gap) minmax(9.5rem, ' | append: c2_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c3_fr | append: ') var(--cpc-gap) minmax(9.5rem, ' | append: c4_fr | append: ')'
+  endif
 %}
 
 <section
-  class="curlear-product-compare section-{{ section.id }}-padding"
+  class="curlear-product-compare section-{{ section.id }}-padding{% if hide_last_column %} curlear-product-compare--two-products{% endif %}"
   style="
     --cpc-section-bg: {{ section.settings.section_background_color }};
     --cpc-table-bg: {{ section.settings.table_column_background_color }};
@@ -56,7 +65,7 @@
         <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--1" aria-hidden="true"></div>
 
         <div
-          class="curlear-product-compare__product-col curlear-product-compare__product-col--2{% if section.settings.highlight_column == '2' %} is-selected{% endif %}"
+          class="curlear-product-compare__product-col curlear-product-compare__product-col--2{% if highlight_column == '2' %} is-selected{% endif %}"
         >
           <div class="curlear-product-compare__product-head">
             {% if section.settings.column_2_image != blank %}
@@ -89,7 +98,7 @@
         <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--2" aria-hidden="true"></div>
 
         <div
-          class="curlear-product-compare__product-col curlear-product-compare__product-col--3{% if section.settings.highlight_column == '3' %} is-selected{% endif %}"
+          class="curlear-product-compare__product-col curlear-product-compare__product-col--3{% if highlight_column == '3' %} is-selected{% endif %}"
         >
           <div class="curlear-product-compare__product-head">
             {% if section.settings.column_3_image != blank %}
@@ -119,38 +128,40 @@
           {% endfor %}
         </div>
 
-        <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--3" aria-hidden="true"></div>
+        {% unless hide_last_column %}
+          <div class="curlear-product-compare__gap-col curlear-product-compare__gap-col--3" aria-hidden="true"></div>
 
-        <div
-          class="curlear-product-compare__product-col curlear-product-compare__product-col--4{% if section.settings.highlight_column == '4' %} is-selected{% endif %}"
-        >
-          <div class="curlear-product-compare__product-head">
-            {% if section.settings.column_4_image != blank %}
-              <div class="curlear-product-compare__product-thumb">
-                {{
-                  section.settings.column_4_image
-                  | image_url: width: 120
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '60, 80, 120',
-                    sizes: '42px',
-                    alt: col4_img_alt
-                }}
-              </div>
-            {% endif %}
-            {% if section.settings.column_4_heading != blank %}
-              <p class="curlear-product-compare__product-name">{{ section.settings.column_4_heading | escape }}</p>
-            {% endif %}
-            {% if section.settings.column_4_price != blank %}
-              <p class="curlear-product-compare__product-price">{{ section.settings.column_4_price | escape }}</p>
-            {% endif %}
+          <div
+            class="curlear-product-compare__product-col curlear-product-compare__product-col--4{% if highlight_column == '4' %} is-selected{% endif %}"
+          >
+            <div class="curlear-product-compare__product-head">
+              {% if section.settings.column_4_image != blank %}
+                <div class="curlear-product-compare__product-thumb">
+                  {{
+                    section.settings.column_4_image
+                    | image_url: width: 120
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '60, 80, 120',
+                      sizes: '42px',
+                      alt: col4_img_alt
+                  }}
+                </div>
+              {% endif %}
+              {% if section.settings.column_4_heading != blank %}
+                <p class="curlear-product-compare__product-name">{{ section.settings.column_4_heading | escape }}</p>
+              {% endif %}
+              {% if section.settings.column_4_price != blank %}
+                <p class="curlear-product-compare__product-price">{{ section.settings.column_4_price | escape }}</p>
+              {% endif %}
+            </div>
+            {% for block in section.blocks %}
+              <p class="curlear-product-compare__data-cell">
+                {{ block.settings.text_column_4 | escape }}
+              </p>
+            {% endfor %}
           </div>
-          {% for block in section.blocks %}
-            <p class="curlear-product-compare__data-cell">
-              {{ block.settings.text_column_4 | escape }}
-            </p>
-          {% endfor %}
-        </div>
+        {% endunless %}
       </div>
     </div>
   </div>
@@ -168,6 +179,13 @@
       "id": "first_column_heading",
       "label": "First column heading",
       "default": "Compare our Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_last_column",
+      "label": "Hide last comparison column",
+      "info": "When enabled, only two products are compared (columns 2 and 3).",
+      "default": false
     },
     {
       "type": "header",
@@ -213,24 +231,28 @@
     },
     {
       "type": "header",
-      "content": "Column 4 (product)"
+      "content": "Column 4 (product)",
+      "visible_if": "{{ section.settings.hide_last_column == false }}"
     },
     {
       "type": "image_picker",
       "id": "column_4_image",
-      "label": "Image"
+      "label": "Image",
+      "visible_if": "{{ section.settings.hide_last_column == false }}"
     },
     {
       "type": "text",
       "id": "column_4_heading",
       "label": "Product name",
-      "default": "Travel Styler"
+      "default": "Travel Styler",
+      "visible_if": "{{ section.settings.hide_last_column == false }}"
     },
     {
       "type": "text",
       "id": "column_4_price",
       "label": "Price text",
-      "default": "£49.99"
+      "default": "£49.99",
+      "visible_if": "{{ section.settings.hide_last_column == false }}"
     },
     {
       "type": "header",
@@ -245,7 +267,8 @@
         { "value": "2", "label": "Column 2" },
         { "value": "3", "label": "Column 3" },
         { "value": "4", "label": "Column 4" }
-      ]
+      ],
+      "info": "Column 4 is ignored when the last comparison column is hidden."
     },
     {
       "type": "header",
@@ -333,7 +356,8 @@
           "type": "text",
           "id": "text_column_4",
           "label": "Text column 4",
-          "default": "Yes"
+          "default": "Yes",
+          "visible_if": "{{ section.settings.hide_last_column == false }}"
         }
       ]
     }

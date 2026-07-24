@@ -22,6 +22,7 @@
         },
         "curlear_ratings_kfUVQn": {
           "type": "curlear_ratings",
+          "disabled": true,
           "settings": {
             "rating_value": 4.6,
             "star_size": 17,

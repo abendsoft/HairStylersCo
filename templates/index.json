@@ -69,7 +69,7 @@
           "settings": {
             "icon": "shopify://shop_images/box.png",
             "heading": "Fast Free Shipping",
-            "text": "Get free shipping on all orders of more than £99"
+            "text": "Get free shipping on all orders of more than £50"
           }
         },
         "card_tQGmJr": {
@@ -563,36 +563,8 @@
             "product": "5-in-1-air-styler",
             "image": "shopify://shop_images/5_7.png",
             "top_text": "Customer favourite",
-            "rating_value": 4.5,
-            "rating_text": "4.5 (2997 reviews)",
-            "description": "",
-            "below_description_text": "Precision in every pass. Speed in every style.",
-            "below_price_text": "",
-            "view_details_label": "View Full Details",
-            "button_label": "Add to cart"
-          }
-        },
-        "product_BtfXQJ": {
-          "type": "product",
-          "settings": {
-            "product": "hair-dryer-super-sonic",
-            "top_text": "Customer favourite",
-            "rating_value": 4.6,
-            "rating_text": "4.6 (2997 reviews)",
-            "description": "",
-            "below_description_text": "Precision in every pass. Speed in every style.",
-            "below_price_text": "",
-            "view_details_label": "View Full Details",
-            "button_label": "Add to cart"
-          }
-        },
-        "product_a4PpeY": {
-          "type": "product",
-          "settings": {
-            "product": "professional-hair-dryer",
-            "top_text": "Customer favourite",
-            "rating_value": 4.6,
-            "rating_text": "4.6 (2997 reviews)",
+            "rating_value": 0,
+            "rating_text": "",
             "description": "",
             "below_description_text": "Precision in every pass. Speed in every style.",
             "below_price_text": "",
@@ -602,9 +574,7 @@
         }
       },
       "block_order": [
-        "product_RpJyPp",
-        "product_BtfXQJ",
-        "product_a4PpeY"
+        "product_RpJyPp"
       ],
       "name": "Curlear festure products",
       "settings": {

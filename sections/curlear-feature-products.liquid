@@ -145,16 +145,18 @@
       {% endfor %}
     </div>
 
-   <div class="curlear-feature-products__dots" data-curlear-feature-dots aria-label="Slider pagination">
-      {% for block in section.blocks %}
-        <button
-          type="button"
-          class="curlear-feature-products__dot{% if forloop.first %} is-active{% endif %}"
-          data-curlear-feature-dot
-          aria-label="Go to slide {{ forloop.index }}"
-        ></button>
-      {% endfor %}
-    </div>
+   {% if section.blocks.size > 1 %}
+      <div class="curlear-feature-products__dots" data-curlear-feature-dots aria-label="Slider pagination">
+        {% for block in section.blocks %}
+          <button
+            type="button"
+            class="curlear-feature-products__dot{% if forloop.first %} is-active{% endif %}"
+            data-curlear-feature-dot
+            aria-label="Go to slide {{ forloop.index }}"
+          ></button>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 </section>
 

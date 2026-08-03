@@ -75,6 +75,7 @@
   flex-shrink: 0;
   font-size: var(--curlear-card-price-size, 36px);
   line-height: 1.2;
+  font-weight:700;
 }
 
 .curlear-product-card__media-wrap {

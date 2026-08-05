@@ -118,6 +118,7 @@
         },
         "curlear_showcase_snippet_Pa4Xq9": {
           "type": "curlear_showcase_snippet",
+          "disabled": true,
           "settings": {
             "heading": "See it in action",
             "visible_desktop": 4,

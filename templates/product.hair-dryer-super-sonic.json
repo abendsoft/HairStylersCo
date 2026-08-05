@@ -102,6 +102,7 @@
         },
         "curlear_icon_text_xCzzwh": {
           "type": "curlear_icon_text",
+          "disabled": true,
           "settings": {
             "icon_1": "shopify://shop_images/g2412_e4419c17-edc5-4848-8a19-ba5af6330750.png",
             "text_1": "30-Day Satisfaction Guarantee",

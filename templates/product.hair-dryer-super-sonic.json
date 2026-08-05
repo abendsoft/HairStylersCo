@@ -452,17 +452,17 @@
         "comparison_row_yL7bTz": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Ceramic Mineral Complex",
+            "text_column_1": "Adjustable Heat Settings",
             "text_column_2": "Yes",
-            "text_column_3": "Yes",
+            "text_column_3": "Limited",
             "text_column_4": "No"
           }
         },
         "comparison_row_qk8wcz": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "BioCeramic MCH Heater",
-            "text_column_2": "No",
+            "text_column_1": "Multiple Speed Options",
+            "text_column_2": "Yes",
             "text_column_3": "No",
             "text_column_4": "No"
           }
@@ -470,17 +470,17 @@
         "comparison_row_P7BQjK": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "PTC Heater",
+            "text_column_1": "Quick Drying Technology",
             "text_column_2": "Yes",
-            "text_column_3": "Yes",
-            "text_column_4": "Yes"
+            "text_column_3": "Moderate",
+            "text_column_4": "Low"
           }
         },
         "comparison_row_hQj6gN": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Far Infrared Heat",
-            "text_column_2": "No",
+            "text_column_1": "Frizz Control",
+            "text_column_2": "Yes",
             "text_column_3": "No",
             "text_column_4": "No"
           }
@@ -488,63 +488,63 @@
         "comparison_row_mLf3fD": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Swivel Cord",
+            "text_column_1": "Lightweight Design",
             "text_column_2": "Yes",
-            "text_column_3": "Yes",
+            "text_column_3": "Medium",
             "text_column_4": "Yes"
           }
         },
         "comparison_row_9wte8x": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Automatic Shut-Off",
-            "text_column_2": "1 hour",
-            "text_column_3": "1 hour",
-            "text_column_4": "1 hour"
+            "text_column_1": "Noise Level",
+            "text_column_2": "Low Noise",
+            "text_column_3": "Medium",
+            "text_column_4": "High"
           }
         },
         "comparison_row_ADnrz7": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Wattage Rating",
-            "text_column_2": "56W",
-            "text_column_3": "66W",
-            "text_column_4": "75W"
+            "text_column_1": "Heat Protection",
+            "text_column_2": "Yes",
+            "text_column_3": "No",
+            "text_column_4": "No"
           }
         },
         "comparison_row_rLryaC": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Temperature",
-            "text_column_2": "Up to 430°F",
-            "text_column_3": "Up to 430°F",
-            "text_column_4": "Up to 385°F"
+            "text_column_1": "Automatic Shut-Off",
+            "text_column_2": "Yes",
+            "text_column_3": "No",
+            "text_column_4": "No"
           }
         },
         "comparison_row_6tfccL": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Weight (without cord)",
-            "text_column_2": "7.86oz",
-            "text_column_3": "7.90oz",
-            "text_column_4": "10.72oz"
+            "text_column_1": "Temperature Control",
+            "text_column_2": "Adjustable",
+            "text_column_3": "Fixed Levels",
+            "text_column_4": "Limited"
           }
         },
         "comparison_row_ciJnM9": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Cord Length",
-            "text_column_2": "9ft",
-            "text_column_3": "9ft",
-            "text_column_4": "9ft"
+            "text_column_1": "Weight",
+            "text_column_2": "Lightweight",
+            "text_column_3": "Slightly Heavy",
+            "text_column_4": "Very Light"
           }
         },
         "comparison_row_wjihe9": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Universal Voltage",
+            "text_column_1": "Travel Friendly",
             "text_column_2": "Yes",
-            "text_column_3": "Yes",
+            "text_column_3": "No",
             "text_column_4": "Yes"
           }
         }

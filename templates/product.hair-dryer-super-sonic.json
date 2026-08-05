@@ -390,37 +390,29 @@
         "row_WNVNE6": {
           "type": "row",
           "settings": {
-            "heading": "How does the Curlear Long Barrel Curling Iron work for different hair types?",
-            "content": "<p>The device features intelligent heat control and anti-frizz airflow that adapts to all hair types (straight, curly, wavy, fine, thick). The technology reduces frizz and prevents damage regardless of hair type.</p><p></p>"
+            "heading": "How does this hair dryer work for different hair types?",
+            "content": "<p>It comes with multiple heat and speed settings, allowing you to customize the airflow based on your hair type—whether fine, thick, curly, or straight.</p>"
           }
         },
         "row_AbeeeE": {
           "type": "row",
           "settings": {
-            "heading": "What barrel sizes are available for the long barrel curling iron?",
-            "content": "<p>The product includes 2x Auto Curling Barrels (Left & Right), but specific barrel sizes aren't listed in the specs. You may need to check product images or contact support for diameter details.</p><p></p>"
-          }
-        },
-        "row_HYVKkm": {
-          "type": "row",
-          "disabled": true,
-          "settings": {
-            "heading": "Is the curling iron dual voltage for international use?",
-            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>"
+            "heading": "What features help reduce frizz and damage?",
+            "content": "<p>The dryer is designed to distribute heat evenly, helping to minimize excessive heat exposure. This reduces frizz and protects your hair from damage while maintaining smoothness.</p>"
           }
         },
         "row_cerqmX": {
           "type": "row",
           "settings": {
             "heading": "What heat setting should I use for my hair type?",
-            "content": "<p>Three temperature options: 55°C (fine/delicate), 80°C (normal), 105°C (thick/coarse). Start with the lowest setting and increase as needed.</p><p></p>"
+            "content": "<p>Use lower heat settings for fine or damaged hair and higher settings for thick or coarse hair. You can easily adjust according to your styling needs.</p>"
           }
         },
         "row_NfWeMN": {
           "type": "row",
           "settings": {
-            "heading": "How long does it take to heat up?",
-            "content": "<p>Heat-up time isn't specified in the product details. Check the user manual or product support for exact timing.</p>"
+            "heading": "How long does it take to dry hair?",
+            "content": "<p>With its powerful airflow, this hair dryer dries hair quickly and efficiently, saving you time while giving a smooth finish.</p>"
           }
         }
       },
@@ -428,7 +420,6 @@
         "row_gKLY7B",
         "row_WNVNE6",
         "row_AbeeeE",
-        "row_HYVKkm",
         "row_cerqmX",
         "row_NfWeMN"
       ],

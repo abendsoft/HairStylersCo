@@ -192,28 +192,28 @@
           "type": "row",
           "settings": {
             "heading": "Sleeker, Modern Design",
-            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ </p>"
+            "content": "<p><br/>Designed for both style and comfort, this hair dryer features a sleek, modern look with a lightweight body. Its ergonomic design ensures easy handling, making it perfect for daily use at home or while traveling.<br/><br/></p>"
           }
         },
         "row_WQkP4q": {
           "type": "row",
           "settings": {
-            "heading": "Faster Heat-Up",
-            "content": "<p>STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLER</p>"
+            "heading": "Faster Drying Performance",
+            "content": "<p>Powered for efficiency, this dryer delivers quick airflow to dry your hair in less time. It helps you achieve salon-like results without long waiting, making your routine faster and more convenient.</p>"
           }
         },
         "row_XLJKGz": {
           "type": "row",
           "settings": {
-            "heading": "Optimized Vibrations",
-            "content": "<p>Optimized Vibrations<br/><br/></p>"
+            "heading": "Frizz Control & Hair Protection",
+            "content": "<p>Engineered to be gentle on hair, it helps reduce frizz and prevents heat damage. Enjoy smoother, shinier hair with every use while maintaining hair health.</p>"
           }
         },
         "row_7LyKer": {
           "type": "row",
           "settings": {
-            "heading": "Personalized Styling",
-            "content": ""
+            "heading": "Adjustable Heat & Speed Settings",
+            "content": "<p>Multiple heat and speed options allow you to customize your drying experience according to your hair type. Whether you need gentle care or high power, it adapts to your styling needs.</p>"
           }
         }
       },
@@ -228,7 +228,7 @@
         "image": "shopify://shop_images/Rectangle_130.png",
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
-        "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
+        "heading": "PROFESSIONAL HAIR DRYER",
         "open_first_row": false,
         "reverse_columns_mobile": false,
         "use_custom_column_widths": true,
@@ -574,6 +574,7 @@
       "name": "Curlear product compare",
       "settings": {
         "first_column_heading": "Compare our Products",
+        "hide_last_column": false,
         "column_2_image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933_21ac5a0b-4e98-4405-983a-3b27d77719be.png",
         "column_2_heading": "5 in 1 Hair Styler",
         "column_2_price": "£64.99",

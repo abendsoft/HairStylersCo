@@ -12,6 +12,17 @@
     endfor
   endif
 
+  assign image_fit = section.settings.image_fit | default: 'cover'
+  assign image_position = section.settings.image_position | default: 'center'
+  case image_position
+    when 'top'
+      assign object_position = 'center top'
+    when 'bottom'
+      assign object_position = 'center bottom'
+    else
+      assign object_position = 'center center'
+  endcase
+
   assign use_custom_column_widths = section.settings.use_custom_column_widths
   assign content_column_width = section.settings.content_column_width | default: 50
   assign media_column_width = section.settings.media_column_width | default: 50
@@ -34,6 +45,10 @@
 -%}
 
 {% style %}
+  #shopify-section-{{ section.id }} {
+    --curlear-showcase-object-position: {{ object_position }};
+  }
+
   @media screen and (min-width: 990px) {
     {% if section.settings.use_custom_column_widths %}
       #shopify-section-{{ section.id }} .curlear-image-accordion-showcase__inner--custom-cols {
@@ -64,7 +79,7 @@
   style="
     --curlear-showcase-section-bg: {{ section.settings.section_bg_color }};
     --curlear-showcase-content-bg: {{ section.settings.content_bg_color }};
-    --curlear-showcase-media-bg: {{ section.settings.media_bg_color }};
+    --curlear-showcase-media-bg: {{ section.settings.section_bg_color }};
     --curlear-accordion-content-padding-top: {{ section.settings.content_padding_top }}px;
     --curlear-accordion-content-padding-right: {{ section.settings.content_padding_right }}px;
     --curlear-accordion-content-padding-bottom: {{ section.settings.content_padding_bottom }}px;
@@ -76,7 +91,7 @@
       class="curlear-image-accordion-showcase__inner{% if section.settings.reverse_columns_mobile %} curlear-image-accordion-showcase__inner--reversed{% endif %}{% if section.settings.use_custom_column_widths %} curlear-image-accordion-showcase__inner--custom-cols{% endif %} curlear-image-accordion-showcase__inner--align-{{ section.settings.content_alignment }}"
       data-curlear-accordion-showcase
     >
-      <div class="curlear-image-accordion-showcase__media">
+      <div class="curlear-image-accordion-showcase__media curlear-image-accordion-showcase__media--{{ image_fit }} curlear-image-accordion-showcase__media--pos-{{ image_position }}">
         {% if showcase_image != blank %}
           {{
             showcase_image
@@ -149,6 +164,33 @@
       "id": "image",
       "label": "Section image",
       "info": "One image shown beside the accordion on all rows."
+    },
+    {
+      "type": "header",
+      "content": "Image display"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "adapt", "label": "Adapt to image" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "info": "Used with Cover and Contain."
     },
     {
       "type": "text",
@@ -283,19 +325,14 @@
       "type": "color",
       "id": "section_bg_color",
       "label": "Section background color",
-      "default": "#F7F7F7"
+      "default": "#F7F7F7",
+      "info": "Also used behind the image area."
     },
     {
       "type": "color",
       "id": "content_bg_color",
       "label": "Content area background color",
       "default": "#F7F7F7"
-    },
-    {
-      "type": "color",
-      "id": "media_bg_color",
-      "label": "Image area background color",
-      "default": "#F2DED3"
     }
   ],
   "blocks": [

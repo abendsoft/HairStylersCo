@@ -21,6 +21,7 @@
   margin: 0;
   flex: 1 1 auto;
   min-width: 0;
+  min-height: 50px;
   font-size: var(--curlear-card-title-size, 22px);
   font-weight: 400;
   line-height: 1.2;

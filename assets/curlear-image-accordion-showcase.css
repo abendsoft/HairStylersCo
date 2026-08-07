@@ -131,12 +131,18 @@
 .curlear-image-accordion-showcase__media {
   order: 2;
   position: relative;
-  background: var(--curlear-showcase-media-bg, #f2ded3);
+  background: var(--curlear-showcase-media-bg, var(--curlear-showcase-section-bg, #f7f7f7));
   border-radius: 1.2rem;
   overflow: hidden;
   width: 100%;
   aspect-ratio: 16 / 10;
   max-height: min(30vw, 360px);
+}
+
+.curlear-image-accordion-showcase__media--adapt {
+  aspect-ratio: auto;
+  max-height: none;
+  height: auto;
 }
 
 .curlear-image-accordion-showcase__inner--reversed .curlear-image-accordion-showcase__media {
@@ -152,13 +158,24 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: var(--curlear-showcase-object-position, center center);
+}
+
+.curlear-image-accordion-showcase__media--contain .curlear-image-accordion-showcase__image {
+  object-fit: contain;
+}
+
+.curlear-image-accordion-showcase__media--adapt .curlear-image-accordion-showcase__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: var(--curlear-showcase-object-position, center center);
 }
 
 .curlear-image-accordion-showcase__image.placeholder-svg {
   width: 100%;
   height: 100%;
-  background: var(--curlear-showcase-media-bg, #f2ded3);
+  background: var(--curlear-showcase-media-bg, var(--curlear-showcase-section-bg, #f7f7f7));
 }
 
 @media screen and (min-width: 990px) {
@@ -212,6 +229,11 @@
   .curlear-image-accordion-showcase__media {
     max-height: none;
     aspect-ratio: 16 / 10;
+  }
+
+  .curlear-image-accordion-showcase__media--adapt {
+    aspect-ratio: auto;
+    max-height: none;
   }
 
   /* Always image on top, content below on mobile (ignore column reverse) */

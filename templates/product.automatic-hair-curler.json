@@ -308,9 +308,9 @@
         "comparison_card_7xVDpk": {
           "type": "comparison_card",
           "settings": {
-            "first_image": "shopify://shop_images/Frame_57.png",
+            "first_image": "shopify://shop_images/before_2.webp",
             "first_label": "BEFORE",
-            "second_image": "shopify://shop_images/Frame_56.png",
+            "second_image": "shopify://shop_images/after_2.webp",
             "second_label": "AFTER"
           }
         },

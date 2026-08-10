@@ -225,7 +225,7 @@
       ],
       "name": "Curlear image accordion",
       "settings": {
-        "image": "shopify://shop_images/Rectangle_130.png",
+        "image": "shopify://shop_images/product.webp",
         "image_fit": "cover",
         "image_position": "center",
         "top_heading": "",

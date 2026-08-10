@@ -314,21 +314,21 @@
             "second_label": "AFTER"
           }
         },
-        "comparison_card_ANVz6Q": {
-          "type": "comparison_card",
-          "settings": {
-            "first_image": "shopify://shop_images/Frame_55.png",
-            "first_label": "BEFORE",
-            "second_image": "shopify://shop_images/Frame_54.png",
-            "second_label": "AFTER"
-          }
-        },
         "comparison_card_NFzRmG": {
           "type": "comparison_card",
           "settings": {
-            "first_image": "shopify://shop_images/Frame_53.png",
+            "first_image": "shopify://shop_images/before_3.webp",
             "first_label": "BEFORE",
-            "second_image": "shopify://shop_images/Frame_52.png",
+            "second_image": "shopify://shop_images/after_3.webp",
+            "second_label": "AFTER"
+          }
+        },
+        "comparison_card_ANVz6Q": {
+          "type": "comparison_card",
+          "settings": {
+            "first_image": "shopify://shop_images/before_4.webp",
+            "first_label": "BEFORE",
+            "second_image": "shopify://shop_images/after_4.webp",
             "second_label": "AFTER"
           }
         }
@@ -336,8 +336,8 @@
       "block_order": [
         "comparison_card_rQCmtG",
         "comparison_card_7xVDpk",
-        "comparison_card_ANVz6Q",
-        "comparison_card_NFzRmG"
+        "comparison_card_NFzRmG",
+        "comparison_card_ANVz6Q"
       ],
       "name": "Curlear compare gallery",
       "settings": {

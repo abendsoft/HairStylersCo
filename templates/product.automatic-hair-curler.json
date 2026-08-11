@@ -384,37 +384,29 @@
         "row_gKLY7B": {
           "type": "row",
           "settings": {
-            "heading": "Is this curling iron suitable for professional stylists?",
-            "content": "<p>Yes. The 1000W motor and rapid heat technology make it powerful enough for professional use, though it's marketed as an at-home styler. Professionals can achieve salon-quality results with the three heat settings and quick-change attachment system.</p><p></p>"
+            "heading": "Is this curling iron suitable for everyday use at home?",
+            "content": "<p>Yes. Its lightweight, ergonomic design and one-touch automatic operation make it quick and easy to use, whether you're styling for a busy morning or a special occasion.</p>"
           }
         },
         "row_WNVNE6": {
           "type": "row",
           "settings": {
-            "heading": "How does the Curlear Long Barrel Curling Iron work for different hair types?",
-            "content": "<p>The device features intelligent heat control and anti-frizz airflow that adapts to all hair types (straight, curly, wavy, fine, thick). The technology reduces frizz and prevents damage regardless of hair type.</p><p></p>"
+            "heading": "How does the Automatic Hair Curler work for different hair types?",
+            "content": "<p>The automatic rotating barrel wraps hair smoothly and evenly, while adjustable heat and timer settings let you customize the styling process for straight, wavy, curly, fine, or thick hair.</p>"
           }
         },
         "row_AbeeeE": {
           "type": "row",
           "settings": {
-            "heading": "What barrel sizes are available for the long barrel curling iron?",
-            "content": "<p>The product includes 2x Auto Curling Barrels (Left & Right), but specific barrel sizes aren't listed in the specs. You may need to check product images or contact support for diameter details.</p><p></p>"
-          }
-        },
-        "row_HYVKkm": {
-          "type": "row",
-          "disabled": true,
-          "settings": {
-            "heading": "Is the curling iron dual voltage for international use?",
-            "content": "<p>Is the curling iron dual voltage for international use?<br/><br/></p>"
+            "heading": "What heat setting should I use for my hair type?",
+            "content": "<p>Finer or damaged hair does best on lower heat settings, while thicker or coarser hair can handle higher settings for longer-lasting curls. The adjustable heat control lets you find the right balance for your hair.</p>"
           }
         },
         "row_cerqmX": {
           "type": "row",
           "settings": {
-            "heading": "What heat setting should I use for my hair type?",
-            "content": "<p>Three temperature options: 55°C (fine/delicate), 80°C (normal), 105°C (thick/coarse). Start with the lowest setting and increase as needed.</p><p></p>"
+            "heading": "How long does it take to heat up?",
+            "content": "<p>Thanks to rapid heat technology, the curler heats up quickly, so you can start styling within moments of turning it on.</p>"
           }
         },
         "row_NfWeMN": {
@@ -429,7 +421,6 @@
         "row_gKLY7B",
         "row_WNVNE6",
         "row_AbeeeE",
-        "row_HYVKkm",
         "row_cerqmX",
         "row_NfWeMN"
       ],

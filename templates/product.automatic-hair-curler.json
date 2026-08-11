@@ -213,7 +213,7 @@
           "type": "row",
           "settings": {
             "heading": "Personalized Styling",
-            "content": "<p><br/>Adjustable heat and timer settings let you tailor every curl to your hair type, giving you soft waves, bouncy curls, or full volume — all while reducing heat damage.</p>"
+            "content": "<p>Adjustable heat and timer settings let you tailor every curl to your hair type, giving you soft waves, bouncy curls, or full volume — all while reducing heat damage.</p>"
           }
         }
       },
@@ -255,7 +255,7 @@
           "settings": {
             "image": "shopify://shop_images/image_2.webp",
             "heading": "Best for",
-            "text": "<p>Designed for all hair types but particularly efficient for medium to long hair. Stylists - if you're working on 1-8 heads a day</p>"
+            "text": "<p>Designed for all hair types, with adjustable heat and timer settings that make it especially effective for everyday styling at home — no salon skills required.</p>"
           }
         },
         "card_W9Mf4F": {
@@ -263,7 +263,7 @@
           "settings": {
             "image": "shopify://shop_images/image.webp",
             "heading": "Where it fits in your routine",
-            "text": "<p>The .75\" creates spirals and tight curls, the 1\" forms medium-sized curls, the 1.25\" produces voluminous, soft waves, and the 1.5\" delivers a polished blowout finish.<br/><br/></p>"
+            "text": "<p>Perfect for busy mornings or last-minute plans. Clamp a section of hair, let the automatic barrel do the wrapping, and release for soft curls, beach waves, or bouncy volume in minutes.</p>"
           }
         },
         "card_j8hnBh": {
@@ -271,7 +271,7 @@
           "settings": {
             "image": "shopify://shop_images/image_1.webp",
             "heading": "Why you'll love it",
-            "text": "<p>2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.</p>"
+            "text": "<p>Adjustable heat and timer settings help reduce heat damage while giving you full control over your style, leaving hair with long-lasting curls, shine, and bounce every time.</p>"
           }
         }
       },
@@ -282,8 +282,8 @@
       ],
       "name": "Curlear image text cards",
       "settings": {
-        "heading": "Versatile Curling Made Easy",
-        "top_text": "2\" longer than average for effortless curling, extended reach, and quick, flawless curls on all hair types.",
+        "heading": "Effortless Curls, Every Time",
+        "top_text": "Automatic rotating barrel technology delivers smooth, salon-quality curls in minutes — no manual wrapping, no guesswork, just consistent results on every hair type.",
         "header_alignment": "center",
         "background_color": "#ffffff",
         "layout_mode": "grid",

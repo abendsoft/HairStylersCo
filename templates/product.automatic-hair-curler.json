@@ -192,36 +192,28 @@
           "type": "row",
           "settings": {
             "heading": "Sleeker, Modern Design",
-            "content": "<p>OLD 10X™ STYLER vs. NEW 10X™ </p>"
+            "content": "<p><br/>The outdated design felt bulky and awkward to hold, making styling sessions tiring. Our upgraded curler features a lightweight, ergonomic body that fits comfortably in your hand for effortless, salon-quality styling.<br/><br/></p>"
           }
         },
-        "row_WQkP4q": {
+        "row_rrcwpy": {
           "type": "row",
           "settings": {
             "heading": "Faster Heat-Up",
-            "content": "<p>STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLEROLD 10X™ STYLER vs. NEW 10X™ STYLER</p>"
+            "content": "<p>The old model took minutes to reach styling temperature, slowing down your routine. With rapid heat technology, the new curler is ready to use in seconds, so you can curl and go.</p>"
           }
         },
-        "row_XLJKGz": {
+        "row_pVtW4G": {
           "type": "row",
           "settings": {
-            "heading": "Optimized Vibrations",
-            "content": "<p>Optimized Vibrations<br/><br/></p>"
-          }
-        },
-        "row_7LyKer": {
-          "type": "row",
-          "settings": {
-            "heading": "Personalized Styling",
-            "content": ""
+            "heading": "Optimized Rotation",
+            "content": "<p>Inconsistent barrel rotation meant uneven curls and snagged hair. The improved automatic rotating barrel wraps hair smoothly and evenly every time, delivering consistent, salon-quality curls with zero hassle.</p>"
           }
         }
       },
       "block_order": [
         "row_pXp43j",
-        "row_WQkP4q",
-        "row_XLJKGz",
-        "row_7LyKer"
+        "row_rrcwpy",
+        "row_pVtW4G"
       ],
       "name": "Curlear image accordion",
       "settings": {
@@ -230,8 +222,8 @@
         "image_position": "center",
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
-        "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
-        "open_first_row": false,
+        "heading": "",
+        "open_first_row": true,
         "reverse_columns_mobile": false,
         "use_custom_column_widths": true,
         "content_column_width": 55,

@@ -464,8 +464,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "BioCeramic MCH Heater",
-            "text_column_2": "No",
-            "text_column_3": "No",
+            "text_column_2": "Yes (3 levels)",
+            "text_column_3": "Yes (2 levels)",
             "text_column_4": "No"
           }
         },
@@ -482,7 +482,7 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Far Infrared Heat",
-            "text_column_2": "No",
+            "text_column_2": "Yes",
             "text_column_3": "No",
             "text_column_4": "No"
           }
@@ -500,8 +500,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Automatic Shut-Off",
-            "text_column_2": "1 hour",
-            "text_column_3": "1 hour",
+            "text_column_2": "30 minutes",
+            "text_column_3": "15 minutes",
             "text_column_4": "1 hour"
           }
         },
@@ -509,8 +509,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Wattage Rating",
-            "text_column_2": "56W",
-            "text_column_3": "66W",
+            "text_column_2": "1000W",
+            "text_column_3": "850W",
             "text_column_4": "75W"
           }
         },
@@ -518,8 +518,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Temperature",
-            "text_column_2": "Up to 430°F",
-            "text_column_3": "Up to 430°F",
+            "text_column_2": "Up to 410°F",
+            "text_column_3": "Up to 410°F",
             "text_column_4": "Up to 385°F"
           }
         },
@@ -527,8 +527,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Weight (without cord)",
-            "text_column_2": "7.86oz",
-            "text_column_3": "7.90oz",
+            "text_column_2": "8.2oz",
+            "text_column_3": "10.5oz",
             "text_column_4": "10.72oz"
           }
         },
@@ -536,8 +536,8 @@
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Cord Length",
-            "text_column_2": "9ft",
-            "text_column_3": "9ft",
+            "text_column_2": "8ft, swivel cord",
+            "text_column_3": "6ft, fixed cord",
             "text_column_4": "9ft"
           }
         },

@@ -478,21 +478,21 @@
             "text_column_4": "Yes"
           }
         },
-        "comparison_row_hQj6gN": {
-          "type": "comparison_row",
-          "settings": {
-            "text_column_1": "Far Infrared Heat",
-            "text_column_2": "Yes",
-            "text_column_3": "No",
-            "text_column_4": "No"
-          }
-        },
         "comparison_row_mLf3fD": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Swivel Cord",
-            "text_column_2": "Yes",
-            "text_column_3": "Yes",
+            "text_column_1": "Rated Power",
+            "text_column_2": "55W",
+            "text_column_3": "97W",
+            "text_column_4": "Yes"
+          }
+        },
+        "comparison_row_N7ijVV": {
+          "type": "comparison_row",
+          "settings": {
+            "text_column_1": "Rated Frequency",
+            "text_column_2": "50/60Hz",
+            "text_column_3": "35/55Hz",
             "text_column_4": "Yes"
           }
         },
@@ -546,8 +546,8 @@
         "comparison_row_yL7bTz",
         "comparison_row_qk8wcz",
         "comparison_row_P7BQjK",
-        "comparison_row_hQj6gN",
         "comparison_row_mLf3fD",
+        "comparison_row_N7ijVV",
         "comparison_row_9wte8x",
         "comparison_row_rLryaC",
         "comparison_row_6tfccL",

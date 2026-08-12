@@ -505,20 +505,11 @@
             "text_column_4": "1 hour"
           }
         },
-        "comparison_row_ADnrz7": {
-          "type": "comparison_row",
-          "settings": {
-            "text_column_1": "Wattage Rating",
-            "text_column_2": "1000W",
-            "text_column_3": "850W",
-            "text_column_4": "75W"
-          }
-        },
         "comparison_row_rLryaC": {
           "type": "comparison_row",
           "settings": {
             "text_column_1": "Temperature",
-            "text_column_2": "Up to 410°F",
+            "text_column_2": "160°C / 180°C / 200°C / 220°C",
             "text_column_3": "Up to 410°F",
             "text_column_4": "Up to 385°F"
           }
@@ -544,8 +535,8 @@
         "comparison_row_wjihe9": {
           "type": "comparison_row",
           "settings": {
-            "text_column_1": "Universal Voltage",
-            "text_column_2": "Yes",
+            "text_column_1": "Rated Voltage",
+            "text_column_2": "100-240V",
             "text_column_3": "Yes",
             "text_column_4": "Yes"
           }
@@ -558,7 +549,6 @@
         "comparison_row_hQj6gN",
         "comparison_row_mLf3fD",
         "comparison_row_9wte8x",
-        "comparison_row_ADnrz7",
         "comparison_row_rLryaC",
         "comparison_row_6tfccL",
         "comparison_row_ciJnM9",

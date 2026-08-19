@@ -54,7 +54,9 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "settings": {}
+          "settings": {
+            "border_radius": 8
+          }
         },
         "curlear_icons_text_small_zpMDjt": {
           "type": "curlear_icons_text_small",
@@ -226,6 +228,8 @@
       "name": "Curlear image accordion",
       "settings": {
         "image": "shopify://shop_images/Rectangle_130.png",
+        "image_fit": "cover",
+        "image_position": "center",
         "top_heading": "",
         "caption": "MORE TO LOVE, WITH NEW IMPROVEMENTS",
         "heading": "OLD 10X™ STYLER vs. NEW 10X™ STYLER",
@@ -242,8 +246,7 @@
         "content_padding_left": 0,
         "arrow_icon": "shopify://shop_images/down-arrow.png",
         "section_bg_color": "#ffffff",
-        "content_bg_color": "#ffffff",
-        "media_bg_color": "#e8d6cc"
+        "content_bg_color": "#ffffff"
       }
     },
     "curlear_image_text_cards_Abg73e": {
@@ -347,7 +350,7 @@
         "cards_per_row_mobile": "2",
         "show_nav_buttons": false,
         "auto_slide": true,
-        "auto_slide_speed": 4
+        "auto_slide_speed": 7
       }
     },
     "curlear_hero_features_9Ear7N": {
@@ -435,6 +438,8 @@
       "name": "Curlear image accordion",
       "settings": {
         "image": "shopify://shop_images/Rectangle_89.png",
+        "image_fit": "cover",
+        "image_position": "center",
         "top_heading": "",
         "caption": "",
         "heading": "FAQs",
@@ -451,8 +456,7 @@
         "content_padding_left": 0,
         "arrow_icon": "shopify://shop_images/down-arrow.png",
         "section_bg_color": "#fffaf7",
-        "content_bg_color": "#fffaf7",
-        "media_bg_color": "#e8d6cc"
+        "content_bg_color": "#fffaf7"
       }
     },
     "curlear_product_compare_A73wxy": {
@@ -574,6 +578,7 @@
       "name": "Curlear product compare",
       "settings": {
         "first_column_heading": "Compare our Products",
+        "hide_last_column": false,
         "column_2_image": "shopify://shop_images/3de96cfb67d5e1d862d25e880f98ca205572e933_21ac5a0b-4e98-4405-983a-3b27d77719be.png",
         "column_2_heading": "5 in 1 Hair Styler",
         "column_2_price": "£64.99",

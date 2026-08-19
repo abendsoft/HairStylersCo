@@ -1066,6 +1066,9 @@ class VariantSelects extends HTMLElement {
   }
 
   connectedCallback() {
+    if (this._variantSelectsBound) return;
+    this._variantSelectsBound = true;
+
     this.addEventListener('change', (event) => {
       const target = this.getInputForEventTarget(event.target);
       this.updateSelectionMetadata(event);
@@ -1078,6 +1081,22 @@ class VariantSelects extends HTMLElement {
         },
       });
     });
+
+    this.addEventListener('pointerenter', this.prefetchHoveredOption.bind(this), true);
+  }
+
+  prefetchHoveredOption(event) {
+    const radio = event.target.closest('input[type="radio"]');
+    const label = event.target.closest('label');
+    const input =
+      radio ||
+      (label?.htmlFor ? this.querySelector(`#${CSS.escape(label.htmlFor)}`) : null);
+    if (!input || input.type !== 'radio' || !this.contains(input)) return;
+
+    const productInfo = this.closest('product-info');
+    if (!productInfo?.prefetchVariantFromInput) return;
+
+    productInfo.prefetchVariantFromInput(input);
   }
 
   updateSelectionMetadata({ target }) {

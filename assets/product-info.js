@@ -8,6 +8,8 @@ if (!customElements.get('product-info')) {
       cartUpdateUnsubscriber = undefined;
       abortController = undefined;
       pendingRequestUrl = null;
+      variantRequestId = 0;
+      static requestCache = new Map();
       preProcessHtmlCallbacks = [];
       postProcessHtmlCallbacks = [];
 
@@ -92,85 +94,172 @@ if (!customElements.get('product-info')) {
           html.querySelectorAll('.scroll-trigger').forEach((element) => element.classList.add('scroll-trigger--cancel'))
         );
         this.postProcessHtmlCallbacks.push((newNode) => {
-          window?.Shopify?.PaymentButton?.init();
-          window?.ProductModel?.loadShopifyXR();
+          requestAnimationFrame(() => {
+            const hasPaymentButton = newNode.querySelector('.shopify-payment-button');
+            if (hasPaymentButton && window?.Shopify?.PaymentButton?.init) {
+              window.Shopify.PaymentButton.init();
+            }
+          });
         });
       }
 
       handleOptionValueChange({ data: { event, target, selectedOptionValues } }) {
         if (!this.contains(event.target)) return;
 
+        const isMobile = window.matchMedia('(max-width: 749px)').matches;
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        target?.focus?.({ preventScroll: true });
+
         this.resetProductFormState();
+        this.applyOptimisticVariant(selectedOptionValues);
 
         const productUrl = target.dataset.productUrl || this.pendingRequestUrl || this.dataset.url;
         this.pendingRequestUrl = productUrl;
         const shouldSwapProduct = this.dataset.url !== productUrl;
-        const shouldFetchFullPage = this.dataset.updateUrl === 'true' && shouldSwapProduct;
 
         this.renderProductInfo({
-          requestUrl: this.buildRequestUrlWithParams(productUrl, selectedOptionValues, shouldFetchFullPage),
+          requestUrl: this.buildRequestUrlWithParams(productUrl, selectedOptionValues, false),
           targetId: target.id,
           callback: shouldSwapProduct
-            ? this.handleSwapProduct(productUrl, shouldFetchFullPage)
+            ? this.handleSwapProduct(productUrl, false)
             : this.handleUpdateProductInfo(productUrl),
         });
+
+        if (isMobile) {
+          window.scrollTo(scrollX, scrollY);
+          requestAnimationFrame(() => window.scrollTo(scrollX, scrollY));
+        }
+      }
+
+      applyOptimisticVariant(selectedOptionValues) {
+        const match = this.findVariantFromOptionValues(selectedOptionValues);
+        if (!match) return;
+
+        if (match.id) this.updateVariantInputs(match.id);
+        if (match.featuredMediaId) {
+          this.querySelector('media-gallery')?.setActiveMedia?.(
+            `${this.dataset.section}-${match.featuredMediaId}`,
+            true
+          );
+        }
+        this.productForm?.toggleSubmitButton(false);
+      }
+
+      findVariantFromOptionValues(selectedOptionValues) {
+        const lookupNode = this.querySelector('variant-selects [data-variant-lookup]');
+        if (!lookupNode) return null;
+
+        let variants = [];
+        try {
+          variants = JSON.parse(lookupNode.textContent);
+        } catch (error) {
+          return null;
+        }
+
+        const selectedKey = [...selectedOptionValues].map(String).sort().join(',');
+        return (
+          variants.find((variant) => {
+            const key = (variant.optionValueIds || []).map(String).sort().join(',');
+            return key === selectedKey;
+          }) || null
+        );
+      }
+
+      prefetchVariantFromInput(input) {
+        const productUrl = input.dataset.productUrl || this.dataset.url;
+        const selected = this.variantSelectors?.selectedOptionValues || [];
+        const optionValueId = input.dataset.optionValueId;
+        if (!optionValueId) return;
+
+        const fieldset = input.closest('fieldset');
+        const nextSelected = selected.filter((id) => {
+          if (!fieldset) return true;
+          return !Array.from(fieldset.querySelectorAll('[data-option-value-id]')).some(
+            (optionInput) => optionInput.dataset.optionValueId === id && optionInput !== input
+          );
+        });
+        if (!nextSelected.includes(optionValueId)) nextSelected.push(optionValueId);
+
+        const requestUrl = this.buildRequestUrlWithParams(productUrl, nextSelected, false);
+        this.prefetchRequest(requestUrl);
+      }
+
+      prefetchRequest(requestUrl) {
+        if (this.constructor.requestCache.has(requestUrl)) return;
+
+        fetch(requestUrl)
+          .then((response) => response.text())
+          .then((responseText) => {
+            this.storeRequestCache(requestUrl, responseText);
+          })
+          .catch(() => {});
+      }
+
+      storeRequestCache(requestUrl, responseText) {
+        const cache = this.constructor.requestCache;
+        cache.set(requestUrl, responseText);
+        if (cache.size > 12) {
+          const firstKey = cache.keys().next().value;
+          cache.delete(firstKey);
+        }
       }
 
       resetProductFormState() {
-        const productForm = this.productForm;
-        productForm?.toggleSubmitButton(true);
-        productForm?.handleErrorMessage();
+        this.productForm?.handleErrorMessage();
       }
 
       handleSwapProduct(productUrl, updateFullPage) {
         return (html) => {
           this.productModal?.remove();
 
-          const selector = updateFullPage ? "product-info[id^='MainProduct']" : 'product-info';
-          const variant = this.getSelectedVariant(html.querySelector(selector));
+          const newProductInfo = html.querySelector('product-info');
+          if (!newProductInfo) return;
+
+          const variant = this.getSelectedVariant(newProductInfo);
           this.updateURL(productUrl, variant?.id);
 
-          if (updateFullPage) {
-            document.querySelector('head title').innerHTML = html.querySelector('head title').innerHTML;
-
-            HTMLUpdateUtility.viewTransition(
-              document.querySelector('main'),
-              html.querySelector('main'),
-              this.preProcessHtmlCallbacks,
-              this.postProcessHtmlCallbacks
-            );
-          } else {
-            HTMLUpdateUtility.viewTransition(
-              this,
-              html.querySelector('product-info'),
-              this.preProcessHtmlCallbacks,
-              this.postProcessHtmlCallbacks
-            );
-          }
+          this.preProcessHtmlCallbacks.forEach((callback) => callback(newProductInfo));
+          this.replaceWith(newProductInfo);
+          this.postProcessHtmlCallbacks.forEach((callback) => callback(newProductInfo));
         };
       }
 
       renderProductInfo({ requestUrl, targetId, callback }) {
         this.abortController?.abort();
         this.abortController = new AbortController();
+        const requestId = ++this.variantRequestId;
+
+        const applyResponse = (responseText) => {
+          if (requestId !== this.variantRequestId) return;
+          const isMobile = window.matchMedia('(max-width: 749px)').matches;
+          const scrollX = window.scrollX;
+          const scrollY = window.scrollY;
+          this.pendingRequestUrl = null;
+          const html = new DOMParser().parseFromString(responseText, 'text/html');
+          callback(html);
+          if (isMobile) {
+            window.scrollTo(scrollX, scrollY);
+            requestAnimationFrame(() => window.scrollTo(scrollX, scrollY));
+          }
+        };
+
+        const cached = this.constructor.requestCache.get(requestUrl);
+        if (cached) {
+          applyResponse(cached);
+          return;
+        }
 
         fetch(requestUrl, { signal: this.abortController.signal })
           .then((response) => response.text())
           .then((responseText) => {
-            this.pendingRequestUrl = null;
-            const html = new DOMParser().parseFromString(responseText, 'text/html');
-            callback(html);
-          })
-          .then(() => {
-            // set focus to last clicked option value
-            document.querySelector(`#${targetId}`)?.focus();
+            this.storeRequestCache(requestUrl, responseText);
+            applyResponse(responseText);
           })
           .catch((error) => {
-            if (error.name === 'AbortError') {
-              console.log('Fetch aborted by user');
-            } else {
-              console.error(error);
-            }
+            if (error.name === 'AbortError') return;
+            console.error(error);
           });
       }
 
@@ -193,8 +282,8 @@ if (!customElements.get('product-info')) {
 
       updateOptionValues(html) {
         const variantSelects = html.querySelector('variant-selects');
-        if (variantSelects) {
-          HTMLUpdateUtility.viewTransition(this.variantSelectors, variantSelects, this.preProcessHtmlCallbacks);
+        if (variantSelects && this.variantSelectors) {
+          this.variantSelectors.replaceWith(variantSelects);
         }
       }
 
@@ -233,8 +322,9 @@ if (!customElements.get('product-info')) {
           this.querySelector(`#Quantity-Rules-${this.dataset.section}`)?.classList.remove('hidden');
           this.querySelector(`#Volume-Note-${this.dataset.section}`)?.classList.remove('hidden');
 
+          const submitButton = html.getElementById(`ProductSubmitButton-${this.sectionId}`);
           this.productForm?.toggleSubmitButton(
-            html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
+            Boolean(submitButton?.hasAttribute('disabled')),
             window.variantStrings.soldOut
           );
 
@@ -253,8 +343,14 @@ if (!customElements.get('product-info')) {
           `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
         ).forEach((productForm) => {
           const input = productForm.querySelector('input[name="id"]');
-          input.value = variantId ?? '';
-          input.dispatchEvent(new Event('change', { bubbles: true }));
+          if (!input) return;
+          const nextValue = variantId ? String(variantId) : '';
+          if (input.value === nextValue) return;
+          input.value = nextValue;
+          input.removeAttribute('disabled');
+          requestAnimationFrame(() => {
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          });
         });
       }
 
@@ -278,6 +374,15 @@ if (!customElements.get('product-info')) {
 
       updateMedia(html, variantFeaturedMediaId) {
         if (!variantFeaturedMediaId) return;
+
+        const gallery = this.querySelector('media-gallery');
+        const activeMediaId = `${this.dataset.section}-${variantFeaturedMediaId}`;
+        const existingMedia = gallery?.querySelector(`[data-media-id="${activeMediaId}"]`);
+
+        if (existingMedia) {
+          gallery.setActiveMedia?.(activeMediaId, true);
+          return;
+        }
 
         const mediaGallerySource = this.querySelector('media-gallery ul');
         const mediaGalleryDestination = html.querySelector(`media-gallery ul`);

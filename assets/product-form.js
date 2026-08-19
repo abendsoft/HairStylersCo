@@ -125,13 +125,27 @@ if (!customElements.get('product-form')) {
       }
 
       toggleSubmitButton(disable = true, text) {
+        if (!this.submitButton) return;
+
         if (disable) {
           this.submitButton.setAttribute('disabled', 'disabled');
+          this.submitButton.setAttribute('aria-disabled', 'true');
           if (text) this.submitButtonText.textContent = text;
         } else {
           this.submitButton.removeAttribute('disabled');
+          this.submitButton.removeAttribute('aria-disabled');
+          this.submitButton.classList.remove('loading');
           this.submitButtonText.textContent = window.variantStrings.addToCart;
+          this.querySelector('.loading__spinner')?.classList.add('hidden');
         }
+
+        this.querySelectorAll(
+          '.shopify-payment-button__button, .shopify-payment-button__button--unbranded, .shopify-payment-button [role="button"]'
+        ).forEach((button) => {
+          if (disable) return;
+          button.removeAttribute('disabled');
+          button.removeAttribute('aria-disabled');
+        });
       }
 
       get variantIdInput() {

@@ -34,6 +34,29 @@ variant-selects {
   width: 1px;
 }
 
+@media screen and (max-width: 749px) {
+  .product-form__input--pill,
+  .product-form__input--swatch {
+    position: relative;
+  }
+
+  /* Keep radios in view so iOS/Android don't scroll the page up on tap. */
+  .product-form__input--pill input[type='radio'],
+  .product-form__input--swatch input[type='radio'] {
+    clip: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    appearance: none;
+  }
+}
+
 .product-form__input input[type='radio']:not(.disabled):not(.visually-disabled) + label > .label-unavailable {
   display: none;
 }

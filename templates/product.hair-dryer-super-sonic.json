@@ -54,7 +54,9 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "settings": {}
+          "settings": {
+            "border_radius": 8
+          }
         },
         "curlear_icons_text_small_zpMDjt": {
           "type": "curlear_icons_text_small",
@@ -349,7 +351,7 @@
         "cards_per_row_mobile": "2",
         "show_nav_buttons": false,
         "auto_slide": true,
-        "auto_slide_speed": 4
+        "auto_slide_speed": 7
       }
     },
     "curlear_hero_features_9Ear7N": {

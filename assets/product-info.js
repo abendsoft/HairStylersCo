@@ -29,6 +29,11 @@ if (!customElements.get('product-info')) {
 
         this.initQuantityHandlers();
         this.initPinDetailsScrollChain();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => this.prefetchVariantImages(), { timeout: 1200 });
+        } else {
+          setTimeout(() => this.prefetchVariantImages(), 250);
+        }
         this.dispatchEvent(new CustomEvent('product-info:loaded', { bubbles: true }));
       }
 
@@ -138,6 +143,7 @@ if (!customElements.get('product-info')) {
         if (!match) return;
 
         if (match.id) this.updateVariantInputs(match.id);
+        if (match.featuredMediaUrl) this.prefetchImage(match.featuredMediaUrl);
         if (match.featuredMediaId) {
           this.querySelector('media-gallery')?.setActiveMedia?.(
             `${this.dataset.section}-${match.featuredMediaId}`,
@@ -167,6 +173,44 @@ if (!customElements.get('product-info')) {
         );
       }
 
+      getVariantLookup() {
+        const lookupNode = this.querySelector('variant-selects [data-variant-lookup]');
+        if (!lookupNode) return [];
+        try {
+          return JSON.parse(lookupNode.textContent) || [];
+        } catch (error) {
+          return [];
+        }
+      }
+
+      prefetchVariantImages() {
+        this.getVariantLookup().forEach((variant) => {
+          if (variant.featuredMediaUrl) this.prefetchImage(variant.featuredMediaUrl);
+          if (variant.featuredMediaId) {
+            const mediaItem = this.querySelector(
+              `media-gallery [data-media-id="${this.dataset.section}-${variant.featuredMediaId}"]`
+            );
+            mediaItem?.querySelectorAll('img').forEach((img) => {
+              if (img.loading === 'lazy') img.loading = 'eager';
+              const src = img.currentSrc || img.getAttribute('src');
+              if (src) this.prefetchImage(src, img.srcset, img.sizes);
+            });
+          }
+        });
+      }
+
+      prefetchImage(src, srcset, sizes) {
+        if (!src || this.constructor.prefetchedImages?.has(src)) return;
+        this.constructor.prefetchedImages = this.constructor.prefetchedImages || new Set();
+        this.constructor.prefetchedImages.add(src);
+
+        const image = new Image();
+        if (sizes) image.sizes = sizes;
+        if (srcset) image.srcset = srcset;
+        image.decoding = 'async';
+        image.src = src;
+      }
+
       prefetchVariantFromInput(input) {
         const productUrl = input.dataset.productUrl || this.dataset.url;
         const selected = this.variantSelectors?.selectedOptionValues || [];
@@ -181,6 +225,19 @@ if (!customElements.get('product-info')) {
           );
         });
         if (!nextSelected.includes(optionValueId)) nextSelected.push(optionValueId);
+
+        const match = this.findVariantFromOptionValues(nextSelected);
+        if (match?.featuredMediaUrl) this.prefetchImage(match.featuredMediaUrl);
+        if (match?.featuredMediaId) {
+          const mediaItem = this.querySelector(
+            `media-gallery [data-media-id="${this.dataset.section}-${match.featuredMediaId}"]`
+          );
+          mediaItem?.querySelectorAll('img').forEach((img) => {
+            if (img.loading === 'lazy') img.loading = 'eager';
+            const src = img.currentSrc || img.getAttribute('src');
+            if (src) this.prefetchImage(src, img.srcset, img.sizes);
+          });
+        }
 
         const requestUrl = this.buildRequestUrlWithParams(productUrl, nextSelected, false);
         this.prefetchRequest(requestUrl);

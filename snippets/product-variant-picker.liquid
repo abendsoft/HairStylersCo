@@ -114,7 +114,8 @@
           {
             "optionValueIds": {{ option_value_ids | split: ',' | json }},
             "id": {{ variant.id }},
-            "featuredMediaId": {% if variant.featured_media %}{{ variant.featured_media.id }}{% else %}null{% endif %}
+            "featuredMediaId": {% if variant.featured_media %}{{ variant.featured_media.id }}{% else %}null{% endif %},
+            "featuredMediaUrl": {% if variant.featured_media %}{{ variant.featured_media | image_url: width: 1200 | json }}{% else %}null{% endif %}
           }{%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]

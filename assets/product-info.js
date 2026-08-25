@@ -81,7 +81,14 @@ if (!customElements.get('product-info')) {
 
         this.setQuantityBoundries();
         if (!this.dataset.originalSection) {
-          this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, this.fetchQuantityRules.bind(this));
+          this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, (event) => {
+            // Defer quantity refresh after add-to-cart so it doesn't compete with cart/add.
+            if (event?.data?.source === 'product-form') {
+              setTimeout(() => this.fetchQuantityRules(), 600);
+              return;
+            }
+            this.fetchQuantityRules();
+          });
         }
       }
 

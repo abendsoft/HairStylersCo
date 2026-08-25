@@ -3,8 +3,15 @@ class CartDrawer extends HTMLElement {
     super();
 
     this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
-    this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+    this.bindOverlayClose();
     this.setHeaderCartIconAccessibility();
+  }
+
+  bindOverlayClose() {
+    const overlay = this.querySelector('#CartDrawer-Overlay');
+    if (!overlay || overlay.dataset.boundClose === 'true') return;
+    overlay.dataset.boundClose = 'true';
+    overlay.addEventListener('click', this.close.bind(this));
   }
 
   setHeaderCartIconAccessibility() {
@@ -29,8 +36,8 @@ class CartDrawer extends HTMLElement {
     if (triggeredBy) this.setActiveElement(triggeredBy);
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
-    // here the animation doesn't seem to always get triggered. A timeout seem to help
-    setTimeout(() => {
+
+    requestAnimationFrame(() => {
       this.classList.add('animate', 'active');
     });
 
@@ -71,26 +78,31 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
-    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
-      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    const drawerInner = this.querySelector('.drawer__inner');
+    if (drawerInner?.classList.contains('is-empty')) {
+      drawerInner.classList.remove('is-empty');
+    }
+    this.classList.remove('is-empty');
     this.productId = parsedState.id;
+
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
         ? document.querySelector(section.selector)
         : document.getElementById(section.id);
 
-      if (!sectionElement) return;
-      sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+      if (!sectionElement || !parsedState.sections?.[section.id]) return;
+
+      const html = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+      if (html != null) sectionElement.innerHTML = html;
     });
 
-    setTimeout(() => {
-      this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
-      this.open();
-    });
+    this.bindOverlayClose();
+    this.open();
   }
 
   getSectionInnerHTML(html, selector = '.shopify-section') {
-    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    return parsed.querySelector(selector)?.innerHTML ?? '';
   }
 
   getSectionsToRender() {
